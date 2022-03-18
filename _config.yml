@@ -1,0 +1,14 @@
+sass:
+    style: :compressed
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "page"
+  -
+    scope:
+      path: "spec"
+    values:
+      breadcrumbs: [{ title: "Home", url: "/" }, { title: "Specification", url: "/spec" }]

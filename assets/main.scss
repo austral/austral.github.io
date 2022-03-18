@@ -1,0 +1,154 @@
+---
+---
+
+@charset "utf-8";
+
+
+//
+// Variables
+//
+
+$base-font-size: 16px;
+$base-line-height: calc(1.25 * #{$base-font-size});
+
+$vsmall: calc(0.1 * #{$base-line-height});
+$small: calc(0.5 * #{$base-line-height});
+$medium: calc(1 * #{$base-line-height});
+$large: calc(2 * #{$base-line-height});
+
+$link-color: #0081A7;
+
+//
+// Reset
+//
+
+*, :after, :before {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: clip;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+//
+// Typography
+//
+
+html {
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+}
+
+body {
+    font-family: 'Times New Roman', 'Nimbus Roman No9 L', serif;
+    color: black;
+}
+
+code {
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.9em;
+}
+
+// Page style
+
+body {
+    padding: $large;
+    max-width: 38rem;
+}
+
+h1 {
+    padding-bottom: $small;
+    border-bottom: 1px solid black;
+}
+
+h2 {
+    margin-bottom: $small;
+    border-bottom: 1px solid black;
+}
+
+.page-title {
+    display: flex;
+    flex-direction: row;
+
+    font-family: 'Gill Sans', sans-serif;
+    font-weight: normal;
+}
+
+nav.breadcrumbs {
+    border-bottom: 1px solid black;
+    font-size: 1rem;
+    font-style: italic;
+    padding: $vsmall 0;
+
+    a {
+	color: $link-color;
+    }
+
+    .fleuron {
+        font-size: $medium;
+        margin: 0 $vsmall;
+	color: gray;
+    }
+}
+
+article {
+    margin-top: $medium;
+    margin-bottom: $medium;
+
+    p, ul, ol, pre {
+        margin-bottom: $small;
+    }
+
+    ol:last-child, ul:last-child {
+	margin-bottom: 0;
+    }
+
+    ul li, ol li {
+        margin: 0 $large;
+    }
+
+    blockquote {
+        padding: $medium;
+        font-style: italic;
+    }
+
+    pre {
+        border: 1px solid gray;
+        padding: $small;
+    }
+
+    p {
+        text-align: justify;
+    }
+
+    a {
+        color: $link-color;
+    }
+}
+
+footer {
+    padding: $small;
+    border-top: 1px solid black;
+
+    a {
+        color: $link-color;
+    }
+}
