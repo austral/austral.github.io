@@ -12,3 +12,8 @@ defaults:
       path: "spec"
     values:
       breadcrumbs: [{ title: "Home", url: "/" }, { title: "Specification", url: "/spec" }]
+  -
+    scope:
+      path: "examples"
+    values:
+      breadcrumbs: [{ title: "Home", url: "/" }, { title: "Examples", url: "/examples" }]

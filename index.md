@@ -13,7 +13,7 @@ See:
 - [What are linear types?](/linear-types)
 - [Specification](/spec)
 - Tutorial
-- Example programs
+- [Example programs](/examples)
 - [Source code][source]
 
 [cap]: https://en.wikipedia.org/wiki/Capability-based_security
