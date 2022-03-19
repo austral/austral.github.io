@@ -31,7 +31,8 @@ This section lists the design goals for Austral.
    language.
 
    There is a steep tradeoff curve between correctness and simplicity: simple
-   type system features provide 80% of correctness. The remaining 20% consists of things like:
+   type system features provide 80% of correctness. The remaining 20% consists
+   of things like:
 
    1. Statically proving that there are no integer overflows.
    2. Proving that all array indexing calls are within array bounds.
@@ -110,6 +111,27 @@ This section lists the design goals for Austral.
    Austral is decidedly a language for building pyramids. Code written in
    Austral is strict, rigid, crystalline, and _brittle_: minor changes are prone
    to breaking the build. We posit that this is a good thing.
+
+8. **Restraint.** There is a widespread view in software engineering that errors
+   are the responsibility of programmers, that "only a bad craftsperson
+   complains about their tools", and that the solution to catastrophic security
+   vulnerabilities caused by the same underlying mechanisms is to simply write
+   fewer bugs.
+
+   We take the view that human error is an inescapable, intrinsic aspect of
+   human activity. Human processes such as code review are only as good as the
+   discipline of the people running them. Mechanical processes --- such as type
+   systems, type checking, formal verification, design by contract, static
+   assertion checking, dynamic assertion checking --- are independent of the
+   skill of the programmer.
+
+   Therefore: programmers need all possible mechanical aid to writing good code,
+   up to the point where the implemention/semantic complexity exceeds the gains
+   in correctness.
+
+   Given the vast empirical evidence that humans are unable to predict the
+   failure modes and security vulnerabilities in the code they write, Austral is
+   designed to restrain programmer power and minimize footguns.
 
 [vasa]: https://www.stroustrup.com/P0977-remember-the-vasa.pdf
 [lamport]: https://lamport.azurewebsites.net/pubs/future-of-computing.pdf
