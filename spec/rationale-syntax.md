@@ -190,8 +190,8 @@ including the name of the declaration would be unnecessarily verbose.
 
 ## Semicolons
 
-It is a common misconcepetion that semicolons are needed for the compiler to
-know where a statement or expression ends. That is, that without semicolons,
+It is a common misconception that semicolons are needed for the compiler to know
+where a statement or expression ends. That is, that without semicolons,
 languages would be ambiguous. This obviously depends on the language grammar,
 but in the case of Austral it is not true, and the grammar would remain
 unambiguous even without semicolons.
