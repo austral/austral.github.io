@@ -20,6 +20,10 @@ This section lists the design goals for Austral.
    3. It makes code easier to reason about, because there are fewer overlapping
       language features to consider.
 
+   Simplicity is defined in terms of [Kolmogorov complexity][compl]: a system is
+   simple not when it forgives mistakes or is beginner-friendly or is easy to
+   use. A system is simple when _it can be described briefly_.
+
 2. **Correctness.** This is an intangible, but generally, the measure of how
    much a language enables programmers to write correct code is: if the code
    compiles, it should work. With the caveat that said code should use the
@@ -98,3 +102,4 @@ This section lists the design goals for Austral.
 
 [vasa]: https://www.stroustrup.com/P0977-remember-the-vasa.pdf
 [lamport]: https://lamport.azurewebsites.net/pubs/future-of-computing.pdf
+[compl]: https://en.wikipedia.org/wiki/Kolmogorov_complexity
