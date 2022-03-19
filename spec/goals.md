@@ -100,6 +100,18 @@ This section lists the design goals for Austral.
    allows system interfaces to be designed up-front, and implemented in
    parallel.
 
+7. **Strictness.** Gerald Jay Sussman and Hal Abelson [wrote][sicp]:
+
+   >Pascal is for building pyramids --- imposing, breathtaking, static structures
+   >built by armies pushing heavy blocks into place. Lisp is for building
+   >organisms --- imposing, breathtaking, dynamic structures built by squads
+   >fitting fluctuating myriads of simpler organisms into place.
+
+   Austral is decidedly a language for building pyramids. Code written in
+   Austral is strict, rigid, crystalline, and _brittle_: minor changes are prone
+   to breaking the build. We posit that this is a good thing.
+
 [vasa]: https://www.stroustrup.com/P0977-remember-the-vasa.pdf
 [lamport]: https://lamport.azurewebsites.net/pubs/future-of-computing.pdf
 [compl]: https://en.wikipedia.org/wiki/Kolmogorov_complexity
+[sicp]: https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-5.html
