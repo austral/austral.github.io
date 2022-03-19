@@ -94,6 +94,21 @@ end.
 
 ## Module Bodies
 
-## Private Modules
-
 ## Unsafe Modules
+
+An **unsafe module** is a module that can access FFI features. Specifically, an
+unsafe module can:
+
+- Import declarations from the `Austral.Memory` module.
+- Use the `External_Name` pragma.
+
+To specify that a module is unsafe, the `Unsafe_Module` pragma must be used in
+the module body. For example:
+
+```
+module body Example is
+    pragma Unsafe_Module;
+
+    -- Can import from `Austral.Memory`, etc.
+end module body.
+```
