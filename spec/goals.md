@@ -24,6 +24,16 @@ This section lists the design goals for Austral.
    simple not when it forgives mistakes or is beginner-friendly or is easy to
    use. A system is simple when _it can be described briefly_.
 
+   Two crucial measures of simplicity are:
+
+   1. Language lawyering should be impossible. If people can argue about what
+      some code prints out, that's a language failure. If code can be ambiguous
+      or obsfuscated, that is not a failure of the programmer but a failure of
+      the language.
+
+   2. A programmer should be able to learn the language in its entirety by
+      reading this specification.
+
 2. **Correctness.** This is an intangible, but generally, the measure of how
    much a language enables programmers to write correct code is: if the code
    compiles, it should work. With the caveat that said code should use the
@@ -120,10 +130,13 @@ This section lists the design goals for Austral.
 
    We take the view that human error is an inescapable, intrinsic aspect of
    human activity. Human processes such as code review are only as good as the
-   discipline of the people running them. Mechanical processes --- such as type
-   systems, type checking, formal verification, design by contract, static
-   assertion checking, dynamic assertion checking --- are independent of the
-   skill of the programmer.
+   discipline of the people running them, who are often tired, burnt out,
+   distracted, or otherwise unable to accurately simulate virtual machines (a
+   task human brains were not evolved for), or facing business pressure to put
+   expedience over correctness. Mechanical processes --- such as type systems,
+   type checking, formal verification, design by contract, static assertion
+   checking, dynamic assertion checking --- are independent of the skill of the
+   programmer.
 
    Therefore: programmers need all possible mechanical aid to writing good code,
    up to the point where the implemention/semantic complexity exceeds the gains
