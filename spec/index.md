@@ -18,4 +18,7 @@ This is the table of contents for the Austral specification.
 6. [Declarations](/spec/declarations)
 7. [Statements](/spec/statements)
 8. [Expressions](/spec/expressions)
-9. [Appendix A: GNU Free Documentation License](appendix-a)
+9. [Built-In Modules](/spec/builtins)
+   1. [`Austral.Pervasive` Module](/spec/austral-pervasive)
+   2. [`Austral.Memory` Module](/spec/austral-memory)
+10. [Appendix A: GNU Free Documentation License](appendix-a)
