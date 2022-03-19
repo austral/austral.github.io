@@ -7,6 +7,7 @@ breadcrumbs:
 This is the table of contents for the Austral specification.
 
 1. [Introduction](/spec/intro)
+   1. [Design Goals](/spec/goals/)
 2. [Rationale](/spec/rationale)
     1. [Syntax](/spec/rationale-syntax)
     2. [Error Handling](/spec/rationale-error-handling)
