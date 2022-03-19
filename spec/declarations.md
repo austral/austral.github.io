@@ -5,7 +5,7 @@ title: Declarations
 This section describes the kind of declarations that can appear in Austral
 modules.
 
-## Opaque Constant
+## Opaque Constant {#opaque-constant}
 
 If `C` is an identifier, `T` is a type specifier, then:
 
@@ -34,7 +34,7 @@ module body Example is
 end module body.
 ```
 
-## Constant Definition
+## Constant Definition {#constant-definition}
 
 If `C` is an identifier, `T` is a type specifier, and `E` is a constant
 expression of type `T`, then:
@@ -62,9 +62,10 @@ module body Example is
 end module body.
 ```
 
-## Opaque Type Alias
+## Opaque Type Alias {#opaque-type-alias}
 
-If `T` is an identifier, `{P_1: K_1, ..., P_n: K_n}` is a set of type parameters, and `U` is a universe, then:
+If `T` is an identifier, `{P_1: K_1, ..., P_n: K_n}` is a set of type
+parameters, and `U` is a universe, then:
 
 ```
 type T[P_1: K_1, ..., P_n: K_n]: U;
@@ -134,7 +135,7 @@ module body App.Username is
 end module.
 ```
 
-## Renamed Types
+## Type Alias Definition {#type-alias-definition}
 
 If `T` is an identifier, and `S` is a type specifier, then:
 
@@ -161,7 +162,7 @@ This provides encapsulation. If `T` is an opaque type, modules that import it
 cannot create instances of `T` through the `let` statement because they don't
 know the definition of `T`.
 
-## Records
+## Record Definitioon {#record-definition}
 
 A record is an unordered collection of values, called fields, which are
 addressed by name.
@@ -232,7 +233,7 @@ let V2 : Vector3 := Vector3(
 );
 ```
 
-## Unions
+## Union Definition {#union-definition}
 
 Unions are like datatypes in ML and Haskell. They have constructors and,
 optionally, constructors have values associated to them.
@@ -286,7 +287,7 @@ function Fib(n: Natural): Natural is
 end
 ```
 
-## Generic Functions
+## Function Declaration {#function-declaration}
 
 Examples:
 
@@ -297,7 +298,9 @@ function Identity(x: T): T is
 end
 ```
 
-## Type Classes
+## Function Definition {#function-definition}
+
+## Typeclass Definition {#typeclass-definition}
 
 Examples:
 
@@ -307,7 +310,9 @@ typeclass Printable(T : Type) is
 end
 ```
 
-## Type Class Instances
+## Instance Declaration {#instance-declaration}
+
+## Instance Definition {#instance-definition}
 
 Examples:
 
