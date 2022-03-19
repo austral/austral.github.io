@@ -64,5 +64,37 @@ This section lists the design goals for Austral.
    on the standard library should compile and run without changes decades into
    the future.
 
+6. **Modularity.** Software is built out of hierarchically organized modules,
+   accessible through interfaces. Languages have more-or-less explicit support
+   for this:
+
+   1. In C, all declarations exist in the same namespace, and textual inclusion
+      and the separation of header and implementation files provides a loose
+      modularity, enforced only through style guides and programmer discipline.
+
+   2. In Python, modules exist, their names and paths are tied to the
+      filesystem, and the accessibility of identifiers is determined by their
+      names.
+
+   3. In Rust and Java, visibility modifiers are attached to declarations to
+      make them public or private.
+
+   Austral's module system is inspired by those of Ada, Modula-2, and Standard
+   ML, with the restriction that there are no generic modules (as in Ada or
+   Modula-3) or functors (as in Standard ML or OCaml), that is: all modules are
+   first-order.
+
+   Modules are given explicit names are are not tied to any particular file
+   system structure. Modules are split in two textual parts (effectively two
+   files), a module interface and a module body, with strict separation between
+   the two. The declarations in the module interface file are accessible from
+   without, and the declarations in the module body file are private.
+
+   Crucially, a module `A` that depends on a module `B` can be typechecked when
+   the compiler only has access to the interface file of module `B`. That is:
+   modules can be typechecked against each other before being implemented. This
+   allows system interfaces to be designed up-front, and implemented in
+   parallel.
+
 [vasa]: https://www.stroustrup.com/P0977-remember-the-vasa.pdf
 [lamport]: https://lamport.azurewebsites.net/pubs/future-of-computing.pdf
