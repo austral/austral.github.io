@@ -7,19 +7,55 @@ the module interface file and the module body file.
 
 ## Module Interfaces
 
-The interface contains declarations that are importable by other modules, as
-well as an optional private section of declarations (for example, functions)
-that are available within the module but not importable.
+The interface contains declarations that are importable by other modules.
 
-An interface file can have the following declarations:
+A module interface can have the following declarations:
 
-- Constant declarations.
-- Type declarations (opaque or public).
-- Function declarations.
-- Type class declarations.
-- Type class instance declarations.
+- [Opaque constant declarations](/spec/declarations#opaque-constant)
+- [Opaque type alias declarations](/spec/declarations#opaque-type-alias)
+- [Type alias definitions](/spec/declarations#type-alias-definition)
+- [Record definitions](/spec/declarations#record-definition)
+- [Union definitions](/spec/declarations#union-definition)
+- [Function declarations](/spec/declarations#function-declaration)
+- [Typeclass definitions](/spec/declarations#typeclass-definition)
+- [Instance declarations](/spec/declarations#instance-declaration)
 
-Examples:
+## Module Bodies
+
+The module body contains private declarations (that are not importable by other
+modules), as well as declarations that provide the definitions of opaque
+declarations in the module interface.
+
+A module body can have the following kinds of declarations:
+
+- [Constant definitions](/spec/declarations#constant-definition)
+- [Type alias definitions](/spec/declarations#type-alias-definition)
+- [Record definitions](/spec/declarations#record-definition)
+- [Union definitions](/spec/declarations#union-definition)
+- [Function definitions](/spec/declarations#function-definition)
+- [Typeclass definitions](/spec/declarations#typeclass-definition)
+- [Instance definitions](/spec/declarations#instance-definitions)
+
+## Unsafe Modules
+
+An **unsafe module** is a module that can access FFI features. Specifically, an
+unsafe module can:
+
+- Import declarations from the `Austral.Memory` module.
+- Use the `External_Name` pragma.
+
+To specify that a module is unsafe, the `Unsafe_Module` pragma must be used in
+the module body. For example:
+
+```
+module body Example is
+    pragma Unsafe_Module;
+
+    -- Can import from `Austral.Memory`, etc.
+end module body.
+```
+
+## Examples
 
 Given the following interface file:
 
@@ -90,25 +126,4 @@ module Example is
         end
     end
 end.
-```
-
-## Module Bodies
-
-## Unsafe Modules
-
-An **unsafe module** is a module that can access FFI features. Specifically, an
-unsafe module can:
-
-- Import declarations from the `Austral.Memory` module.
-- Use the `External_Name` pragma.
-
-To specify that a module is unsafe, the `Unsafe_Module` pragma must be used in
-the module body. For example:
-
-```
-module body Example is
-    pragma Unsafe_Module;
-
-    -- Can import from `Austral.Memory`, etc.
-end module body.
 ```
