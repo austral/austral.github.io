@@ -4,7 +4,7 @@ breadcrumbs:
   - { title: "Home", url: "/" }
 ---
 
-This is the table of contents for the Austral specification.
+This is the index page for the Austral specification.
 
 1. [Introduction](/spec/intro)
    1. [Design Goals](/spec/goals/)
