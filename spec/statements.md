@@ -120,6 +120,74 @@ end if;
 
 ## Case Statement
 
+If `E` is an expression of a union type with cases `{C_1, ..., C_n}` and each
+case has slots `C_i = {S_i1: T_i1, ..., S_in T_im}`, and `{B_1, ..., B_n}` is a
+set of statements, then:
+
+```
+case E of
+    when C_1(S_11: T_11, S_12: T_12, ..., S_1m: T_1m) do
+        B_1;
+    ...
+    when C_n(S_n1: T_n1, S_n2: T_n2, ..., S_nm: T_nm) do
+        B_n;
+end case;
+```
+
+is a `case` statement.
+
+Case statements are used to break apart unions. For each case in a union, there
+must be a corresponding `when` clause in the `case` statement. Analogously: for
+each slot in a union case, the corresponding `when` clause must have a binding
+for that slot.
+
+An example of using the `case` statement on a union whose cases have no slots:
+
+```
+union Color: Free is
+    case Red;
+    case Green;
+    case Blue;
+end;
+
+let C : Color := Red();
+case C of
+    when Red do
+        ...;
+    when Green do
+        ...;
+    when Blue do
+        ...;
+end case;
+```
+
+An example of using the `Option` type:
+
+```
+let o: Option[Integer_32] := Some(10);
+case o of
+    when Some(value: Integer_32) do
+        -- Do something with `value`.
+    when None do
+        -- Handle the empty case.
+end case;
+```
+
+An example of using the `Either` type:
+
+```
+let e: Either[Boolean, Integer_32] := Right(right => 10);
+case e of
+    when Left(left: Boolean) do
+        -- Do something with `left`.
+    when Right(right: Integer_32) do
+        -- Do something with `right`.
+end case;
+```
+
+An exam
+
+
 ## While Loop
 
 If `e` is an expression of type `Boolean` and `b` is a statement, then:
@@ -164,6 +232,30 @@ end for;
 ```
 
 ## Borrow Statement
+
+If `X` is a variable of a linear type `T`, `X'` is an identifier, `R` is an identifier, and `B` is a statement, then:
+
+```
+borrow X as X' in R do
+  B;
+end;
+```
+
+Is a borrow statement that borrows the variable `X` as a reference `X'` with
+type `Reference[T, R]` in a new region named `R`.
+
+The variable `X'` is usable only in `B`, dually, the variable `X` cannot be used
+in `B`, i.e. while it is borrowed.
+
+The mutable form of the borrow statement is:
+
+```
+borrow X as X' in R do
+  B;
+end;
+```
+
+The only difference is that the type of `X'` is `WriteReference[R, T]`.
 
 ## Discarding Statement
 
