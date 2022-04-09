@@ -32,31 +32,161 @@ Floating-point number constants have type `DoubleFloat`.
 
 ## String Constant
 
+[TODO]
+
 ## Variable Expression
+
+An identifier that's not the nil or boolean constants is a local variable or
+global constant, whose type is determined from the lexical environment.
 
 ## Arithmetic Expression
 
+If `a` and `b` are two expressions of the same integer or floating point type
+`N`, then:
+
+```
+a+b
+a-b
+a*b
+a/b
+```
+
+are all expressions of type `N`.
+
+In the case of division, two rules apply:
+
+- If `b` is zero: the program aborts due to a division-by-zero error.
+- If `N` is a signed integer type, and `a` is the minimum value that fits in
+  that integer type, and `b` is -1: the program aborts due to a signed integer
+  overflow error.
+
 ## Function Call
+
+If $$\text{f}$$ is the name of a function with parameters $$\{\text{p}_1:
+\tau_1, \dots, \text{p}_n: \tau_n\}$$ and return type $$\tau_r$$, and we have a
+set of expressions $$\{e_1: \tau_1, \dots, e_n: \tau_n\}$$, then:
+
+\\[
+\text{f}(e_1, \dots, e_n)
+\\]
+
+and:
+
+\\[
+\text{f}(\text{p}_1 \Rightarrow e_1, \dots, \text{p}_n \Rightarrow e_n)
+\\]
+
+are identical function call expression whose type is $$\tau_r$$.
 
 ## Method Call
 
+[TODO]
+
 ## Record Constructor
+
+If $$\text{r}$$ is the name of a record type with slots $$\{\text{s}_1: \tau_1,
+\dots, \text{s}_n: \tau_n\}$$, and we have a set of expressions $$\{e_1: \tau_1,
+\dots, e_n: \tau_n\}$$, then:
+
+\\[
+\text{r}(\text{s}_1 \Rightarrow e_1, \dots, \text{s}_n \Rightarrow e_n)
+\\]
+
+is a record constructor expression which evaluates to an instance of
+$$\text{r}$$ containing the given values.
 
 ## Union Constructor
 
+Let $$\text{u}$$ be a union type, with a case named $$\text{c}$$ with slots
+$$\{\text{s}_1: \tau_1, \dots, \text{s}_n: \tau_n\}$$, and we have a set of
+expressions $$\{e_1: \tau_1, \dots, e_n: \tau_n\}$$, then:
+
+\\[
+\text{c}(\text{s}_1 \Rightarrow e_1, \dots, \text{s}_n \Rightarrow e_n)
+\\]
+
+is a union constructor expression which evaluates to an instance of $$\text{u}$$
+with case $$\text{c}$$ and the given values.
+
+As a shorthand, if the slot set has a single value, $$\{\text{s}: \tau\}$$, and
+the set of expressions also has a single value $$\{e\}$$, then a simplified form
+is possible:
+
+\\[
+\text{c}(\text{s})
+\\]
+
+is equivalent to:
+
+\\[
+\text{c}(\text{s} \Rightarrow e)
+\\]
+
 ## Type Alias Constructor
 
-If `T` is the name of a type alias with definition `U`, and `e` is an expression of type `U`, then:
+If $$\text{t}$$ is the name of a type alias with definition $$\tau$$, and $$e$$
+is an expression of type $$\tau$$, then:
 
-```
-T(e)
-```
+\\[
+\text{t}(e)
+\\]
 
-evaluates to an instance of `T` containing the value `e`.
+evaluates to an instance of $$\text{t}$$ containing the value $$e$$.
 
 ## Cast Expression
 
+The cast expression has four uses:
+
+1. Clarifying the type of integer and floating point constants.
+
+2. Converting between different integer and floating point types (otherwise, you
+   get a combinatorial explosion of typeclasses).
+
+3. Converting write references to read references.
+
+4. Clarifying the type of return type polymorphic functions.
+
+If $$e$$ is an expression and $$\tau$$ is a type, then:
+
+\\[
+e : \tau
+\\]
+
+is the expression that tries to cast $$e$$ to $$\tau$$, and it evaluates to a
+value of type $$\tau$$.
+
+Semantics:
+
+1. If $$e$$ is an integer constant that fits in $$\tau$$ (e.g.: $$e$$ can't be a
+   negative integer constant if $$\tau$$ is `Natural8`) then $$e : \tau$$ is
+   valid.
+
+2. If $$e$$ is an integer or floating point type, and $$\tau$$ is an integer or
+   floating point type, then $$e : \tau$$ is valid.
+
+3. If $$e: WriteReference[T, R]$$ and $$\tau$$ is $$Reference[T, R]$$, then $$e:
+   \tau$$ is valid and downgrades the write reference to a read reference.
+
+4. If $$e$$ is a call to a return type-polymorphic function or method, and
+   $$\tau$$ can clarify the return type of $$e$$, then $$e : \tau$$ is a valid
+   expression.
+
 ## Comparison Expression
+
+If $$a$$ and $$b$$ are both expressions of Boolean type, then:
+
+\\[
+\begin{align}
+a &=    b \newline
+a &\neq   b \newline
+a &\lt  b \newline
+a &\leq b \newline
+a &\gt  b \newline
+a &\geq b
+\end{align}
+\\]
+
+are comparison expressions with type `Boolean`.
 
 ## Conjunction Expression
 
