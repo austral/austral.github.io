@@ -218,7 +218,7 @@ Given the record:
 record Vector3 is
     x : Float32;
     y : Float32;
-    z : Float 32
+    z : Float32;
 end
 ```
 
