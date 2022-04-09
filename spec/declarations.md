@@ -273,7 +273,62 @@ let C2 : Color := RGB(
 let C3 : Color := Greyscale(50);
 ```
 
-## Functions
+## Function Declaration {#function-declaration}
+
+Let $$\text{f}$$ be an identifier, $$\{\text{p}_1: \tau_1, \dots, \text{p}_n:
+\tau_n\}$$ be a set of value parameters, and $$\tau_r$$ be a type. Then:
+
+\\[
+\text{function} ~ \text{f} \(
+\text{p}_1: \tau_1,
+\dots,
+\text{p}_n: \tau_n
+\): \tau_r
+;
+\\]
+
+defines a _concrete function_ $$\text{f}$$ with the given value parameter set
+and return type $$\tau_r$$.
+
+More generally, given a set of type parameter $$\{\text{tp}_1: k_1, \dots,
+\text{tp}_n: k_n\}$$, then:
+
+\\[
+\begin{align\*}
+& \text{generic} ~
+\[
+\text{tp}_1: k_1, \dots, \text{tp}_n: k_n
+\] \\newline
+& \text{function} ~ \text{f} \(
+\text{p}_1: \tau_1,
+\dots,
+\text{p}_n: \tau_n
+\): \tau_r
+;
+\end{align\*}
+\\]
+
+defines a _generic function_ $$\text{f}$$ with the given type parameter set,
+value parameter set, and return type $$\tau_r$$.
+
+There must be a corresponding function definition in the module body file that
+has the same signature.
+
+Function declarations can only appear in the module interface file.
+
+Examples:
+
+1. The following declares the identity function, a generic function with a
+   single type parameter and a single value parameter:
+
+   ```
+   generic (t : Type)
+   function Identity(x: T): T is
+       return x;
+   end
+   ```
+
+## Function Definition {#function-definition}
 
 Examples:
 
@@ -286,23 +341,6 @@ function Fib(n: Natural): Natural is
     end if;
 end
 ```
-
-## Function Declaration {#function-declaration}
-
-[TODO]
-
-Examples:
-
-```
-forall (t : Type)
-function Identity(x: T): T is
-    return x;
-end
-```
-
-## Function Definition {#function-definition}
-
-[TODO]
 
 ## Typeclass Definition {#typeclass-definition}
 
