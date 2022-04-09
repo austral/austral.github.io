@@ -289,6 +289,8 @@ end
 
 ## Function Declaration {#function-declaration}
 
+[TODO]
+
 Examples:
 
 ```
@@ -300,7 +302,11 @@ end
 
 ## Function Definition {#function-definition}
 
+[TODO]
+
 ## Typeclass Definition {#typeclass-definition}
+
+[TODO]
 
 Examples:
 
@@ -312,7 +318,11 @@ end
 
 ## Instance Declaration {#instance-declaration}
 
+[TODO]
+
 ## Instance Definition {#instance-definition}
+
+[TODO]
 
 Examples:
 
