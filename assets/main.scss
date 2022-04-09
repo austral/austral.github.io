@@ -166,3 +166,11 @@ footer {
         color: $link-color;
     }
 }
+
+// Mobile
+
+@media (max-width: 680px) {
+    body {
+        padding: $medium;
+    }
+}
