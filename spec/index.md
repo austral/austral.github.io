@@ -22,4 +22,6 @@ This is the index page for the Austral specification.
 10. [Built-In Modules](/spec/builtins)
     1. [`Austral.Pervasive` Module](/spec/austral-pervasive)
     2. [`Austral.Memory` Module](/spec/austral-memory)
-11. [Appendix A: GNU Free Documentation License](appendix-a)
+11. [Foreign Interfaces](/spec/ffi)
+    1. [The C Interface](/spec/c-ffi)
+12. [Appendix A: GNU Free Documentation License](appendix-a)
