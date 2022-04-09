@@ -287,7 +287,7 @@ Let $$\text{f}$$ be an identifier, $$\{\text{p}_1: \tau_1, \dots, \text{p}_n:
 ;
 \\]
 
-defines a _concrete function_ $$\text{f}$$ with the given value parameter set
+declares a _concrete function_ $$\text{f}$$ with the given value parameter set
 and return type $$\tau_r$$.
 
 More generally, given a set of type parameter $$\{\text{tp}_1: k_1, \dots,
@@ -308,7 +308,7 @@ More generally, given a set of type parameter $$\{\text{tp}_1: k_1, \dots,
 \end{align\*}
 \\]
 
-defines a _generic function_ $$\text{f}$$ with the given type parameter set,
+declares a _generic function_ $$\text{f}$$ with the given type parameter set,
 value parameter set, and return type $$\tau_r$$.
 
 There must be a corresponding function definition in the module body file that
@@ -330,17 +330,65 @@ Examples:
 
 ## Function Definition {#function-definition}
 
+Let $$\text{f}$$ be an identifier, $$\{\text{p}_1: \tau_1, \dots, \text{p}_n:
+\tau_n\}$$ be a set of value parameters, $$\tau_r$$ be a type, and $$s$$ be a
+statement. Then:
+
+\\[
+\begin{align\*}
+& \text{function} ~ \text{f} \(
+\text{p}_1: \tau_1,
+\dots,
+\text{p}_n: \tau_n
+\): \tau_r
+~ \text{is} \\newline
+& ~~~~ s \\newline
+& \text{end} ;
+\end{align\*}
+\\]
+
+defines a _concrete function_ $$\text{f}$$ with the given value parameter set,
+return type $$\tau_r$$, and body $$s$$.
+
+More generally, given a set of type parameter $$\{\text{tp}_1: k_1, \dots,
+\text{tp}_n: k_n\}$$, then:
+
+\\[
+\begin{align\*}
+& \text{generic} ~
+\[
+\text{tp}_1: k_1, \dots, \text{tp}_n: k_n
+\] \\newline
+& \text{function} ~ \text{f} \(
+\text{p}_1: \tau_1,
+\dots,
+\text{p}_n: \tau_n
+\): \tau_r
+~ \text{is} \\newline
+& ~~~~ s \\newline
+& \text{end} ;
+\end{align\*}
+\\]
+
+defines a _generic function_ $$\text{f}$$ with the given type parameter set,
+value parameter set, return type $$\tau_r$$, and body $$s$$.
+
+If there is a corresponding function declaration in the module interface file,
+the function is public, otherwise it is private.
+
 Examples:
 
-```
-function Fib(n: Natural): Natural is
-    if n <= 2 then
-        return n;
-    else
-        return Fib(n-1) + Fib(n-2);
-    end if;
-end
-```
+1. This defines a recursive function to compute the Fibonacci sequence:
+
+   ```
+   function Fib(n: Natural): Natural is
+       if n <= 2 then
+           return n;
+       else
+           return Fib(n-1) + Fib(n-2);
+       end if;
+   end
+   ```
 
 ## Typeclass Definition {#typeclass-definition}
 
