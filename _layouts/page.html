@@ -7,11 +7,12 @@
     <title>{% if page.title %}{{ page.title }}{% else %}Austral{% endif %}</title>
     <link rel="stylesheet" href="/assets/main.css">
     <meta name="description" content="Austral is a systems programming language designed for simplicity, maintability and security.">
+    <link rel="stylesheet" href="/assets/katex-0.15.3/katex.min.css">
+    <script defer src="/assets/katex-0.15.3/katex.min.js"></script>
+    <script defer src="/assets/katex-0.15.3/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
   </head>
   <body>
-    <h1 class="page-title">
-      {{ page.title }}
-    </h1>
+    <h1 class="page-title">{{ page.title }}</h1>
     {% if page.breadcrumbs %}
       <nav class="breadcrumbs">
         {% for breadcrumb in page.breadcrumbs %}
