@@ -105,7 +105,7 @@ nav.breadcrumbs {
     .fleuron {
         font-size: $medium;
         margin: 0 $vsmall;
-	color: gray;
+	    color: gray;
     }
 }
 
@@ -141,6 +141,20 @@ article {
 
     a {
         color: $link-color;
+    }
+
+    table {
+        border: 1px solid gray;
+        border-collapse: collapse;
+
+        th {
+            font-weight: bold;
+        }
+
+        th, td {
+            border: 1px solid gray;
+            padding: $vsmall $small;
+        }
     }
 }
 
