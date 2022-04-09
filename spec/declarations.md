@@ -162,7 +162,7 @@ This provides encapsulation. If `T` is an opaque type, modules that import it
 cannot create instances of `T` through the `let` statement because they don't
 know the definition of `T`.
 
-## Record Definitioon {#record-definition}
+## Record Definition {#record-definition}
 
 A record is an unordered collection of values, called fields, which are
 addressed by name.
