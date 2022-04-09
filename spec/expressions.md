@@ -217,11 +217,11 @@ returend. The result has type `T`.
 
 ## Path Expression
 
-[paths]
+[TODO]
 
 ## Dereference Expression
 
-If `e` is an expression of type `Reference[T, R]` or `WriteReference[T,
+[TODO]
 
 ## Sizeof Expression
 
