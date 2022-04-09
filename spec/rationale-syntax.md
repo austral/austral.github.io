@@ -15,56 +15,89 @@ According to Wadler's Law,
 
 Therefore, I will begin by justifying the design of Austral's syntax.
 
-Austral's syntax is from the Wirth tradition: more Ada-like or Pascal-like than
-C-like. Concretely, this means:
+Austral's syntax is characterized by:
 
-1. The syntax is statement-oriented rather than expression-oriented.
-2. The syntax prefers keywords over symbols, e.g. `begin` and `end` rather than
-   `{` and `}`, `bind` over `>>=`, etc.
-3. Terminating keywords include the name of the construct they terminate,
-   e.g. `end if`, `end for`, etc.
+1. Being statement-oriented rather than expression oriented.
+
+2. Preference over English-language keywords over non-alphanumeric symbols,
+   e.g. `begin` and `end` rather than `{` and `}`, `bind` over `>>=`, etc.
+
+3. Delimiters include the name of the construct they terminate, e.g. `end if`
+   and `end for`.
+
+4. Verbose names are preferred over inscrutable abbreviations.
+
+5. Statements are terminated by semicolons.
 
 These decisions will be justified individually.
 
 ## Statement Orientation
 
+Syntax can be classified into three categories.
+
+1. **Statement-Oriented:** Like C, Pascal, and Ada. Statements and expressions
+   form two distinct syntactic categories.
+
+2. **Pure Expression-Oriented Syntax:** Like Lisp, Standard ML, OCaml, and
+   Haskell. There are only expressions, and the syntax reflects this directly.
+
+3. **Mixed Syntax:** Many newer languages, like Scala and Rust, fall into this
+   category. At the AST level there is only one kind of thing: expressions. But
+   the actual written syntax is made to resemble statement-oriented languages to
+   make programmers more comfortable.
+
+In _Epigrams in Programming_, Alan Perlis wrote:
+
+> 6. Symmetry is a complexity-reducing concept (co-routines include
+>    subroutines); seek it everywhere.
+
+Indeed, expression-oriented syntax is simpler (there is no duplication between
+e.g. `if` statements and `if` expressions) and symmetrical (there is only one
+syntactic category of code). But it suffers from excess generality in that it is
+possible to write things like:
+
+```
+let x = (* A gigantic, inscrutable expression
+           with multiple levels of `let` blocks. *)
+in
+    ...
+```
+
+In short, nothing forces the programmer to factor things out.
+
+Furthermore, in pure expression-oriented languages of the ML family code has the
+ugly appearance of "hanging in the air", there is little in terms of delimiters.
+
 Three kinds of syntax.
 
-Pure expression oriented
+Mixed syntaxes are unprincipled because the textual syntax doesn't match the
+AST, which makes it possible to abuse the syntax and write "interesting"
+code. For example, in Rust, the following:
 
-Simple, general. Alan Perlis symmetry quote. Simpler to evaluate.
+```
+let x = { let y; }
+```
 
-In pure syntaxes, everything feels like its hanging off. Generality is a
-problem: deeply nested code, nothing forces you to factor out into separate
-functions.
+is a valid expression. `x` has the Unit type because the block expression ends
+in a semicolon, so it is evaluated to the Unit type.
 
-Midpoint
+A statement-oriented syntax is less simple, but it forces code to be
+structurally simple, especially when combined with the restriction that
+uninitialized variables are not allowed. Then, the programmer is forced to
+factor out complicated control flow into chains of functions.
 
-Unprincipled. Textual syntax doesn't match internal AST. Possible to write
-'interesting' code: `let x = { let y; }`.
-
-Statement oriented
-
-Two categories of syntax. Lambdas and short functions are very verbose. Does not
-allow deep nesting of code, when disablimg unitiliazed variables, forces you to
-refactor things into tiny functions.
-
-Historical example: ALGOL W was expression oriented, Pascal was statement
-oriented.
-
-## Terseness versus Verbosity
-
-Verbose enough to be readable, terse enough that people will not be discouraged
-from factoring code into many small functions and types.
+Historically, there is one language that moved from an expression-oriented to a
+statement-oriented syntax: ALGOL W was expression-orienten; Pascal, its
+successor, was statement-oriented.
 
 ## Keywords over Symbols
 
-Austral syntax uses English-language words in place of symbols. This is because
-words are easier to search for, both locally and on a search engine, than a
-string of symbols.
+Austral syntax prefers English-language words in place of symbols. This is
+because words are easier to search for, both locally and on a search engine,
+than a string of symbols.
 
-Additionally, words are read into sounds, while a string like `>>=` can only be
-understood atomically.
+Additionally, words are read into sounds, which aids in remembering them, while
+a string like `>>=` can only be understood as a visual symbol.
 
 Using English-language keywords, however, does not mean we use a natural
 language inspired syntax, like Inform7. The problem with programming languages
@@ -78,8 +111,8 @@ facade of natural language syntax.
 ## Terminating Keywords
 
 In Austral, delimiters include the name of the construct they terminate. This is
-after Ada (and the Wirth tradition) and is in contrast to the C traidition. The
-reason for this is that it makes it easier to find where one is in the code.
+after Ada (and the Wirth tradition) and is in contrast to the C tradition. The
+reason for this is that it makes it easier to find one's place in the code.
 
 Consider the following code:
 
@@ -124,7 +157,7 @@ void f() {
         if (test()) {
             for (int j = 0; j < N; j++) {
                 if (test()) {
-                    // Hundreds and hundreds of lines.
+                    // Hundreds and hundreds of lines here.
                 }
             }
         }
@@ -132,7 +165,8 @@ void f() {
 }
 ```
 
-Then, when we scroll to the bottom of the function to add the code, we find this:
+Then, when we scroll to the bottom of the function to add the code, we find this
+train of closing delimiters:
 
 ```
                 }
@@ -175,7 +209,7 @@ end f;
 
 We have, from top to bottom:
 
-1. The end of the first `if` statement.
+1. The end of the second `if` statement.
 2. The end of the second `for` loop.
 3. The end of the first `if` statement.
 4. The end of the first `for` loop.
@@ -184,14 +218,32 @@ We have, from top to bottom:
 Thus, delimiters which include the name of the construct they terminate involve
 more typing, but make code more readable.
 
+Note that this is often done in C and HTML code, where one finds things like this:
+
+```
+} // access check
+```
+
+or,
+
+```
+</table> // user data table
+```
+
 However, declarations end with a simple `end`, not including the name of the
 declaration construct. This is because declarations are rarely nested, and
 including the name of the declaration would be unnecessarily verbose.
 
+## Terseness versus Verbosity
+
+The rule is: verbose enough to be readable without context, terse enough that
+people will not be discouraged from factoring code into many small functions and
+types.
+
 ## Semicolons
 
 It is a common misconception that semicolons are needed for the compiler to know
-where a statement or expression ends. That is, that without semicolons,
+where a statement or expression ends. That is: that without semicolons,
 languages would be ambiguous. This obviously depends on the language grammar,
 but in the case of Austral it is not true, and the grammar would remain
 unambiguous even without semicolons.
