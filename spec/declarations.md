@@ -458,7 +458,19 @@ Examples:
 
 ## Instance Declaration {#instance-declaration}
 
-[TODO]
+Let $$\text{t}$$ be the name of a typeclass and $$\tau$$ be a type
+specifier. Then:
+
+\\[
+\text{instance} ~ \text{t} \( \\tau \) ;
+\\]
+
+declares an instance of the typeclass $$\text{t}$$ for the type $$\tau$$.
+
+Instance declaration can only appear in the module interface file, and must have
+a matching instance definition in the module body file.
+
+An instance declaration means the instance is public.
 
 ## Instance Definition {#instance-definition}
 
