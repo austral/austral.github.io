@@ -262,3 +262,24 @@ semicolon.
 For many people, semicolons represent the distinction between an old and crusty
 language and a modern one, in which case the semicolon serves a function similar
 to the use of Comic Sans by the OpenBSD project.
+
+## Syntax of Type Declarations
+
+The syntax of type declarations it designed to make explicit the analogy between
+functions and generic types: that is, generic types are essentially functions
+from types to a new type.
+
+Where function declarations look like this:
+
+\\[
+\text{function} ~ \text{f} \( \text{p}_1: \tau_1, \dots, \text{p}_1: \tau_1 \): \tau_r ;
+\\]
+
+A type declaration looks like:
+
+\\[
+\text{type} ~ \tau \[ \text{p}_1: k, \dots, \text{p}_1: k \]: u ;
+\\]
+
+Here, type parameters are analogous to type parameters, kinds are analogous to
+types, and the universe is analogous to the return type.
