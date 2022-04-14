@@ -80,7 +80,23 @@ are identical function call expression whose type is $$\tau_r$$.
 
 ## Method Call
 
-[TODO]
+Let $$\text{m}$$ be the name of a method in a typeclass $$\text{t}$$. After
+[instance resolution](/spec/type-classes#instance-resolution) the method has
+parameters $$\{\text{p}_1: \tau_1, \dots, \text{p}_n: \tau_n\}$$ and return type
+$$\tau_r$$. Given a set of expressions $$\{e_1: \tau_1, \dots, e_n: \tau_n\}$$,
+then:
+
+\\[
+\text{m}(e_1, \dots, e_n)
+\\]
+
+and:
+
+\\[
+\text{m}(\text{p}_1 \Rightarrow e_1, \dots, \text{p}_n \Rightarrow e_n)
+\\]
+
+are identical method call expression whose type is $$\tau_r$$.
 
 ## Record Constructor
 
@@ -205,7 +221,8 @@ the value of `e`, a Boolean value.
 
 ## If Expression
 
-If `c` is a Boolean-typed expression, and `t` and `f` are expressions of the same type `T`, then:
+If `c` is a Boolean-typed expression, and `t` and `f` are expressions of the
+same type `T`, then:
 
 ```
 if c then t else f
