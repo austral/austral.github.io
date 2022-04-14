@@ -221,7 +221,13 @@ returend. The result has type `T`.
 
 ## Dereference Expression
 
-[TODO]
+If `e` is a reference to a value of type `T`, then:
+
+```
+!e
+```
+
+is a dereferencing expression that evaluates to the referenced value of type `T`.
 
 ## Sizeof Expression
 
