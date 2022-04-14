@@ -414,34 +414,15 @@ Then:
 \begin{align\*}
 & \text{typeclass} ~ \text{t} ( \text{p} : u ) ~ \text{is} \\newline
 & ~~~~ \text{method} ~ \text{m}\_1 \( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} \): \tau\_1 ; \\newline
-& ~~~~ \dots, \\newline
+& ~~~~ \dots; \\newline
 & ~~~~ \text{method} ~ \text{m}\_m \( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} \): \tau\_m ; \\newline
 & \text{end} ;
 \end{align\*}
 \\]
 
-Defines a _concrete typeclass_ $$\text{t}$$ with a parameter $$\text{p}$$ which accepts
+Defines a typeclass $$\text{t}$$ with a parameter $$\text{p}$$ which accepts
 types in the universe $$u$$, and has methods $$\{\text{m}_1, ...,
 \text{m}_m\}$$.
-
-Furthermore, given a set of type parameters $$\{\text{tp}_1: k_1, \dots,
-\text{tp}_n: k_n\}$$, then:
-
-\\[
-\begin{align\*}
-& \text{generic} ~
-\[
-\text{tp}_1: k_1, \dots, \text{tp}_n: k_n
-\] \\newline
-& \text{typeclass} ~ \text{t} ( \text{p} : u ) ~ \text{is} \\newline
-& ~~~~ \text{method} ~ \text{m}\_1 \( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} \): \tau\_1 ; \\newline
-& ~~~~ \dots, \\newline
-& ~~~~ \text{method} ~ \text{m}\_m \( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} \): \tau\_m ; \\newline
-& \text{end} ;
-\end{align\*}
-\\]
-
-Defines a _generic typeclass_.
 
 A typeclass declaration can appear in the module interface file (in which case
 it is public) or in the module body file (in which case it is private).
@@ -474,7 +455,59 @@ An instance declaration means the instance is public.
 
 ## Instance Definition {#instance-definition}
 
-[TODO]
+Given:
+
+1. An identifier $$\text{t}$$ that names name of a typeclass with universe $$u$$.
+2. A type specifier $$\tau$$ in the universe $$u$$.
+3. A set of method definitions:
+
+\\[
+\\{
+\text{m}\_1 \( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} \): \tau\_1 ~ \text{is} ~ s_1, \dots, \text{m}\_m \( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} \): \tau\_m ~ \text{is} ~ s_m
+\\}
+\\]
+
+Then:
+
+\\[
+\begin{align\*}
+& \text{instance} ~ \text{t} ( \tau ) ~ \text{is} \\newline
+& ~~~~ \text{method} ~ \text{m}\_1 \( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} \): \tau\_1 ~ \text{is} ; \\newline
+& ~~~~~~~~ s_1 ; \\newline
+& ~~~~ \text{end} ; \\newline
+& ~~~~ \dots; \\newline
+& ~~~~ \text{method} ~ \text{m}\_m \( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} \): \tau\_m ~ \text{is} ; \\newline
+& ~~~~~~~~ s_m ; \\newline
+& ~~~~ \text{end} ; \\newline
+& \text{end} ;
+\end{align\*}
+\\]
+
+
+defines a _concrete instance_ of the typeclass $$\text{t}$$.
+
+More generally, given a set of type parameters $$\{\text{tp}_1: k_1, \dots,
+\text{tp}_n: k_n\}$$, then:
+
+\\[
+\begin{align\*}
+& \text{generic} ~
+\[
+\text{tp}_1: k_1, \dots, \text{tp}_n: k_n
+\] \\newline
+& \text{instance} ~ \text{t} ( \tau ) ~ \text{is} \\newline
+& ~~~~ \text{method} ~ \text{m}\_1 \( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} \): \tau\_1 ~ \text{is} ; \\newline
+& ~~~~~~~~ s_1 ; \\newline
+& ~~~~ \text{end} ; \\newline
+& ~~~~ \dots; \\newline
+& ~~~~ \text{method} ~ \text{m}\_m \( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} \): \tau\_m ~ \text{is} ; \\newline
+& ~~~~~~~~ s_m ; \\newline
+& ~~~~ \text{end} ; \\newline
+& \text{end} ;
+\end{align\*}
+\\]
+
+defines a _generic instance_ of the typeclass $$\text{t}$$.
 
 Examples:
 
