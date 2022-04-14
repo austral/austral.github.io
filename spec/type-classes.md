@@ -42,7 +42,7 @@ memory. It only requires enforcing these three rules:
    But you are *not* allowed to define an instance for a foreign typeclass and a
    foreign type.
 
-# Instance Resolution
+# Instance Resolution {#instance-resolution}
 
 This section describes how an instance is resolved from a method call.
 
