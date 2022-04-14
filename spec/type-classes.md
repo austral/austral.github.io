@@ -41,3 +41,44 @@ memory. It only requires enforcing these three rules:
 
    But you are *not* allowed to define an instance for a foreign typeclass and a
    foreign type.
+
+# Instance Resolution
+
+This section describes how an instance is resolved from a method call.
+
+Consider a typeclass:
+
+```
+typeclass Printable(T: Free) is
+    method Print(t: T): Unit;
+end;
+```
+
+And a set of instances:
+
+```
+instance Printable(Unit);
+instance Printable(Boolean);
+generic [U: Type]
+instance Printable(Pointer[U]);
+```
+
+Then, given a call like `Print(true)`, we know `Print` is a method in the
+typeclass `Printable`. Then, we match the parameter list `(t: T)` to the
+argument list `(true)` and get a set of type parameter bindings `{ T => true
+}`. The set will be the singleton set because typeclass definitions can only
+have one type parameter.
+
+In this case, `true` is called the _dispatch type_.
+
+Then we iterate over all the visible instances of the type class `Printable`
+(i.e.: those that are defined in or imported into the current module), and find
+the instance where the instance argument matches the dispatch type.
+
+In the case of a concrete instance that's just comparing the types for equality,
+and we'll find the instance of `Printable` for `Boolean`.
+
+Consider a call like `Print(ptr)` where `ptr` has type
+`Pointer[Natural8]`. Then, we repeat the process, except we'll find a generic
+instance of `Printable`. Matching `Pointer[U]` to `Pointer[Natural8]` produces
+the bindings set `{ U => Natural8 }`.
