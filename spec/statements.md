@@ -16,13 +16,15 @@ skip;
 
 ## Let Statement
 
-If `N` is an identifier, `T` is a type specifier, and `E` is an expression of type `T`, then:
+If `N` is an identifier, `T` is a type specifier, and `E` is an expression of
+type `T`, then:
 
 ```
 let N: T := e;
 ```
 
-is a `let` statement which defines a variable with name `N`, type `T`, and initial value `E`.
+is a `let` statement which defines a variable with name `N`, type `T`, and
+initial value `E`.
 
 A `let` statement is one of the few places where type information flows forward:
 the declared type is used to disambiguate the type of the expression when the
@@ -61,7 +63,8 @@ is an assignment statement that stores the value of `E` in the location denoted 
 
 ## If Statement
 
-If `{e_1, ..., e_n}` is a set of expression of boolean type, and `{b_1, ..., b_n, b_else}` is a set of statements, then:
+If `{e_1, ..., e_n}` is a set of expression of boolean type, and `{b_1, ...,
+b_n, b_else}` is a set of statements, then:
 
 ```
 if e_1 then
@@ -235,7 +238,8 @@ end for;
 
 ## Borrow Statement
 
-If `X` is a variable of a linear type `T`, `X'` is an identifier, `R` is an identifier, and `B` is a statement, then:
+If `X` is a variable of a linear type `T`, `X'` is an identifier, `R` is an
+identifier, and `B` is a statement, then:
 
 ```
 borrow X as X' in R do
