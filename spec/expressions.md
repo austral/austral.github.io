@@ -217,7 +217,37 @@ returend. The result has type `T`.
 
 ## Path Expression
 
-[TODO]
+The syntax of a path is: an expression called the *head* followed by a non-empty
+list of *path elements*, each of which is one of:
+
+1. A *slot accessor* of the form `.s` where `s` is the name of a record slot.
+2. A *pointer slot accessor* of the form `->s` where `s` is the name of a record
+   slot.
+3. An *array indexing element* of the form `[i]` where `i` is a value of type
+   `Index`.
+
+Path expressions are used for:
+
+1. Accessing the contents of slots and arrays.
+
+2. Transforming references to records and arrays into references to their contents.
+
+Semantics:
+
+1. All paths must end in a path in the `Free` universe. That is, if `x[23]->y.z`
+   is a linear type, the compiler will complain.
+
+2. A path that starts in a reference is a reference. For example, if `x` is of
+   type `Reference[T, R]`, then the path `x->y->z` (assuming `z` is a record
+   slot with type `U`) is of type `Reference[U, R]`.
+
+Examples:
+
+```
+pos.x
+star->pos.ra
+stars[23]->distance
+```
 
 ## Dereference Expression
 

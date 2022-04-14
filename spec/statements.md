@@ -49,13 +49,15 @@ is a let destructure statement.
 
 ## Assignment Statement
 
-If `P` is a [path](#paths) of type `T` and `E` is an expression of type `T`, then:
+If `P` is an lvalue of type `T` and `E` is an expression of type `T`, then:
 
 ```
 P := E;
 ```
 
 is an assignment statement that stores the value of `E` in the location denoted by `P`.
+
+[TODO: describe the semantics of lvalues]
 
 ## If Statement
 
@@ -281,7 +283,3 @@ Returns from the function with the value `e`.
 
 Note that `return` statements are illegal where there are unconsumed linear
 values.
-
-## Paths {#paths}
-
-[describe the semantics of paths here]
