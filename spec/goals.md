@@ -34,6 +34,10 @@ This section lists the design goals for Austral.
    2. A programmer should be able to learn the language in its entirety by
       reading this specification.
 
+   Simplicity also means that Austral is a generally low-level language. There
+   is no garbage collector, not primarily because of performance concerns, but
+   because it would require an arbitrarily complex runtime.
+
 2. **Correctness.** This is an intangible, but generally, the measure of how
    much a language enables programmers to write correct code is: if the code
    compiles, it should work. With the caveat that said code should use the
