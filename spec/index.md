@@ -10,7 +10,7 @@ This is the index page for the Austral specification.
    1. [Design Goals](/spec/goals/)
 2. [Rationale](/spec/rationale)
     1. [Syntax](/spec/rationale-syntax)
-	2. [Resource Types](/spec/rationale-resource-types)
+	2. [Linear Types](/spec/rationale-linear-types)
     3. [Error Handling](/spec/rationale-error-handling)
 3. [Syntax](/spec/syntax)
 4. [Module System](/spec/modules)

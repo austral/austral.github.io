@@ -1,5 +1,5 @@
 ---
-title: Resource Types
+title: Linear Types
 ---
 
 Resource-aware type systems can remove large categories of errors that have
