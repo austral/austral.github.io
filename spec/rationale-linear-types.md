@@ -614,7 +614,7 @@ break it down declaration by declaration.
    we can't overwrite linear values -- like database handles and such -- because
    the they would be leaked.
 
-Is it trivial to verify the safety properties. We can't leak memory, we can't
+It is trivial to verify the safety properties. We can't leak memory, we can't
 deallocate twice, and we can't read or write from and to a pointer after it has
 been deallocated.
 
@@ -637,7 +637,7 @@ Linear types give us the following benefits:
    All of these errors are prevented _statically_, again without runtime
    overhead.
 
-3. In-place optimization: the APIs we have lookoed at resemble functional
+3. In-place optimization: the APIs we have looked at resemble functional
    code. We write code "as if" we were creating and returning new objects with
    each call, while doing extensive mutations under the hood. This gives us the
    benefits of functional programming (referential transparency and equational
@@ -836,8 +836,8 @@ Universes are not the only way to implement linear types. There are three ways:
    two universes: a universe of unrestricted values which can be copied freely,
    such as integers, and a universe of restricted or linear types.
 
-3. **Rust's approach**, which involves which is a sophisticated, fine-grained
-   ownership tracking scheme.
+3. **Rust's approach**, which is a sophisticated, fine-grained ownership
+   tracking scheme.
 
 In my opinion, linearity via arrows is best suited to an ML family language with
 single-parameter functions.
@@ -914,7 +914,7 @@ structures.
 
 In the next section, we explain the rationale for Austral's approach to error
 handling, why linear types are incompatible with traditional exception handling,
-why affine types are, and how our preferred error handling scheme impacts the
+what affine types are, and how our preferred error handling scheme impacts the
 choice of linear types over affine types.
 
 Afterwards, we describe capability-based security, and how linear types allow us
