@@ -123,25 +123,25 @@ end module body.
 Given the following interface file:
 
 ```austral
-interface Example is
+module Example is
     -- The constant C is importable, but the interface
     -- doesn't know its value.
-    constant C : Float32
+    constant C : Float32;
 
     -- Modules that import R can access the fields
     -- x and y directly.
-    record R is
+    record R: Free is
         x: Int32,
         y: Int32
-    end
+    end;
 
     -- Modules can refer to the type T, but don't know
     -- how it's implemented.
-    type T
+    type T;
 
     -- Modules that import U know that it's a renaming
     -- of Int32, and can construct U instances accordingly.
-    type U = Int32
+    type U = Int32;
 
     -- Functions can only be declared, not defined, in
     -- interface files.
@@ -149,14 +149,12 @@ interface Example is
 
     -- Type classes must be defined with the full set of
     -- methods.
-    typeclass Class(t: Type) is
-        method Foo(t: Type): t
-    end
+    typeclass Class(T: Type) is
+        method Foo(x: T): T;
+    end;
 
     -- Instances are simply declared.
-    instance Class(Int32) is
-        method Foo(t: Int32): Int32
-    end
+    instance Class(Int32);
 end.
 ```
 
@@ -166,12 +164,14 @@ The following is a module definition that satisfies the interface:
 module Example is
     constant C : Float32 := 3.14;
 
-    -- Record R doesn't have to be redefined here.
+    -- Record R doesn't have to be redefined here,
+    -- because it's already defined in the module interface.
+
     -- Type T, however, has to be defined. In this case
     -- it's a record.
-    record T is
+    record T: Free is
         hidden: Bool;
-    end
+    end;
 
     -- Function bodies must appear in the module body.
     function Fact(n: Nat32): Nat32 is
@@ -179,14 +179,14 @@ module Example is
             return 1;
         else
             return n * Fact(n-1);
-        end if
-    end
+        end if;
+    end;
 
     -- Type class instances must be defined here:
     instance Class(Int32) is
-        method Foo(t: Int32): Int32 is
-            return t;
-        end
-    end
+        method Foo(x: Int32): Int32 is
+            return x;
+        end;
+    end;
 end.
 ```
