@@ -7,7 +7,7 @@ breadcrumbs:
 This is the index page for the Austral specification.
 
 1. [Introduction](/spec/intro)
-   1. [Design Goals](/spec/goals/)
+   1. [Design Goals](/spec/goals)
 2. [Rationale](/spec/rationale)
     1. [Syntax](/spec/rationale-syntax)
 	2. [Linear Types](/spec/rationale-linear-types)
