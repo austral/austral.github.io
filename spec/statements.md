@@ -10,7 +10,7 @@ The `skip` statement is a no-op;
 
 Example:
 
-```
+```austral
 skip;
 ```
 
@@ -19,7 +19,7 @@ skip;
 If `N` is an identifier, `T` is a type specifier, and `E` is an expression of
 type `T`, then:
 
-```
+```austral
 let N: T := e;
 ```
 
@@ -43,7 +43,7 @@ be broken up into its constituent values, and then optionally reassembled.
 If `R` is an expression of type `T`, and `T` is a record type with field set
 `{R_1: T_1, ..., R_n: T_n}`, then:
 
-```
+```austral
 let {R_1: T_1, ..., R_n: T_n} := R;
 ```
 
@@ -53,7 +53,7 @@ is a let destructure statement.
 
 If `P` is an lvalue of type `T` and `E` is an expression of type `T`, then:
 
-```
+```austral
 P := E;
 ```
 
@@ -66,7 +66,7 @@ is an assignment statement that stores the value of `E` in the location denoted 
 If `{e_1, ..., e_n}` is a set of expression of boolean type, and `{b_1, ...,
 b_n, b_else}` is a set of statements, then:
 
-```
+```austral
 if e_1 then
     b_1;
 else if e_2 then
@@ -83,7 +83,7 @@ Is the general form of an `if` statement.
 
 An example `if` statement with a single branch:
 
-```
+```austral
 if test() then
     doSomething();
 end if;
@@ -91,7 +91,7 @@ end if;
 
 An example `if` statement with a `true` branch and a `false` branch:
 
-```
+```austral
 if test() then
     doSomething();
 else
@@ -101,7 +101,7 @@ end if;
 
 An example `if` statement with three conditions and an else branch:
 
-```
+```austral
 if a() then
     doA();
 else if b() then
@@ -115,7 +115,7 @@ end if;
 
 An example `if` statement with two conditions and no else branch:
 
-```
+```austral
 if a() then
     doA();
 else if b() then
@@ -129,7 +129,7 @@ If `E` is an expression of a union type with cases `{C_1, ..., C_n}` and each
 case has slots `C_i = {S_i1: T_i1, ..., S_in T_im}`, and `{B_1, ..., B_n}` is a
 set of statements, then:
 
-```
+```austral
 case E of
     when C_1(S_11: T_11, S_12: T_12, ..., S_1m: T_1m) do
         B_1;
@@ -148,7 +148,7 @@ for that slot.
 
 An example of using the `case` statement on a union whose cases have no slots:
 
-```
+```austral
 union Color: Free is
     case Red;
     case Green;
@@ -168,7 +168,7 @@ end case;
 
 An example of using the `Option` type:
 
-```
+```austral
 let o: Option[Integer_32] := Some(10);
 case o of
     when Some(value: Integer_32) do
@@ -180,7 +180,7 @@ end case;
 
 An example of using the `Either` type:
 
-```
+```austral
 let e: Either[Boolean, Integer_32] := Right(right => 10);
 case e of
     when Left(left: Boolean) do
@@ -197,7 +197,7 @@ An exam
 
 If `e` is an expression of type `Boolean` and `b` is a statement, then:
 
-```
+```austral
 while e do
     b;
 end while;
@@ -207,7 +207,7 @@ is a while loop that iterates as long as `e` evaluates to `true`.
 
 Examples:
 
-```
+```austral
 -- An infinite loop
 while true do
     doForever();
@@ -219,7 +219,7 @@ end while;
 If `i` is an identifier, `s` is an expression of type `Natural64`, `f` is an
 expression of type `Natural64`, and `b` is a statement, and `s <= f`, then:
 
-```
+```austral
 for i from s to f do
     b;
 end for;
@@ -230,7 +230,7 @@ is a for loop where `b` is executed once for each value of `i` in the interval
 
 Examples:
 
-```
+```austral
 for i from 0 to n do
     doSomething(i);
 end for;
@@ -241,7 +241,7 @@ end for;
 If `X` is a variable of a linear type `T`, `X'` is an identifier, `R` is an
 identifier, and `B` is a statement, then:
 
-```
+```austral
 borrow X as X' in R do
   B;
 end;
@@ -255,7 +255,7 @@ in `B`, i.e. while it is borrowed.
 
 The mutable form of the borrow statement is:
 
-```
+```austral
 borrow X as X' in R do
   B;
 end;
@@ -267,7 +267,7 @@ The only difference is that the type of `X'` is `WriteReference[R, T]`.
 
 If `e` is an expression, then:
 
-```
+```austral
 e;
 ```
 
@@ -279,7 +279,7 @@ Note that discarding statements are illegal where `e` is of a linear type.
 
 If `e` is an expression, then:
 
-```
+```austral
 return e;
 ```
 

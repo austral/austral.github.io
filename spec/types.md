@@ -74,7 +74,7 @@ The rules around declaring types are:
 In the case of generic types, we often want to postpone the decision of which
 universe the type belongs to. For example:
 
-```
+```austral
 record Singleton[T: Type]: ??? is
     value: T
 end;
@@ -87,7 +87,7 @@ universe, since that is the lowest common denominator.
 
 However, Austral lets us do this:
 
-```
+```austral
 record Singleton[T: Type]: Type is
     value: T
 end;

@@ -8,7 +8,7 @@ The `Austral.Memory` module contains types and functions for manipulating pointe
 
 Declaration:
 
-```
+```austral
 type Pointer[T: Type]: Free;
 ```
 
@@ -20,7 +20,7 @@ This is the type of pointers.
 
 Declaration:
 
-```
+```austral
 generic T: Type
 function Allocate(value: T): Optional[Pointer[T]]
 ```
@@ -34,7 +34,7 @@ pointer if allocation succeeded, `None` otherwise.
 
 Declaration:
 
-```
+```austral
 generic T: Type
 function Load(pointer: Pointer[T]): T
 ```
@@ -47,7 +47,7 @@ Dereferences a pointer and returns its value.
 
 Declaration:
 
-```
+```austral
 generic T: Type
 function Store(pointer: Pointer[T], value: T): Unit
 ```
@@ -60,7 +60,7 @@ Stores `value` at the location pointed to by `pointer`.
 
 Declaration:
 
-```
+```austral
 generic T: Type
 function Deallocate(pointer: Pointer[T]): Unit
 ```
@@ -73,7 +73,7 @@ Deallocates the given pointer.
 
 Declaration:
 
-```
+```austral
 generic [T: Free, R: Region]
 function Load_Read_Reference(ref: Reference[Pointer[T], R]): Reference[T, R]
 ```
@@ -87,7 +87,7 @@ value.
 
 Declaration:
 
-```
+```austral
 generic [T: Free, R: Region]
 function Load_Write_Reference(ref: WriteReference[Pointer[T], R]): WriteReference[T, R]
 ```
@@ -101,7 +101,7 @@ pointed-to value.
 
 Declaration:
 
-```
+```austral
 generic T: Type
 function Allocate_Array(size: Natural_64): Optional[Pointer[T]]
 ```
@@ -114,7 +114,7 @@ Allocates an array with the given number of bytes.
 
 Declaration:
 
-```
+```austral
 generic T: Type
 function Resize_Array(array: Pointer[T], size: Natural_64): Optional[Pointer[T]]
 ```
@@ -128,7 +128,7 @@ succeeded, and `None` otherwise.
 
 Declaration:
 
-```
+```austral
 generic [T: Type, U: Type]
 function memmove(source: Pointer[T], destination: Pointer[U], count: Natural_64): Unit
 ```
@@ -141,7 +141,7 @@ Moves the `count` bytes stored at `source` to `destination`.
 
 Declaration:
 
-```
+```austral
 generic [T: Type, U: Type]
 function memcpy(source: Pointer[T], destination: Pointer[U], count: Natural_64): Unit
 ```
@@ -154,7 +154,7 @@ Copies the `count` bytes stored at `source` to `destination`.
 
 Declaration:
 
-```
+```austral
 generic T: Type
 function Positive_Offset(pointer: Pointer[T], offset: Natural_64): Pointer[T]
 ```
@@ -171,7 +171,7 @@ Applies a positive offset to a pointer. Essentially this is:
 
 Declaration:
 
-```
+```austral
 generic T: Type
 function Negative_Offset(pointer: Pointer[T], offset: Natural_64): Pointer[T]
 ```

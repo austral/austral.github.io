@@ -8,7 +8,7 @@ This section describes the semantics of Austral expressions.
 
 The expression:
 
-```
+```austral
 nil
 ```
 
@@ -44,7 +44,7 @@ global constant, whose type is determined from the lexical environment.
 If `a` and `b` are two expressions of the same integer or floating point type
 `N`, then:
 
-```
+```austral
 a+b
 a-b
 a*b
@@ -224,7 +224,7 @@ the value of `e`, a Boolean value.
 If `c` is a Boolean-typed expression, and `t` and `f` are expressions of the
 same type `T`, then:
 
-```
+```austral
 if c then t else f
 ```
 
@@ -260,7 +260,7 @@ Semantics:
 
 Examples:
 
-```
+```austral
 pos.x
 star->pos.ra
 stars[23]->distance
@@ -270,7 +270,7 @@ stars[23]->distance
 
 If `e` is a reference to a value of type `T`, then:
 
-```
+```austral
 !e
 ```
 
@@ -280,7 +280,7 @@ is a dereferencing expression that evaluates to the referenced value of type `T`
 
 If `T` is a type specifier, then:
 
-```
+```austral
 sizeof(T)
 ```
 

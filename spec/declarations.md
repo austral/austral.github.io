@@ -9,7 +9,7 @@ modules.
 
 If `C` is an identifier, `T` is a type specifier, then:
 
-```
+```austral
 constant C : T;
 ```
 
@@ -20,7 +20,7 @@ matching constant declaration in the module body file.
 
 Example:
 
-```
+```austral
 module Example is
     -- Defines a public constant `Pi`, which can be imported
     -- and used by other modules.
@@ -39,7 +39,7 @@ end module body.
 If `C` is an identifier, `T` is a type specifier, and `E` is a constant
 expression of type `T`, then:
 
-```
+```austral
 constant C : T := V;
 ```
 
@@ -53,7 +53,7 @@ is private.
 
 Example:
 
-```
+```austral
 module body Example is
     -- If there is no corresponding opaque constant declaration
     -- in the module interface file, then this constant is private
@@ -97,7 +97,7 @@ To make things type-safe, we can define a module which exports three things:
 
 The module interface would look like this:
 
-```
+```austral
 module App.Username is
     type Username: Linear;
 
@@ -115,7 +115,7 @@ contains a string that has satisfied the regex.
 
 The module body would look something like this:
 
-```
+```austral
 module body App.Username is
     record Username: Linear is
         name: String;
@@ -139,7 +139,7 @@ end module.
 
 If `T` is an identifier, and `S` is a type specifier, then:
 
-```
+```austral
 type T = S;
 ```
 
@@ -149,7 +149,7 @@ type aliases in ML or Haskell: `T` and `S` are distinct types.
 To create an instance of `T` from a value `v : S`, we have to use a `let`
 statement:
 
-```
+```austral
 let t : T := v;
 ```
 
@@ -170,7 +170,7 @@ addressed by name.
 If $R$ is an identifier, $\{R_0, ..., R_n\}$ is a set of identifiers, and
 $\{T_0, ..., T_n\}$ is a set of type specifiers, then:
 
-```
+```austral
 record R is
   R_0 : T_0;
   R_1 : T_1;
@@ -187,7 +187,7 @@ a single layout for every instance of a given record type.
 
 The layout can be customized using a layout specification. For example:
 
-```
+```austral
 record R is
   a : Natural16;
   b : Int8;
@@ -214,7 +214,7 @@ Record construction:
 
 Given the record:
 
-```
+```austral
 record Vector3 is
     x : Float32;
     y : Float32;
@@ -224,7 +224,7 @@ end
 
 We can construct an instance of `Vector3` in two ways:
 
-```
+```austral
 let V1 : Vector3 := Vector3(0.0, 0.0, 0.0);
 let V2 : Vector3 := Vector3(
     x => 0.0,
@@ -245,14 +245,14 @@ When a constructor has associated values, it's either:
 
 For example, the definition of the `Optional` type is:
 
-```
+```austral
 union Optional[T : Type] is
   case Some(T);
   case None;
 end
 ```
 
-```
+```austral
 union Color is
   case RGB(red: Nat8, green: Nat8, blue: Nat8);
   case Greyscale(Nat8);
@@ -261,7 +261,7 @@ end
 
 Union creation:
 
-```
+```austral
 let O2 : Optional[Int32] := None();
 let O2 : Optional[Int32] := Some(10);
 let C1 : Color := RGB(10, 12, 3);
@@ -321,7 +321,7 @@ Examples:
 1. The following declares the identity function, a generic function with a
    single type parameter and a single value parameter:
 
-   ```
+   ```austral
    generic (t : Type)
    function Identity(x: T): T is
        return x;
@@ -380,7 +380,7 @@ Examples:
 
 1. This defines a recursive function to compute the Fibonacci sequence:
 
-   ```
+   ```austral
    function Fib(n: Natural): Natural is
        if n <= 2 then
            return n;
@@ -431,7 +431,7 @@ Examples:
 
 1. Defines a typeclass `Printable` for types in the `Type` universe, with a method `Print`:
 
-   ```
+   ```austral
    typeclass Printable(T : Type) is
        method Print(value: T): Unit;
    end
@@ -511,7 +511,7 @@ defines a _generic instance_ of the typeclass $$\text{t}$$.
 
 Examples:
 
-```
+```austral
 typeclass Printable(T : Type) is
     method Print(value: T): Unit;
 end

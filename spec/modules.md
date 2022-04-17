@@ -110,7 +110,7 @@ unsafe module can:
 To specify that a module is unsafe, the `Unsafe_Module` pragma must be used in
 the module body. For example:
 
-```
+```austral
 module body Example is
     pragma Unsafe_Module;
 
@@ -122,7 +122,7 @@ end module body.
 
 Given the following interface file:
 
-```
+```austral
 interface Example is
     -- The constant C is importable, but the interface
     -- doesn't know its value.
@@ -162,7 +162,7 @@ end.
 
 The following is a module definition that satisfies the interface:
 
-```
+```austral
 module Example is
     constant C : Float32 := 3.14;
 

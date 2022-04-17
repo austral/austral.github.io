@@ -11,14 +11,14 @@ In Austral, instances have to be globally unique: you can't have multiple
 instances of the same typeclass for the same type, or for overlapping type
 parameters. So, the following are prohibited:
 
-```
+```austral
 instance TC(Natural32);
 instance TC(Natural32);
 ```
 
 But also these:
 
-```
+```austral
 generic [T: Type]
 instance TC(Pointer[T]);
 
@@ -48,7 +48,7 @@ This section describes how an instance is resolved from a method call.
 
 Consider a typeclass:
 
-```
+```austral
 typeclass Printable(T: Free) is
     method Print(t: T): Unit;
 end;
@@ -56,7 +56,7 @@ end;
 
 And a set of instances:
 
-```
+```austral
 instance Printable(Unit);
 instance Printable(Boolean);
 generic [U: Type]

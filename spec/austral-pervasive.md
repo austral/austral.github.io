@@ -8,7 +8,7 @@ The `Austral.Pervasive` module exports declarations which are imported by every 
 
 Definition:
 
-```
+```austral
 union Option[T: Type]: Type is
     case None;
     case Some is
@@ -26,7 +26,7 @@ return `None` if the key does not exist and `Some` otherwise.
 
 Definition:
 
-```
+```austral
 union Either[L: Type, R: Type]: Type is
     case Left is
         left: L;
@@ -45,7 +45,7 @@ possibilities. For example, a function might return a value of type
 
 Declaration:
 
-```
+```austral
 generic [T: Free, R: Region]
 function Deref(ref: Reference[T, R]): T;
 ```
@@ -58,7 +58,7 @@ The `Deref` function loads the value pointed to by a read reference.
 
 Declaration:
 
-```
+```austral
 generic [T: Free, R: Region]
 function Deref_Write(ref: WriteReference[T, R]): T;
 ```
@@ -71,7 +71,7 @@ The `Deref_Write` function loads the value pointed to by a write reference.
 
 Declaration:
 
-```
+```austral
 generic [T: Type]
 function Fixed_Array_Size(arr: Fixed_Array[T]): Natural_64;
 ```
@@ -84,7 +84,7 @@ The `Fixed_Array_Size` function returns the size of a fixed array.
 
 Declaration:
 
-```
+```austral
 function Abort(message: Fixed_Array[Natural_8]): Unit;
 ```
 
@@ -97,7 +97,7 @@ program.
 
 Declaration:
 
-```
+```austral
 type Root_Capability : Linear;
 ```
 
@@ -113,7 +113,7 @@ start of the program.
 
 Declarations:
 
-```
+```austral
 constant Maximum_Natural_8: Natural_8;
 constant Maximum_Natural_16: Natural_16;
 constant Maximum_Natural_32: Natural_32;
@@ -141,7 +141,7 @@ different integer types.
 
 Definition:
 
-```
+```austral
 interface Trapping_Arithmetic(T: Type) is
     method Trapping_Add(lhs: T, rhs: T): T;
     method Trapping_Subtract(lhs: T, rhs: T): T;
@@ -159,7 +159,7 @@ that aborts on overflow errors.
 
 Definition:
 
-```
+```austral
 interface Modular_Arithmetic(T: Type) is
     method Modular_Add(lhs: T, rhs: T): T;
     method Modular_Subtract(lhs: T, rhs: T): T;
@@ -177,7 +177,7 @@ that wraps around without abort on overflow errors.
 
 Declarations:
 
-```
+```austral
 implementation Trapping_Arithmetic(Natural_8);
 implementation Trapping_Arithmetic(Integer_8);
 implementation Trapping_Arithmetic(Natural_16);
