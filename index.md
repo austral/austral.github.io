@@ -14,7 +14,7 @@ See:
 - [Specification](/spec)
 - Tutorial
 - [Example programs](/examples)
-- [Source code][source]
+- [Source][source] on GitHub
 
 [cap]: https://en.wikipedia.org/wiki/Capability-based_security
 [source]: https://github.com/austral/austral/
