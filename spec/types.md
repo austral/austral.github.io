@@ -101,24 +101,76 @@ Classification". So `Singleton[Int32]` would be in the `Free` universe, but
 
 ## Built-In Types
 
-The following types are built into austral and available to all code:
+The following types are built into austral and available to all code.
 
-- `Unit` is the type of functions that return no useful value. The only value of
-  type `Unit` is the constant `nil`.
-- `Boolean` is the Boolean type.
-- The built-in integer types are:
+### Unit {#unit}
 
-  |   Name  |   Width  | Signedness |
-  |   ----  |   -----  | ---------- |
-  | `Nat8`  | 8 bits   | Unsigned.  |
-  | `Nat16` | 16 bits. | Unsigned.  |
-  | `Nat32` | 32 bits. | Unsigned.  |
-  | `Nat64` | 64 bits. | Unsigned.  |
-  | `Int8`  | 8 bits.  | Signed.    |
-  | `Int16` | 16 bits. | Signed.    |
-  | `Int32` | 32 bits. | Signed.    |
-  | `Int64` | 64 bits. | Signed.    |
+```austral
+type Unit: Free;
+```
 
-- `Float32` is the 32-bit floating-point type.
-- `Float64` is the 64-bit floating point type.
-- `Root_Capability` is the parameter of the entrypoint function.
+`Unit` is the type of functions that return no useful value. The only value of
+type `Unit` is the constant `nil`.
+
+### Boolean {#boolean}
+
+```austral
+type Boolean: Free;
+```
+
+`Boolean` is the type of logical and comparison operators.
+
+The only `Boolean` values are the constants `true` and `false`.
+
+### Integer Types {#integers}
+
+The following integer types are available:
+
+|   Name  |   Width  | Signedness |
+|   ----  |   -----  | ---------- |
+| `Nat8`  | 8 bits   | Unsigned.  |
+| `Nat16` | 16 bits. | Unsigned.  |
+| `Nat32` | 32 bits. | Unsigned.  |
+| `Nat64` | 64 bits. | Unsigned.  |
+| `Int8`  | 8 bits.  | Signed.    |
+| `Int16` | 16 bits. | Signed.    |
+| `Int32` | 32 bits. | Signed.    |
+| `Int64` | 64 bits. | Signed.    |
+
+All are in the free universe.
+
+### Floating Point Types {#floats}
+
+```austral
+type Float32: Free;
+type Float64: Free;
+```
+
+The two floating-point types are `Float32` and `Float64`.
+
+### Read-Only Reference {#read-ref}
+
+```austral
+type Reference[T: Linear, R: Region]: Free;
+```
+
+The type `Reference` is the type of read-only references to linear
+values. Values of this type are bound to a region and are acquired by borrowing.
+
+### Read-Write Reference {#write-ref}
+
+```austral
+type WriteReference[T: Linear, R: Region]: Free;
+```
+
+The type `WriteReference` is the type of read-write references to linear
+values. Values of this type are bound to a region and are acquired by borrowing.
+
+### Root Capability {#root-capability}
+
+```austral
+type Root_Capability: Linear;
+```
+
+The type `Root_Capability` is the root of the capability hierarchy. It is the
+type of the first parameter to the entrypoint function.
