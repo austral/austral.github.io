@@ -4,7 +4,7 @@ title: Fibonacci Example
 
 Calculates the _n_-th [Fibonacci number][fib].
 
-```
+```austral
 module body Example.Fibonacci is
     function Fibonacci(n: Natural_64): Natural_64 is
         if n < 2 then
