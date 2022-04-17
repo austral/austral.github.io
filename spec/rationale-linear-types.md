@@ -638,7 +638,7 @@ Linear types give us the following benefits:
    overhead.
 
 3. In-place optimization: the APIs we have lookoed at resemble functional
-   code. We write coode "as if" we were creating and returning new objects with
+   code. We write code "as if" we were creating and returning new objects with
    each call, while doing extensive mutations under the hood. This gives us the
    benefits of functional programming (referential transparency and equational
    reasoning) with the performance of imperative code that mutates data wildly.
