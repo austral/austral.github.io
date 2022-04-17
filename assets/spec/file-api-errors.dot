@@ -1,0 +1,17 @@
+digraph G {
+    open[label="openFile"]
+    write[label="writeString"]
+    close[label="closeFile"]
+    leak[label="leak" style=dotted]
+
+    open -> write
+    write -> write
+    write -> close
+    open -> close
+
+    close -> close [color=red label="double close"]
+    close -> write [color=red label="use after close"]
+
+    open -> leak [color=red label="forget to close"]
+    write -> leak [color=red label="forget to close"]
+}

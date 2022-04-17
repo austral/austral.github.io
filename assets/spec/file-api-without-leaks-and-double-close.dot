@@ -1,0 +1,12 @@
+digraph G {
+    open[label="openFile"]
+    write[label="writeString"]
+    close[label="closeFile"]
+
+    open -> write
+    write -> write
+    write -> close
+    open -> close
+
+    close -> write [color=red label="use after close"]
+}
