@@ -133,7 +133,6 @@ article {
 
     pre {
         border: 1px solid gray;
-        padding: $small;
         overflow-x: hidden;
     }
 
@@ -187,10 +186,6 @@ footer {
 
         h3 {
             font-size: 1.1rem;
-        }
-
-        pre {
-            padding: $vsmall;
         }
     }
 }
