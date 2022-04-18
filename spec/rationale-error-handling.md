@@ -514,53 +514,6 @@ into their type system have a choice:
 Having weighed the benefits and problems of both approaches, we decided to
 implement a simple linear type system.
 
-## Recent Languages
-
-Two recent languages: Go and Rust.
-
-The errors that can be efficiently handled as values are those than are not
-really exceptional: in the case of a function that parses a string into an
-integer, the case where the parse fails is not really exceptional, but a
-first-class result.
-
-While many errors are best represented as values, and handled explicitly as
-values, there is a category of errors that are so pervasive and so rare that
-handling them explicitly as errors would be excessively onerous. These are:
-
-1. Integer overflow.
-2. Integer division by zero.
-3. Array index out of bounds errors.
-
-Let's discuss these point by point.
-
-1. Representing integer overflow errors as values means every arithmetic
-   expression must return an optional type, e.g.:
-
-   ```
-   datatype int_result = Number of int | Overflow
-   ```
-
-   In this scheme, something as simple as `x*(n+1)` would instead be written as:
-
-   ```
-   case n+1 of
-     (Number res) => (case x*res of
-                         (Number res') => res'
-                         | Overflow => (* Error handling code *) )
-     | Overflow => (* Error handling code *)
-   ```
-
-   This is excessive. A simple solution is to use arithmetic operators with
-   implicit modular arithmetic semantics: overflow just wraps around. This is
-   what C does with `unsigned` types. Rust takes a different approach: integer
-   overflow aborts the program in development mode and uses modular arithmetic
-   semantics in production.
-
-2. Handling integer divide-by-zero errors by having the division operator return
-   an optional type is also horribly inconvenient.
-
-3. Array out of bounds.
-
 [sutter]: http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0709r4.pdf
 [midori]: http://joeduffyblog.com/2016/02/07/the-error-model/
 [junit]: https://en.wikipedia.org/wiki/JUnit
