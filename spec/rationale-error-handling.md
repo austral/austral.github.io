@@ -265,17 +265,20 @@ thread receives the exception object.
 
 The benefits of this approach are:
 
-1. **Resource Safety**. Contract violations will still safely deallocate
-   resources, with minor caveats.
+1. **Resource Safety**. Contract violations will unwind the stack and cause
+   destructors to be called, which allows us to safely deallocate resources
+   (with some caveats, see below).
 
-   We can write servers where specific worker threads can occasionally tip over
-   while safely deallocating their resources.
+   We can write servers where specific worker threads can occasionally tip over,
+   but the file/socket handles are safely closed, and the entire server does not
+   crash.
 
    When the parent thread of a failing thread receives an exception, it can
    decide whether to restart the thread, or simply rethrow the exception. In the
    latter case, its own stack would be unwound and its own resources
-   deallocated. Transitively, an exception that is not caught terminates the
-   program only after all resources have been safely deallocated.
+   deallocated. Transitively, an exception that is not caught anywhere and
+   reaches the top of the stack will terminate the program only after all
+   resources have been safely deallocated.
 
 2. **Testing**. Contract violations can be caught during test execution and
    reported appropriately, without needing to spawn a new thread or a new
@@ -283,8 +286,8 @@ The benefits of this approach are:
 
 3. **Exporting Code**. Code that is built to be exported through the C ABI can
    catch all exceptions, convert them to values, and return appropriate error
-   values. Rust libraries that export Rust code through the FFI use
-   `catch_unwind` to do this.
+   values through the FFI boundary. Rust libraries that export Rust code through
+   the FFI use `catch_unwind` to do this.
 
 There are, however, significant downsides:
 
