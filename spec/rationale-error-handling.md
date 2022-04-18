@@ -241,8 +241,8 @@ mechanism.
 
 For example, in the context of a webserver, we would _not_ want to restart
 failed server threads. Since cleanup code is not executed on thread termination,
-a long runnning process which restarts failing threads will eventually run out
-of memory or file handles or other resources.
+a long running process which restarts failing threads will eventually run out of
+memory or file handles or other resources.
 
 An attacker that knows the server does this could execute a denial of service
 attack by forcing a previously undetected contract violation.
