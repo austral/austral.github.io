@@ -523,7 +523,8 @@ into their type system have a choice:
    and because of the double throw problem.
 
 Having weighed the benefits and problems of both approaches, we decided to
-implement a simple linear type system.
+implement a simple linear type system, and an error handling strategy where
+contract violations result in a crash.
 
 [sutter]: http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0709r4.pdf
 [midori]: http://joeduffyblog.com/2016/02/07/the-error-model/
