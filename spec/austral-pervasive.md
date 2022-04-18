@@ -142,7 +142,7 @@ different integer types.
 Definition:
 
 ```austral
-interface Trapping_Arithmetic(T: Type) is
+typeclass Trapping_Arithmetic(T: Type) is
     method Trapping_Add(lhs: T, rhs: T): T;
     method Trapping_Subtract(lhs: T, rhs: T): T;
     method Trapping_Multiply(lhs: T, rhs: T): T;
@@ -160,7 +160,7 @@ that aborts on overflow errors.
 Definition:
 
 ```austral
-interface Modular_Arithmetic(T: Type) is
+typeclass Modular_Arithmetic(T: Type) is
     method Modular_Add(lhs: T, rhs: T): T;
     method Modular_Subtract(lhs: T, rhs: T): T;
     method Modular_Multiply(lhs: T, rhs: T): T;
@@ -178,24 +178,24 @@ that wraps around without abort on overflow errors.
 Declarations:
 
 ```austral
-implementation Trapping_Arithmetic(Natural_8);
-implementation Trapping_Arithmetic(Integer_8);
-implementation Trapping_Arithmetic(Natural_16);
-implementation Trapping_Arithmetic(Integer_16);
-implementation Trapping_Arithmetic(Natural_32);
-implementation Trapping_Arithmetic(Integer_32);
-implementation Trapping_Arithmetic(Natural_64);
-implementation Trapping_Arithmetic(Integer_64);
-implementation Trapping_Arithmetic(Double_Float);
+instance Trapping_Arithmetic(Natural_8);
+instance Trapping_Arithmetic(Integer_8);
+instance Trapping_Arithmetic(Natural_16);
+instance Trapping_Arithmetic(Integer_16);
+instance Trapping_Arithmetic(Natural_32);
+instance Trapping_Arithmetic(Integer_32);
+instance Trapping_Arithmetic(Natural_64);
+instance Trapping_Arithmetic(Integer_64);
+instance Trapping_Arithmetic(Double_Float);
 
-implementation Modular_Arithmetic(Natural_8);
-implementation Modular_Arithmetic(Integer_8);
-implementation Modular_Arithmetic(Natural_16);
-implementation Modular_Arithmetic(Integer_16);
-implementation Modular_Arithmetic(Natural_32);
-implementation Modular_Arithmetic(Integer_32);
-implementation Modular_Arithmetic(Natural_64);
-implementation Modular_Arithmetic(Integer_64);
+instance Modular_Arithmetic(Natural_8);
+instance Modular_Arithmetic(Integer_8);
+instance Modular_Arithmetic(Natural_16);
+instance Modular_Arithmetic(Integer_16);
+instance Modular_Arithmetic(Natural_32);
+instance Modular_Arithmetic(Integer_32);
+instance Modular_Arithmetic(Natural_64);
+instance Modular_Arithmetic(Integer_64);
 ```
 
 Description:
