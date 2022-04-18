@@ -459,7 +459,7 @@ There are, however, significant downsides to exception handling:
 
     It is not uncommon, however, for libraries to effectively rely on unwinding
     to occur in order to properly free resources. For example, the documentation
-    for the `easycurses` library says:
+    for the [`easycurses`][easycurses] library says:
 
     >The library can only perform proper automatic cleanup if Rust is allowed to
     >run the Drop implementation. This happens during normal usage, and during
@@ -529,3 +529,4 @@ implement a simple linear type system.
 [midori]: http://joeduffyblog.com/2016/02/07/the-error-model/
 [junit]: https://en.wikipedia.org/wiki/JUnit
 [assert-throws]: https://junit.org/junit5/docs/5.0.1/api/org/junit/jupiter/api/Assertions.html#assertThrows-java.lang.Class-org.junit.jupiter.api.function.Executable-
+[easycurses]: https://docs.rs/easycurses/latest/easycurses/
