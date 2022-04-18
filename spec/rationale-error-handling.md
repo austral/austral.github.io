@@ -254,7 +254,8 @@ and destructors. C++ calls this throwing an exception. Rust and Go call it
 panicking. The only technical difference between C++ exception handling and
 Go/Rust panics is that C++ exceptions can be arbitrarily sized objects (and
 consequently throwing requires a memory allocation) while in Go and Rust panics
-can at most carry an error message. This is similar to Ada exception handling.
+can at most carry an error message. Ada works similarly: an exception is a type
+tag plus an error message string.
 
 This would partially solve the resource leakage problem in the case of contract
 violations, while introducing complexity.
