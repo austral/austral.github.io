@@ -257,12 +257,6 @@ consequently throwing requires a memory allocation) while in Go and Rust panics
 can at most carry an error message. Ada works similarly: an exception is a type
 tag plus an error message string.
 
-This would partially solve the resource leakage problem in the case of contract
-violations, while introducing complexity.
-
-This solution implies using affine types with destructors for resource
-management, see the section on linear vs affine types.
-
 When a contract violation is detected, an exception is raised and stack
 unwinding begins. The stack unwinding process calls destructors.  If an
 appropriate handler is reached, control transfers to that handler after stack
@@ -479,6 +473,10 @@ There are, however, significant downsides:
 	completely safe code is to use side effects with atomic/transactional
 	semantics.
 
+## Linear Types and Exceptions
+
+## Affine Types and Exceptions
+
 ## Prior Art
 
 In Swift, contract violations terminate the program.
@@ -492,7 +490,8 @@ a compiler switch.  This is a pragmatic strategy: the application developer,
 rather than the library developer, chooses whether to unwind or abort.
 
 In the specific case of overflow, Rust checks overflow on Debug builds, but uses
-two's complement modular arithmetic semantics on Release builds for performance.
+two's complement modular arithmetic semantics on Release builds for
+performance. This is questionable.
 
 ## Conclusion
 
