@@ -2,48 +2,71 @@
 title: Error Handling
 ---
 
-This section describes the rationale for Austral's approach to error handling.
+On July 3, 1940, as part of Operation Catapult, Royal Air Force pilots bombed
+the ships of the French Navy stationed off Mers-el-Kébir to prevent them falling
+into the hands of the Third Reich.
+
+This is Austral's approach to error handling: scuttle the ship without delay.
+
+In software terms: programs should crash at the slightest contract violation,
+because recovery efforts can become attack vectors. You must assume, when the
+program enters an invalid state, that there is an adversary in the system. For
+_failures_ --- as opposed to _errors_ --- you should use `Option` and `Result`
+types.
+
+This section describes the rationale for Austral's approach to error
+handling. We begin by describing what an error is, then we survey different
+error handling strategies. Then we explain how those strategies impinge upon a
+linear type system.
 
 ## Categorizing Errors
 
-Following Sutter and the Midori error model, we divide errors into the
-following categories:
+"Error" is a broad term. Following [Sutter][sutter] and the [Midori error
+model][midori], we divide errors into the following categories:
 
-1. **Physical Failure**. Pulling the power cord, destroying part of the
+1. **Physical Failure:** Pulling the power cord, destroying part of the
    hardware.
 
-2. **Abstract Machine Corruption**. A stack overflow.
+2. **Abstract Machine Corruption:** A stack overflow.
 
-3. **Contract Violations**. This is any one of the following errors:
+3. **Contract Violations:** Due to a mistake the code, the program enters an
+   invalid state. This includes:
 
-    1. Integer overflow or underflow.
-	2. Integer division by zero.
-	3. Attempting to access an array with an index outside the array's bounds.
+    1. An arithmetic operation leads to integer overflow or underflow (the
+       contract here is that operands should be such that the operation does not
+       overflow).
+
+	2. Integer division by zero (the contract is the divisor should be non zero).
+
+	3. Attempting to access an array with an index outside the array's bounds
+       (the contract is that the index should be within the length of the
+       array).
+
 	4. Any violation of a programmer-defined precondition, postcondition,
 	   assertion or invariant.
 
 	These errors are bugs in the program. They are unpredictable, often happen
 	very rarely, and can open the door to security vulnerabilities.
 
-4. **Memory Allocation Failure**. `malloc` returns `null`.
+4. **Memory Allocation Failure:** `malloc` returns `null`, essentially. This
+   gets its own category because allocation is pervasive, especially in
+   higher-level code, and allocation failure is rarely modeled at the type
+   level.
 
-5. **Error Conditions**. "File not found", "connection failed", "directory is
-   not empty".
+5. **Failure Conditions**. "File not found", "connection failed", "directory is
+   not empty", "timeout exceeded".
 
-For two of these five categories, the appropriate error handling scheme is obvious:
+We can pare down what we have to care about:
 
-1. **Physical Failure**. Nothing can be done. Although it is possible to write
-   software that persists data in a way that is immune to these
-   failures. Databases are often implemented in this way.
+1. **Physical Failure:** Nothing can be done. Although it is possible to write
+   software that persists data in a way that survives e.g. power
+   failure. Databases are often implemented in this way.
 
 2. **Abstract Machine Corruption**. The program should terminate. At this point
    the program is in a highly problematic state and any attempt at recovery is
    likely counterproductive and possibly enables security vulnerabilities.
 
-For another two, the error handling scheme is at least debatable, but we err on
-the side of using values and the type system to manage this type of error:
-
-1. **Memory Allocation Failure**. Programs written in a functional style often
+3. **Memory Allocation Failure:** Programs written in a functional style often
    rely on memory allocation at arbitrary points in the program
    execution. Allocation failure in a deeply nested function thus presents a
    problem from an error-handling perspective: if we're using values to
@@ -58,60 +81,65 @@ the side of using values and the type system to manage this type of error:
    area in time and space.
 
    This type of refactoring can improve performance, as putting allocations
-   together will make it clear when there is an opportunity to replace `n`
-   allocations of an object of size `k` bytes with a single allocation of an
-   array of `n*k` bytes.
+   together will make it clear when there is an opportunity to replace $$n$$
+   allocations of an object of size $$k$$ bytes with a single allocation of an
+   array of $$n \times k$$ bytes.
 
    A common misconception is that checking for allocation failure is pointless,
    since a program might be terminated by the OS if memory is exhausted, or
-   because platforms that implement overcommit (such as Linux) will always
-   reteurn a pointer as though allocation had succeeded, and crash when writing
-   to that pointer. This is a misconception for the following reasons:
+   because platforms that implement memory overcommit (such as Linux) will
+   always return a pointer as though allocation had succeeded, and crash when
+   writing to that pointer. This is a misconception for the following reasons:
 
    1. Memory overcommit on Linux can be turned off.
+
    2. Linux is not the only platform.
-   3. Memory exhaustion is not the only situation where allocation might fail:
+
+   3. Memory exhaustion is _not_ the only situation where allocation might fail:
       if memory is sufficiently fragmented that a chunk of the requested size is
       not available, allocation will fail.
 
-2. **Error Conditions**. These errors are recoverable, in the sense that we want
-   to catch them and do something about them. Often this involves prompting the
-   user for corrected information, or otherwise informing the user of failure,
-   e.g. if trying to open a file on a user-provided path, or trying to connect
-   to a server with a user-provided hostn and port.
+4. **Failure Conditions**. These errors are recoverable, in the sense that we
+   want to catch them and do something about them, rather than crash. Often this
+   involves prompting the user for corrected information, or otherwise informing
+   the user of failure, e.g. if trying to open a file on a user-provided path,
+   or trying to connect to a server with a user-provided host and port.
 
    Consequently, these conditions should be represented as values, and error
-   handling done using standard control flow.
+   handling should be done using standard control flow.
 
-   This should not be confused with "error codes" in languages like C. "Error
-   codes or exceptions" is a false dichotomy. Firstly, strongly-typed result
-   values are better than brittle integer error codes. Secondly, an appropriate
-   type system lets us have e.g. `Optional` or `Result` types to better
-   represent the result of fallible computations. Thirdly, a linear type system
-   can force the programmer to check result codes.
+   Values that represent failure should not be confused with "error codes" in
+   languages like C. "Error codes or exceptions" is a false dichotomy. Firstly,
+   strongly-typed result values are better than brittle integer error
+   codes. Secondly, an appropriate type system lets us have e.g. `Optional` or
+   `Result` types to better represent the result of fallible
+   computations. Thirdly, a linear type system can force the programmer to check
+   result codes, so the argument that error codes are bad because programmers
+   might forget to check them is obviated.
 
-That takes care of four of five. Contract Violations are the odd one out. How we
-choose to handle this is a critical question in the design of any programming
-language.
+That takes care of four of five categories. There's one left: what do we do
+about contract violations? How we choose to handle this is a critical question
+in the design of any programming language.
 
 ## Error Handling for Contract Violations
 
 There are essentially three approaches, from most to least brutal:
 
-1. When a contract violation is detected, terminate the entire program.  No
-   cleanup code is executed. Henceforth "TPOE" for "terminate program on error".
+1. **Terminate Program:** When a contract violation is detected, terminate the
+   entire program.  No cleanup code is executed. Henceforth "TPOE" for
+   "terminate program on error".
 
-2. When a contract violation is detected, terminate the current thread or task.
-   No cleanup code is executed, but the parent thread will observe the failure,
-   and can decide what to do about it. Henceforth "TTOE" for "terminate
-   thread/task on error".
+2. **Terminate Thread:** When a contract violation is detected, terminate the
+   current thread or task.  No cleanup code is executed, but the parent thread
+   will observe the failure, and can decide what to do about it. Henceforth
+   "TTOE" for "terminate thread/task on error".
 
-3. Raise an exception/panic/abort (pick your preferred terminology), unwind the
-   stack while calling destructors. This is the approach offered by C++ and
-   Rust, and it integrates with RAII. Henceforth "REOE" for "raise exception on
-   error".
+3. **Traditional Exception Handling:** Raise an exception/panic/abort (pick your
+   preferred terminology), unwind the stack while calling destructors. This is
+   the approach offered by C++ and Rust, and it integrates with RAII. Henceforth
+   "REOE" for "raise exception on error".
 
-### Terminate Program on Error
+### Terminate Program
 
 The benefit of this approach is simplicity and security: from the perspective of
 security vulnerabilities, terminating a program outright is the best thing to
@@ -121,30 +149,28 @@ If the program is the target of an attacker, cleanup or error handling code
 might inadvertently allow an attacker to gain access to the program. Terminating
 the program without executing any cleanup code at all will prevent this.
 
-There are a number of benefits of this approach that are common with terminating
-the thread on error. Namely: simplicity. The language is simpler and easier to
-understand. The language also becomes simpler to implement. The runtime is
-simpler. Code written in the language is simpler to understand and reason about:
-there are no implicit function calls, no surprise control flow, no complicated
-unwinding schemes.
+The key benefit here besides security is simplicty. There is nothing simpler
+than calling `_exit(-1)`. The language is simpler and easier to understand. The
+language also becomes simpler to implement. The runtime is simpler. Code written
+in the language is simpler to understand and reason about: there are no implicit
+function calls, no surprise control flow, no complicated unwinding schemes.
 
 There are, however, a number of problems:
 
-1. **Resource Leaks**. Depending on the program and the operating system, doing
+1. **Resource Leaks:** Depending on the program and the operating system, doing
    this might leak resources.
 
    If the program only allocates memory and acquires file and/or socket handles,
    then the operating system will likely be able to garbage-collect all of this
    on program termination. If the program uses more exotic resources, such as
    locks that survive program termination, then the system as a whole might
-   enter an unusable state where it cannot be restarted (since the relevant
-   objects are still locked), and require human intervention to delete those
-   surviving resources.
+   enter an unusable state where the program cannot be restarted (since the
+   relevant objects are still locked), and human intervention is needed to
+   delete those surviving resources.
 
-   For example, consider a build system that provides build isolation. The
-   program might use a resource object to represent a directory that is only
-   accessible by a certain user. A `create` function creates the directory
-   (iff it does not already exist) and sets its permissions, a corresponding
+   For example, consider a build. The program might use a linear type to
+   represent the lifecycle of the directory that stores build output. A `create`
+   function creates the directory if it does not already exist, a corresponding
    `destroy` function deletes the directory and its contents.
 
    If the program is terminated before the `destroy` function is called, running
@@ -155,25 +181,25 @@ There are, however, a number of problems:
    resources that are not cleaned up by the program will not be reclaimed by
    anything.
 
-2. **Testing**. In a testing framework, we often want to test that a function
-   will not fail on certain inputs, or that it will definitely fail on
-   certain others.
+2. **Testing:** In a testing framework, we often want to test that a function
+   will not fail on certain inputs, or that it will definitely fail on certain
+   others. For example, we may want to test that a function correctly aborts on
+   values that don't satisfy some precondition.
 
-   For example, `JUnit` provides `assertThrows` (but not `assertDoesNotThrow`)
-   for this purpose.
+   `JUnit`, for example, provides `assertThrows` for this purpose.
 
    If contract violations terminate the program, then the only way to write an
-   `assertViolatesContract` or `assertDoesNotViolateContract` function is to
-   fork the process, run the function in the child process, and have the parent
-   process observe whether or not it crashes. )This is expensive.
+   `assertAborts` function is to fork the process, run the function in the child
+   process, and have the parent process observe whether or not it crashes. This
+   is expensive. And if we don't implement this, a contract violation will crash
+   the entire unit testing process.
 
-   Arguably this is not too great a problem: we're still implicitly testing for
-   contract violations every time we call the function we wish to test in the
-   context of a unit test. The problem is that failures related to contract
-   violations will not be reported by the testing framework's mechanisms,
-   rather, they will crash the test process itself.
+   This is a problem because, while we are implicitly "testing" for contract
+   violations whenever a function is called, it is still good to have explicit
+   unit tests that we can point to in order to prove that a function does indeed
+   reject certain kinds of values.
 
-3. **Exporting Code**. When exporting code through the FFI, terminating the
+3. **Exporting Code:** When exporting code through the FFI, terminating the
    program on contract violations is less than polite.
 
    If we write a library and export its functionality through the FFI so it is
@@ -533,3 +559,6 @@ Let's discuss these point by point.
    an optional type is also horribly inconvenient.
 
 3. Array out of bounds.
+
+[sutter]: http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0709r4.pdf
+[midori]: http://joeduffyblog.com/2016/02/07/the-error-model/
