@@ -263,6 +263,10 @@ appropriate handler is reached, control transfers to that handler after stack
 unwinding. If no handler is reached, the thread is terminated, and the parent
 thread receives the exception object.
 
+Implementing exception handling requires a number of things:
+
+[TODO]
+
 The benefits of this approach are:
 
 1. **Resource Safety**. Contract violations will unwind the stack and cause
@@ -289,7 +293,7 @@ The benefits of this approach are:
    values through the FFI boundary. Rust libraries that export Rust code through
    the FFI use `catch_unwind` to do this.
 
-There are, however, significant downsides:
+There are, however, significant downsides to exception handling:
 
 1. **Complexity**. Exceptions are among the most complex language features. This
    complexity is reflected in the semantics, which makes the language harder to
@@ -478,7 +482,11 @@ There are, however, significant downsides:
 
 ## Linear Types and Exceptions
 
+[TODO]
+
 ## Affine Types and Exceptions
+
+[TODO]
 
 ## Prior Art
 
