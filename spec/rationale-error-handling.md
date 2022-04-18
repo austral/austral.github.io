@@ -186,7 +186,8 @@ There are, however, a number of problems:
    others. For example, we may want to test that a function correctly aborts on
    values that don't satisfy some precondition.
 
-   `JUnit`, for example, provides `assertThrows` for this purpose.
+   [JUnit][junit], for example, provides [`assertThrows`][assert-throws] for
+   this purpose.
 
    If contract violations terminate the program, then the only way to write an
    `assertAborts` function is to fork the process, run the function in the child
@@ -562,3 +563,5 @@ Let's discuss these point by point.
 
 [sutter]: http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0709r4.pdf
 [midori]: http://joeduffyblog.com/2016/02/07/the-error-model/
+[junit]: https://en.wikipedia.org/wiki/JUnit
+[assert-throws]: https://junit.org/junit5/docs/5.0.1/api/org/junit/jupiter/api/Assertions.html#assertThrows-java.lang.Class-org.junit.jupiter.api.function.Executable-
