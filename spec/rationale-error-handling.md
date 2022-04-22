@@ -395,7 +395,7 @@ There are, however, significant downsides to exception handling:
 8. **Compile Time:** Compilers anecdotally spend a lot of time compiling
    landingpads.
 
-9. **Non-determinism:** Time and space cost of exceptions is completely unknown
+9. **Non-Determinism:** Time and space cost of exceptions is completely unknown
    and not amenable to static analysis.
 
 10. **Platform-Specific Runtime Support:** Exceptions need support from the
