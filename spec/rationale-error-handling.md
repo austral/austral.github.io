@@ -269,7 +269,7 @@ Implementing exception handling requires a number of things:
 
 The benefits of this approach are:
 
-1. **Resource Safety**. Contract violations will unwind the stack and cause
+1. **Resource Safety:** Contract violations will unwind the stack and cause
    destructors to be called, which allows us to safely deallocate resources
    (with some caveats, see below).
 
@@ -284,32 +284,32 @@ The benefits of this approach are:
    reaches the top of the stack will terminate the program only after all
    resources have been safely deallocated.
 
-2. **Testing**. Contract violations can be caught during test execution and
+2. **Testing:** Contract violations can be caught during test execution and
    reported appropriately, without needing to spawn a new thread or a new
    process.
 
-3. **Exporting Code**. Code that is built to be exported through the C ABI can
+3. **Exporting Code:** Code that is built to be exported through the C ABI can
    catch all exceptions, convert them to values, and return appropriate error
    values through the FFI boundary. Rust libraries that export Rust code through
    the FFI use [`catch_unwind`][catch-unwind] to do this.
 
 There are, however, significant downsides to exception handling:
 
-1. **Complexity**. Exceptions are among the most complex language features. This
+1. **Complexity:** Exceptions are among the most complex language features. This
    complexity is reflected in the semantics, which makes the language harder to
    describe, harder to formalize, harder to learn, and harder to
    implement. Consequently the code is harder to reason about, since exceptions
    introduce surprise control flow at literally every program point.
 
-2. **Pessimization**. When exceptions are part of the language semantics, and
+2. **Pessimization:** When exceptions are part of the language semantics, and
    any function can throw, many compiler optimizations become unavailable.
 
-3. **Code Size**. Exception handling support, even so called "zero cost
+3. **Code Size:** Exception handling support, even so called "zero cost
    exception handling", requires sizeable cleanup code to be written. This has a
    cost in the size of the resulting binaries. Larger binaries can result in a
    severe performance penalty if the code does not fit in the instruction cache.
 
-4. **Hidden Function Calls**. Calls to destructors are inserted by the compiler,
+4. **Hidden Function Calls:** Calls to destructors are inserted by the compiler,
    both on normal exit from a scope and on cleanup. This makes destructors an
    invisible cost.
 
@@ -317,14 +317,7 @@ There are, however, significant downsides to exception handling:
    a record requires destroying every field, destroying an array requires
    destroying every element.
 
-5. **Pervasive Failure**. If contract violations can throw, then essentially
-   every function can throw, because every function has to perform arithmetic,
-   either directly or transitively. So there is little point to a `throws`
-   annotation like what Herb Sutter suggests or Swift provides, let alone full
-   blown checked exceptions, since every function would have to be annotated
-   with `throws (Overflow_Error)`.
-
-6. **No Checking:** exceptions bypass the type system. Solutions like checked
+5. **No Checking:** exceptions bypass the type system. Solutions like checked
    exceptions in Java exist, but are unused, because they provide little benefit
    in exchange for onerous restrictions. The introduction of checked exceptions
    is also no small matter: it affects the specification of function signatures
@@ -332,6 +325,13 @@ There are, however, significant downsides to exception handling:
    (really, effect polymorphism). Any function that takes a function as an
    argument has to annotate not just the function's type signature but its
    permitted exception signature.
+
+6. **Pervasive Failure:** If contract violations can throw, then essentially
+   every function can throw, because every function has to perform arithmetic,
+   either directly or transitively. So there is little point to a `throws`
+   annotation like what Herb Sutter suggests or Swift provides, let alone full
+   blown checked exceptions, since every function would have to be annotated
+   with `throws (Overflow_Error)`.
 
 7. **Double Throw Problem**. What do we do when the destructor throws? This
    problem affects every language that has RAII.
