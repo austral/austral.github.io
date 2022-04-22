@@ -456,7 +456,7 @@ There are, however, significant downsides to exception handling:
 	in the compiler. Unlike C++, this option is explicitly welcome in Rust.
 
 	In both languages, the decision of whether or not to use exception handling
-	takes place at the root of the dependency tree, at the application. This
+	takes place at the root of the dependency tree: at the application. This
 	makes sense: the alternative is a model whereby a library that relies on
 	unwinding will pass this requirement to other packages that depend on it,
 	"infecting" dependents transitively up to the final application.
@@ -469,10 +469,10 @@ There are, however, significant downsides to exception handling:
     for the [`easycurses`][easycurses] library says:
 
     >The library can only perform proper automatic cleanup if Rust is allowed to
-    >run the Drop implementation. This happens during normal usage, and during
+    >run the `Drop` implementation. This happens during normal usage, and during
     >an unwinding panic, but if you ever abort the program (either because you
-    >compiled with panic=abort or because you panic during an unwind) you lose
-    >the cleanup safety. That is why this library specifies panic="unwind" for
+    >compiled with `panic=abort` or because you panic during an unwind) you lose
+    >the cleanup safety. That is why this library specifies `panic="unwind"` for
     >all build modes, and you should too.
 
     This is not a problem with the library, or with Rust. It's just what it is.
