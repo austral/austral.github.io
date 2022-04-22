@@ -291,7 +291,7 @@ The benefits of this approach are:
 3. **Exporting Code**. Code that is built to be exported through the C ABI can
    catch all exceptions, convert them to values, and return appropriate error
    values through the FFI boundary. Rust libraries that export Rust code through
-   the FFI use `catch_unwind` to do this.
+   the FFI use [`catch_unwind`][catch-unwind] to do this.
 
 There are, however, significant downsides to exception handling:
 
@@ -531,3 +531,4 @@ contract violations result in a crash.
 [junit]: https://en.wikipedia.org/wiki/JUnit
 [assert-throws]: https://junit.org/junit5/docs/5.0.1/api/org/junit/jupiter/api/Assertions.html#assertThrows-java.lang.Class-org.junit.jupiter.api.function.Executable-
 [easycurses]: https://docs.rs/easycurses/latest/easycurses/
+[catch-unwind]: https://doc.rust-lang.org/std/panic/fn.catch_unwind.html
