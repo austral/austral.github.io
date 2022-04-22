@@ -441,7 +441,7 @@ There are, however, significant downsides to exception handling:
 	to disk. But, again: the compiler will not force you to call `sync_all` or
 	to manually close the file.
 
-    More generally, affine type systems _cannot_ force the programemer to do
+    More generally, affine type systems _cannot_ force the programmer to do
     anything: resources that are silently discarded will be destroyed by the
     compiler inserting a call to the destructor. Rust gets around this by
     implementing a `cfg(must_use)` annotation on functions, which essentially
