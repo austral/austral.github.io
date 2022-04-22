@@ -299,10 +299,10 @@ There are, however, significant downsides to exception handling:
    complexity is reflected in the semantics, which makes the language harder to
    describe, harder to formalize, harder to learn, and harder to
    implement. Consequently the code is harder to reason about, since exceptions
-   can appear at any program point.
+   introduce surprise control flow at literally every program point.
 
-2. **Pessimization**. When exceptions are part of the language semantics, many
-   compiler optimizations become unavailable.
+2. **Pessimization**. When exceptions are part of the language semantics, and
+   any function can throw, many compiler optimizations become unavailable.
 
 3. **Code Size**. Exception handling support, even so called "zero cost
    exception handling", requires sizeable cleanup code to be written. This has a
@@ -322,7 +322,16 @@ There are, however, significant downsides to exception handling:
    either directly or transitively. So there is little point to a `throws`
    annotation like what Herb Sutter suggests or Swift provides, let alone full
    blown checked exceptions, since every function would have to be annotated
-   with `throws (Overflow_Error)` .
+   with `throws (Overflow_Error)`.
+
+6. **No Checking:** exceptions bypass the type system. Solutions like checked
+   exceptions in Java exist, but are unused, because they provide little benefit
+   in exchange for onerous restrictions. The introduction of checked exceptions
+   is also no small matter: it affects the specification of function signatures
+   and generic functions, since you need a way to do "throwingness polymorphism"
+   (really, effect polymorphism). Any function that takes a function as an
+   argument has to annotate not just the function's type signature but its
+   permitted exception signature.
 
 6. **Double Throw Problem**. What do we do when the destructor throws? This
    problem affects every language that has RAII.
