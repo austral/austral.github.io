@@ -263,9 +263,24 @@ appropriate handler is reached, control transfers to that handler after stack
 unwinding. If no handler is reached, the thread is terminated, and the parent
 thread receives the exception object.
 
-Implementing exception handling requires a number of things:
+Implementing exception handling mainly requires having a way to associate types
+with destructors.
 
-[TODO]
+When a value goes out of scope or its scope is entire wiped by stack unwinding,
+we need to destroy that value. This is done by _destructors_: functions `A ->
+Unit` that consume the value, deallocate it, close file handles etc. and return
+nothing.
+
+Type classes are enough to implement destructors. We'd have a typeclass:
+
+```
+typeclass Destructable(T) is
+    method Destroy(value: T): Unit;
+end;
+```
+
+And implement instances for types that need cleanup. Then the compiler inserts
+destructor calls at the end of scope and in stack unwinding code.
 
 The benefits of this approach are:
 
