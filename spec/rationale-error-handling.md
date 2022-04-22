@@ -333,7 +333,7 @@ There are, however, significant downsides to exception handling:
    argument has to annotate not just the function's type signature but its
    permitted exception signature.
 
-6. **Double Throw Problem**. What do we do when the destructor throws? This
+7. **Double Throw Problem**. What do we do when the destructor throws? This
    problem affects every language that has RAII.
 
    In C++ and Rust, throwing in the destructor causes the program to abort. This
@@ -377,17 +377,17 @@ There are, however, significant downsides to exception handling:
       whole point of resource management type systems is _the flag exists at
       compile time_. Otherwise we might as well have reference counting.
 
-7. **Compile Time**. Compilers anecdotally spend a lot of time compiling landingpads.
+8. **Compile Time**. Compilers anecdotally spend a lot of time compiling landingpads.
 
-8. **Non-determinism**. Time and space cost of exceptions is completely unknown
+9. **Non-determinism**. Time and space cost of exceptions is completely unknown
    and not amenable to static analysis.
 
-9. **Platform-Specific Runtime Support**. Exceptions need support from the
+10. **Platform-Specific Runtime Support**. Exceptions need support from the
     runtime, usually involving the generation of DWARF metadata and platform
     specific assembly. This is the case with Itanium ABI "zero-cost exceptions"
     for C++, which LLVM implements.
 
-10. **Corruption**. Unwinding deallocates resources, but this is not all we
+11. **Corruption**. Unwinding deallocates resources, but this is not all we
     need. Data structures can be left in a broken, inconsistent state, the use
     of which would trigger further contract violations when their invariants are
     violated.
@@ -412,7 +412,7 @@ There are, however, significant downsides to exception handling:
     to use exceptions falls on the client of that library (see below:
     **Libraries Cannot Rely on Destructors**).
 
-11. **Misuse of Exceptions**. If catching an exception is possible, people will
+12. **Misuse of Exceptions**. If catching an exception is possible, people will
     use it to implement `try/catch` exceptions..
 
     For example, Rust's `catch_unwind` is used in web servers. For example, in
@@ -421,7 +421,7 @@ There are, however, significant downsides to exception handling:
 	https://news.ycombinator.com/item?id=22940836
 	https://news.ycombinator.com/item?id=22938712
 
-12. **Minimum Common Denominator**. Destructors are a minimum common denominator
+13. **Minimum Common Denominator**. Destructors are a minimum common denominator
     interface: a destructor is a function that takes an object and returns
     nothing, `A -> ()`.
 
@@ -448,7 +448,7 @@ There are, however, significant downsides to exception handling:
     tells the compiler to force programmers to use the result code of that
     function.
 
-13. **Libraries Cannot Rely on Destructors**.
+14. **Libraries Cannot Rely on Destructors**.
 
     In C++, compilers often provide non-standard functionality to turn off
 	exception handling. In this mode, `throw` is an abort and the body of a
