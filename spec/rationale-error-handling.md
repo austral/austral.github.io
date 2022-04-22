@@ -377,7 +377,8 @@ There are, however, significant downsides to exception handling:
       whole point of resource management type systems is _the flag exists at
       compile time_. Otherwise we might as well have reference counting.
 
-8. **Compile Time:** Compilers anecdotally spend a lot of time compiling landingpads.
+8. **Compile Time:** Compilers anecdotally spend a lot of time compiling
+   landingpads.
 
 9. **Non-determinism:** Time and space cost of exceptions is completely unknown
    and not amenable to static analysis.
