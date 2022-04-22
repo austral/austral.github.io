@@ -488,7 +488,320 @@ There are, however, significant downsides to exception handling:
 
 ## Linear Types and Exceptions
 
-[TODO]
+Linear types are incompatible with exception handling. It's easy to see why.
+
+A linear type system guarantees all resources allocated by a terminating program
+will be freed, and none will be used after being freed. This guarantee is lost
+with the introduction of exceptions: we can throw an exception before the
+consumer of a linear resource is called, thus leaking the resource. In this
+section we go through different strategies for reconciling linear types and
+exceptions.
+
+### Motivating Example
+
+If you're convinced that linear types and exceptions don't work together, skip
+this section. Otherwise, consider:
+
+```c
+try {
+  let f = open("/etc/config");
+  // `write` consumes `f`, and returns a new linear file object
+  let f' = write(f, "Hello, world!");
+  throw Exception("Nope");
+  close(f');
+} catch Exception {
+  puts("Leak!");
+}
+```
+
+A linear type system will accept this program: `f` and `f'` are both used
+once. But this program has a resource leak: an exception is thrown before `f'`
+is consumed.
+
+If variables defined in a `try` block can be used in the scope of the associated
+`catch` block, we could attempt a fix:
+
+```c
+try {
+  let f = open("/etc/config");
+  let f' = write(f, "Hello, world!");
+  throw Exception("Nope");
+  close(f');
+} catch Exception {
+  close(f');
+}
+```
+
+But the type system wouldn't accept this: `f'` is potentially being consumed
+twice, if the exception is thrown from inside `close`.
+
+Can we implement exception handling in a linearly-typed language in a way that
+preserves linearity guarantees? In the next three sections, we look at the possible approaches.
+
+### Solution A: Values, not Exceptions
+
+We could try having exception handling only as syntactic sugar over returning
+values. Instead of implementing a complex exception handling scheme, all
+potentially-throwing operations return union types. This can be made less
+onerous through syntactic sugar. The function:
+
+```c
+T nth(array<T> arr, size_t index) throws OutOfBounds {
+  return arr[index];
+}
+```
+
+Can be desugared to (in a vaguely Rust-ish syntax):
+
+```c
+Result<T, OutOfBounds> nth(array<T> arr, size_t index) {
+  case arr[index] {
+    Some(elem: T) => {
+      return Result::ok(elem);
+    }
+    None => {
+      return Result::error(OutOfBounds());
+    }
+  }
+}
+```
+
+This is appealing because much of the hassle of pattern matching `Result` types
+can be simplified by the compiler. But this approach is immensely limiting,
+because as stated above, many fundamental operations have failure modes that
+have to be handled explicitly:
+
+```
+add : (Int, Int) -> Result<Int, Overflow>
+sub : (Int, Int) -> Result<Int, Overflow>
+mul : (Int, Int) -> Result<Int, Overflow>
+div : (Int, Int) -> Result<Int, Overflow | DivisionByZero>
+
+nth : (Array<T>, Nat) -> Result<T, OutOfBounds>
+```
+
+As an example, consider a data structure implementation that uses arrays under
+the hood. The implementation has been thoroughly tested and you can easily
+convince yourself that it never accesses an array with an invalid index. But if
+the array indexing primitive returns an option type to indicate out-of-bounds
+access, the implementation has to handle this explicitly, and the option type
+will "leak" into client code, up an arbitrarily deep call stack.
+
+The problem is that an ML-style type system considers all cases in a union type
+to be equiprobable, the normal path and the abnormal path have to be given equal
+consideration in the code. Exception handling systems let us conveniently
+differentiate between normal and abnormal cases.
+
+### Solution B: Use Integrated Theorem Provers
+
+Instead of implementing exception handling for contract violations, we can use
+an integrated theorem prover and SMT solver to prove that integer division by
+zero, integer overflow, array index out of bounds errors, etc. never happen.
+
+A full treatment of [abstract interpretation][absint] is beyond the scope of
+this article. The usual tradeoff applies: the tractable static analysis methods
+prohibit many ordinary constructions, while the methods sophisticated enough to
+prove most code correct are extremely difficult to implement completely and
+correctly. Z3 is 300,000 lines of code.
+
+### Solution C: Capturing the Linear Environment
+
+To our knowledge, this is the only sound approach to doing exception handling in
+a linearly-typed language that doesn't involve fanciful constructs using
+delimited continuations.
+
+[PacLang][paclang] is an imperative linearly-typed programming language
+specifically designed to write packet-processing algorithms for [network
+procesors][np]. The paper is worth reading.
+
+Its authors describe the language as:
+
+>a simple, first order, call by value language, intended for constructing
+>network packet processing programs. It resembles and behaves like C in most
+>respects. The distinctive feature of PacLang is its type system, treating the
+>datatypes that correspond to network packets within the program as linear
+>types. The target platforms are application-specific network processor (NP)
+>architectures such as the Intel IXP range and the IBM PowerNP.
+
+The type system is straightforward: `bool`, `int`, and a linear `packet` type. A
+limited form of borrowing is supported, with the usual semantics:
+
+>In PacLang, the only linear reference is a `packet`. An _alias_ to a reference
+>of this type, a `!packet`, can be created in a limited scope, by casting a
+>`packet` into a `!packet` if used as a function argument whose signature
+>requires a `!packet`. An alias may never exist without an owning reference, and
+>cannot be created from scratch. In the scope of that function, and other
+>functions applied to the same `!packet`, the alias can behave as a normal
+>non-linear value, but is not allowed to co-exist in the same scope as the
+>owning reference `packet`. This is enforced with constraints in the type
+>system:
+>
+>- A `!packet` may not be returned from a function, as otherwise it would be
+> possible for it to co-exist inscope with the owning `packet`
+>
+>- A `!packet` may not be passed into a function as an argument where the
+> owning `packet` is also being used as an argument, for the same reason
+>
+>Any function taking a `!packet` cannot presume to "own" the value it aliases,
+>so is not permitted to deallocate it or pass it to another a thread; this is
+>enforced by the signatures of the relevant primitive functions. The constraints
+>on the `packet` and `!packet` reference types combined with the primitives for
+>inter-thread communication give a _uniqueness guarantee_ that only one thread
+>will ever have reference to a packet.
+
+An interesting restriction is that much of the language has to be written in
+[A-normal form][anf] to simplify type checking. This is sound: extending a
+linear type system to implement convenience features like borrowing is made
+simpler by working with variables rather than arbitrary expressions, and it's a
+restriction Austral shares.
+
+The original language has no exception handling system. PacLang++, a successor
+with exception handling support, is introduced in the paper _Memory safety with
+exceptions and linear types_. The paper is difficult to find, so I will quote
+from it often. The authors first describe their motivation in adding exception
+handling:
+
+>In our experience of practical PacLang programming, an issue commonly arising
+>is that of functions returning error values. The usual solution has been to
+>return an unused integer value (C libraries commonly use -1 for this practice)
+>where the function returns an integer, or to add a boolean to the return tuple
+>signalling the presence of an error or other unusual situation. This quickly
+>becomes awkward and ugly, especially when the error condition needs to be
+>passed up several levels in the call graph. Additionally, it is far easier for
+>a programmer to unintentionally ignore errors using this method, resulting in
+>less obvious errors later in the program, for example a programmer takes the
+>return value as valid data, complacently ignoring the possibility of an error,
+>and using that error value where valid data is expected later in the program.
+
+The linear type system of PacLang:
+
+>A linearly typed reference (in PacLang this is known as the owning reference,
+>though other kinds of non-linear packet references will be covered later) is
+>one that can be used _only once_ along each execution path, making subsequent
+>uses a type error; the type system supports this by removing a reference
+>(_consuming_ it) from the environment after use. As copying a linear reference
+>_consumes_ it, only one reference (the _owning_ reference) to the packet may
+>exist at any point in the program’s runtime. Furthermore, a linear reference
+>_must_ be used once and only once, guaranteeing that any linearly referenced
+>value in a type safe program that halts will be consumed eventually.
+
+The authors first discuss the exceptions as values approach, discarding it
+because it doesn't support intra-function exception handling, and requires all
+functions to deallocate live linear values before throwing. The second attempt
+is described by the authors:
+
+>At the time an exception is raised, any packets in scope must be consumed
+>through being used as an argument to the exception constructor, being "carried"
+>by the exception and coming into the scope of the block that catches the
+>exception.
+
+This is also rejected, because:
+
+>this method does not account for live packets that are not in scope at the time
+>an exception is raised. An exception can pass arbitrarily far up the call graph
+>through multiple scopes that may contain live packets until it is caught.
+
+The third and final approach:
+
+>We create an enhanced version of the original PacLang type system, which brings
+>linear references into the environment implicitly wherever an exception is
+>caught. Our type system ensures that the environment starting a catch block
+>will contain a set of references (that are in the scope of the exception
+>handling block) to the _exact same_ linear references that were live at the
+>instant the exception was thrown.
+
+To illustrate I adapted the following example from the paper, adding a few more
+comments:
+
+```c
+packet x = recv();
+packet y = recv();
+
+// At this point, the environment is {x, y}
+
+try {
+  consume(x);
+  // At this point, the environment is just {y}
+  if (check(!y)) {
+    consume(y);
+    // Here, the environment is {}
+  } else {
+    throw Error; // Consumes y implicitly
+    // Here, the environment is {}
+  }
+  // Both branches end with the same environment
+} catch Error(packet y) {
+  log_error();
+  consume(y);
+}
+```
+
+The authors go on to explain a limitation of this scheme: if two different
+`throw` sites have a different environment, the program won't type check. For
+example:
+
+```c
+packet x = recv();
+
+// Environment is {x}
+if (check(!x)) {
+  packet y = recv();
+
+  // Environment is {x, y}
+  if (checkBoth(!x, !y)) {
+    consume(x);
+    consume(y);
+    // Environment is {}
+  } else {
+    throw Error; // Consumes x and y
+    // Environment is {}
+  }
+} else {
+  throw Error; // Consumes x
+  // Enviroment is {}
+}
+```
+
+While the code is locally sound, one `throw` site captures `x` alone while one
+captures `x` and `y`.
+
+Suppose the language we're working with requires functions to be annotated with
+an exception signature, along the lines of [checked exceptions][checked]. Then,
+if all throw sites in a function `f` implicitly capture a single linear packet
+variable, we can annotate the function this way:
+
+```c
+void f() throws Error(packet x)
+```
+
+But in the above code example, the exception annotation is ambiguous, because
+different throw sites capture different environments:
+
+```c
+void f() throws Error(packet x)
+// Or
+void f() throws Error(packet x, packet y)
+```
+
+Choosing the former leaks `y`, and choosing the latter means the value of `y`
+will be undefined in some cases.
+
+This can be fixed with the use of option types: because environments form a
+partially ordered set, we can use option types to represent bindings which are
+not available at every `throw` site. In the code example above, we have:
+
+```
+{} < {x} < {x, y}
+```
+
+So the signature for this function is simply:
+
+```c
+void f() throws Error(packet x, option<packet> y)
+```
+
+In short: we can do it, but it really is just extra semantics and complexity for
+what is essentially using a `Result` type.
 
 ## Affine Types and Exceptions
 
@@ -541,3 +854,7 @@ contract violations result in a crash.
 [docs.rs]: https://docs.rs/
 [hn1]: https://news.ycombinator.com/item?id=22940836
 [hn2]: https://news.ycombinator.com/item?id=22938712
+[absint]: https://en.wikipedia.org/wiki/Abstract_interpretation
+[paclang]: https://link.springer.com/chapter/10.1007/978-3-540-24725-8_15
+[np]: https://en.wikipedia.org/wiki/Network_processor
+[anf]: https://en.wikipedia.org/wiki/A-normal_form
