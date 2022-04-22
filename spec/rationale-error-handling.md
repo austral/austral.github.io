@@ -333,7 +333,7 @@ There are, however, significant downsides to exception handling:
    blown checked exceptions, since every function would have to be annotated
    with `throws (Overflow_Error)`.
 
-7. **Double Throw Problem**. What do we do when the destructor throws? This
+7. **Double Throw Problem:** What do we do when the destructor throws? This
    problem affects every language that has RAII.
 
    In C++ and Rust, throwing in the destructor causes the program to abort. This
@@ -377,17 +377,17 @@ There are, however, significant downsides to exception handling:
       whole point of resource management type systems is _the flag exists at
       compile time_. Otherwise we might as well have reference counting.
 
-8. **Compile Time**. Compilers anecdotally spend a lot of time compiling landingpads.
+8. **Compile Time:** Compilers anecdotally spend a lot of time compiling landingpads.
 
-9. **Non-determinism**. Time and space cost of exceptions is completely unknown
+9. **Non-determinism:** Time and space cost of exceptions is completely unknown
    and not amenable to static analysis.
 
-10. **Platform-Specific Runtime Support**. Exceptions need support from the
+10. **Platform-Specific Runtime Support:** Exceptions need support from the
     runtime, usually involving the generation of DWARF metadata and platform
     specific assembly. This is the case with Itanium ABI "zero-cost exceptions"
     for C++, which LLVM implements.
 
-11. **Corruption**. Unwinding deallocates resources, but this is not all we
+11. **Corruption:** Unwinding deallocates resources, but this is not all we
     need. Data structures can be left in a broken, inconsistent state, the use
     of which would trigger further contract violations when their invariants are
     violated.
@@ -412,7 +412,7 @@ There are, however, significant downsides to exception handling:
     to use exceptions falls on the client of that library (see below:
     **Libraries Cannot Rely on Destructors**).
 
-12. **Misuse of Exceptions**. If catching an exception is possible, people will
+12. **Misuse of Exceptions:** If catching an exception is possible, people will
     use it to implement `try/catch` exceptions..
 
     For example, Rust's `catch_unwind` is used in web servers. For example, in
@@ -421,7 +421,7 @@ There are, however, significant downsides to exception handling:
 	https://news.ycombinator.com/item?id=22940836
 	https://news.ycombinator.com/item?id=22938712
 
-13. **Minimum Common Denominator**. Destructors are a minimum common denominator
+13. **Minimum Common Denominator:** Destructors are a minimum common denominator
     interface: a destructor is a function that takes an object and returns
     nothing, `A -> ()`.
 
@@ -448,14 +448,12 @@ There are, however, significant downsides to exception handling:
     tells the compiler to force programmers to use the result code of that
     function.
 
-14. **Libraries Cannot Rely on Destructors**.
-
-    In C++, compilers often provide non-standard functionality to turn off
-	exception handling. In this mode, `throw` is an abort and the body of a
-	`catch` statement is dead code. Rust works similarly: a panic can cause
-	stack unwinding (and concurrent destruction of stack objects) or a program
-	abort, and this is configurable in the compiler. Unlike C++, this option is
-	explicitly welcome in Rust.
+14. **Libraries Cannot Rely on Destructors:** In C++, compilers often provide
+	non-standard functionality to turn off exception handling. In this mode,
+	`throw` is an abort and the body of a `catch` statement is dead code. Rust
+	works similarly: a panic can cause stack unwinding (and concurrent
+	destruction of stack objects) or a program abort, and this is configurable
+	in the compiler. Unlike C++, this option is explicitly welcome in Rust.
 
 	In both languages, the decision of whether or not to use exception handling
 	takes place at the root of the dependency tree, at the application. This
@@ -479,11 +477,10 @@ There are, however, significant downsides to exception handling:
 
     This is not a problem with the library, or with Rust. It's just what it is.
 
-15. **Code in General Cannot Rely on Destructors**.
-
-	A double throw will abort, a stack overflow can abort, and a SIGABRT can
-	abort the program, and, finally, the power cord can be pulled. In all of
-	these cases, destructors will not be called.
+15. **Code in General Cannot Rely on Destructors:** A double throw will abort, a
+	stack overflow can abort, and a SIGABRT can abort the program, and, finally,
+	the power cord can be pulled. In all of these cases, destructors will not be
+	called.
 
 	In the presence of exogeneous program termination, the only way to write
 	completely safe code is to use side effects with atomic/transactional
