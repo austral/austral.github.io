@@ -405,7 +405,7 @@ There are, however, significant downsides to exception handling:
 	it impossible to safely export code through the C FFI without spawning a new
 	thread. Rust started out with this restriction, whereby panics can only be
 	caught by parent threads of a failing thread. The restriction was removed
-	with the implementation of `catch_unwind`.
+	with the implementation of [`catch_unwind`][catch-unwind].
 
     Furthermore, carefully writing every data structure to implement strong
     exception safety is pointless when a compiler toggle can disable exception
@@ -414,13 +414,12 @@ There are, however, significant downsides to exception handling:
     **Libraries Cannot Rely on Destructors**).
 
 12. **Misuse of Exceptions:** If catching an exception is possible, people will
-    use it to implement `try/catch` exceptions..
+    use it to implement a general `try/catch` mechanism, no matter how
+    discouraged that is.
 
-    For example, Rust's `catch_unwind` is used in web servers. For example, in
-    docs.rs:
-
-	https://news.ycombinator.com/item?id=22940836
-	https://news.ycombinator.com/item?id=22938712
+    For example, Rust's [`catch_unwind`][catch-unwind] is used in web
+    servers. For example, in the [docs.rs][docs.rs] project, see [here][hn1] and
+    [here][hn2].
 
 13. **Minimum Common Denominator:** Destructors are a minimum common denominator
     interface: a destructor is a function that takes an object and returns
@@ -539,3 +538,6 @@ contract violations result in a crash.
 [assert-throws]: https://junit.org/junit5/docs/5.0.1/api/org/junit/jupiter/api/Assertions.html#assertThrows-java.lang.Class-org.junit.jupiter.api.function.Executable-
 [easycurses]: https://docs.rs/easycurses/latest/easycurses/
 [catch-unwind]: https://doc.rust-lang.org/std/panic/fn.catch_unwind.html
+[docs.rs]: https://docs.rs/
+[hn1]: https://news.ycombinator.com/item?id=22940836
+[hn2]: https://news.ycombinator.com/item?id=22938712
