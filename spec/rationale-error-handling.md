@@ -805,7 +805,147 @@ what is essentially using a `Result` type.
 
 ## Affine Types and Exceptions
 
-[TODO]
+Affine types are a weakening of linear types, essentially linear types with
+implicit destructors. In a linear type system, values of a linear type must be
+used exactly once. In an affine type system, values of an affine type can be
+used at most once. If they are unused, the compiler automatically inserts a
+destructor call.
+
+[Rust][rust] does this, and there are good reasons to prefer affine types over
+linear types:
+
+1. Less typing, since there is no need to explicitly call destructors.
+
+2. Often, compilation fails because programmers make trivial mistakes, such as
+   forgetting a semicolon. A similar mistake is forgetting to insert destructor
+   calls. This isn't possible with affine types, where the compiler handles
+   object destruction for the programmer.
+
+3. Destruction order is consistent and well-defined.
+
+4. Most linear types have a single natural destructor function: pointers are
+   deallocated, file handles are closed, database connections are closed,
+   etc. Affine types formalize this practice: instead of having a constellation
+   of ad-hoc destructor functions (`deallocate`, `closeFile`, `closeDatabase`,
+   `hangUp`), all destructors are presented behind a uniform interface: a
+   generic function of type `T! -> Unit`.
+
+The drawbacks of affine types are the same as those of destructors in languages
+like C++ and [Ada][finalization], that is:
+
+1. The use of destructors requires compiler insertion of implicit function
+   calls, which have an invisible cost in runtime and code size, whereas linear
+   types make this cost visible.
+
+2. Destruction order has to be well-specified. For stack-allocated variables,
+   this is straghtforward: destructors are called in inverse declaration
+   order. For temporaries, this is complicated.
+
+Additionally, destroying values we don't do anything with could lead to bugs if
+the programmer simply forgets about a value they were supposed to use, and
+instead of warning them, the compiler cleans it up.
+
+But there is a benefit to using affine types with destructors: exception
+handling integrates perfectly well. Again, Rust does this: [`panic`][rustpanic]
+and [`catch_unwind`][catch-unwind] are similar to `try` and `catch`, and
+destructors are called by unwinding the stack and calling `drop` on every affine
+object. The result is that exceptions are safe: in the happy path, destructors
+are called by the compiler. In the throwing path, the compiler ensures the
+destructors are called anyways.
+
+The implementation strategy is simple:
+
+1. When the compiler sees a `throw` expression, it emits calls to the destructor
+   of every (live) affine variable in the environment before emitting the
+   unwinding code.
+
+   That is, given an expression `throw(...)`, where the affine environment up to
+   that expression is `{x, y, z}`, the expression is transformed into:
+
+   ```
+   free(x);
+   free(y);
+   free(z);
+   throw(...);
+   ```
+
+2. When the compiler sees a call to a potentially-throwing function (as
+   determined by an [effect system][effect]), it emits a `try`/`catch` block:
+   normal excecution proceeds normally, but if an exception is caught, the the
+   destructors of all live affine variables are called, and the exception is
+   re-thrown.
+
+   Suppose we have a function call `f()`, where the affine environment up to the
+   point of that call is `{x, y}`. If the function potentially throws an
+   exception, the function call gets rewritten to something like this:
+
+   ```
+   let result = try {
+     f();
+   } catch Exception as e {
+     free(x);
+     free(y);
+     throw(e);
+   }
+   ```
+
+For a more complete example, a program like this:
+
+```c
+void f() throws {
+  let x: string* = allocate("A fresh affine variable");
+  // Environment is {x}
+  g(x); // Environment is {}
+}
+
+void g(string* ptr) throws {
+  let y: string* = allocate("Another heap-allocated string");
+  // Environment is {ptr, y}
+  h(ptr); // Environment is {y}
+}
+
+void h(string* ptr) throws {
+  let z = allocate(1234);
+  if (randBool()) {
+    throw "Halt";
+  }
+}
+```
+
+Would transform to something like this:
+
+```c
+void f() {
+  let x: string* = _allocate_str("A fresh affine variable");
+  try {
+    g(x);
+  } catch {
+    rethrow;
+  }
+}
+
+void g(string* ptr) {
+  let y: string* = _allocate_str("Another heap-allocated string");
+  try {
+    h(ptr);
+  } catch {
+    _free_str(y);
+    rethrow;
+  }
+  _free_str(y);
+}
+
+void h(string* ptr) {
+  let z = allocate(1234);
+  if (randBool()) {
+    _free_intptr(z);
+    _free_str(ptr);
+    throw "Halt";
+  }
+  _free_intptr(z);
+  _free_str(ptr);
+}
+```
 
 ## Prior Art
 
@@ -858,3 +998,7 @@ contract violations result in a crash.
 [paclang]: https://link.springer.com/chapter/10.1007/978-3-540-24725-8_15
 [np]: https://en.wikipedia.org/wiki/Network_processor
 [anf]: https://en.wikipedia.org/wiki/A-normal_form
+[rust]: https://www.rust-lang.org/
+[finalization]: https://www.adaic.org/resources/add_content/docs/95style/html/sec_9/9-2-3.html
+[rustpanic]: https://doc.rust-lang.org/std/macro.panic.html
+[effect]: https://en.wikipedia.org/wiki/Effect_system
