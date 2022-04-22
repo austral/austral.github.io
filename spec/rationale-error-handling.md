@@ -949,15 +949,51 @@ void h(string* ptr) {
 
 ## Prior Art
 
-In Swift, contract violations terminate the program.
+Herb Sutter, [_Zero-overhead deterministic exceptions: Throwing
+values_][sutter]:
 
-Under Herb Sutter's proposal, contract violations terminate the program.
+>An alternate result is never an “error” (it is success, so report it using
+>return). This includes “partial suc- cess” such as that a buffer was too small
+>for the entire request but was filled to capacity so more can be read on the
+>next call.
+>
+>[...]
+>
+>A programming bug or abstract machine corruption is never an “error” (both are
+>not programmatically re- coverable, so report them to a human, by default using
+>fail-fast). Programming bugs (e.g., out-of-bounds ac- cess, null dereference)
+>and abstract machine corruption (e.g., stack overflow) cause a corrupted state
+>that can- not be recovered from programmatically, and so they should never be
+>reported to the calling code as errors that code could somehow handle.
 
-In Ada, contract violations will throw an exception.
+In the same vein, the [Midori approach][midori] to exception handling:
 
-In Rust, contract violations can panic. Panic can unwind or abort, depending on
-a compiler switch.  This is a pragmatic strategy: the application developer,
-rather than the library developer, chooses whether to unwind or abort.
+>A recoverable error is usually the result of programmatic data validation. Some
+>code has examined the state of the world and deemed the situation unacceptable
+>for progress. Maybe it’s some markup text being parsed, user input from a
+>website, or a transient network connection failure. In these cases, programs
+>are expected to recover. The developer who wrote this code must think about
+>what to do in the event of failure because it will happen in well-constructed
+>programs no matter what you do. The response might be to communicate the
+>situation to an end-user, retry, or abandon the operation entirely, however it
+>is a predictable and, frequently, planned situation, despite being called an
+>“error.”
+>
+>A bug is a kind of error the programmer didn’t expect. Inputs weren’t validated
+>correctly, logic was written wrong, or any host of problems have arisen. Such
+>problems often aren’t even detected promptly; it takes a while until “secondary
+>effects” are observed indirectly, at which point significant damage to the
+>program’s state might have occurred. Because the developer didn’t expect this
+>to happen, all bets are off. All data structures reachable by this code are now
+>suspect. And because these problems aren’t necessarily detected promptly, in
+>fact, a whole lot more is suspect. Depending on the isolation guarantees of
+>your language, perhaps the entire process is tainted.
+
+In Swift, contract violations terminate the program. In Ada, contract violations
+will throw an exception. In Rust, contract violations can panic. Panic can
+unwind or abort, depending on a compiler switch.  This is a pragmatic strategy:
+the application developer, rather than the library developer, chooses whether to
+unwind or abort.
 
 In the specific case of overflow, Rust checks overflow on Debug builds, but uses
 two's complement modular arithmetic semantics on Release builds for
@@ -965,25 +1001,81 @@ performance. This is questionable.
 
 ## Conclusion
 
-So, to summarise, language designers that want to integrate resource management
-into their type system have a choice:
+We started with the following error categories:
 
-1. Contract violations terminate the application or thread. This gives us a
-   simpler type system having linear types, no hidden destructor calls, no
-   hidden function calls, no hidden unwind/cleanup tables, no hidden control
-   flow, and all the nice properties of exception-free systems.
+1. Physical Failure.
 
-2. Contract violations raise an exception, which unwinds the stack, calling
-   destructors.  We need affine types, destructors, compiler logic to build the
-   destructor functions, insertion of destructor calls for normal exit as well
-   as unwinding. We have to figure out what to do in the case of throwing from
-   the destructor, and, as mentioned, code cannot actually rely on unwinding
-   happening because roughly half of your users will turn off exception handling
-   and because of the double throw problem.
+2. Abstract Machine Corruption.
 
-Having weighed the benefits and problems of both approaches, we decided to
-implement a simple linear type system, and an error handling strategy where
-contract violations result in a crash.
+3. Contract Violations.
+
+4. Memory Allocation Failure.
+
+5. Failure Conditions.
+
+For points #1 and #2 we can do nothing. For points #4 and #5 we use values to
+represent failures. This leaves point #3, for which there are four error
+handling strategies:
+
+1. Terminate the program.
+
+2. Terminate the thread.
+
+3. Linear type system with PacLang-like capturing of the linear environment.
+
+4. Affine type system with stack unwinding and destructors.
+
+We reject exception handling on the grounds of semantic complexity,
+implementational complexity, and unsolved fundamental issues like the double
+throw problem (refer to the 15 point list of problems with exception handling).
+
+Without exception handling, there's no benefit to an affine type system over a
+linear one. In fact, absent exception handling, affine types are strictly worse
+than linear types, because:
+
+1. Values can be silently forgotted by mistake.
+
+2. There are implicit function calls.
+
+3. Destruction order can change without the code changing, thus making code more
+   unpredictable.
+
+The PacLang solution to integrating linear types and exceptions is essentially
+returning `Result` types, so it can be rejected on the grounds that it is too
+onerous.
+
+That leaves us with two approaches:
+
+1. On contract violation, terminate the program.
+
+2. On contract violation, terminate the thread.
+
+The choice between the two is essentially a choice between security and error
+reporting:
+
+1. If we crash the program we can be more certain we're being secure, but
+   testing code that uses assertions becomes much harder: if we want to ensure a
+   function crashes on a certain input, we have to spawn a whole new process to
+   run that function and report back.
+
+2. If we crash only the process, we can do better error reporting and make it
+   cheaper to unit-test potentially crashing code. But it creates the potential
+   for misuse: a programmer could spawn threads, have them crash, and continue
+   running the program, accumulating leaked memory and hanging file handles. In
+   a long-running server environment, this could lead to a DOS attack.
+
+By a hair, we err on the side of correctness and prefer to terminate the program
+to assure security. Special compiler flags might exist for unit tests that
+change the behaviour from crashing the program to crashing the thread, so we can
+unit test crashing functions more cheaply.
+
+## Bibliography
+
+1. Thrippleton, Richard, and Alan Mycroft. "Memory safety with exceptions and
+   linear types."
+
+2. Tov, Jesse A., and Riccardo Pucella. ["A theory of substructural types and
+   control."][subst] ACM SIGPLAN Notices. Vol. 46. No. 10. ACM, 2011.
 
 [sutter]: http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0709r4.pdf
 [midori]: http://joeduffyblog.com/2016/02/07/the-error-model/
@@ -1002,3 +1094,4 @@ contract violations result in a crash.
 [finalization]: https://www.adaic.org/resources/add_content/docs/95style/html/sec_9/9-2-3.html
 [rustpanic]: https://doc.rust-lang.org/std/macro.panic.html
 [effect]: https://en.wikipedia.org/wiki/Effect_system
+[subst]: https://dl.acm.org/citation.cfm?doid=2048066.2048115
