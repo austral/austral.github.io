@@ -207,7 +207,8 @@ end;
 
 Ultimately, all guarantees are lost at the FFI boundary. Because foreign
 functions are permissionless, we can implement both the capability-free and the
-capability-secure APIs in Austral. Does that mean all guarantees are off?
+capability-secure APIs in Austral. Does that mean these guarantees are
+worthless?
 
 No. To use the FFI, a module has to be marked as [unsafe][unsafe] using the
 `Unsafe_Module` pragma.
