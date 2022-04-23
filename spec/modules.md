@@ -99,7 +99,7 @@ Import nicknames serve a dual purpose:
 When importing from a module $$M$$, all public typeclass instances in $$M$$ are
 imported automatically.
 
-## Unsafe Modules
+## Unsafe Modules {#unsafe-modules}
 
 An **unsafe module** is a module that can access FFI features. Specifically, an
 unsafe module can:

@@ -203,6 +203,21 @@ function Main(root: Root_Capability): Root_Capability is
 end;
 ```
 
+## The FFI Boundary
+
+Ultimately, all guarantees are lost at the FFI boundary. Because foreign
+functions are permissionless, we can implement both the capability-free and the
+capability-secure APIs in Austral. Does that mean all guarantees are off?
+
+No. To use the FFI, a module has to be marked as [unsafe][unsafe] using the
+`Unsafe_Module` pragma.
+
+The idea is that a list of unsafe modules in all dependencies (including
+transitive ones) can be collected by the build system. Then, only code at the
+FFI boundary needs to be audited, to ensure that it correctly wraps the
+capability-insecure outside world under a correct, linear, capability-secure
+API.
+
 ## Footnotes
 
 [^fn1]:
@@ -214,3 +229,4 @@ end;
 [timing]: https://en.wikipedia.org/wiki/Timing_attack
 [side]: https://en.wikipedia.org/wiki/Side-channel_attack
 [spectre]: https://en.wikipedia.org/wiki/Spectre_(security_vulnerability)
+[unsafe]: /spec/modules#unsafe-modules
