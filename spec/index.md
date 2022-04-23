@@ -12,6 +12,7 @@ This is the index page for the Austral specification.
     1. [Syntax](/spec/rationale-syntax)
 	2. [Linear Types](/spec/rationale-linear-types)
     3. [Error Handling](/spec/rationale-error-handling)
+    4. [Capability-Based Security](/spec/rationale-capabilities)
 3. [Syntax](/spec/syntax)
 4. [Module System](/spec/modules)
 5. [Type System](/spec/types)
