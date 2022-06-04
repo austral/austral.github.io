@@ -157,6 +157,8 @@ type Reference[T: Linear, R: Region]: Free;
 The type `Reference` is the type of read-only references to linear
 values. Values of this type are bound to a region and are acquired by borrowing.
 
+Syntactic sugar is available: `&[T, R]` expands to `Reference[T, R]`.
+
 ### Read-Write Reference {#write-ref}
 
 ```austral
@@ -165,6 +167,8 @@ type WriteReference[T: Linear, R: Region]: Free;
 
 The type `WriteReference` is the type of read-write references to linear
 values. Values of this type are bound to a region and are acquired by borrowing.
+
+Syntactic sugar is available: `&![T, R]` expands to `WriteReference[T, R]`.
 
 ### Root Capability {#root-capability}
 
