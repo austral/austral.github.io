@@ -126,18 +126,21 @@ The only `Boolean` values are the constants `true` and `false`.
 
 The following integer types are available:
 
-|   Name  |   Width  | Signedness |
-|   ----  |   -----  | ---------- |
-| `Nat8`  | 8 bits   | Unsigned.  |
-| `Nat16` | 16 bits. | Unsigned.  |
-| `Nat32` | 32 bits. | Unsigned.  |
-| `Nat64` | 64 bits. | Unsigned.  |
-| `Int8`  | 8 bits.  | Signed.    |
-| `Int16` | 16 bits. | Signed.    |
-| `Int32` | 32 bits. | Signed.    |
-| `Int64` | 64 bits. | Signed.    |
+|  Name   |        Width        | Signedness |
+| ------- | ------------------- | ---------- |
+| `Nat8`  | 8 bits              | Unsigned.  |
+| `Nat16` | 16 bits.            | Unsigned.  |
+| `Nat32` | 32 bits.            | Unsigned.  |
+| `Nat64` | 64 bits.            | Unsigned.  |
+| `Int8`  | 8 bits.             | Signed.    |
+| `Int16` | 16 bits.            | Signed.    |
+| `Int32` | 32 bits.            | Signed.    |
+| `Int64` | 64 bits.            | Signed.    |
+| `Index` | Platform-dependent. | Unsigned.  |
 
 All are in the free universe.
+
+The `Index` type is the type of array indices.
 
 ### Floating Point Types {#floats}
 
