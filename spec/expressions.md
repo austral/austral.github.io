@@ -276,6 +276,34 @@ If `e` is a reference to a value of type `T`, then:
 
 is a dereferencing expression that evaluates to the referenced value of type `T`.
 
+## Borrow Expressions
+
+If `x` is a variable of a linear type `T`, then:
+
+```
+&x
+```
+
+is an anonymous read-only borrow, and is an expression of type `&[T, R]`, where
+`R` is a nameless region, and
+
+```
+&!x
+```
+
+is an anonymous read-write borrow, and is an expression of type `&![T, R]`,
+where `R` is a nameless region.
+
+Borrow expressions cannot escape the statement where they appear. That is, if we
+write:
+
+```
+let r: &[T, R] := &x;
+```
+
+This will be rejected by the compiler because the region name `R` is introduced
+nowhere.
+
 ## Sizeof Expression
 
 If `T` is a type specifier, then:
