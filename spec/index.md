@@ -26,4 +26,5 @@ This is the index page for the Austral specification.
     2. [`Austral.Memory` Module](/spec/austral-memory)
 12. [Foreign Interfaces](/spec/ffi)
     1. [The C Interface](/spec/c-ffi)
-13. [Appendix A: GNU Free Documentation License](appendix-a)
+13. [Style Guide](/spec/style-guide)
+14. [Appendix A: GNU Free Documentation License](appendix-a)
