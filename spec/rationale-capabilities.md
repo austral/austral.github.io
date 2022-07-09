@@ -68,15 +68,15 @@ module Files is
     type Path: Linear;
 
     -- Creating and disposing of paths.
-    function Make_Path(value: String): Path;
-    function Dispose_Path(path: Path): Unit;
+    function makePath(value: String): Path;
+    function disposePath(path: Path): Unit;
 
     -- Reading and writing.
     generic [R: Region]
-    function Read_File(path: Read[Path, R]): String;
+    function readFile(path: &[Path, R]): String;
 
     generic [R: Region]
-    function Write_File(path: Write[Path, R], content: String): Unit;
+    function writeFile(path: &![Path, R], content: String): Unit;
 end module.
 ```
 
@@ -88,8 +88,8 @@ read the contents of `/etc/passwd`, or any file in the filesystem that the
 process has access to, like so:
 
 ```austral
-let p: Path := Parse_Path("/etc/passwd");
-let secrets: String := Read_File(&p);
+let p: Path := makePath("/etc/passwd");
+let secrets: String := readFile(&p);
 -- Send this over the network, using an
 -- equally capability-insecure network
 -- API.
@@ -112,18 +112,18 @@ module Files is
     -- Given a filesystem access capability,
     -- get the root directory.
     generic [R: Region]
-    function Get_Root(fs: Read[Filesystem, R]): Path;
+    function getRoot(fs: &[Filesystem, R]): Path;
 
     -- Given a directory path, append a directory or
     -- file name at the end.
-    function Append(path: Path, name: String): Path;
+    function append(path: Path, name: String): Path;
 
     -- Reading and writing.
     generic [R: Region]
-    function Read_File(path: Read[Path, R]): String;
+    function readFile(path: &[Path, R]): String;
 
     generic [R: Region]
-    function Write_File(path: Write[Path, R], content: String): Unit;
+    function writeFile(path: &![Path, R], content: String): Unit;
 end module.
 ```
 
@@ -154,7 +154,7 @@ Capabilities cannot be created out of thin air: they can only be created by
 proving proof that the client has access to a more powerful capability. This
 recursion has to end somewhere.
 
-The root of the capability hierarchy is a value of type `Root_Capability`. This
+The root of the capability hierarchy is a value of type `RootCapability`. This
 is the first argument to the entrypoint function of an Austral program. For our
 capability-secure filesystem API, we'd add a couple of functions:
 
@@ -162,10 +162,10 @@ capability-secure filesystem API, we'd add a couple of functions:
 -- Acquire the filesystem capability, when the client can
 -- provide proof that they have the root capability.
 generic [R: Region]
-function Get_Filesystem(root: Read[Root_Capability, R]): Filesystem;
+function getFilesystem(root: &[RootCapability, R]): Filesystem;
 
 -- Relinquish the filesystem capability.
-function Release_Filesystem(fs: Filesystem): Unit;
+function releaseFilesystem(fs: Filesystem): Unit;
 ```
 
 And we can use it like so:
@@ -173,33 +173,37 @@ And we can use it like so:
 ```austral
 import Files (
     Filesystem,
-    Get_Filesystem,
+    getFilesystem,
+    releaseFilesystem,
     Path,
-    Get_Root,
-    Append,
-    Relase_Filesystem,
+    getRoot,
+    append,
 );
 import Dependency (
-    Do_Something
+    doSomething
 );
 
-function Main(root: Root_Capability): Root_Capability is
+function main(root: Root_Capability): Exit)code is
     -- Acquire a filesystem capability.
-    let fs: Filesystem := Get_Filesystem(&root);
+    let fs: Filesystem := getFilesystem(&root);
     -- Get the root directory.
-    let r: Path := Get_Root(&fs);
+    let r: Path := getRoot(&fs);
     -- Get the path to the `/var` directory.
     let p: Path := Append(p, "var");
     -- Do something with the path to the `/var`
     -- directory, confident that nothing this
     -- dependency does can go outside `/var`.
-    Do_Something(p);
+    doSomething(p);
     -- Afterwards, relinquish the filesystem
     -- capability.
-    Release_Filesystem(fs);
+    releaseFilesystem(fs);
+    -- Surrender the root capability. Beyond
+    -- this point, the program can't do anything
+    -- effectful.
+    surrenderRoot(root);
     -- Finally, end the program by returning
-    -- the root capability.
-    return root;
+    -- the success status code.
+    return ExitSuccess();
 end;
 ```
 

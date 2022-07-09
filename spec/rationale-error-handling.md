@@ -275,7 +275,7 @@ Type classes are enough to implement destructors. We'd have a typeclass:
 
 ```
 typeclass Destructable(T) is
-    method Destroy(value: T): Unit;
+    method destroy(value: T): Unit;
 end;
 ```
 
