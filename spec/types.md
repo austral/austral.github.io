@@ -115,12 +115,12 @@ type `Unit` is the constant `nil`.
 ### Boolean {#boolean}
 
 ```austral
-type Boolean: Free;
+type Bool: Free;
 ```
 
-`Boolean` is the type of logical and comparison operators.
+`Bool` is the type of logical and comparison operators.
 
-The only `Boolean` values are the constants `true` and `false`.
+The only `Bool` values are the constants `true` and `false`.
 
 ### Integer Types {#integers}
 
@@ -176,8 +176,8 @@ Syntactic sugar is available: `&![T, R]` expands to `WriteReference[T, R]`.
 ### Root Capability {#root-capability}
 
 ```austral
-type Root_Capability: Linear;
+type RootCapability: Linear;
 ```
 
-The type `Root_Capability` is the root of the capability hierarchy. It is the
+The type `RootCapability` is the root of the capability hierarchy. It is the
 type of the first parameter to the entrypoint function.
