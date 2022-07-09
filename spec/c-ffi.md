@@ -51,15 +51,15 @@ list and return type of a foreign function.
 
 C Type           | Austral Type
 ---------------- | ------------
-`unsigned char`  | `Boolean`
-`unsigned char`  | `Natural8`
-`signed char`    | `Integer8`
-`unsigned short` | `Natural16`
-`signed short`   | `Integer16`
-`unsigned int`   | `Natural32`
-`signed int`     | `Integer32`
-`unsigned long`  | `Natural64`
-`signed long`    | `Integer64`
-`float`          | `SingleFloat`
-`double`         | `DoubleFloat`
-`t*`             | `Pointer[t]`
+`unsigned char`  | `Bool`
+`unsigned char`  | `Nat8`
+`signed char`    | `Int8`
+`unsigned short` | `Nat16`
+`signed short`   | `Int16`
+`unsigned int`   | `Nat32`
+`signed int`     | `Int32`
+`unsigned long`  | `Nat64`
+`signed long`    | `Int64`
+`float`          | `Float32`
+`double`         | `Float64`
+`t*`             | `Address[t]`
