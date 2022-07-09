@@ -32,7 +32,7 @@ Floating-point number constants have type `Float64`.
 
 ## String Constant
 
-[TODO]
+String constants have type `FixedArray[Nat8]`.
 
 ## Variable Expression
 
