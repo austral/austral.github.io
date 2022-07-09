@@ -12,8 +12,8 @@ instances of the same typeclass for the same type, or for overlapping type
 parameters. So, the following are prohibited:
 
 ```austral
-instance TC(Natural32);
-instance TC(Natural32);
+instance TC(Nat32);
+instance TC(Nat32);
 ```
 
 But also these:
@@ -58,7 +58,7 @@ And a set of instances:
 
 ```austral
 instance Printable(Unit);
-instance Printable(Boolean);
+instance Printable(Bool);
 generic [U: Type]
 instance Printable(Pointer[U]);
 ```
@@ -78,7 +78,7 @@ the instance where the instance argument matches the dispatch type.
 In the case of a concrete instance that's just comparing the types for equality,
 and we'll find the instance of `Printable` for `Boolean`.
 
-Consider a call like `Print(ptr)` where `ptr` has type
-`Pointer[Natural8]`. Then, we repeat the process, except we'll find a generic
-instance of `Printable`. Matching `Pointer[U]` to `Pointer[Natural8]` produces
-the bindings set `{ U => Natural8 }`.
+Consider a call like `Print(ptr)` where `ptr` has type `Pointer[Nat8]`. Then, we
+repeat the process, except we'll find a generic instance of
+`Printable`. Matching `Pointer[U]` to `Pointer[Nat8]` produces the bindings set
+`{ U => Nat8 }`.
