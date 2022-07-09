@@ -5,18 +5,19 @@ title: Fibonacci Example
 Calculates the _n_-th [Fibonacci number][fib].
 
 ```austral
-module body Example.Fibonacci is
-    function Fibonacci(n: Natural_64): Natural_64 is
+module body Fib is
+    function fib(n: Nat64): Nat64 is
         if n < 2 then
             return n;
         else
-            return Fibonacci(n - 1) + Fibonacci(n - 2);
+            return fib(n - 1) + fib(n - 2);
         end if;
     end;
 
-    function Main(root: Root_Capability): Root_Capability is
-        Fibonacci(30);
-        return root;
+    function main(): ExitCode is
+        print("fib(10) = ");
+        printLn(fib(10));
+        return ExitSuccess();
     end;
 end module body.
 ```
