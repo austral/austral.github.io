@@ -18,7 +18,7 @@ The case conventions are:
    1. `Nat8`
    2. `RootCapability`
    3. `CsvReader`
-4. Functions: `camelCase`. Examples:
+4. Functions and methods: `camelCase`. Examples:
    1. `fib`
    2. `getByTitle`
    3. `parseHtmlString`
