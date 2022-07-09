@@ -181,3 +181,12 @@ type RootCapability: Linear;
 
 The type `RootCapability` is the root of the capability hierarchy. It is the
 type of the first parameter to the entrypoint function.
+
+### Fixed-Size Arrays {#fixed-array}
+
+```austral
+type FixedArray[T: Free]: Free;
+```
+
+`FixedArray` is the type of arrays whose size is fixed, but not necessarily
+known at compile time. The type of string literals is `FixedArray[Nat8]`.
