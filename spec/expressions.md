@@ -20,15 +20,15 @@ The Boolean constants are the identifiers `true` and `false`.
 
 ## Integer Constant
 
-Integer constants have type `Integer32` by default, but to improve programmer
+Integer constants have type `Int32` by default, but to improve programmer
 ergonomics, the compiler will try to find a type for an integer constant that
-makes the surrounding context work. E.g., if `x` is of type `Natural8`, then an
+makes the surrounding context work. E.g., if `x` is of type `Nat8`, then an
 expression like `x + 3` will work, and the `3` will be interpreted to have type
-`Natural8`.
+`Nat8`.
 
 ## Float Constant
 
-Floating-point number constants have type `DoubleFloat`.
+Floating-point number constants have type `Float64`.
 
 ## String Constant
 
@@ -174,7 +174,7 @@ value of type $$\tau$$.
 Semantics:
 
 1. If $$e$$ is an integer constant that fits in $$\tau$$ (e.g.: $$e$$ can't be a
-   negative integer constant if $$\tau$$ is `Natural8`) then $$e : \tau$$ is
+   negative integer constant if $$\tau$$ is `Nat8`) then $$e : \tau$$ is
    valid.
 
 2. If $$e$$ is an integer or floating point type, and $$\tau$$ is an integer or
@@ -202,7 +202,7 @@ a &\geq b
 \end{align}
 \\]
 
-are comparison expressions with type `Boolean`.
+are comparison expressions with type `Bool`.
 
 ## Conjunction Expression
 
@@ -255,8 +255,8 @@ Semantics:
    is a linear type, the compiler will complain.
 
 2. A path that starts in a reference is a reference. For example, if `x` is of
-   type `Reference[T, R]`, then the path `x->y->z` (assuming `z` is a record
-   slot with type `U`) is of type `Reference[U, R]`.
+   type `&[T, R]`, then the path `x->y->z` (assuming `z` is a record
+   slot with type `U`) is of type `&[U, R]`.
 
 Examples:
 

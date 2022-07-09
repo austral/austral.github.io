@@ -169,7 +169,7 @@ end case;
 An example of using the `Option` type:
 
 ```austral
-let o: Option[Integer_32] := Some(10);
+let o: Option[Int32] := Some(10);
 case o of
     when Some(value: Integer_32) do
         -- Do something with `value`.
@@ -181,11 +181,11 @@ end case;
 An example of using the `Either` type:
 
 ```austral
-let e: Either[Boolean, Integer_32] := Right(right => 10);
+let e: Either[Bool, Int32] := Right(right => 10);
 case e of
-    when Left(left: Boolean) do
+    when Left(left: Bool) do
         -- Do something with `left`.
-    when Right(right: Integer_32) do
+    when Right(right: Int32) do
         -- Do something with `right`.
 end case;
 ```
@@ -195,7 +195,7 @@ An exam
 
 ## While Loop
 
-If `e` is an expression of type `Boolean` and `b` is a statement, then:
+If `e` is an expression of type `Bool` and `b` is a statement, then:
 
 ```austral
 while e do
@@ -216,8 +216,8 @@ end while;
 
 ## For Loop
 
-If `i` is an identifier, `s` is an expression of type `Natural64`, `f` is an
-expression of type `Natural64`, and `b` is a statement, and `s <= f`, then:
+If `i` is an identifier, `s` is an expression of type `Nat64`, `f` is an
+expression of type `Nat64`, and `b` is a statement, and `s <= f`, then:
 
 ```austral
 for i from s to f do
@@ -248,7 +248,7 @@ end;
 ```
 
 Is a borrow statement that borrows the variable `X` as a reference `X'` with
-type `Reference[T, R]` in a new region named `R`.
+type `&[T, R]` in a new region named `R`.
 
 The variable `X'` is usable only in `B`, dually, the variable `X` cannot be used
 in `B`, i.e. while it is borrowed.
@@ -261,7 +261,7 @@ borrow X as X' in R do
 end;
 ```
 
-The only difference is that the type of `X'` is `WriteReference[R, T]`.
+The only difference is that the type of `X'` is `&![R, T]`.
 
 ## Discarding Statement
 

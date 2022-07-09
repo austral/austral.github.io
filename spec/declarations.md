@@ -7,10 +7,10 @@ modules.
 
 ## Opaque Constant {#opaque-constant}
 
-If `C` is an identifier, `T` is a type specifier, then:
+If `c` is an identifier, `T` is a type specifier, then:
 
 ```austral
-constant C : T;
+constant c : T;
 ```
 
 is an opaque constant declaration.
@@ -24,23 +24,23 @@ Example:
 module Example is
     -- Defines a public constant `Pi`, which can be imported
     -- and used by other modules.
-    constant Pi : DoubleFloat;
+    constant pi : Float64;
 end module.
 
 module body Example is
     -- An opaque constant declaration needs a matching constant
     -- definition in the module body.
-    constant Pi : DoubleFloat := 3.14;
+    constant pi : Float64 := 3.14;
 end module body.
 ```
 
 ## Constant Definition {#constant-definition}
 
-If `C` is an identifier, `T` is a type specifier, and `E` is a constant
+If `c` is an identifier, `T` is a type specifier, and `E` is a constant
 expression of type `T`, then:
 
 ```austral
-constant C : T := V;
+constant c : T := V;
 ```
 
 Defines a constant named `C` of type `T` with a value of `V`.
@@ -189,9 +189,9 @@ The layout can be customized using a layout specification. For example:
 
 ```austral
 record R is
-  a : Natural16;
+  a : Nat16;
   b : Int8;
-  c : FLoat32;
+  c : Float32;
 
   pragma Layout(
      Field(b, 8),
@@ -381,11 +381,11 @@ Examples:
 1. This defines a recursive function to compute the Fibonacci sequence:
 
    ```austral
-   function Fib(n: Natural): Natural is
+   function fib(n: Nat64): Nat64 is
        if n <= 2 then
            return n;
        else
-           return Fib(n-1) + Fib(n-2);
+           return fib(n-1) + fib(n-2);
        end if;
    end
    ```
