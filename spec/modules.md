@@ -124,33 +124,30 @@ Given the following interface file:
 
 ```austral
 module Example is
-    -- The constant C is importable, but the interface
+    -- The constant `c` is importable, but the interface
     -- doesn't know its value.
-    constant C : Float32;
+    constant c : Float32;
 
-    -- Modules that import R can access the fields
-    -- x and y directly.
+    -- Modules that import `R` can access the fields
+    -- `x` and `y` directly, because it is a public record.
     record R: Free is
         x: Int32,
         y: Int32
     end;
 
     -- Modules can refer to the type T, but don't know
-    -- how it's implemented.
+    -- how it's implemented, and therefore can't construct
+    -- instances of it without going through the API.
     type T;
-
-    -- Modules that import U know that it's a renaming
-    -- of Int32, and can construct U instances accordingly.
-    type U = Int32;
 
     -- Functions can only be declared, not defined, in
     -- interface files.
-    function Fact(n: Nat32): Nat32;
+    function fact(n: Nat32): Nat32;
 
     -- Type classes must be defined with the full set of
     -- methods.
     typeclass Class(T: Type) is
-        method Foo(x: T): T;
+        method foo(x: T): T;
     end;
 
     -- Instances are simply declared.
@@ -162,29 +159,29 @@ The following is a module definition that satisfies the interface:
 
 ```austral
 module Example is
-    constant C : Float32 := 3.14;
+    constant c : Float32 := 3.14;
 
-    -- Record R doesn't have to be redefined here,
+    -- Record `R` doesn't have to be redefined here,
     -- because it's already defined in the module interface.
 
-    -- Type T, however, has to be defined. In this case
+    -- Type `T`, however, has to be defined. In this case
     -- it's a record.
     record T: Free is
         hidden: Bool;
     end;
 
     -- Function bodies must appear in the module body.
-    function Fact(n: Nat32): Nat32 is
+    function fact(n: Nat32): Nat32 is
         if n = 0 then
             return 1;
         else
-            return n * Fact(n-1);
+            return n * fact(n-1);
         end if;
     end;
 
     -- Type class instances must be defined here:
     instance Class(Int32) is
-        method Foo(x: Int32): Int32 is
+        method foo(x: Int32): Int32 is
             return x;
         end;
     end;
