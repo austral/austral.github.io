@@ -16,7 +16,7 @@ Description:
 
 This is the type of nullable pointers.
 
-## `Null_Pointer Function`
+## `Null_Pointer` Function
 
 ```austral
 generic [T: Type]

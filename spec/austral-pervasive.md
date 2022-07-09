@@ -41,95 +41,115 @@ The `Either` type is used to represent values which may have one of two distinct
 possibilities. For example, a function might return a value of type
 `Either[Error, Result]`.
 
-## `Deref` Function
+## `deref` Function
 
 Declaration:
 
 ```austral
 generic [T: Free, R: Region]
-function Deref(ref: Reference[T, R]): T;
+function deref(ref: &[T, R]): T;
 ```
 
 Description:
 
-The `Deref` function loads the value pointed to by a read reference.
+The `deref` function loads the value pointed to by a read reference.
 
-## `Deref_Write` Function
+## `derefWrite` Function
 
 Declaration:
 
 ```austral
 generic [T: Free, R: Region]
-function Deref_Write(ref: WriteReference[T, R]): T;
+function derefWrite(ref: &![T, R]): T;
 ```
 
 Description:
 
-The `Deref_Write` function loads the value pointed to by a write reference.
+The `derefWrite` function loads the value pointed to by a write reference.
 
-## `Fixed_Array_Size` Function
+## `fixedArraySize` Function
 
 Declaration:
 
 ```austral
 generic [T: Type]
-function Fixed_Array_Size(arr: Fixed_Array[T]): Natural_64;
+function fixedArraySize(arr: FixedArray[T]): Nat64;
 ```
 
 Description:
 
-The `Fixed_Array_Size` function returns the size of a fixed array.
+The `fixedArraySize` function returns the size of a fixed array.
 
-## `Abort` Function
+## `abort` Function
 
 Declaration:
 
 ```austral
-function Abort(message: Fixed_Array[Natural_8]): Unit;
+function abort(message: Fixed_Array[Nat8]): Unit;
 ```
 
 Description:
 
-The `Abort` function prints the given message to standard error and aborts the
+The `abort` function prints the given message to standard error and aborts the
 program.
 
-## `Root_Capability` Type
+## `RootCapability` Type
 
 Declaration:
 
 ```austral
-type Root_Capability : Linear;
+type RootCapability : Linear;
 ```
 
 Description:
 
-The `Root_Capability` type is meant to be the root of the capability hierarchy.
+The `RootCapability` type is meant to be the root of the capability hierarchy.
 
 The entrypoint function of an Austral program takes a single value of type
-`Root_Capability`. This is the highest permission level, available only at the
+`RootCapability`. This is the highest permission level, available only at the
 start of the program.
+
+## `surrenderRoot` Function
+
+```austral
+function surrenderRoot(cap: RootCapability): Unit;
+```
+
+The `surrenderRoot` function consumes the root capability. Beyond this point the
+program can't do anything effectful, except through unsafe FFI interfaces.
+
+## `ExitCode` Type
+
+```austral
+union ExitCode: Free is
+    case ExitSuccess;
+    case ExitFailure;
+end;
+```
+
+The `ExitCode` type is the return type of entrypoint functions.
 
 ## Integer Bound Constants
 
 Declarations:
 
 ```austral
-constant Maximum_Natural_8: Natural_8;
-constant Maximum_Natural_16: Natural_16;
-constant Maximum_Natural_32: Natural_32;
-constant Maximum_Natural_64: Natural_64;
+constant maximum_nat8: Nat8;
+constant maximum_nat16: Nat16;
+constant maximum_nat32: Nat32;
+constant maximum_nat64: Nat64;
 
-constant Minimum_Integer_8: Integer_8;
-constant Maximum_Integer_8: Integer_8;
+constant minimum_int8: Int8;
+constant maximum_int8: Int8;
 
-constant Minimum_Integer_16: Integer_16;
-constant Maximum_Integer_16: Integer_16;
+constant minimum_int16: Int16;
+constant maximum_int16: Int16;
 
-constant Minimum_Integer_32: Integer_32;
-constant Maximum_Integer_32: Integer_32;
+constant minimum_int32: Int32;
+constant maximum_int32: Int32;
 
-constant Minimum_Integer_64: Integer_64;
-constant Maximum_Integer_64: Integer_64;
+constant minimum_int64: Int64;
+constant maximum_int64: Int64;
 ```
 
 Description:
@@ -137,68 +157,68 @@ Description:
 These constants define the minimum and maximum values that can be stored in
 different integer types.
 
-## `Trapping_Arithmetic` Typeclass
+## `TrappingArithmetic` Typeclass
 
 Definition:
 
 ```austral
-typeclass Trapping_Arithmetic(T: Type) is
-    method Trapping_Add(lhs: T, rhs: T): T;
-    method Trapping_Subtract(lhs: T, rhs: T): T;
-    method Trapping_Multiply(lhs: T, rhs: T): T;
-    method Trapping_Divide(lhs: T, rhs: T): T;
+typeclass TrappingArithmetic(T: Type) is
+    method trappingAdd(lhs: T, rhs: T): T;
+    method trappingSubtract(lhs: T, rhs: T): T;
+    method trappingMultiply(lhs: T, rhs: T): T;
+    method trappingDivide(lhs: T, rhs: T): T;
 end;
 ```
 
 Description:
 
-The `Trapping_Arithmetic` typeclass defines methods for performing arithmetic
+The `TrappingArithmetic` typeclass defines methods for performing arithmetic
 that aborts on overflow errors.
 
-## `Modular_Arithmetic` Typeclass
+## `ModularArithmetic` Typeclass
 
 Definition:
 
 ```austral
-typeclass Modular_Arithmetic(T: Type) is
-    method Modular_Add(lhs: T, rhs: T): T;
-    method Modular_Subtract(lhs: T, rhs: T): T;
-    method Modular_Multiply(lhs: T, rhs: T): T;
-    method Modular_Divide(lhs: T, rhs: T): T;
+typeclass ModularArithmetic(T: Type) is
+    method modularAdd(lhs: T, rhs: T): T;
+    method modularSubtract(lhs: T, rhs: T): T;
+    method modularMultiply(lhs: T, rhs: T): T;
+    method modularDivide(lhs: T, rhs: T): T;
 end;
 ```
 
 Description:
 
-The `Modular_Arithmetic` typeclass defines methods for performing arithmetic
-that wraps around without abort on overflow errors.
+The `ModularArithmetic` typeclass defines methods for performing arithmetic that
+wraps around without abort on overflow errors.
 
 ## Typeclass Instances
 
 Declarations:
 
 ```austral
-instance Trapping_Arithmetic(Natural_8);
-instance Trapping_Arithmetic(Integer_8);
-instance Trapping_Arithmetic(Natural_16);
-instance Trapping_Arithmetic(Integer_16);
-instance Trapping_Arithmetic(Natural_32);
-instance Trapping_Arithmetic(Integer_32);
-instance Trapping_Arithmetic(Natural_64);
-instance Trapping_Arithmetic(Integer_64);
-instance Trapping_Arithmetic(Double_Float);
+instance TrappingArithmetic(Nat8);
+instance TrappingArithmetic(Int8);
+instance TrappingArithmetic(Nat16);
+instance TrappingArithmetic(Int16);
+instance TrappingArithmetic(Nat32);
+instance TrappingArithmetic(Int32);
+instance TrappingArithmetic(Nat64);
+instance TrappingArithmetic(Int64);
+instance TrappingArithmetic(Double_Float);
 
-instance Modular_Arithmetic(Natural_8);
-instance Modular_Arithmetic(Integer_8);
-instance Modular_Arithmetic(Natural_16);
-instance Modular_Arithmetic(Integer_16);
-instance Modular_Arithmetic(Natural_32);
-instance Modular_Arithmetic(Integer_32);
-instance Modular_Arithmetic(Natural_64);
-instance Modular_Arithmetic(Integer_64);
+instance ModularArithmetic(Nat8);
+instance ModularArithmetic(Int8);
+instance ModularArithmetic(Nat16);
+instance ModularArithmetic(Int16);
+instance ModularArithmetic(Nat32);
+instance ModularArithmetic(Int32);
+instance ModularArithmetic(Nat64);
+instance ModularArithmetic(Int64);
 ```
 
 Description:
 
-These are the built-in instances of the `Trapping_Arithmetic` and
-`Modular_Arithmetic` typeclasses.
+These are the built-in instances of the `TrappingArithmetic` and
+`ModularArithmetic` typeclasses.
