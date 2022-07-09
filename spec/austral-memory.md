@@ -16,76 +16,76 @@ Description:
 
 This is the type of nullable pointers.
 
-## `Null_Pointer` Function
+## `nullPointer` Function
 
 ```austral
 generic [T: Type]
-function Null_Pointer(): Pointer[T];
+function nullPointer(): Pointer[T];
 ```
 
 Description:
 
 Returns the null pointer for a given type.
 
-## `Allocate` Function
+## `allocate` Function
 
 Declaration:
 
 ```austral
 generic [T: Type]
-function Allocate(size: Natural_64): Pointer[T];
+function allocate(size: Natural_64): Pointer[T];
 ```
 
 Description:
 
 Allocates the given amount of memory in bytes.
 
-## `Load` Function
+## `load` Function
 
 Declaration:
 
 ```austral
 generic [T: Type]
-function Load(pointer: Pointer[T]): T;
+function load(pointer: Pointer[T]): T;
 ```
 
 Description:
 
 Dereferences a pointer and returns its value.
 
-## `Store` Function
+## `store` Function
 
 Declaration:
 
 ```austral
 generic [T: Type]
-function Store(pointer: Pointer[T], value: T): Unit;
+function store(pointer: Pointer[T], value: T): Unit;
 ```
 
 Description:
 
 Stores `value` at the location pointed to by `pointer`.
 
-## `Deallocate` Function
+## `deallocate` Function
 
 Declaration:
 
 ```austral
 generic [T: Type]
-function Deallocate(pointer: Pointer[T]): Unit;
+function deallocate(pointer: Pointer[T]): Unit;
 ```
 
 Description:
 
 Deallocates the given pointer.
 
-## `Load_Read_Ref` Function
+## `loadRead` Function
 
 Declaration:
 
 ```austral
 generic [T: Type, R: Region]
-function Load_Read_Reference(ref: Reference[Pointer[T], R]): Reference[T, R];
+function loadRead(ref: &[Pointer[T], R]): Reference[T, R];
 ```
 
 Description:
@@ -93,13 +93,13 @@ Description:
 Takes a reference to a pointer, and turns it into a reference to the pointed-to
 value.
 
-## `Load_Write_Ref` Function
+## `loadWrite` Function
 
 Declaration:
 
 ```austral
 generic [T: Type, R: Region]
-function Load_Write_Reference(ref: WriteReference[Pointer[T], R]): WriteReference[T, R];
+function loadWrite(ref: &![Pointer[T], R]): WriteReference[T, R];
 ```
 
 Description:
@@ -107,13 +107,13 @@ Description:
 Takes a write reference to a pointer, and turns it into a write reference to the
 pointed-to value.
 
-## `Resize_Array` Function
+## `resizeArray` Function
 
 Declaration:
 
 ```austral
 generic [T: Type]
-function Resize_Array(array: Pointer[T], size: Natural_64): Pointer[T];
+function resizeArray(array: Pointer[T], size: Natural_64): Pointer[T];
 ```
 
 Description:
@@ -147,13 +147,13 @@ Description:
 
 Copies the `count` bytes stored at `source` to `destination`.
 
-## `Positive_Offset` Function
+## `positiveOffset` Function
 
 Declaration:
 
 ```austral
 generic [T: Type]
-function Positive_Offset(pointer: Pointer[T], offset: Natural_64): Pointer[T];
+function positiveOffset(pointer: Pointer[T], offset: Natural_64): Pointer[T];
 ```
 
 Description:
@@ -164,13 +164,13 @@ Applies a positive offset to a pointer. Essentially this is:
 \text{pointer} + \text{sizeof}(\\tau) \times \text{offset}
 \\]
 
-## `Negative_Offset` Function
+## `negativeOffset` Function
 
 Declaration:
 
 ```austral
 generic [T: Type]
-function Negative_Offset(pointer: Pointer[T], offset: Natural_64): Pointer[T];
+function negativeOffset(pointer: Pointer[T], offset: Natural_64): Pointer[T];
 ```
 
 Description:
