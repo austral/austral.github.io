@@ -12,7 +12,7 @@ See:
 - [Features and anti-features](/features)
 - [What are linear types?](/linear-types)
 - [Specification](/spec)
-- Tutorial
+- [Tutorial](/tutorial)
 - [Example programs](/examples)
 - [Source][source] on GitHub
 
