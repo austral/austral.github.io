@@ -58,6 +58,34 @@ kinds is:
 
 - `Region`: a type parameter with kind `Region` accepts regions.
 
+## Type Parameter Constraints
+
+Type parameters are "universally quantified", meaning we can't use any behaviour
+specific to the type. All we can do with an unknown type `T` is stuff it in a
+data structure or move it around. If we want to compare two instances of `T` for
+equality, for example, we'd have to pass a function pointer to a comparison
+function.
+
+Type parameter constraints solve this, by allowing us to constrain a type
+parameter to only accept types that implement a set of typeclasses.
+
+Let $$\text{p}$$ be a type parameter name, $$\text{U}$$ be one of $$\{Free,
+Linear, Type\}$$, and $$\{C_1, ..., C_n}$$ be a set of type class names. Then:
+
+\\[
+\text{p}: U(C_1, ..., C_n)
+\\]
+
+Denotes a type parameter constrained to only accept types that implement every
+listed class.
+
+For example:
+
+```
+generic [T: Free(Printable, TotalEquality)]
+function ...
+```
+
 ## Declaring Types
 
 When declaring a type, we must state which universe it belongs to. This is so
