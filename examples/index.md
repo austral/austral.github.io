@@ -6,5 +6,5 @@ breadcrumbs:
 
 Index of examples.
 
-- [Hello, World!](/examples/hello-world)
+- [Hello, world!](/examples/hello-world)
 - [Fibonacci](/examples/fib)

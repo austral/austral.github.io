@@ -1,5 +1,5 @@
 ---
-title: Hello, World!
+title: Hello, world!
 ---
 
 {% capture source %}{% include examples/hello-world/hello.aum %}{% endcapture %}
