@@ -218,3 +218,11 @@ type FixedArray[T: Free]: Free;
 
 `FixedArray` is the type of arrays whose size is fixed, but not necessarily
 known at compile time. The type of string literals is `FixedArray[Nat8]`.
+
+### Function Pointer Types {#func-pointer}
+
+```austral
+type Fn[A_0: Type, ..., A_n: Type, R: Type]: Free
+```
+
+`Fn` is the type of function pointers. It is always free.
