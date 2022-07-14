@@ -16,7 +16,8 @@ assets/spec/file-api-without-leaks-and-double-close.png: assets/spec/file-api-wi
 all: assets/spec/file-api.png \
      assets/spec/file-api-errors.png \
      assets/spec/file-api-without-leaks.png \
-     assets/spec/file-api-without-leaks-and-double-close.png
+     assets/spec/file-api-without-leaks-and-double-close.png \
+     $(EX)/hello-world/hello.txt
 
 clean:
 	rm assets/spec/file-api.png
