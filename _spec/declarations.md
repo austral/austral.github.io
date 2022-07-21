@@ -273,41 +273,41 @@ let C3 : Color := Greyscale(50);
 
 ## Function Declaration {#function-declaration}
 
-Let $$\text{f}$$ be an identifier, $$\{\text{p}_1: \tau_1, \dots, \text{p}_n:
-\tau_n\}$$ be a set of value parameters, and $$\tau_r$$ be a type. Then:
+Let $\text{f}$ be an identifier, $\{\text{p}_1: \tau_1, \dots, \text{p}_n:
+\tau_n\}$ be a set of value parameters, and $\tau_r$ be a type. Then:
 
-```
-\text{function} ~ \text{f} \(
+$$
+\text{function} ~ \text{f} (
 \text{p}_1: \tau_1,
 \dots,
 \text{p}_n: \tau_n
-\): \tau_r
+): \tau_r
 ;
-```
+$$
 
-declares a _concrete function_ $$\text{f}$$ with the given value parameter set
-and return type $$\tau_r$$.
+declares a _concrete function_ $\text{f}$ with the given value parameter set
+and return type $\tau_r$.
 
-More generally, given a set of type parameter $$\{\text{tp}_1: k_1, \dots,
-\text{tp}_n: k_n\}$$, then:
+More generally, given a set of type parameter $\{\text{tp}_1: k_1, \dots,
+\text{tp}_n: k_n\}$, then:
 
-```
-\begin{align\*}
+$$
+\begin{aligned}
 & \text{generic} ~
-\[
+[
 \text{tp}_1: k_1, \dots, \text{tp}_n: k_n
-\] \\newline
-& \text{function} ~ \text{f} \(
+] \\
+& \text{function} ~ \text{f} (
 \text{p}_1: \tau_1,
 \dots,
 \text{p}_n: \tau_n
-\): \tau_r
+): \tau_r
 ;
-\end{align\*}
-```
+\end{aligned}
+$$
 
-declares a _generic function_ $$\text{f}$$ with the given type parameter set,
-value parameter set, and return type $$\tau_r$$.
+declares a _generic function_ $\text{f}$ with the given type parameter set,
+value parameter set, and return type $\tau_r$.
 
 There must be a corresponding function definition in the module body file that
 has the same signature.
@@ -328,48 +328,48 @@ Examples:
 
 ## Function Definition {#function-definition}
 
-Let $$\text{f}$$ be an identifier, $$\{\text{p}_1: \tau_1, \dots, \text{p}_n:
-\tau_n\}$$ be a set of value parameters, $$\tau_r$$ be a type, and $$s$$ be a
+Let $\text{f}$ be an identifier, $\{\text{p}_1: \tau_1, \dots, \text{p}_n:
+\tau_n\}$ be a set of value parameters, $\tau_r$ be a type, and $s$ be a
 statement. Then:
 
-```
-\begin{align\*}
-& \text{function} ~ \text{f} \(
+$$
+\begin{aligned}
+& \text{function} ~ \text{f} (
 \text{p}_1: \tau_1,
 \dots,
 \text{p}_n: \tau_n
-\): \tau_r
-~ \text{is} \\newline
-& ~~~~ s \\newline
+): \tau_r
+~ \text{is} \\
+& ~~~~ s \\
 & \text{end} ;
-\end{align\*}
-```
+\end{aligned}
+$$
 
-defines a _concrete function_ $$\text{f}$$ with the given value parameter set,
-return type $$\tau_r$$, and body $$s$$.
+defines a _concrete function_ $\text{f}$ with the given value parameter set,
+return type $\tau_r$, and body $s$.
 
-More generally, given a set of type parameter $$\{\text{tp}_1: k_1, \dots,
-\text{tp}_n: k_n\}$$, then:
+More generally, given a set of type parameter $\{\text{tp}_1: k_1, \dots,
+\text{tp}_n: k_n\}$, then:
 
-```
-\begin{align\*}
+$$
+\begin{aligned}
 & \text{generic} ~
-\[
+[
 \text{tp}_1: k_1, \dots, \text{tp}_n: k_n
-\] \\newline
-& \text{function} ~ \text{f} \(
+] \\
+& \text{function} ~ \text{f} (
 \text{p}_1: \tau_1,
 \dots,
 \text{p}_n: \tau_n
-\): \tau_r
-~ \text{is} \\newline
-& ~~~~ s \\newline
+): \tau_r
+~ \text{is} \\
+& ~~~~ s \\
 & \text{end} ;
-\end{align\*}
-```
+\end{aligned}
+$$
 
-defines a _generic function_ $$\text{f}$$ with the given type parameter set,
-value parameter set, return type $$\tau_r$$, and body $$s$$.
+defines a _generic function_ $\text{f}$ with the given type parameter set,
+value parameter set, return type $\tau_r$, and body $s$.
 
 If there is a corresponding function declaration in the module interface file,
 the function is public, otherwise it is private.
@@ -392,35 +392,37 @@ Examples:
 
 Given:
 
-1. Identifiers $$\text{t}$$ and $$\text{p}$$.
+1. Identifiers $\text{t}$ and $\text{p}$.
 
-2. A universe $$u$$.
+2. A universe $u$.
 
 3. A set of method signatures:
 
-```
-\\{
-\text{m}\_1 \( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} \): \tau\_1,
-\dots,
-\text{m}\_m \( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} \): \tau\_m
-\\}
-```
+   $$
+   \left\{
+   \begin{aligned}
+   & \text{m}\_1 ( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} ): \tau\_1,\\
+   & \dots,\\
+   & \text{m}\_m ( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} ): \tau\_m
+   \end{aligned}
+   \right\}
+   $$
 
 Then:
 
-```
-\begin{align\*}
-& \text{typeclass} ~ \text{t} ( \text{p} : u ) ~ \text{is} \\newline
-& ~~~~ \text{method} ~ \text{m}\_1 \( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} \): \tau\_1 ; \\newline
-& ~~~~ \dots; \\newline
-& ~~~~ \text{method} ~ \text{m}\_m \( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} \): \tau\_m ; \\newline
+$$
+\begin{aligned}
+& \text{typeclass} ~ \text{t} ( \text{p} : u ) ~ \text{is} \\
+& ~~~~ \text{method} ~ \text{m}\_1 ( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} ): \tau\_1 ; \\
+& ~~~~ \dots; \\
+& ~~~~ \text{method} ~ \text{m}\_m ( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} ): \tau\_m ; \\
 & \text{end} ;
-\end{align\*}
-```
+\end{aligned}
+$$
 
-Defines a typeclass $$\text{t}$$ with a parameter $$\text{p}$$ which accepts
-types in the universe $$u$$, and has methods $$\{\text{m}_1, ...,
-\text{m}_m\}$$.
+Defines a typeclass $\text{t}$ with a parameter $\text{p}$ which accepts
+types in the universe $u$, and has methods $\{\text{m}_1, ...,
+\text{m}_m\}$.
 
 A typeclass declaration can appear in the module interface file (in which case
 it is public) or in the module body file (in which case it is private).
@@ -437,14 +439,14 @@ Examples:
 
 ## Instance Declaration {#instance-declaration}
 
-Let $$\text{t}$$ be the name of a typeclass and $$\tau$$ be a type
+Let $\text{t}$ be the name of a typeclass and $\tau$ be a type
 specifier. Then:
 
-```
-\text{instance} ~ \text{t} \( \\tau \) ;
-```
+$$
+\text{instance} ~ \text{t} ( \\tau ) ;
+$$
 
-declares an instance of the typeclass $$\text{t}$$ for the type $$\tau$$.
+declares an instance of the typeclass $\text{t}$ for the type $\tau$.
 
 Instance declaration can only appear in the module interface file, and must have
 a matching instance definition in the module body file.
@@ -455,57 +457,60 @@ An instance declaration means the instance is public.
 
 Given:
 
-1. An identifier $$\text{t}$$ that names name of a typeclass with universe $$u$$.
-2. A type specifier $$\tau$$ in the universe $$u$$.
+1. An identifier $\text{t}$ that names name of a typeclass with universe $u$.
+2. A type specifier $\tau$ in the universe $u$.
 3. A set of method definitions:
 
-```
-\\{
-\text{m}\_1 \( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} \): \tau\_1 ~ \text{is} ~ s_1, \dots, \text{m}\_m \( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} \): \tau\_m ~ \text{is} ~ s_m
-\\}
-```
+   $$
+   \left\{
+   \begin{aligned}
+   &\text{m}\_1 ( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} ): \tau\_1 ~ \text{is} ~ s_1,\\
+   &\dots,\\
+   &\text{m}\_m ( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} ): \tau\_m ~ \text{is} ~ s_m
+   \end{aligned}
+   \right\}
+   $$
 
 Then:
 
-```
-\begin{align\*}
-& \text{instance} ~ \text{t} ( \tau ) ~ \text{is} \\newline
-& ~~~~ \text{method} ~ \text{m}\_1 \( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} \): \tau\_1 ~ \text{is} ; \\newline
-& ~~~~~~~~ s_1 ; \\newline
-& ~~~~ \text{end} ; \\newline
-& ~~~~ \dots; \\newline
-& ~~~~ \text{method} ~ \text{m}\_m \( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} \): \tau\_m ~ \text{is} ; \\newline
-& ~~~~~~~~ s_m ; \\newline
-& ~~~~ \text{end} ; \\newline
+$$
+\begin{aligned}
+& \text{instance} ~ \text{t} ( \tau ) ~ \text{is} \\
+& ~~~~ \text{method} ~ \text{m}\_1 ( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} ): \tau\_1 ~ \text{is} ; \\
+& ~~~~~~~~ s_1 ; \\
+& ~~~~ \text{end} ; \\
+& ~~~~ \dots; \\
+& ~~~~ \text{method} ~ \text{m}\_m ( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} ): \tau\_m ~ \text{is} ; \\
+& ~~~~~~~~ s_m ; \\
+& ~~~~ \text{end} ; \\
 & \text{end} ;
-\end{align\*}
-```
+\end{aligned}
+$$
 
+defines a _concrete instance_ of the typeclass $\text{t}$.
 
-defines a _concrete instance_ of the typeclass $$\text{t}$$.
+More generally, given a set of type parameters $\{\text{tp}_1: k_1, \dots,
+\text{tp}_n: k_n\}$, then:
 
-More generally, given a set of type parameters $$\{\text{tp}_1: k_1, \dots,
-\text{tp}_n: k_n\}$$, then:
-
-```
-\begin{align\*}
+$$
+\begin{aligned}
 & \text{generic} ~
-\[
+[
 \text{tp}_1: k_1, \dots, \text{tp}_n: k_n
-\] \\newline
-& \text{instance} ~ \text{t} ( \tau ) ~ \text{is} \\newline
-& ~~~~ \text{method} ~ \text{m}\_1 \( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} \): \tau\_1 ~ \text{is} ; \\newline
-& ~~~~~~~~ s_1 ; \\newline
-& ~~~~ \text{end} ; \\newline
-& ~~~~ \dots; \\newline
-& ~~~~ \text{method} ~ \text{m}\_m \( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} \): \tau\_m ~ \text{is} ; \\newline
-& ~~~~~~~~ s_m ; \\newline
-& ~~~~ \text{end} ; \\newline
+] \\
+& \text{instance} ~ \text{t} ( \tau ) ~ \text{is} \\
+& ~~~~ \text{method} ~ \text{m}\_1 ( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} ): \tau\_1 ~ \text{is} ; \\
+& ~~~~~~~~ s_1 ; \\
+& ~~~~ \text{end} ; \\
+& ~~~~ \dots; \\
+& ~~~~ \text{method} ~ \text{m}\_m ( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} ): \tau\_m ~ \text{is} ; \\
+& ~~~~~~~~ s_m ; \\
+& ~~~~ \text{end} ; \\
 & \text{end} ;
-\end{align\*}
-```
+\end{aligned}
+$$
 
-defines a _generic instance_ of the typeclass $$\text{t}$$.
+defines a _generic instance_ of the typeclass $\text{t}$.
 
 Examples:
 

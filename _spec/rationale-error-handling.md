@@ -79,9 +79,9 @@ We can pare down what we have to care about:
    area in time and space.
 
    This type of refactoring can improve performance, as putting allocations
-   together will make it clear when there is an opportunity to replace $$n$$
-   allocations of an object of size $$k$$ bytes with a single allocation of an
-   array of $$n \times k$$ bytes.
+   together will make it clear when there is an opportunity to replace $n$
+   allocations of an object of size $k$ bytes with a single allocation of an
+   array of $n \times k$ bytes.
 
    A common misconception is that checking for allocation failure is pointless,
    since a program might be terminated by the OS if memory is exhausted, or

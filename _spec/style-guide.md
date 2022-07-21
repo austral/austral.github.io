@@ -2,7 +2,7 @@
 
 This section describes acceptable Austral code style.
 
-## Case
+## Case Convention
 
 The case conventions are:
 

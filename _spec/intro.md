@@ -9,5 +9,3 @@
 
 Austral is a new programming language. It is designed to enable writing code
 that is secure, readable, maintainble, robust, and long-lasting.
-
-1. [Design Goals](/spec/goals)

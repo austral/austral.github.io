@@ -2,7 +2,7 @@
 
 The `Austral.Memory` module contains types and functions for manipulating pointers and memory.
 
-## `Pointer` Type
+### `Pointer` Type
 
 Declaration:
 
@@ -14,7 +14,7 @@ Description:
 
 This is the type of nullable pointers.
 
-## `nullPointer` Function
+### `nullPointer` Function
 
 ```austral
 generic [T: Type]
@@ -25,7 +25,7 @@ Description:
 
 Returns the null pointer for a given type.
 
-## `allocate` Function
+### `allocate` Function
 
 Declaration:
 
@@ -38,7 +38,7 @@ Description:
 
 Allocates the given amount of memory in bytes.
 
-## `load` Function
+### `load` Function
 
 Declaration:
 
@@ -51,7 +51,7 @@ Description:
 
 Dereferences a pointer and returns its value.
 
-## `store` Function
+### `store` Function
 
 Declaration:
 
@@ -64,7 +64,7 @@ Description:
 
 Stores `value` at the location pointed to by `pointer`.
 
-## `deallocate` Function
+### `deallocate` Function
 
 Declaration:
 
@@ -77,7 +77,7 @@ Description:
 
 Deallocates the given pointer.
 
-## `loadRead` Function
+### `loadRead` Function
 
 Declaration:
 
@@ -91,7 +91,7 @@ Description:
 Takes a reference to a pointer, and turns it into a reference to the pointed-to
 value.
 
-## `loadWrite` Function
+### `loadWrite` Function
 
 Declaration:
 
@@ -105,7 +105,7 @@ Description:
 Takes a write reference to a pointer, and turns it into a write reference to the
 pointed-to value.
 
-## `resizeArray` Function
+### `resizeArray` Function
 
 Declaration:
 
@@ -119,7 +119,7 @@ Description:
 Resizes the given array, returning `Some` with the new location if allocation
 succeeded, and `None` otherwise.
 
-## `memmove` Function
+### `memmove` Function
 
 Declaration:
 
@@ -132,7 +132,7 @@ Description:
 
 Moves the `count` bytes stored at `source` to `destination`.
 
-## `memcpy` Function
+### `memcpy` Function
 
 Declaration:
 
@@ -145,7 +145,7 @@ Description:
 
 Copies the `count` bytes stored at `source` to `destination`.
 
-## `positiveOffset` Function
+### `positiveOffset` Function
 
 Declaration:
 
@@ -162,7 +162,7 @@ Applies a positive offset to a pointer. Essentially this is:
 \text{pointer} + \text{sizeof}(\\tau) \times \text{offset}
 \\]
 
-## `negativeOffset` Function
+### `negativeOffset` Function
 
 Declaration:
 

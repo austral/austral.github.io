@@ -269,15 +269,15 @@ from types to a new type.
 
 Where function declarations look like this:
 
-```
-\text{function} ~ \text{f} \( \text{p}_1: \tau_1, \dots, \text{p}_1: \tau_1 \): \tau_r ;
-```
+$$
+\text{function} ~ \text{f} ( \text{p}_1: \tau_1, \dots, \text{p}_1: \tau_1 ): \tau_r ;
+$$
 
 A type declaration looks like:
 
-```
-\text{type} ~ \tau \[ \text{p}_1: k, \dots, \text{p}_1: k \]: u ;
-```
+$$
+\text{type} ~ \tau [ \text{p}_1: k, \dots, \text{p}_1: k ]: u ;
+$$
 
 Here, type parameters are analogous to type parameters, kinds are analogous to
 types, and the universe is analogous to the return type.

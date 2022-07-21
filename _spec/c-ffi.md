@@ -1,8 +1,8 @@
-# The C Interface
+## The C Interface
 
 This section decribes Austral's support for calling C code.
 
-## Functions
+### Functions
 
 To call a foreign function, we must declare it. The syntax is the same as that
 of ordinary functions, except in the body of the function definition.
@@ -39,7 +39,7 @@ Naturally, the function's parameter list and return type must match those of the
 foreign function. See the following section for how C types are mapped to
 Austral types.
 
-## Mapping Types
+### Mapping Types
 
 In the following table, the C type on the first column corresponds to the
 Austral type on the second column.
