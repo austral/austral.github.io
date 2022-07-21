@@ -127,7 +127,7 @@ end;
 
 The `ExitCode` type is the return type of entrypoint functions.
 
-## Integer Bound Constants
+### Integer Bound Constants
 
 Declarations:
 
@@ -191,7 +191,7 @@ Description:
 The `ModularArithmetic` typeclass defines methods for performing arithmetic that
 wraps around without abort on overflow errors.
 
-## Typeclass Instances
+### Typeclass Instances
 
 Declarations:
 

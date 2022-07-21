@@ -183,8 +183,6 @@
 <ul>
 <li><a href="#austral.memory-module">Austral.Memory Module</a></li>
 <li><a href="#austral.pervasive-module">Austral.Pervasive Module</a></li>
-<li><a href="#integer-bound-constants">Integer Bound Constants</a></li>
-<li><a href="#typeclass-instances">Typeclass Instances</a></li>
 </ul></li>
 <li><a href="#foreign-interfaces">Foreign Interfaces</a>
 <ul>
@@ -2493,7 +2491,7 @@ function fixedArraySize(arr: FixedArray[T]): Nat64;</code></pre>
     case ExitFailure;
 end;</code></pre>
 <p>The <code>ExitCode</code> type is the return type of entrypoint functions.</p>
-<h2 id="integer-bound-constants">Integer Bound Constants</h2>
+<h3 id="integer-bound-constants">Integer Bound Constants</h3>
 <p>Declarations:</p>
 <pre class="austral"><code>constant maximum_nat8: Nat8;
 constant maximum_nat16: Nat16;
@@ -2533,7 +2531,7 @@ end;</code></pre>
 end;</code></pre>
 <p>Description:</p>
 <p>The <code>ModularArithmetic</code> typeclass defines methods for performing arithmetic that wraps around without abort on overflow errors.</p>
-<h2 id="typeclass-instances">Typeclass Instances</h2>
+<h3 id="typeclass-instances">Typeclass Instances</h3>
 <p>Declarations:</p>
 <pre class="austral"><code>instance TrappingArithmetic(Nat8);
 instance TrappingArithmetic(Int8);
