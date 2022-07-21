@@ -10,8 +10,6 @@ The interface contains declarations that are importable by other modules.
 A module interface can have the following declarations:
 
 - [Opaque constant declarations](/spec/declarations#opaque-constant)
-- [Opaque type alias declarations](/spec/declarations#opaque-type-alias)
-- [Type alias definitions](/spec/declarations#type-alias-definition)
 - [Record definitions](/spec/declarations#record-definition)
 - [Union definitions](/spec/declarations#union-definition)
 - [Function declarations](/spec/declarations#function-declaration)
@@ -27,7 +25,6 @@ declarations in the module interface.
 A module body can have the following kinds of declarations:
 
 - [Constant definitions](/spec/declarations#constant-definition)
-- [Type alias definitions](/spec/declarations#type-alias-definition)
 - [Record definitions](/spec/declarations#record-definition)
 - [Union definitions](/spec/declarations#union-definition)
 - [Function definitions](/spec/declarations#function-definition)

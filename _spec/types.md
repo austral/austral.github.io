@@ -28,7 +28,6 @@ To formalize the notion of "containment" in point 1.: a type $\tau$ is said to
 contain a linear type $\upsilon$ (or, equivalently, a type parameter
 $\upsilon$ of kinds `Linear` or `Type`) if:
 
-1. $\tau$ is a type alias of $\upsilon$.
 3. $\tau$ is a record, where at least one field contains $\upsilon$.
 3. $\tau$ is a union, where at least one case contains a field that contains $\upsilon$.
 
