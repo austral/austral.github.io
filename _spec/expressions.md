@@ -136,17 +136,6 @@ $$
 \text{c}(\text{s} \Rightarrow e)
 $$
 
-## Type Alias Constructor
-
-If $\text{t}$ is the name of a type alias with definition $\tau$, and $e$
-is an expression of type $\tau$, then:
-
-$$
-\text{t}(e)
-$$
-
-evaluates to an instance of $\text{t}$ containing the value $e$.
-
 ## Cast Expression
 
 The cast expression has four uses:
