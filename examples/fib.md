@@ -2,24 +2,28 @@
 title: Fibonacci Example
 ---
 
+{% capture source %}{% include examples/fib/fib.aum %}{% endcapture %}
+{% capture compile %}{% include examples/fib/compile.sh %}{% endcapture %}
+{% capture output %}{% include examples/fib/output.txt %}{% endcapture %}
+
 Calculates the _n_-th [Fibonacci number][fib].
 
-```austral
-module body Fib is
-    function fib(n: Nat64): Nat64 is
-        if n < 2 then
-            return n;
-        else
-            return fib(n - 1) + fib(n - 2);
-        end if;
-    end;
+Code:
 
-    function main(): ExitCode is
-        print("fib(10) = ");
-        printLn(fib(10));
-        return ExitSuccess();
-    end;
-end module body.
+```austral
+{{ source }}
+```
+
+Compile:
+
+```bash
+{{ compile | strip }}
+```
+
+Output:
+
+```
+{{ output | strip }}
 ```
 
 [fib]: https://en.wikipedia.org/wiki/Fibonacci_number

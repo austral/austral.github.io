@@ -56,4 +56,9 @@ function australMode(hljs) {
 };
 
 hljs.registerLanguage("austral", australMode);
-hljs.highlightAll();
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  document.querySelectorAll('pre code.language-austral').forEach((el) => {
+    hljs.highlightElement(el);
+  });
+})

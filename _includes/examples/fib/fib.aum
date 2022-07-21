@@ -1,0 +1,15 @@
+module body Fib is
+    function fib(n: Nat64): Nat64 is
+        if n < 2 then
+            return n;
+        else
+            return fib(n - 1) + fib(n - 2);
+        end if;
+    end;
+
+    function main(): ExitCode is
+        print("fib(30) = ");
+        printLn(fib(30));
+        return ExitSuccess();
+    end;
+end module body.

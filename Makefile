@@ -66,6 +66,20 @@ $(SPEC_HTML): $(SPEC_SRC)
 		   -o $(SPEC_HTML)
 
 #
+# Code Examples
+#
+
+EXDIR := _includes/examples
+
+EXAMPLE_SRC := $(EXDIR)/*/*.aum $(EXDIR)/*/*.sh
+
+EXAMPLE_OUT := $(EXDIR)/hello-world/output.txt \
+               $(EXDIR)/fib/output.txt
+
+$(EXAMPLE_OUT): $(EXAMPLE_SRC)
+	( cd $(EXDIR)/; ./build.sh )
+
+#
 # Start targets
 #
 
@@ -74,7 +88,8 @@ TARGETS := assets/spec/file-api.png \
 		   assets/spec/file-api-without-leaks.png \
 		   assets/spec/file-api-without-leaks-and-double-close.png \
 		   $(SPEC_PDF) \
-		   $(SPEC_HTML)
+		   $(SPEC_HTML) \
+       $(EXAMPLE_OUT)
 
 all: $(TARGETS)
 

@@ -100,7 +100,7 @@ cross thread boundaries.
 
 Let's see what a linear version of this API would look like. Say that a type
 whose name ends in an exclamation mark is linear -- that is, values of that type
-must be used once and only used. Which means they can't be silently discarded or
+must be used once and only once. Which means they can't be silently discarded or
 passed to multiple function calls. Our new API now looks like this:
 
 ```c++
