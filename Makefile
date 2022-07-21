@@ -21,6 +21,8 @@ assets/spec/file-api-without-leaks-and-double-close.png: assets/spec/file-api-wi
 # Spec
 #
 
+PANDOC_FLAGS := --table-of-contents --toc-depth=2 --resource-path=assets/spec --standalone
+
 SPEC_SRC := _spec/intro.md \
             _spec/goals.md \
 			_spec/rationale.md \
@@ -44,31 +46,37 @@ SPEC_SRC := _spec/intro.md \
 			_spec/style-guide.md \
             _spec/appendix-a.md
 
-SPEC_PDF  := _spec/spec.pdf
-SPEC_HTML := _spec/spec.html
+SPEC_PDF  := spec/spec.pdf
+SPEC_HTML := spec/spec.html
 
 $(SPEC_PDF): $(SPEC_SRC)
 	pandoc -t latex \
 		   -f markdown \
 		   --pdf-engine=xelatex \
-		   --table-of-contents \
-		   --toc-depth=2 \
-		   --resource-path=assets/spec \
+		   $(PANDOC_FLAGS) \
 		   $(SPEC_SRC) \
 		   -o $(SPEC_PDF)
+
+$(SPEC_HTML): $(SPEC_SRC)
+	pandoc -t html5 \
+		   -f markdown \
+		   $(PANDOC_FLAGS) \
+		   --mathjax \
+		   $(SPEC_SRC) \
+		   -o $(SPEC_HTML)
 
 #
 # Start targets
 #
 
-all: assets/spec/file-api.png \
-     assets/spec/file-api-errors.png \
-     assets/spec/file-api-without-leaks.png \
-     assets/spec/file-api-without-leaks-and-double-close.png \
-     $(SPEC_PDF)
+TARGETS := assets/spec/file-api.png \
+		   assets/spec/file-api-errors.png \
+		   assets/spec/file-api-without-leaks.png \
+		   assets/spec/file-api-without-leaks-and-double-close.png \
+		   $(SPEC_PDF) \
+		   $(SPEC_HTML)
+
+all: $(TARGETS)
 
 clean:
-	rm assets/spec/file-api.png
-	rm assets/spec/file-api-errors.png
-	rm assets/spec/file-api-without-leaks.png
-	rm assets/spec/file-api-without-leaks-and-double-close.png
+	rm $(TARGETS)
