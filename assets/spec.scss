@@ -10,6 +10,8 @@
 html {
     font-size: 24px;
     line-height: normal;
+
+    overflow-x: hidden;
 }
 
 body {
@@ -60,15 +62,15 @@ code {
     .content-box {
     }
 
-    #title-block-header, .toc-box {
+    #title-block-header, .toc-box, .content-box {
         border-bottom: 1px solid #ccc;
     }
 
-    #title-block-header, .toc-box, .content-box {
+    #title-block-header, .toc-box, .content-box, footer {
         padding: 50px;
     }
 
-    .toc-box nav, .content-box .content {
+    .toc-box nav, .content-box .content, footer {
         margin: 0 auto;
         width: 60%;
     }
