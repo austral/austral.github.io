@@ -1,8 +1,8 @@
-## Austral.Pervasive Module
+## Austral.Pervasive Module {#austral.pervasive}
 
 The `Austral.Pervasive` module exports declarations which are imported by every module.
 
-### `Option` Type
+### `Option` Type {#austral.pervasive-option}
 
 Definition:
 
@@ -20,7 +20,7 @@ The `Option` is used to represent values that might be empty, for example, the
 return type of a function that retrieves a value from a dictionary by key might
 return `None` if the key does not exist and `Some` otherwise.
 
-### `Either` Type
+### `Either` Type {#austral.pervasive-either}
 
 Definition:
 
@@ -39,7 +39,7 @@ The `Either` type is used to represent values which may have one of two distinct
 possibilities. For example, a function might return a value of type
 `Either[Error, Result]`.
 
-### `deref` Function
+### `deref` Function {#austral.pervasive-deref}
 
 Declaration:
 
@@ -52,7 +52,7 @@ Description:
 
 The `deref` function loads the value pointed to by a read reference.
 
-### `derefWrite` Function
+### `derefWrite` Function {#austral.pervasive-derefwrite}
 
 Declaration:
 
@@ -65,7 +65,7 @@ Description:
 
 The `derefWrite` function loads the value pointed to by a write reference.
 
-### `fixedArraySize` Function
+### `fixedArraySize` Function {#austral.pervasive-fixedarraysize}
 
 Declaration:
 
@@ -78,7 +78,7 @@ Description:
 
 The `fixedArraySize` function returns the size of a fixed array.
 
-### `abort` Function
+### `abort` Function {#austral.pervasive-abort}
 
 Declaration:
 
@@ -91,7 +91,7 @@ Description:
 The `abort` function prints the given message to standard error and aborts the
 program.
 
-### `RootCapability` Type
+### `RootCapability` Type {#austral.pervasive-rootcapability}
 
 Declaration:
 
@@ -107,7 +107,7 @@ The entrypoint function of an Austral program takes a single value of type
 `RootCapability`. This is the highest permission level, available only at the
 start of the program.
 
-### `surrenderRoot` Function
+### `surrenderRoot` Function {#austral.pervasive-surrenderroot}
 
 ```austral
 function surrenderRoot(cap: RootCapability): Unit;
@@ -116,7 +116,7 @@ function surrenderRoot(cap: RootCapability): Unit;
 The `surrenderRoot` function consumes the root capability. Beyond this point the
 program can't do anything effectful, except through unsafe FFI interfaces.
 
-### `ExitCode` Type
+### `ExitCode` Type {#austral.pervasive-exitcode}
 
 ```austral
 union ExitCode: Free is
@@ -127,7 +127,7 @@ end;
 
 The `ExitCode` type is the return type of entrypoint functions.
 
-### Integer Bound Constants
+### Integer Bound Constants {#austral.pervasive-integer-bound-constants}
 
 Declarations:
 
@@ -155,7 +155,7 @@ Description:
 These constants define the minimum and maximum values that can be stored in
 different integer types.
 
-### `TrappingArithmetic` Typeclass
+### `TrappingArithmetic` Typeclass {#austral.pervasive-trappingarithmetic}
 
 Definition:
 
@@ -173,7 +173,7 @@ Description:
 The `TrappingArithmetic` typeclass defines methods for performing arithmetic
 that aborts on overflow errors.
 
-### `ModularArithmetic` Typeclass
+### `ModularArithmetic` Typeclass {#austral.pervasive-modularithmetic}
 
 Definition:
 
@@ -191,7 +191,7 @@ Description:
 The `ModularArithmetic` typeclass defines methods for performing arithmetic that
 wraps around without abort on overflow errors.
 
-### Typeclass Instances
+### Typeclass Instances {#austral.pervasive-typeclass-instances}
 
 Declarations:
 

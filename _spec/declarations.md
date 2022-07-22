@@ -1,4 +1,4 @@
-# Declarations
+# Declarations {#decl}
 
 This section describes the kind of declarations that can appear in Austral
 modules.

@@ -1,9 +1,9 @@
-# Type Classes
+# Type Classes {#type-classes}
 
 Type classes, borrowed from Haskell 98, give us a bounded and sensible form of
 ad-hoc polymorphism.
 
-## Instance Uniqueness
+## Instance Uniqueness {#type-class-uniqueness}
 
 In Austral, instances have to be globally unique: you can't have multiple
 instances of the same typeclass for the same type, or for overlapping type

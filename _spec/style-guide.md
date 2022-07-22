@@ -1,8 +1,8 @@
-# Style Guide
+# Style Guide {#style-guide}
 
 This section describes acceptable Austral code style.
 
-## Case Convention
+## Case Convention {#style-case-convention}
 
 The case conventions are:
 

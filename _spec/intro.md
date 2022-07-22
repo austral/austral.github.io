@@ -1,7 +1,7 @@
 % The Austral Language Specification
 % Fernando Borretti
 
-# Introduction
+# Introduction {#intro}
 
 >Time, which attenuates all memories, sharpens that of the Zahir.
 >

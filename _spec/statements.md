@@ -1,8 +1,8 @@
-# Statements
+# Statements {#stmt}
 
 This section describes the semantics of Austral statements.
 
-## Skip Statement
+## Skip Statement {#stmt-skip}
 
 The `skip` statement is a no-op;
 
@@ -12,7 +12,7 @@ Example:
 skip;
 ```
 
-## Let Statement
+## Let Statement {#stmt-let}
 
 If `N` is an identifier, `T` is a type specifier, and `E` is an expression of
 type `T`, then:
@@ -28,7 +28,7 @@ A `let` statement is one of the few places where type information flows forward:
 the declared type is used to disambiguate the type of the expression when the
 expression is, for example, a call to a return-type polymorphic function.
 
-## Let Destructure Statement
+## Let Destructure Statement {#stmt-let-destructure}
 
 A let destructure statement is used to break apart records, creating a binding
 for each field in the record.
@@ -47,7 +47,7 @@ let {R_1: T_1, ..., R_n: T_n} := R;
 
 is a let destructure statement.
 
-## Assignment Statement
+## Assignment Statement {#stmt-assign}
 
 If `P` is an lvalue of type `T` and `E` is an expression of type `T`, then:
 
@@ -59,7 +59,7 @@ is an assignment statement that stores the value of `E` in the location denoted 
 
 [TODO: describe the semantics of lvalues]
 
-## If Statement
+## If Statement {#stmt-if}
 
 If `{e_1, ..., e_n}` is a set of expression of boolean type, and `{b_1, ...,
 b_n, b_else}` is a set of statements, then:
@@ -121,7 +121,7 @@ else if b() then
 end if;
 ```
 
-## Case Statement
+## Case Statement {#stmt-case}
 
 If `E` is an expression of a union type with cases `{C_1, ..., C_n}` and each
 case has slots `C_i = {S_i1: T_i1, ..., S_in T_im}`, and `{B_1, ..., B_n}` is a
@@ -191,7 +191,7 @@ end case;
 An exam
 
 
-## While Loop
+## While Loop {#stmt-while}
 
 If `e` is an expression of type `Bool` and `b` is a statement, then:
 
@@ -212,7 +212,7 @@ while true do
 end while;
 ```
 
-## For Loop
+## For Loop {#stmt-for}
 
 If `i` is an identifier, `s` is an expression of type `Nat64`, `f` is an
 expression of type `Nat64`, and `b` is a statement, and `s <= f`, then:
@@ -234,7 +234,7 @@ for i from 0 to n do
 end for;
 ```
 
-## Borrow Statement
+## Borrow Statement {#stmt-borrow}
 
 If `X` is a variable of a linear type `T`, `X'` is an identifier, `R` is an
 identifier, and `B` is a statement, then:
@@ -261,7 +261,7 @@ end;
 
 The only difference is that the type of `X'` is `&![R, T]`.
 
-## Discarding Statement
+## Discarding Statement {#stmt-discard}
 
 If `e` is an expression, then:
 
@@ -273,7 +273,7 @@ Evaluates that expression and discards its value.
 
 Note that discarding statements are illegal where `e` is of a linear type.
 
-## Return Statement
+## Return Statement {#stmt-return}
 
 If `e` is an expression, then:
 

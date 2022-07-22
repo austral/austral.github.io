@@ -1,9 +1,9 @@
-# Module System
+# Module System {#modules}
 
 Modules are the unit of code organization in Austral. Modules have two parts:
 the module interface file and the module body file.
 
-## Module Interfaces
+## Module Interfaces {#module-interfaces}
 
 The interface contains declarations that are importable by other modules.
 
@@ -16,7 +16,7 @@ A module interface can have the following declarations:
 - [Typeclass definitions](/spec/declarations#typeclass-definition)
 - [Instance declarations](/spec/declarations#instance-declaration)
 
-## Module Bodies
+## Module Bodies {#module-bodies}
 
 The module body contains private declarations (that are not importable by other
 modules), as well as declarations that provide the definitions of opaque
@@ -31,7 +31,7 @@ A module body can have the following kinds of declarations:
 - [Typeclass definitions](/spec/declarations#typeclass-definition)
 - [Instance definitions](/spec/declarations#instance-definitions)
 
-## Imports
+## Imports {#module-imports}
 
 Imports are the mechanism through which declarations from other modules are
 brought into an Austral module.
@@ -75,7 +75,7 @@ If an identifier $p$ is imported without a nickname, references to $p$ in the
 source text will be interpreted as references to that foreign declaration, union
 case, or method.
 
-## Import Nicknames
+## Import Nicknames {#import-nicknames}
 
 Import nicknames serve a dual purpose:
 
@@ -91,7 +91,7 @@ Import nicknames serve a dual purpose:
 
 2. They allow us to use shorter names for longer identifiers where necessary.
 
-## Instance Imports
+## Instance Imports {#instance-imports}
 
 When importing from a module $M$, all public typeclass instances in $M$ are
 imported automatically.
@@ -115,7 +115,7 @@ module body Example is
 end module body.
 ```
 
-## Examples
+## Examples {#module-examples}
 
 Given the following interface file:
 

@@ -1,8 +1,8 @@
-## Austral.Memory Module
+## Austral.Memory Module {#austral.memory}
 
 The `Austral.Memory` module contains types and functions for manipulating pointers and memory.
 
-### `Pointer` Type
+### `Pointer` Type {#austral.memory-pointer}
 
 Declaration:
 
@@ -14,7 +14,7 @@ Description:
 
 This is the type of nullable pointers.
 
-### `nullPointer` Function
+### `nullPointer` Function {#austral.memory-nullpointer}
 
 ```austral
 generic [T: Type]
@@ -25,7 +25,7 @@ Description:
 
 Returns the null pointer for a given type.
 
-### `allocate` Function
+### `allocate` Function {#austral.memory-allocate}
 
 Declaration:
 
@@ -38,7 +38,7 @@ Description:
 
 Allocates the given amount of memory in bytes.
 
-### `load` Function
+### `load` Function {#austral.memory-load}
 
 Declaration:
 
@@ -51,7 +51,7 @@ Description:
 
 Dereferences a pointer and returns its value.
 
-### `store` Function
+### `store` Function {#austral.memory-store}
 
 Declaration:
 
@@ -64,7 +64,7 @@ Description:
 
 Stores `value` at the location pointed to by `pointer`.
 
-### `deallocate` Function
+### `deallocate` Function {#austral.memory-deallocate}
 
 Declaration:
 
@@ -77,7 +77,7 @@ Description:
 
 Deallocates the given pointer.
 
-### `loadRead` Function
+### `loadRead` Function {#austral.memory-loadread}
 
 Declaration:
 
@@ -91,7 +91,7 @@ Description:
 Takes a reference to a pointer, and turns it into a reference to the pointed-to
 value.
 
-### `loadWrite` Function
+### `loadWrite` Function {#austral.memory-loadwrite}
 
 Declaration:
 
@@ -105,7 +105,7 @@ Description:
 Takes a write reference to a pointer, and turns it into a write reference to the
 pointed-to value.
 
-### `resizeArray` Function
+### `resizeArray` Function {#austral.memory-resizearray}
 
 Declaration:
 
@@ -119,7 +119,7 @@ Description:
 Resizes the given array, returning `Some` with the new location if allocation
 succeeded, and `None` otherwise.
 
-### `memmove` Function
+### `memmove` Function {#austral.memory-memmove}
 
 Declaration:
 
@@ -132,7 +132,7 @@ Description:
 
 Moves the `count` bytes stored at `source` to `destination`.
 
-### `memcpy` Function
+### `memcpy` Function {#austral.memory-memcpy}
 
 Declaration:
 
@@ -145,7 +145,7 @@ Description:
 
 Copies the `count` bytes stored at `source` to `destination`.
 
-### `positiveOffset` Function
+### `positiveOffset` Function {#austral.memory-positiveoffset}
 
 Declaration:
 
@@ -162,7 +162,7 @@ Applies a positive offset to a pointer. Essentially this is:
 \text{pointer} + \text{sizeof}(\\tau) \times \text{offset}
 \\]
 
-### `negativeOffset` Function
+### `negativeOffset` Function {#austral.memory-negativeoffset}
 
 Declaration:
 

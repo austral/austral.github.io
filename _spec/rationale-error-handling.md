@@ -1,4 +1,4 @@
-## Error Handling
+## Error Handling {#rationale-errors}
 
 On July 3, 1940, as part of Operation Catapult, Royal Air Force pilots bombed
 the ships of the French Navy stationed off Mers-el-Kébir to prevent them falling
@@ -17,7 +17,7 @@ handling. We begin by describing what an error is, then we survey different
 error handling strategies. Then we explain how those strategies impinge upon a
 linear type system.
 
-### Categorizing Errors
+### Categorizing Errors {#error-categories}
 
 "Error" is a broad term. Following [Sutter][sutter] and the [Midori error
 model][midori], we divide errors into the following categories:
@@ -119,7 +119,7 @@ That takes care of four of five categories. There's one left: what do we do
 about contract violations? How we choose to handle this is a critical question
 in the design of any programming language.
 
-### Error Handling for Contract Violations
+### Error Handling for Contract Violations {#error-contracts}
 
 There are essentially three approaches, from most to least brutal:
 
@@ -137,7 +137,7 @@ There are essentially three approaches, from most to least brutal:
    the approach offered by C++ and Rust, and it integrates with RAII. Henceforth
    "REOE" for "raise exception on error".
 
-#### Terminate Program
+#### Terminate Program {#terminate-program}
 
 The benefit of this approach is simplicity and security: from the perspective of
 security vulnerabilities, terminating a program outright is the best thing to
@@ -211,7 +211,7 @@ There are, however, a number of problems:
    The option of forking the process, in this context, is prohibitively
    expensive.
 
-#### Terminate Thread on Error
+#### Terminate Thread on Error {#terminate-thread}
 
 Terminating the thread where the contract violation happened, rather than the
 entire process, gives us a bit more recoverability and error reporting ability,
@@ -245,7 +245,7 @@ memory or file handles or other resources.
 An attacker that knows the server does this could execute a denial of service
 attack by forcing a previously undetected contract violation.
 
-#### Raise Exception on Error
+#### Raise Exception on Error {#raise-exception}
 
 This is traditional exception handling with exception values, stack unwinding,
 and destructors. C++ calls this throwing an exception. Rust and Go call it
@@ -499,7 +499,7 @@ There are, however, significant downsides to exception handling:
 	completely safe code is to use side effects with atomic/transactional
 	semantics.
 
-### Linear Types and Exceptions
+### Linear Types and Exceptions {#linear-types-exceptions}
 
 Linear types are incompatible with exception handling. It's easy to see why.
 
@@ -510,7 +510,7 @@ consumer of a linear resource is called, thus leaking the resource. In this
 section we go through different strategies for reconciling linear types and
 exceptions.
 
-#### Motivating Example
+#### Motivating Example {#linear-types-exceptions-example}
 
 If you're convinced that linear types and exceptions don't work together, skip
 this section. Otherwise, consider:
@@ -551,7 +551,7 @@ twice, if the exception is thrown from inside `close`.
 Can we implement exception handling in a linearly-typed language in a way that
 preserves linearity guarantees? In the next three sections, we look at the possible approaches.
 
-#### Solution A: Values, not Exceptions
+#### Solution A: Values, not Exceptions {#linear-types-exceptions-values}
 
 We could try having exception handling only as syntactic sugar over returning
 values. Instead of implementing a complex exception handling scheme, all
@@ -605,7 +605,7 @@ to be equiprobable, the normal path and the abnormal path have to be given equal
 consideration in the code. Exception handling systems let us conveniently
 differentiate between normal and abnormal cases.
 
-#### Solution B: Use Integrated Theorem Provers
+#### Solution B: Use Integrated Theorem Provers {#linear-types-exceptions-provers}
 
 Instead of implementing exception handling for contract violations, we can use
 an integrated theorem prover and SMT solver to prove that integer division by
@@ -617,7 +617,7 @@ prohibit many ordinary constructions, while the methods sophisticated enough to
 prove most code correct are extremely difficult to implement completely and
 correctly. Z3 is 300,000 lines of code.
 
-#### Solution C: Capturing the Linear Environment
+#### Solution C: Capturing the Linear Environment {#linear-types-exceptions-capture}
 
 To our knowledge, this is the only sound approach to doing exception handling in
 a linearly-typed language that doesn't involve fanciful constructs using
@@ -816,7 +816,7 @@ void f() throws Error(packet x, option<packet> y)
 In short: we can do it, but it really is just extra semantics and complexity for
 what is essentially using a `Result` type.
 
-### Affine Types and Exceptions
+### Affine Types and Exceptions {#linear-types-exceptions-affine}
 
 Affine types are a weakening of linear types, essentially linear types with
 implicit destructors. In a linear type system, values of a linear type must be
@@ -960,7 +960,7 @@ void h(string* ptr) {
 }
 ```
 
-### Prior Art
+### Prior Art {#linear-types-exceptions-prior}
 
 Herb Sutter, [_Zero-overhead deterministic exceptions: Throwing
 values_][sutter]:
@@ -1012,7 +1012,7 @@ In the specific case of overflow, Rust checks overflow on Debug builds, but uses
 two's complement modular arithmetic semantics on Release builds for
 performance. This is questionable.
 
-### Conclusion
+### Conclusion {#linear-types-exceptions-conclusion}
 
 We started with the following error categories:
 
@@ -1082,7 +1082,7 @@ to assure security. Special compiler flags might exist for unit tests that
 change the behaviour from crashing the program to crashing the thread, so we can
 unit test crashing functions more cheaply.
 
-### Bibliography
+### Bibliography {#linear-types-exceptions-biblio}
 
 1. Thrippleton, Richard, and Alan Mycroft. "Memory safety with exceptions and
    linear types."

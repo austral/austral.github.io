@@ -1,8 +1,8 @@
-# Type System
+# Type System {#types}
 
 This section describes Austral's type system.
 
-## Type Universes
+## Type Universes {#type-universes}
 
 Every concrete type belongs to a _universe_, which can be considered as the type
 of a type.
@@ -14,7 +14,7 @@ There are two universes:
 2. The universe of linear types, denoted `Linear`. These are explained in the
    next section.
 
-## Linear Types
+## Linear Types {#linear-types}
 
 A type $\tau$ is linear if:
 
@@ -31,7 +31,7 @@ $\upsilon$ of kinds `Linear` or `Type`) if:
 3. $\tau$ is a record, where at least one field contains $\upsilon$.
 3. $\tau$ is a union, where at least one case contains a field that contains $\upsilon$.
 
-## Type Parameters
+## Type Parameters {#type-parameters}
 
 A _type parameter_ has the form:
 
@@ -55,7 +55,7 @@ kinds is:
 
 - `Region`: a type parameter with kind `Region` accepts regions.
 
-## Type Parameter Constraints
+## Type Parameter Constraints {#type-parameter-constraints}
 
 Type parameters are "universally quantified", meaning we can't use any behaviour
 specific to the type. All we can do with an unknown type `T` is stuff it in a
@@ -83,7 +83,7 @@ generic [T: Free(Printable, TotalEquality)]
 function ...
 ```
 
-## Declaring Types
+## Declaring Types {#declaring-types}
 
 When declaring a type, we must state which universe it belongs to. This is so
 that the programmer is aware of type universes, and these are not relegated to
@@ -124,7 +124,7 @@ instantiated, using the algorithm described in "Automatic Universe
 Classification". So `Singleton[Int32]` would be in the `Free` universe, but
 `Singleton[U]` (where `U : Linear`) belongs to the `Linear` universe.
 
-## Built-In Types
+## Built-In Types {#built-in-types}
 
 The following types are built into austral and available to all code.
 

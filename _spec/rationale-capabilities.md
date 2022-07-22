@@ -1,4 +1,4 @@
-## Capability-Based Security
+## Capability-Based Security {#rationale-cap}
 
 Seen from the surface, the Earth's crust appears immense; seen from afar, it is
 the thinnest skin of silicon over a cannonball of iron many times its mass.
@@ -35,7 +35,7 @@ timing information can be used by malicious or compromised dependencies to carry
 out a [timing attack][timing] or exploit a [side-channel vulnerability][side]
 such as [Spectre][spectre].
 
-### Linear Capabilities
+### Linear Capabilities {#linear-caps}
 
 A capability is a value that represents an unforgeable proof of the authority to
 perform an action. They have the following properties:
@@ -56,7 +56,7 @@ restriction must be implemented manually by the programmer.
 
 Let's consider some examples.
 
-### Example: File Access
+### Example: File Access {#example-file-access}
 
 Consider a non-capability-secure filesystem API:
 
@@ -146,7 +146,7 @@ filesystem.
 
 But: how do we create a `Filesystem` value? The next section explains this.
 
-### The Root Capability
+### The Root Capability {#root-cap}
 
 Capabilities cannot be created out of thin air: they can only be created by
 proving proof that the client has access to a more powerful capability. This
@@ -205,7 +205,7 @@ function main(root: Root_Capability): Exit)code is
 end;
 ```
 
-### The FFI Boundary
+### The FFI Boundary {#capabilities-ffi-boundary}
 
 Ultimately, all guarantees are lost at the FFI boundary. Because foreign
 functions are permissionless, we can implement both the capability-free and the

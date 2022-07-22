@@ -1,4 +1,4 @@
-# Linearity Checking
+# Linearity Checking {#linearity}
 
 This section describes Austral's linearity checking rules.
 

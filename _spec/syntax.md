@@ -1,8 +1,8 @@
-# Syntax
+# Syntax {#syntax}
 
 This section describes Austral's syntax using EBNF.
 
-## Meta-Language
+## Meta-Language {#syntax-meta}
 
 Quick guide: definition is `=`, definitions are terminated with with
 `;`. Concatenation is `,`. Alternation is `|`. Optional is `[...]`. Repetition
@@ -11,7 +11,7 @@ Quick guide: definition is `=`, definitions are terminated with with
 The syntax has two start symbols: one for interface files, and one for module
 body files.
 
-## Modules
+## Modules {#syntax-modules}
 
 ```
 module interface = [docstring], {import}, "interface", module name, "is"
@@ -36,7 +36,7 @@ declaration = constant declaration
             | function declaration
 ```
 
-## Declarations
+## Declarations {#syntax-declarations}
 
 ```
 constant declaration = "constant", identifier, ":", Type, ":=", expression;
@@ -48,7 +48,7 @@ opaque type declaration = "type", identifier, ";";
 function declaration = ;
 ```
 
-## Identifiers
+## Identifiers {#syntax-identifiers}
 
 ```
 module name = module identifier, ".", module name
@@ -60,7 +60,7 @@ identifier = letter, {identifier character};
 identifier character = letter | digit;
 ```
 
-## Comments and Documentation
+## Comments and Documentation {#syntax-comments}
 
 ```
 comment = "-- ", {any character}, "\n";
@@ -68,7 +68,7 @@ comment = "-- ", {any character}, "\n";
 docstring = "```\n", { any character - "```" } ,"\n```";
 ```
 
-## Literals
+## Literals {#syntax-literals}
 
 ```
 digits = digit, { digit | "_" };
@@ -77,7 +77,7 @@ float constant = digits, ".", digits, ["e", ["+", "-"], integer constant];
 string constant = '"', { any character - '"' | '\"' }, '"';
 ```
 
-## Auxiliary Non-Terminals
+## Auxiliary Non-Terminals {#syntax-aux}
 
 ```
 Letter = uppercase | lowercase;

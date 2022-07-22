@@ -19,39 +19,39 @@
       <div class="toc-box">
         <nav id="TOC" role="doc-toc">
           <ul>
-          <li><a href="#introduction">Introduction</a></li>
-          <li><a href="#design-goals">Design Goals</a></li>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#goals">Design Goals</a></li>
           <li><a href="#rationale">Rationale</a>
           <ul>
-          <li><a href="#syntax">Syntax</a></li>
-          <li><a href="#linear-types">Linear Types</a></li>
-          <li><a href="#error-handling">Error Handling</a></li>
-          <li><a href="#capability-based-security">Capability-Based Security</a></li>
+          <li><a href="#rationale-syntax">Syntax</a></li>
+          <li><a href="#rationale-linear-types">Linear Types</a></li>
+          <li><a href="#rationale-errors">Error Handling</a></li>
+          <li><a href="#rationale-cap">Capability-Based Security</a></li>
           </ul></li>
-          <li><a href="#syntax-1">Syntax</a>
+          <li><a href="#syntax">Syntax</a>
           <ul>
-          <li><a href="#meta-language">Meta-Language</a></li>
-          <li><a href="#modules">Modules</a></li>
-          <li><a href="#declarations">Declarations</a></li>
-          <li><a href="#identifiers">Identifiers</a></li>
-          <li><a href="#comments-and-documentation">Comments and Documentation</a></li>
-          <li><a href="#literals">Literals</a></li>
-          <li><a href="#auxiliary-non-terminals">Auxiliary Non-Terminals</a></li>
+          <li><a href="#syntax-meta">Meta-Language</a></li>
+          <li><a href="#syntax-modules">Modules</a></li>
+          <li><a href="#syntax-declarations">Declarations</a></li>
+          <li><a href="#syntax-identifiers">Identifiers</a></li>
+          <li><a href="#syntax-comments">Comments and Documentation</a></li>
+          <li><a href="#syntax-literals">Literals</a></li>
+          <li><a href="#syntax-aux">Auxiliary Non-Terminals</a></li>
           </ul></li>
-          <li><a href="#module-system">Module System</a>
+          <li><a href="#modules">Module System</a>
           <ul>
           <li><a href="#module-interfaces">Module Interfaces</a></li>
           <li><a href="#module-bodies">Module Bodies</a></li>
-          <li><a href="#imports">Imports</a></li>
+          <li><a href="#module-imports">Imports</a></li>
           <li><a href="#import-nicknames">Import Nicknames</a></li>
           <li><a href="#instance-imports">Instance Imports</a></li>
           <li><a href="#unsafe-modules">Unsafe Modules</a></li>
-          <li><a href="#examples">Examples</a></li>
+          <li><a href="#module-examples">Examples</a></li>
           </ul></li>
-          <li><a href="#type-system">Type System</a>
+          <li><a href="#types">Type System</a>
           <ul>
           <li><a href="#type-universes">Type Universes</a></li>
-          <li><a href="#linear-types-2">Linear Types</a></li>
+          <li><a href="#linear-types">Linear Types</a></li>
           <li><a href="#type-parameters">Type Parameters</a></li>
           <li><a href="#type-parameter-constraints">Type Parameter Constraints</a></li>
           <li><a href="#declaring-types">Declaring Types</a></li>
@@ -59,10 +59,10 @@
           </ul></li>
           <li><a href="#type-classes">Type Classes</a>
           <ul>
-          <li><a href="#instance-uniqueness">Instance Uniqueness</a></li>
+          <li><a href="#type-class-uniqueness">Instance Uniqueness</a></li>
           <li><a href="#instance-resolution">Instance Resolution</a></li>
           </ul></li>
-          <li><a href="#declarations-1">Declarations</a>
+          <li><a href="#decl">Declarations</a>
           <ul>
           <li><a href="#opaque-constant">Opaque Constant</a></li>
           <li><a href="#constant-definition">Constant Definition</a></li>
@@ -74,71 +74,71 @@
           <li><a href="#instance-declaration">Instance Declaration</a></li>
           <li><a href="#instance-definition">Instance Definition</a></li>
           </ul></li>
-          <li><a href="#statements">Statements</a>
+          <li><a href="#stmt">Statements</a>
           <ul>
-          <li><a href="#skip-statement">Skip Statement</a></li>
-          <li><a href="#let-statement">Let Statement</a></li>
-          <li><a href="#let-destructure-statement">Let Destructure Statement</a></li>
-          <li><a href="#assignment-statement">Assignment Statement</a></li>
-          <li><a href="#if-statement">If Statement</a></li>
-          <li><a href="#case-statement">Case Statement</a></li>
-          <li><a href="#while-loop">While Loop</a></li>
-          <li><a href="#for-loop">For Loop</a></li>
-          <li><a href="#borrow-statement">Borrow Statement</a></li>
-          <li><a href="#discarding-statement">Discarding Statement</a></li>
-          <li><a href="#return-statement">Return Statement</a></li>
+          <li><a href="#stmt-skip">Skip Statement</a></li>
+          <li><a href="#stmt-let">Let Statement</a></li>
+          <li><a href="#stmt-let-destructure">Let Destructure Statement</a></li>
+          <li><a href="#stmt-assign">Assignment Statement</a></li>
+          <li><a href="#stmt-if">If Statement</a></li>
+          <li><a href="#stmt-case">Case Statement</a></li>
+          <li><a href="#stmt-while">While Loop</a></li>
+          <li><a href="#stmt-for">For Loop</a></li>
+          <li><a href="#stmt-borrow">Borrow Statement</a></li>
+          <li><a href="#stmt-discard">Discarding Statement</a></li>
+          <li><a href="#stmt-return">Return Statement</a></li>
           </ul></li>
-          <li><a href="#expressions">Expressions</a>
+          <li><a href="#expr">Expressions</a>
           <ul>
-          <li><a href="#nil-constant">Nil Constant</a></li>
-          <li><a href="#boolean-constant">Boolean Constant</a></li>
-          <li><a href="#integer-constant">Integer Constant</a></li>
-          <li><a href="#float-constant">Float Constant</a></li>
-          <li><a href="#string-constant">String Constant</a></li>
-          <li><a href="#variable-expression">Variable Expression</a></li>
-          <li><a href="#arithmetic-expression">Arithmetic Expression</a></li>
-          <li><a href="#function-call">Function Call</a></li>
-          <li><a href="#method-call">Method Call</a></li>
-          <li><a href="#record-constructor">Record Constructor</a></li>
-          <li><a href="#union-constructor">Union Constructor</a></li>
-          <li><a href="#cast-expression">Cast Expression</a></li>
-          <li><a href="#comparison-expression">Comparison Expression</a></li>
-          <li><a href="#conjunction-expression">Conjunction Expression</a></li>
-          <li><a href="#disjunction-expression">Disjunction Expression</a></li>
+          <li><a href="#expr-nil">Nil Constant</a></li>
+          <li><a href="#expr-bool">Boolean Constant</a></li>
+          <li><a href="#expr-int">Integer Constant</a></li>
+          <li><a href="#expr-float">Float Constant</a></li>
+          <li><a href="#expr-str">String Constant</a></li>
+          <li><a href="#expr-var">Variable Expression</a></li>
+          <li><a href="#expr-arith">Arithmetic Expression</a></li>
+          <li><a href="#expr-funcall">Function Call</a></li>
+          <li><a href="#expr-methcall">Method Call</a></li>
+          <li><a href="#expr-rec-cons">Record Constructor</a></li>
+          <li><a href="#expr-union-cons">Union Constructor</a></li>
+          <li><a href="#expr-case">Cast Expression</a></li>
+          <li><a href="#expr-comp">Comparison Expression</a></li>
+          <li><a href="#expr-conj">Conjunction Expression</a></li>
+          <li><a href="#expr-disj">Disjunction Expression</a></li>
           <li><a href="#negation-expression">Negation Expression</a></li>
-          <li><a href="#if-expression">If Expression</a></li>
-          <li><a href="#path-expression">Path Expression</a></li>
-          <li><a href="#dereference-expression">Dereference Expression</a></li>
-          <li><a href="#borrow-expressions">Borrow Expressions</a></li>
-          <li><a href="#sizeof-expression">sizeof Expression</a></li>
+          <li><a href="#expr-if">If Expression</a></li>
+          <li><a href="#expr-path">Path Expression</a></li>
+          <li><a href="#expr-deref">Dereference Expression</a></li>
+          <li><a href="#expr-borrow">Borrow Expressions</a></li>
+          <li><a href="#expr-sizeof">sizeof Expression</a></li>
           </ul></li>
-          <li><a href="#linearity-checking">Linearity Checking</a></li>
-          <li><a href="#built-in-modules">Built-In Modules</a>
+          <li><a href="#linearity">Linearity Checking</a></li>
+          <li><a href="#builtin">Built-In Modules</a>
           <ul>
-          <li><a href="#austral.memory-module">Austral.Memory Module</a></li>
-          <li><a href="#austral.pervasive-module">Austral.Pervasive Module</a></li>
+          <li><a href="#austral.memory">Austral.Memory Module</a></li>
+          <li><a href="#austral.pervasive">Austral.Pervasive Module</a></li>
           </ul></li>
-          <li><a href="#foreign-interfaces">Foreign Interfaces</a>
+          <li><a href="#ffi">Foreign Interfaces</a>
           <ul>
-          <li><a href="#the-c-interface">The C Interface</a></li>
+          <li><a href="#c-ffi">The C Interface</a></li>
           </ul></li>
           <li><a href="#style-guide">Style Guide</a>
           <ul>
-          <li><a href="#case-convention">Case Convention</a></li>
+          <li><a href="#style-case-convention">Case Convention</a></li>
           </ul></li>
-          <li><a href="#appendix-a-gnu-free-documentation-license">Appendix A: GNU Free Documentation License</a></li>
+          <li><a href="#license">Appendix A: GNU Free Documentation License</a></li>
           </ul>
         </nav>
       </div>
       <div class="content-box">
         <article class="content">
-<h1 id="introduction">Introduction</h1>
+<h1 id="intro">Introduction</h1>
 <blockquote>
 <p>Time, which attenuates all memories, sharpens that of the Zahir.</p>
 <p>— Jorge Luis Borges, <em>El Zahir</em></p>
 </blockquote>
 <p>Austral is a new programming language. It is designed to enable writing code that is secure, readable, maintainble, robust, and long-lasting.</p>
-<h1 id="design-goals">Design Goals</h1>
+<h1 id="goals">Design Goals</h1>
 <p>This section lists the design goals for Austral.</p>
 <ol type="1">
 <li><p><strong>Simplicity.</strong> This is the <em>sine qua non</em>: the language must be simple enough to fit in a single person’s head. We call this “fits-in-head simplicity”. Notably, many languages fail to clear this bar. C++ is the prototypical example, already <a href="https://www.stroustrup.com/P0977-remember-the-vasa.pdf">its author has warned</a> against excess complexity (in vain).</p>
@@ -191,7 +191,7 @@
 </ol>
 <h1 id="rationale">Rationale</h1>
 <p>This section explains and justifies the design of Austral.</p>
-<h2 id="syntax">Syntax</h2>
+<h2 id="rationale-syntax">Syntax</h2>
 <p>According to Wadler’s Law,</p>
 <blockquote>
 <p>In any language design, the total time spent discussing a feature in this list is proportional to two raised to the power of its position.</p>
@@ -212,7 +212,7 @@
 <li><p>Statements are terminated by semicolons.</p></li>
 </ol>
 <p>These decisions will be justified individually.</p>
-<h3 id="statement-orientation">Statement Orientation</h3>
+<h3 id="stmt-orientation">Statement Orientation</h3>
 <p>Syntax can be classified into three categories.</p>
 <ol type="1">
 <li><p><strong>Statement-Oriented:</strong> Like C, Pascal, and Ada. Statements and expressions form two distinct syntactic categories.</p></li>
@@ -238,7 +238,7 @@ in
 <p>is a valid expression. <code>x</code> has the Unit type because the block expression ends in a semicolon, so it is evaluated to the Unit type.</p>
 <p>A statement-oriented syntax is less simple, but it forces code to be structurally simple, especially when combined with the restriction that uninitialized variables are not allowed. Then, the programmer is forced to factor out complicated control flow into chains of functions.</p>
 <p>Historically, there is one language that moved from an expression-oriented to a statement-oriented syntax: ALGOL W was expression-orienten; Pascal, its successor, was statement-oriented.</p>
-<h3 id="keywords-over-symbols">Keywords over Symbols</h3>
+<h3 id="rationale-keywords">Keywords over Symbols</h3>
 <p>Austral syntax prefers English-language words in place of symbols. This is because words are easier to search for, both locally and on a search engine, than a string of symbols.</p>
 <p>Additionally, words are read into sounds, which aids in remembering them, while a string like <code>&gt;&gt;=</code> can only be understood as a visual symbol.</p>
 <p>Using English-language keywords, however, does not mean we use a natural language inspired syntax, like Inform7. The problem with programming languages that use an English-like natural language syntax is that the syntax is a facade: programming languages are formal languages, sentences in a programming language have a rigid and ideally unambiguous interpretation.</p>
@@ -321,7 +321,7 @@ end f;</code></pre>
 <p>or,</p>
 <pre><code>&lt;/table&gt; // user data table</code></pre>
 <p>However, declarations end with a simple <code>end</code>, not including the name of the declaration construct. This is because declarations are rarely nested, and including the name of the declaration would be unnecessarily verbose.</p>
-<h3 id="terseness-versus-verbosity">Terseness versus Verbosity</h3>
+<h3 id="terseness">Terseness versus Verbosity</h3>
 <p>The rule is: verbose enough to be readable without context, terse enough that people will not be discouraged from factoring code into many small functions and types.</p>
 <h3 id="semicolons">Semicolons</h3>
 <p>It is a common misconception that semicolons are needed for the compiler to know where a statement or expression ends. That is: that without semicolons, languages would be ambiguous. This obviously depends on the language grammar, but in the case of Austral it is not true, and the grammar would remain unambiguous even without semicolons.</p>
@@ -329,7 +329,7 @@ end f;</code></pre>
 <pre><code>let x : T := f(a, b, c;</code></pre>
 <p>The programmer has forgotten the closing parenthesis in a function call. However, the parser can report the error as soon as it encounters the semicolon.</p>
 <p>For many people, semicolons represent the distinction between an old and crusty language and a modern one, in which case the semicolon serves a function similar to the use of Comic Sans by the OpenBSD project.</p>
-<h3 id="syntax-of-type-declarations">Syntax of Type Declarations</h3>
+<h3 id="syntax-rationale-type-decl">Syntax of Type Declarations</h3>
 <p>The syntax of type declarations it designed to make explicit the analogy between functions and generic types: that is, generic types are essentially functions from types to a new type.</p>
 <p>Where function declarations look like this:</p>
 <p><span class="math display">\[
@@ -340,10 +340,10 @@ end f;</code></pre>
 \text{type} ~ \tau [ \text{p}_1: k, \dots, \text{p}_1: k ]: u ;
 \]</span></p>
 <p>Here, type parameters are analogous to type parameters, kinds are analogous to types, and the universe is analogous to the return type.</p>
-<h2 id="linear-types">Linear Types</h2>
+<h2 id="rationale-linear-types">Linear Types</h2>
 <p>Resource-aware type systems can remove large categories of errors that have caused endless security vulnerabilities in a simple way. This section describes the options.</p>
 <p>This section begins with the motivation for linear types, then explains what linear types are and how they provide safety.</p>
-<h3 id="resources-and-lifecycles">Resources and Lifecycles</h3>
+<h3 id="rationale-linear-resources">Resources and Lifecycles</h3>
 <p>Consider a file handling API:</p>
 <pre><code>type File
 
@@ -422,7 +422,7 @@ void free(Pointer&lt;T&gt; ptr)</code></pre>
 <li><p><strong>Staticity Requirement:</strong> We want it to be a fixed set of rules and not an ever changing pile of heuristics.</p></li>
 </ol>
 <p>All these goals are achievable: the solution is <em>linear types</em>.</p>
-<h3 id="linear-types-1">Linear Types</h3>
+<h3 id="rationale-linear-intro-linear-types">Linear Types</h3>
 <p>This section describes what linear types are, how they provide the safety properties we want, and how we can relax some of the more onerous restrictions so as to increase programmer ergonomics while retaining safety.</p>
 <p>A <em>type</em> is a set of values that share some structure. A <em>linear type</em> is a type whose values can only be used once. This restriction may sound onerous (and unrelated to the problems we want to solve), but it isn’t.</p>
 <p>A linear type system can be defined with just two rules:</p>
@@ -498,7 +498,7 @@ type LInt: Linear = Int</code></pre></li>
 </ol>
 <p>That’s it. That’s all there is to it. We have a fixed set of rules, and they’re so brief you can learn them in a few minutes. So we’re satisfying the simplicity and staticity requirements listed in the previous section.</p>
 <p>But do linear types satisfy the correctness requirement? In the next section, we’ll see how linear types make it possible to enforce that a value should be used in accordance to a lifecycle.</p>
-<h3 id="linear-types-and-safety">Linear Types and Safety</h3>
+<h3 id="rationale-linear-safety">Linear Types and Safety</h3>
 <p>Let’s consider a linear file system API. We’ll use a vaguely C++ like syntax, but linear types are denoted by an exclamation mark after their name.</p>
 <p>The API looks like this:</p>
 <pre><code>type File!
@@ -637,7 +637,7 @@ let l: L := deallocate(p2);</code></pre>
 <p>What happens to <code>a</code>? It is overwritten by <code>b</code> and lost. For values in the <code>Free</code> universe this is no problem: who cares if a byte is overwritten? But we can’t overwrite linear values – like database handles and such – because the they would be leaked.</p></li>
 </ol>
 <p>It is trivial to verify the safety properties. We can’t leak memory, we can’t deallocate twice, and we can’t read or write from and to a pointer after it has been deallocated.</p>
-<h3 id="what-linear-types-provide">What Linear Types Provide</h3>
+<h3 id="rationale-linear-what-linear-types-provide">What Linear Types Provide</h3>
 <p>Linear types give us the following benefits:</p>
 <ol type="1">
 <li><p>Manual memory management without memory leaks, use-after-<code>free</code>, double <code>free</code> errors, garbage collection, or any runtime overhead in either time or space other than having an allocator available.</p></li>
@@ -653,7 +653,7 @@ let l: L := deallocate(p2);</code></pre>
 <li><p>Capability-based security: suppose we want to lock down access to the terminal. We want there to be only one thread that can write to the terminal at a time. Furthermore, code that wants to write to the terminal needs permission to do so.</p>
 <p>We can do this with linear types, by having a linear <code>Terminal</code> type that represents the capability of using the terminal. Functions that read and write from and to the terminal need to take a <code>Terminal</code> instance and return it. We’ll discuss capability based security in greater detail in a future section.</p></li>
 </ol>
-<h3 id="the-trust-boundary">The Trust Boundary</h3>
+<h3 id="rationale-linear-trust-boundary">The Trust Boundary</h3>
 <p>So far we have only seen the interfaces of linear APIs. What about the implementations?</p>
 <p>Here’s the linear file access API, using the universe notation instead of the exclamation mark notation to indicate linear types:</p>
 <pre><code>type File: Linear
@@ -706,7 +706,7 @@ void closeFile(File file) {
 }</code></pre>
 <p>The <code>file</code> variable is consumed by being destructured. Then we call <code>fclose</code> on the underlying file handle.</p>
 <p>And there you have it: linear interface, non-linear interior. Inside the trust boundary, there is a light amount of unsafe FFI code (ideally, carefully vetted and tested). Outside, there is a linear interface, which can only be used correctly.</p>
-<h3 id="affine-types">Affine Types</h3>
+<h3 id="rationale-linear-affine-types">Affine Types</h3>
 <p>Affine types are a “weakening” of linear types. Where linear types are “use exactly once”, affine types are “use <em>at most</em> once”. Values can be silently discarded.</p>
 <p>This requires a way to associate destructors to affine types. Then, at the end of a block, the compiler will look around for unconsumed affine values, and insert calls to their destructors.</p>
 <p>There are two benefits to affine types:</p>
@@ -720,12 +720,12 @@ void closeFile(File file) {
 <li><p>There are implicit function calls (destructor calls are inserted by the compiler at the end of blocks).</p></li>
 <li><p>Exception handling involves a great deal of complexity, and is not immune to e.g. the “double throw” problem.</p></li>
 </ol>
-<h3 id="borrowing">Borrowing</h3>
+<h3 id="rationale-linear-borrowing">Borrowing</h3>
 <p>Returning tuples from every function and threading linear values through the code is very verbose.</p>
 <p>It is also often a violation of the principle of least privilege: linear values, in a sense, have “uniform permissions”. If you have a linear value, you can destroy it. Consider the linear pointer API described above: the <code>load</code> function could internally deallocate the pointer and allocate it again.</p>
 <p>We wouldn’t <em>expect</em> that to happen, but the whole point is to be defensive. We want the language to give us some guarantees: if a function should only be allowed to read from a linear value, but not deallocate it or mutate its interior, we want a way to represent that.</p>
 <p><em>Borrowing</em> is stolen lock, stock, and barrel from Rust. It advanced programming ergonomics by allowing us to treat a linear value as free within a delineated context. And it allows us to degrade permissions: we can pass read-only references to a linear value to functions that should only be able to read from that value, we can pass mutable references to a linear value to functions that should only be able to read from, and mutate, that value, without destroying it. Passing the linear value itself is the highest level of permissions: it allows the receiving function to do anything whatever with that value, by taking complete ownership of it.</p>
-<h3 id="the-cutting-room-floor">The Cutting Room Floor</h3>
+<h3 id="rationale-linear-cutting-room-floor">The Cutting Room Floor</h3>
 <p>Universes are not the only way to implement linear types. There are three ways:</p>
 <ol type="1">
 <li><p><strong>Linearity via arrows</strong>, as in the linear types extension of the GHC compiler for Haskell. This is the closest to Girard’s linear logic.</p></li>
@@ -748,15 +748,15 @@ void closeFile(File file) {
 <p>In short: we sacrifice terseness and programmer ergonomics for simplicity. Simple to learn, simple to understand, simple to reason about.</p>
 <p>To do this, we choose linearity via kinds, because it provides the simplest way to implement a linear type system. The set of unrestricted types is called the “free universe” and is denoted <code>Free</code> (because <code>Unrestricted</code> takes too much typing) and the set of restricted or linear types is called the “linear universe” and is denoted <code>Linear</code>.</p>
 <p>Another feature that was considered and discarded is <a href="https://github.com/pikatchu/LinearML">LinearML</a>’s concept of <em>observer types</em>, a lightweight alternative to read-only references that has the benefit of not requiring regions, but has the drawback that they can’t be stored in data structures.</p>
-<h3 id="conclusion">Conclusion</h3>
+<h3 id="rationale-linear-conclusion">Conclusion</h3>
 <p>In the next section, we explain the rationale for Austral’s approach to error handling, why linear types are incompatible with traditional exception handling, what affine types are, and how our preferred error handling scheme impacts the choice of linear types over affine types.</p>
 <p>Afterwards, we describe capability-based security, and how linear types allow us to implement capabilities.</p>
-<h2 id="error-handling">Error Handling</h2>
+<h2 id="rationale-errors">Error Handling</h2>
 <p>On July 3, 1940, as part of Operation Catapult, Royal Air Force pilots bombed the ships of the French Navy stationed off Mers-el-Kébir to prevent them falling into the hands of the Third Reich.</p>
 <p>This is Austral’s approach to error handling: scuttle the ship without delay.</p>
 <p>In software terms: programs should crash at the slightest contract violation, because recovery efforts can become attack vectors. You must assume, when the program enters an invalid state, that there is an adversary in the system. For <em>failures</em> — as opposed to <em>errors</em> — you should use <code>Option</code> and <code>Result</code> types.</p>
 <p>This section describes the rationale for Austral’s approach to error handling. We begin by describing what an error is, then we survey different error handling strategies. Then we explain how those strategies impinge upon a linear type system.</p>
-<h3 id="categorizing-errors">Categorizing Errors</h3>
+<h3 id="error-categories">Categorizing Errors</h3>
 <p>“Error” is a broad term. Following <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0709r4.pdf">Sutter</a> and the <a href="http://joeduffyblog.com/2016/02/07/the-error-model/">Midori error model</a>, we divide errors into the following categories:</p>
 <ol type="1">
 <li><p><strong>Physical Failure:</strong> Pulling the power cord, destroying part of the hardware.</p></li>
@@ -790,7 +790,7 @@ void closeFile(File file) {
 <p>Values that represent failure should not be confused with “error codes” in languages like C. “Error codes or exceptions” is a false dichotomy. Firstly, strongly-typed result values are better than brittle integer error codes. Secondly, an appropriate type system lets us have e.g. <code>Optional</code> or <code>Result</code> types to better represent the result of fallible computations. Thirdly, a linear type system can force the programmer to check result codes, so the argument that error codes are bad because programmers might forget to check them is obviated.</p></li>
 </ol>
 <p>That takes care of four of five categories. There’s one left: what do we do about contract violations? How we choose to handle this is a critical question in the design of any programming language.</p>
-<h3 id="error-handling-for-contract-violations">Error Handling for Contract Violations</h3>
+<h3 id="error-contracts">Error Handling for Contract Violations</h3>
 <p>There are essentially three approaches, from most to least brutal:</p>
 <ol type="1">
 <li><p><strong>Terminate Program:</strong> When a contract violation is detected, terminate the entire program. No cleanup code is executed. Henceforth “TPOE” for “terminate program on error”.</p></li>
@@ -816,7 +816,7 @@ void closeFile(File file) {
 <p>If we write a library and export its functionality through the FFI so it is accessible from other languages, terminating the process from that library will crash everything else in the address space. All the code that uses our library can potentially crash on certain obscure error conditions, a situation that would be extremely difficult to debug due to its crossing language boundaries.</p>
 <p>The option of forking the process, in this context, is prohibitively expensive.</p></li>
 </ol>
-<h4 id="terminate-thread-on-error">Terminate Thread on Error</h4>
+<h4 id="terminate-thread">Terminate Thread on Error</h4>
 <p>Terminating the thread where the contract violation happened, rather than the entire process, gives us a bit more recoverability and error reporting ability, at the cost of safety and resource leaks.</p>
 <p>The benefit is that calling a potentially-failing function safely “only” requires spawning a new thread. While expensive (and not feasible in a function that might be called thousands of times a second) this is significantly cheaper than forking the process.</p>
 <p>A unit testing library could plausibly do this to implement assertions that a program does or does not violate any conditions. Condition failures could then be reported within the unit testing framework as just another failing test, without crashing the entire process or requiring expensive forking of the process.</p>
@@ -824,7 +824,7 @@ void closeFile(File file) {
 <p>This is important: <em>the program should still be terminated</em>. Terminating the thread, rather than the entire program, is inteded to allow more user-friendly and complete reporting of failures, not as a general purpose error recovery mechanism.</p>
 <p>For example, in the context of a webserver, we would <em>not</em> want to restart failed server threads. Since cleanup code is not executed on thread termination, a long running process which restarts failing threads will eventually run out of memory or file handles or other resources.</p>
 <p>An attacker that knows the server does this could execute a denial of service attack by forcing a previously undetected contract violation.</p>
-<h4 id="raise-exception-on-error">Raise Exception on Error</h4>
+<h4 id="raise-exception">Raise Exception on Error</h4>
 <p>This is traditional exception handling with exception values, stack unwinding, and destructors. C++ calls this throwing an exception. Rust and Go call it panicking. The only technical difference between C++ exception handling and Go/Rust panics is that C++ exceptions can be arbitrarily sized objects (and consequently throwing requires a memory allocation) while in Go and Rust panics can at most carry an error message. Ada works similarly: an exception is a type tag plus an error message string.</p>
 <p>When a contract violation is detected, an exception is raised and stack unwinding begins. The stack unwinding process calls destructors. If an appropriate handler is reached, control transfers to that handler after stack unwinding. If no handler is reached, the thread is terminated, and the parent thread receives the exception object.</p>
 <p>Implementing exception handling mainly requires having a way to associate types with destructors.</p>
@@ -887,10 +887,10 @@ end;</code></pre>
 <li><p><strong>Code in General Cannot Rely on Destructors:</strong> A double throw will abort, a stack overflow can abort, and a SIGABRT can abort the program, and, finally, the power cord can be pulled. In all of these cases, destructors will not be called.</p>
 <p>In the presence of exogeneous program termination, the only way to write completely safe code is to use side effects with atomic/transactional semantics.</p></li>
 </ol>
-<h3 id="linear-types-and-exceptions">Linear Types and Exceptions</h3>
+<h3 id="linear-types-exceptions">Linear Types and Exceptions</h3>
 <p>Linear types are incompatible with exception handling. It’s easy to see why.</p>
 <p>A linear type system guarantees all resources allocated by a terminating program will be freed, and none will be used after being freed. This guarantee is lost with the introduction of exceptions: we can throw an exception before the consumer of a linear resource is called, thus leaking the resource. In this section we go through different strategies for reconciling linear types and exceptions.</p>
-<h4 id="motivating-example">Motivating Example</h4>
+<h4 id="linear-types-exceptions-example">Motivating Example</h4>
 <p>If you’re convinced that linear types and exceptions don’t work together, skip this section. Otherwise, consider:</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true"></a>try {</span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true"></a>  let f = open(<span class="st">&quot;/etc/config&quot;</span>);</span>
@@ -913,7 +913,7 @@ end;</code></pre>
 <span id="cb58-8"><a href="#cb58-8" aria-hidden="true"></a>}</span></code></pre></div>
 <p>But the type system wouldn’t accept this: <code>f'</code> is potentially being consumed twice, if the exception is thrown from inside <code>close</code>.</p>
 <p>Can we implement exception handling in a linearly-typed language in a way that preserves linearity guarantees? In the next three sections, we look at the possible approaches.</p>
-<h4 id="solution-a-values-not-exceptions">Solution A: Values, not Exceptions</h4>
+<h4 id="linear-types-exceptions-values">Solution A: Values, not Exceptions</h4>
 <p>We could try having exception handling only as syntactic sugar over returning values. Instead of implementing a complex exception handling scheme, all potentially-throwing operations return union types. This can be made less onerous through syntactic sugar. The function:</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true"></a>T nth(array&lt;T&gt; arr, <span class="dt">size_t</span> index) throws OutOfBounds {</span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true"></a>  <span class="cf">return</span> arr[index];</span>
@@ -938,10 +938,10 @@ div : (Int, Int) -&gt; Result&lt;Int, Overflow | DivisionByZero&gt;
 nth : (Array&lt;T&gt;, Nat) -&gt; Result&lt;T, OutOfBounds&gt;</code></pre>
 <p>As an example, consider a data structure implementation that uses arrays under the hood. The implementation has been thoroughly tested and you can easily convince yourself that it never accesses an array with an invalid index. But if the array indexing primitive returns an option type to indicate out-of-bounds access, the implementation has to handle this explicitly, and the option type will “leak” into client code, up an arbitrarily deep call stack.</p>
 <p>The problem is that an ML-style type system considers all cases in a union type to be equiprobable, the normal path and the abnormal path have to be given equal consideration in the code. Exception handling systems let us conveniently differentiate between normal and abnormal cases.</p>
-<h4 id="solution-b-use-integrated-theorem-provers">Solution B: Use Integrated Theorem Provers</h4>
+<h4 id="linear-types-exceptions-provers">Solution B: Use Integrated Theorem Provers</h4>
 <p>Instead of implementing exception handling for contract violations, we can use an integrated theorem prover and SMT solver to prove that integer division by zero, integer overflow, array index out of bounds errors, etc. never happen.</p>
 <p>A full treatment of <a href="https://en.wikipedia.org/wiki/Abstract_interpretation">abstract interpretation</a> is beyond the scope of this article. The usual tradeoff applies: the tractable static analysis methods prohibit many ordinary constructions, while the methods sophisticated enough to prove most code correct are extremely difficult to implement completely and correctly. Z3 is 300,000 lines of code.</p>
-<h4 id="solution-c-capturing-the-linear-environment">Solution C: Capturing the Linear Environment</h4>
+<h4 id="linear-types-exceptions-capture">Solution C: Capturing the Linear Environment</h4>
 <p>To our knowledge, this is the only sound approach to doing exception handling in a linearly-typed language that doesn’t involve fanciful constructs using delimited continuations.</p>
 <p><a href="https://link.springer.com/chapter/10.1007/978-3-540-24725-8_15">PacLang</a> is an imperative linearly-typed programming language specifically designed to write packet-processing algorithms for <a href="https://en.wikipedia.org/wiki/Network_processor">network procesors</a>. The paper is worth reading.</p>
 <p>Its authors describe the language as:</p>
@@ -1032,7 +1032,7 @@ nth : (Array&lt;T&gt;, Nat) -&gt; Result&lt;T, OutOfBounds&gt;</code></pre>
 <p>So the signature for this function is simply:</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true"></a><span class="dt">void</span> f() throws Error(packet x, option&lt;packet&gt; y)</span></code></pre></div>
 <p>In short: we can do it, but it really is just extra semantics and complexity for what is essentially using a <code>Result</code> type.</p>
-<h3 id="affine-types-and-exceptions">Affine Types and Exceptions</h3>
+<h3 id="linear-types-exceptions-affine">Affine Types and Exceptions</h3>
 <p>Affine types are a weakening of linear types, essentially linear types with implicit destructors. In a linear type system, values of a linear type must be used exactly once. In an affine type system, values of an affine type can be used at most once. If they are unused, the compiler automatically inserts a destructor call.</p>
 <p><a href="https://www.rust-lang.org/">Rust</a> does this, and there are good reasons to prefer affine types over linear types:</p>
 <ol type="1">
@@ -1116,7 +1116,7 @@ throw(...);</code></pre></li>
 <span id="cb71-28"><a href="#cb71-28" aria-hidden="true"></a>  _free_intptr(z);</span>
 <span id="cb71-29"><a href="#cb71-29" aria-hidden="true"></a>  _free_str(ptr);</span>
 <span id="cb71-30"><a href="#cb71-30" aria-hidden="true"></a>}</span></code></pre></div>
-<h3 id="prior-art">Prior Art</h3>
+<h3 id="linear-types-exceptions-prior">Prior Art</h3>
 <p>Herb Sutter, <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p0709r4.pdf"><em>Zero-overhead deterministic exceptions: Throwing values</em></a>:</p>
 <blockquote>
 <p>An alternate result is never an “error” (it is success, so report it using return). This includes “partial suc- cess” such as that a buffer was too small for the entire request but was filled to capacity so more can be read on the next call.</p>
@@ -1130,7 +1130,7 @@ throw(...);</code></pre></li>
 </blockquote>
 <p>In Swift, contract violations terminate the program. In Ada, contract violations will throw an exception. In Rust, contract violations can panic. Panic can unwind or abort, depending on a compiler switch. This is a pragmatic strategy: the application developer, rather than the library developer, chooses whether to unwind or abort.</p>
 <p>In the specific case of overflow, Rust checks overflow on Debug builds, but uses two’s complement modular arithmetic semantics on Release builds for performance. This is questionable.</p>
-<h3 id="conclusion-1">Conclusion</h3>
+<h3 id="linear-types-exceptions-conclusion">Conclusion</h3>
 <p>We started with the following error categories:</p>
 <ol type="1">
 <li><p>Physical Failure.</p></li>
@@ -1165,19 +1165,19 @@ throw(...);</code></pre></li>
 <li><p>If we crash only the process, we can do better error reporting and make it cheaper to unit-test potentially crashing code. But it creates the potential for misuse: a programmer could spawn threads, have them crash, and continue running the program, accumulating leaked memory and hanging file handles. In a long-running server environment, this could lead to a DOS attack.</p></li>
 </ol>
 <p>By a hair, we err on the side of correctness and prefer to terminate the program to assure security. Special compiler flags might exist for unit tests that change the behaviour from crashing the program to crashing the thread, so we can unit test crashing functions more cheaply.</p>
-<h3 id="bibliography">Bibliography</h3>
+<h3 id="linear-types-exceptions-biblio">Bibliography</h3>
 <ol type="1">
 <li><p>Thrippleton, Richard, and Alan Mycroft. “Memory safety with exceptions and linear types.”</p></li>
 <li><p>Tov, Jesse A., and Riccardo Pucella. <a href="https://dl.acm.org/citation.cfm?doid=2048066.2048115">“A theory of substructural types and control.”</a> ACM SIGPLAN Notices. Vol. 46. No. 10. ACM, 2011.</p></li>
 </ol>
-<h2 id="capability-based-security">Capability-Based Security</h2>
+<h2 id="rationale-cap">Capability-Based Security</h2>
 <p>Seen from the surface, the Earth’s crust appears immense; seen from afar, it is the thinnest skin of silicon over a cannonball of iron many times its mass.</p>
 <p>Analogously with software: we write masses of application code, but it sits on tens of millions of lines of open source code: the library ecosystem, both direct and transitive dependencies. This is far too much code for one team to audit. Avoiding dependencies in commercial software is unrealistic: you can’t write the universe from scratch, and if you do, you will lose out to competitors closer to the efficient frontier.</p>
 <p>The problem is that code is overwhelmingly permissionless. Or, rather: all code has uniform root permissions. The size of today’s software ecosystems has introduced a new category of security vulnerability: the <a href="https://en.wikipedia.org/wiki/Supply_chain_attack">supply chain attack</a>. An attacker adds malware to an innocent library used transitively by millions. It is downloaded and run, with the user’s permissions, on the computers of hundreds of thousands of programmers, and afterwards, on application servers.</p>
 <p>The solution is <a href="https://en.wikipedia.org/wiki/Capability-based_security">capability-based security</a>. Code shoud be permissioned. To access the console, or the filesystem, or the network, libraries should require the capability to do so. Then it is evident, from function signatures, what each library is able to do, and what level of auditing is required.</p>
 <p>Furthermore: capabilities can be arbitrarily granular. Beneath the capability to access the entire filesystem, we can have a capability to access a specific directory and its contents, or just a specific file, further divided into read, write, and read-write permissions. For network access, we can have capabilities to access a specific host, or capabilities to read, write, and read-write to a socket.</p>
 <p>Access to the computer clock, too, <a href="https://twitter.com/robotlolita/status/1474351603008389122">should be restricted</a>, since accurate timing information can be used by malicious or compromised dependencies to carry out a <a href="https://en.wikipedia.org/wiki/Timing_attack">timing attack</a> or exploit a <a href="https://en.wikipedia.org/wiki/Side-channel_attack">side-channel vulnerability</a> such as <a href="https://en.wikipedia.org/wiki/Spectre_(security_vulnerability)">Spectre</a>.</p>
-<h3 id="linear-capabilities">Linear Capabilities</h3>
+<h3 id="linear-caps">Linear Capabilities</h3>
 <p>A capability is a value that represents an unforgeable proof of the authority to perform an action. They have the following properties:</p>
 <ol type="1">
 <li><p>Capabilities can be destroyed.</p></li>
@@ -1244,7 +1244,7 @@ end module.</code></pre>
 <p>Each capability can only be created by providing proof of a higher-level, more powerful, broader capability.</p>
 <p>Then, if you have a logging library that takes a <code>Path</code> to the logs directory, you know it has access to that directory and to that directory only. If a library doesn’t take a <code>Filesystem</code> capability, it has no access to the filesystem.</p>
 <p>But: how do we create a <code>Filesystem</code> value? The next section explains this.</p>
-<h3 id="the-root-capability">The Root Capability</h3>
+<h3 id="root-cap">The Root Capability</h3>
 <p>Capabilities cannot be created out of thin air: they can only be created by proving proof that the client has access to a more powerful capability. This recursion has to end somewhere.</p>
 <p>The root of the capability hierarchy is a value of type <code>RootCapability</code>. This is the first argument to the entrypoint function of an Austral program. For our capability-secure filesystem API, we’d add a couple of functions:</p>
 <pre class="austral"><code>-- Acquire the filesystem capability, when the client can
@@ -1289,16 +1289,16 @@ function main(root: Root_Capability): Exit)code is
     -- the success status code.
     return ExitSuccess();
 end;</code></pre>
-<h3 id="the-ffi-boundary">The FFI Boundary</h3>
+<h3 id="capabilities-ffi-boundary">The FFI Boundary</h3>
 <p>Ultimately, all guarantees are lost at the FFI boundary. Because foreign functions are permissionless, we can implement both the capability-free and the capability-secure APIs in Austral. Does that mean these guarantees are worthless?</p>
 <p>No. To use the FFI, a module has to be marked as <a href="/spec/modules#unsafe-modules">unsafe</a> using the <code>Unsafe_Module</code> pragma.</p>
 <p>The idea is that a list of unsafe modules in all dependencies (including transitive ones) can be collected by the build system. Then, only code at the FFI boundary needs to be audited, to ensure that it correctly wraps the capability-insecure outside world under a correct, linear, capability-secure API.</p>
-<h1 id="syntax-1">Syntax</h1>
+<h1 id="syntax">Syntax</h1>
 <p>This section describes Austral’s syntax using EBNF.</p>
-<h2 id="meta-language">Meta-Language</h2>
+<h2 id="syntax-meta">Meta-Language</h2>
 <p>Quick guide: definition is <code>=</code>, definitions are terminated with with <code>;</code>. Concatenation is <code>,</code>. Alternation is <code>|</code>. Optional is <code>[...]</code>. Repetition (zero or more) is <code>{...}</code>.</p>
 <p>The syntax has two start symbols: one for interface files, and one for module body files.</p>
-<h2 id="modules">Modules</h2>
+<h2 id="syntax-modules">Modules</h2>
 <pre><code>module interface = [docstring], {import}, &quot;interface&quot;, module name, &quot;is&quot;
                    {interface declaration}, &quot;end.&quot;;
 
@@ -1319,7 +1319,7 @@ interface declaration = constant declaration
 declaration = constant declaration
             | type declaration
             | function declaration</code></pre>
-<h2 id="declarations">Declarations</h2>
+<h2 id="syntax-declarations">Declarations</h2>
 <pre><code>constant declaration = &quot;constant&quot;, identifier, &quot;:&quot;, Type, &quot;:=&quot;, expression;
 
 type declaration = ;
@@ -1327,7 +1327,7 @@ type declaration = ;
 opaque type declaration = &quot;type&quot;, identifier, &quot;;&quot;;
 
 function declaration = ;</code></pre>
-<h2 id="identifiers">Identifiers</h2>
+<h2 id="syntax-identifiers">Identifiers</h2>
 <pre><code>module name = module identifier, &quot;.&quot;, module name
             | module identifier;
 
@@ -1335,16 +1335,16 @@ module identifier = identifier;
 
 identifier = letter, {identifier character};
 identifier character = letter | digit;</code></pre>
-<h2 id="comments-and-documentation">Comments and Documentation</h2>
+<h2 id="syntax-comments">Comments and Documentation</h2>
 <pre><code>comment = &quot;-- &quot;, {any character}, &quot;\n&quot;;
 
 docstring = &quot;```\n&quot;, { any character - &quot;```&quot; } ,&quot;\n```&quot;;</code></pre>
-<h2 id="literals">Literals</h2>
+<h2 id="syntax-literals">Literals</h2>
 <pre><code>digits = digit, { digit | &quot;_&quot; };
 integer constant = [&quot;+&quot;, &quot;-&quot;], digits;
 float constant = digits, &quot;.&quot;, digits, [&quot;e&quot;, [&quot;+&quot;, &quot;-&quot;], integer constant];
 string constant = &#39;&quot;&#39;, { any character - &#39;&quot;&#39; | &#39;\&quot;&#39; }, &#39;&quot;&#39;;</code></pre>
-<h2 id="auxiliary-non-terminals">Auxiliary Non-Terminals</h2>
+<h2 id="syntax-aux">Auxiliary Non-Terminals</h2>
 <pre><code>Letter = uppercase | lowercase;
 uppercase = &quot;A&quot; | &quot;B&quot; | &quot;C&quot; | &quot;D&quot; | &quot;E&quot; | &quot;F&quot; | &quot;G&quot; | &quot;H&quot; | &quot;I&quot; | &quot;J&quot;
           | &quot;K&quot; | &quot;L&quot; | &quot;M&quot; | &quot;N&quot; | &quot;O&quot; | &quot;P&quot; | &quot;Q&quot; | &quot;R&quot; | &quot;S&quot; | &quot;T&quot;
@@ -1354,7 +1354,7 @@ lowercase = &quot;a&quot; | &quot;b&quot; | &quot;c&quot; | &quot;d&quot; | &quo
           | &quot;u&quot; | &quot;v&quot; | &quot;w&quot; | &quot;x&quot; | &quot;y&quot; | &quot;z&quot;
 digit = &quot;0&quot; | &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot; | &quot;7&quot; | &quot;8&quot; | &quot;9&quot;;
 symbol = &quot;$&quot; | &quot;?&quot; | &quot;&#39;&quot;</code></pre>
-<h1 id="module-system">Module System</h1>
+<h1 id="modules">Module System</h1>
 <p>Modules are the unit of code organization in Austral. Modules have two parts: the module interface file and the module body file.</p>
 <h2 id="module-interfaces">Module Interfaces</h2>
 <p>The interface contains declarations that are importable by other modules.</p>
@@ -1378,7 +1378,7 @@ symbol = &quot;$&quot; | &quot;?&quot; | &quot;&#39;&quot;</code></pre>
 <li><a href="/spec/declarations#typeclass-definition">Typeclass definitions</a></li>
 <li><a href="/spec/declarations#instance-definitions">Instance definitions</a></li>
 </ul>
-<h2 id="imports">Imports</h2>
+<h2 id="module-imports">Imports</h2>
 <p>Imports are the mechanism through which declarations from other modules are brought into an Austral module.</p>
 <p>Imports appear at the top of both the module interface and module body files, before the <code>module</code> or <code>module body</code> keywords.</p>
 <p>An import statement has the general form:</p>
@@ -1435,7 +1435,7 @@ symbol = &quot;$&quot; | &quot;?&quot; | &quot;&#39;&quot;</code></pre>
 
     -- Can import from `Austral.Memory`, etc.
 end module body.</code></pre>
-<h2 id="examples">Examples</h2>
+<h2 id="module-examples">Examples</h2>
 <p>Given the following interface file:</p>
 <pre class="austral"><code>module Example is
     -- The constant `c` is importable, but the interface
@@ -1496,7 +1496,7 @@ end.</code></pre>
         end;
     end;
 end.</code></pre>
-<h1 id="type-system">Type System</h1>
+<h1 id="types">Type System</h1>
 <p>This section describes Austral’s type system.</p>
 <h2 id="type-universes">Type Universes</h2>
 <p>Every concrete type belongs to a <em>universe</em>, which can be considered as the type of a type.</p>
@@ -1505,7 +1505,7 @@ end.</code></pre>
 <li>The universe of unrestricted types, denoted <code>Free</code>. Bindings with a type in the <code>Free</code> universe can be used any number of times.</li>
 <li>The universe of linear types, denoted <code>Linear</code>. These are explained in the next section.</li>
 </ol>
-<h2 id="linear-types-2">Linear Types</h2>
+<h2 id="linear-types">Linear Types</h2>
 <p>A type <span class="math inline">\(\tau\)</span> is linear if:</p>
 <ol type="1">
 <li><p>It contains another linear type. These types are called <em>structurally linear</em>.</p></li>
@@ -1648,7 +1648,7 @@ type Float64: Free;</code></pre>
 <p><code>Fn</code> is the type of function pointers. It is always free.</p>
 <h1 id="type-classes">Type Classes</h1>
 <p>Type classes, borrowed from Haskell 98, give us a bounded and sensible form of ad-hoc polymorphism.</p>
-<h2 id="instance-uniqueness">Instance Uniqueness</h2>
+<h2 id="type-class-uniqueness">Instance Uniqueness</h2>
 <p>In Austral, instances have to be globally unique: you can’t have multiple instances of the same typeclass for the same type, or for overlapping type parameters. So, the following are prohibited:</p>
 <pre class="austral"><code>instance TC(Nat32);
 instance TC(Nat32);</code></pre>
@@ -1685,7 +1685,7 @@ instance Printable(Pointer[U]);</code></pre>
 <p>Then we iterate over all the visible instances of the type class <code>Printable</code> (i.e.: those that are defined in or imported into the current module), and find the instance where the instance argument matches the dispatch type.</p>
 <p>In the case of a concrete instance that’s just comparing the types for equality, and we’ll find the instance of <code>Printable</code> for <code>Boolean</code>.</p>
 <p>Consider a call like <code>Print(ptr)</code> where <code>ptr</code> has type <code>Pointer[Nat8]</code>. Then, we repeat the process, except we’ll find a generic instance of <code>Printable</code>. Matching <code>Pointer[U]</code> to <code>Pointer[Nat8]</code> produces the bindings set <code>{ U =&gt; Nat8 }</code>.</p>
-<h1 id="declarations-1">Declarations</h1>
+<h1 id="decl">Declarations</h1>
 <p>This section describes the kind of declarations that can appear in Austral modules.</p>
 <h2 id="opaque-constant">Opaque Constant</h2>
 <p>If <code>c</code> is an identifier, <code>T</code> is a type specifier, then:</p>
@@ -1969,29 +1969,29 @@ instance Printable(Int32) is
         printInt(value);
     end
 end</code></pre>
-<h1 id="statements">Statements</h1>
+<h1 id="stmt">Statements</h1>
 <p>This section describes the semantics of Austral statements.</p>
-<h2 id="skip-statement">Skip Statement</h2>
+<h2 id="stmt-skip">Skip Statement</h2>
 <p>The <code>skip</code> statement is a no-op;</p>
 <p>Example:</p>
 <pre class="austral"><code>skip;</code></pre>
-<h2 id="let-statement">Let Statement</h2>
+<h2 id="stmt-let">Let Statement</h2>
 <p>If <code>N</code> is an identifier, <code>T</code> is a type specifier, and <code>E</code> is an expression of type <code>T</code>, then:</p>
 <pre class="austral"><code>let N: T := e;</code></pre>
 <p>is a <code>let</code> statement which defines a variable with name <code>N</code>, type <code>T</code>, and initial value <code>E</code>.</p>
 <p>A <code>let</code> statement is one of the few places where type information flows forward: the declared type is used to disambiguate the type of the expression when the expression is, for example, a call to a return-type polymorphic function.</p>
-<h2 id="let-destructure-statement">Let Destructure Statement</h2>
+<h2 id="stmt-let-destructure">Let Destructure Statement</h2>
 <p>A let destructure statement is used to break apart records, creating a binding for each field in the record.</p>
 <p>The utility of this is: when you have a linear record type, you can’t extract the value of a linear field from it, because it consumes the record as a whole, and leaves unconsumed any other linear fields in the record. So the record must be broken up into its constituent values, and then optionally reassembled.</p>
 <p>If <code>R</code> is an expression of type <code>T</code>, and <code>T</code> is a record type with field set <code>{R_1: T_1, ..., R_n: T_n}</code>, then:</p>
 <pre class="austral"><code>let {R_1: T_1, ..., R_n: T_n} := R;</code></pre>
 <p>is a let destructure statement.</p>
-<h2 id="assignment-statement">Assignment Statement</h2>
+<h2 id="stmt-assign">Assignment Statement</h2>
 <p>If <code>P</code> is an lvalue of type <code>T</code> and <code>E</code> is an expression of type <code>T</code>, then:</p>
 <pre class="austral"><code>P := E;</code></pre>
 <p>is an assignment statement that stores the value of <code>E</code> in the location denoted by <code>P</code>.</p>
 <p>[TODO: describe the semantics of lvalues]</p>
-<h2 id="if-statement">If Statement</h2>
+<h2 id="stmt-if">If Statement</h2>
 <p>If <code>{e_1, ..., e_n}</code> is a set of expression of boolean type, and <code>{b_1, ..., b_n, b_else}</code> is a set of statements, then:</p>
 <pre class="austral"><code>if e_1 then
     b_1;
@@ -2030,7 +2030,7 @@ end if;</code></pre>
 else if b() then
     doB();
 end if;</code></pre>
-<h2 id="case-statement">Case Statement</h2>
+<h2 id="stmt-case">Case Statement</h2>
 <p>If <code>E</code> is an expression of a union type with cases <code>{C_1, ..., C_n}</code> and each case has slots <code>C_i = {S_i1: T_i1, ..., S_in T_im}</code>, and <code>{B_1, ..., B_n}</code> is a set of statements, then:</p>
 <pre class="austral"><code>case E of
     when C_1(S_11: T_11, S_12: T_12, ..., S_1m: T_1m) do
@@ -2074,7 +2074,7 @@ case e of
         -- Do something with `right`.
 end case;</code></pre>
 <p>An exam</p>
-<h2 id="while-loop">While Loop</h2>
+<h2 id="stmt-while">While Loop</h2>
 <p>If <code>e</code> is an expression of type <code>Bool</code> and <code>b</code> is a statement, then:</p>
 <pre class="austral"><code>while e do
     b;
@@ -2085,7 +2085,7 @@ end while;</code></pre>
 while true do
     doForever();
 end while;</code></pre>
-<h2 id="for-loop">For Loop</h2>
+<h2 id="stmt-for">For Loop</h2>
 <p>If <code>i</code> is an identifier, <code>s</code> is an expression of type <code>Nat64</code>, <code>f</code> is an expression of type <code>Nat64</code>, and <code>b</code> is a statement, and <code>s &lt;= f</code>, then:</p>
 <pre class="austral"><code>for i from s to f do
     b;
@@ -2095,7 +2095,7 @@ end for;</code></pre>
 <pre class="austral"><code>for i from 0 to n do
     doSomething(i);
 end for;</code></pre>
-<h2 id="borrow-statement">Borrow Statement</h2>
+<h2 id="stmt-borrow">Borrow Statement</h2>
 <p>If <code>X</code> is a variable of a linear type <code>T</code>, <code>X'</code> is an identifier, <code>R</code> is an identifier, and <code>B</code> is a statement, then:</p>
 <pre class="austral"><code>borrow X as X&#39; in R do
   B;
@@ -2107,33 +2107,33 @@ end;</code></pre>
   B;
 end;</code></pre>
 <p>The only difference is that the type of <code>X'</code> is <code>&amp;![R, T]</code>.</p>
-<h2 id="discarding-statement">Discarding Statement</h2>
+<h2 id="stmt-discard">Discarding Statement</h2>
 <p>If <code>e</code> is an expression, then:</p>
 <pre class="austral"><code>e;</code></pre>
 <p>Evaluates that expression and discards its value.</p>
 <p>Note that discarding statements are illegal where <code>e</code> is of a linear type.</p>
-<h2 id="return-statement">Return Statement</h2>
+<h2 id="stmt-return">Return Statement</h2>
 <p>If <code>e</code> is an expression, then:</p>
 <pre class="austral"><code>return e;</code></pre>
 <p>Returns from the function with the value <code>e</code>.</p>
 <p>Note that <code>return</code> statements are illegal where there are unconsumed linear values.</p>
-<h1 id="expressions">Expressions</h1>
+<h1 id="expr">Expressions</h1>
 <p>This section describes the semantics of Austral expressions.</p>
-<h2 id="nil-constant">Nil Constant</h2>
+<h2 id="expr-nil">Nil Constant</h2>
 <p>The expression:</p>
 <pre class="austral"><code>nil</code></pre>
 <p>has type <code>Unit</code>.</p>
-<h2 id="boolean-constant">Boolean Constant</h2>
+<h2 id="expr-bool">Boolean Constant</h2>
 <p>The Boolean constants are the identifiers <code>true</code> and <code>false</code>.</p>
-<h2 id="integer-constant">Integer Constant</h2>
+<h2 id="expr-int">Integer Constant</h2>
 <p>Integer constants have type <code>Int32</code> by default, but to improve programmer ergonomics, the compiler will try to find a type for an integer constant that makes the surrounding context work. E.g., if <code>x</code> is of type <code>Nat8</code>, then an expression like <code>x + 3</code> will work, and the <code>3</code> will be interpreted to have type <code>Nat8</code>.</p>
-<h2 id="float-constant">Float Constant</h2>
+<h2 id="expr-float">Float Constant</h2>
 <p>Floating-point number constants have type <code>Float64</code>.</p>
-<h2 id="string-constant">String Constant</h2>
+<h2 id="expr-str">String Constant</h2>
 <p>String constants have type <code>FixedArray[Nat8]</code>.</p>
-<h2 id="variable-expression">Variable Expression</h2>
+<h2 id="expr-var">Variable Expression</h2>
 <p>An identifier that’s not the nil or boolean constants is a local variable or global constant, whose type is determined from the lexical environment.</p>
-<h2 id="arithmetic-expression">Arithmetic Expression</h2>
+<h2 id="expr-arith">Arithmetic Expression</h2>
 <p>If <code>a</code> and <code>b</code> are two expressions of the same integer or floating point type <code>N</code>, then:</p>
 <pre class="austral"><code>a+b
 a-b
@@ -2145,7 +2145,7 @@ a/b</code></pre>
 <li>If <code>b</code> is zero: the program aborts due to a division-by-zero error.</li>
 <li>If <code>N</code> is a signed integer type, and <code>a</code> is the minimum value that fits in that integer type, and <code>b</code> is -1: the program aborts due to a signed integer overflow error.</li>
 </ul>
-<h2 id="function-call">Function Call</h2>
+<h2 id="expr-funcall">Function Call</h2>
 <p>If <span class="math inline">\(\text{f}\)</span> is the name of a function with parameters <span class="math inline">\(\{\text{p}_1: \tau_1, \dots, \text{p}_n: \tau_n\}\)</span> and return type <span class="math inline">\(\tau_r\)</span>, and we have a set of expressions <span class="math inline">\(\{e_1: \tau_1, \dots, e_n: \tau_n\}\)</span>, then:</p>
 <p><span class="math display">\[
 \text{f}(e_1, \dots, e_n)
@@ -2155,7 +2155,7 @@ a/b</code></pre>
 \text{f}(\text{p}_1 \Rightarrow e_1, \dots, \text{p}_n \Rightarrow e_n)
 \]</span></p>
 <p>are identical function call expression whose type is <span class="math inline">\(\tau_r\)</span>.</p>
-<h2 id="method-call">Method Call</h2>
+<h2 id="expr-methcall">Method Call</h2>
 <p>Let <span class="math inline">\(\text{m}\)</span> be the name of a method in a typeclass <span class="math inline">\(\text{t}\)</span>. After <a href="/spec/type-classes#instance-resolution">instance resolution</a> the method has parameters <span class="math inline">\(\{\text{p}_1: \tau_1, \dots, \text{p}_n: \tau_n\}\)</span> and return type <span class="math inline">\(\tau_r\)</span>. Given a set of expressions <span class="math inline">\(\{e_1: \tau_1, \dots, e_n: \tau_n\}\)</span>, then:</p>
 <p><span class="math display">\[
 \text{m}(e_1, \dots, e_n)
@@ -2165,13 +2165,13 @@ a/b</code></pre>
 \text{m}(\text{p}_1 \Rightarrow e_1, \dots, \text{p}_n \Rightarrow e_n)
 \]</span></p>
 <p>are identical method call expression whose type is <span class="math inline">\(\tau_r\)</span>.</p>
-<h2 id="record-constructor">Record Constructor</h2>
+<h2 id="expr-rec-cons">Record Constructor</h2>
 <p>If <span class="math inline">\(\text{r}\)</span> is the name of a record type with slots <span class="math inline">\(\{\text{s}_1: \tau_1, \dots, \text{s}_n: \tau_n\}\)</span>, and we have a set of expressions <span class="math inline">\(\{e_1: \tau_1, \dots, e_n: \tau_n\}\)</span>, then:</p>
 <p><span class="math display">\[
 \text{r}(\text{s}_1 \Rightarrow e_1, \dots, \text{s}_n \Rightarrow e_n)
 \]</span></p>
 <p>is a record constructor expression which evaluates to an instance of <span class="math inline">\(\text{r}\)</span> containing the given values.</p>
-<h2 id="union-constructor">Union Constructor</h2>
+<h2 id="expr-union-cons">Union Constructor</h2>
 <p>Let <span class="math inline">\(\text{u}\)</span> be a union type, with a case named <span class="math inline">\(\text{c}\)</span> with slots <span class="math inline">\(\{\text{s}_1: \tau_1, \dots, \text{s}_n: \tau_n\}\)</span>, and we have a set of expressions <span class="math inline">\(\{e_1: \tau_1, \dots, e_n: \tau_n\}\)</span>, then:</p>
 <p><span class="math display">\[
 \text{c}(\text{s}_1 \Rightarrow e_1, \dots, \text{s}_n \Rightarrow e_n)
@@ -2185,7 +2185,7 @@ a/b</code></pre>
 <p><span class="math display">\[
 \text{c}(\text{s} \Rightarrow e)
 \]</span></p>
-<h2 id="cast-expression">Cast Expression</h2>
+<h2 id="expr-case">Cast Expression</h2>
 <p>The cast expression has four uses:</p>
 <ol type="1">
 <li><p>Clarifying the type of integer and floating point constants.</p></li>
@@ -2205,7 +2205,7 @@ e : \tau
 <li><p>If <span class="math inline">\(e: \&amp;![T, R]\)</span> and <span class="math inline">\(\tau\)</span> is <span class="math inline">\(\&amp;[T, R]\)</span>, then <span class="math inline">\(e: \tau\)</span> is valid and downgrades the write reference to a read reference.</p></li>
 <li><p>If <span class="math inline">\(e\)</span> is a call to a return type-polymorphic function or method, and <span class="math inline">\(\tau\)</span> can clarify the return type of <span class="math inline">\(e\)</span>, then <span class="math inline">\(e : \tau\)</span> is a valid expression.</p></li>
 </ol>
-<h2 id="comparison-expression">Comparison Expression</h2>
+<h2 id="expr-comp">Comparison Expression</h2>
 <p>If <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are both expressions of Boolean type, then:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -2218,17 +2218,17 @@ a &amp;\geq b
 \end{aligned}
 \]</span></p>
 <p>are comparison expressions with type <code>Bool</code>.</p>
-<h2 id="conjunction-expression">Conjunction Expression</h2>
+<h2 id="expr-conj">Conjunction Expression</h2>
 <p>If <code>a</code> and <code>b</code> are Boolean-typed expressions, then <code>a and b</code> is the short-circuiting and operator and evaluates to a Boolean value.</p>
-<h2 id="disjunction-expression">Disjunction Expression</h2>
+<h2 id="expr-disj">Disjunction Expression</h2>
 <p>If <code>a</code> and <code>b</code> are Boolean-typed expressions, then <code>a or b</code> is the short-circuiting or operator, and evaluates to a Boolean value.</p>
 <h2 id="negation-expression">Negation Expression</h2>
 <p>If <code>e</code> is a Boolean-typed expression, then <code>not e</code> evaluates to the negation of the value of <code>e</code>, a Boolean value.</p>
-<h2 id="if-expression">If Expression</h2>
+<h2 id="expr-if">If Expression</h2>
 <p>If <code>c</code> is a Boolean-typed expression, and <code>t</code> and <code>f</code> are expressions of the same type <code>T</code>, then:</p>
 <pre class="austral"><code>if c then t else f</code></pre>
 <p>is an <code>if</code> expression. <code>c</code> is evaluated first, if is <code>true</code>, <code>t</code> is evaluated and its value is returned. Otherwise, <code>f</code> is evaluated and its value is returend. The result has type <code>T</code>.</p>
-<h2 id="path-expression">Path Expression</h2>
+<h2 id="expr-path">Path Expression</h2>
 <p>The syntax of a path is: an expression called the <em>head</em> followed by a non-empty list of <em>path elements</em>, each of which is one of:</p>
 <ol type="1">
 <li>A <em>slot accessor</em> of the form <code>.s</code> where <code>s</code> is the name of a record slot.</li>
@@ -2249,11 +2249,11 @@ a &amp;\geq b
 <pre class="austral"><code>pos.x
 star-&gt;pos.ra
 stars[23]-&gt;distance</code></pre>
-<h2 id="dereference-expression">Dereference Expression</h2>
+<h2 id="expr-deref">Dereference Expression</h2>
 <p>If <code>e</code> is a reference to a value of type <code>T</code>, then:</p>
 <pre class="austral"><code>!e</code></pre>
 <p>is a dereferencing expression that evaluates to the referenced value of type <code>T</code>.</p>
-<h2 id="borrow-expressions">Borrow Expressions</h2>
+<h2 id="expr-borrow">Borrow Expressions</h2>
 <p>If <code>x</code> is a variable of a linear type <code>T</code>, then:</p>
 <pre><code>&amp;x</code></pre>
 <p>is an anonymous read-only borrow, and is an expression of type <code>&amp;[T, R]</code>, where <code>R</code> is a nameless region, and</p>
@@ -2262,11 +2262,11 @@ stars[23]-&gt;distance</code></pre>
 <p>Borrow expressions cannot escape the statement where they appear. That is, if we write:</p>
 <pre><code>let r: &amp;[T, R] := &amp;x;</code></pre>
 <p>This will be rejected by the compiler because the region name <code>R</code> is introduced nowhere.</p>
-<h2 id="sizeof-expression">sizeof Expression</h2>
+<h2 id="expr-sizeof">sizeof Expression</h2>
 <p>If <code>T</code> is a type specifier, then:</p>
 <pre class="austral"><code>sizeof(T)</code></pre>
 <p>is an expression of type <code>Index</code> that evaluates to the size of the type in bytes.</p>
-<h1 id="linearity-checking">Linearity Checking</h1>
+<h1 id="linearity">Linearity Checking</h1>
 <p>This section describes Austral’s linearity checking rules.</p>
 <p>The rules for linear types:</p>
 <ol type="1">
@@ -2286,91 +2286,91 @@ stars[23]-&gt;distance</code></pre>
 <li><p>You cannot return from a function while there are any unconsumed linear values.</p></li>
 <li><p>A borrowed variable cannot appear in the body of the statement that borrows it.</p></li>
 </ol>
-<h1 id="built-in-modules">Built-In Modules</h1>
+<h1 id="builtin">Built-In Modules</h1>
 <p>This section describes Austral’s built-in modules, those which are available everywhere.</p>
-<h2 id="austral.memory-module">Austral.Memory Module</h2>
+<h2 id="austral.memory">Austral.Memory Module</h2>
 <p>The <code>Austral.Memory</code> module contains types and functions for manipulating pointers and memory.</p>
-<h3 id="pointer-type"><code>Pointer</code> Type</h3>
+<h3 id="austral.memory-pointer"><code>Pointer</code> Type</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>type Pointer[T: Type]: Free;</code></pre>
 <p>Description:</p>
 <p>This is the type of nullable pointers.</p>
-<h3 id="nullpointer-function"><code>nullPointer</code> Function</h3>
+<h3 id="austral.memory-nullpointer"><code>nullPointer</code> Function</h3>
 <pre class="austral"><code>generic [T: Type]
 function nullPointer(): Pointer[T];</code></pre>
 <p>Description:</p>
 <p>Returns the null pointer for a given type.</p>
-<h3 id="allocate-function"><code>allocate</code> Function</h3>
+<h3 id="austral.memory-allocate"><code>allocate</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Type]
 function allocate(size: Natural_64): Pointer[T];</code></pre>
 <p>Description:</p>
 <p>Allocates the given amount of memory in bytes.</p>
-<h3 id="load-function"><code>load</code> Function</h3>
+<h3 id="austral.memory-load"><code>load</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Type]
 function load(pointer: Pointer[T]): T;</code></pre>
 <p>Description:</p>
 <p>Dereferences a pointer and returns its value.</p>
-<h3 id="store-function"><code>store</code> Function</h3>
+<h3 id="austral.memory-store"><code>store</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Type]
 function store(pointer: Pointer[T], value: T): Unit;</code></pre>
 <p>Description:</p>
 <p>Stores <code>value</code> at the location pointed to by <code>pointer</code>.</p>
-<h3 id="deallocate-function"><code>deallocate</code> Function</h3>
+<h3 id="austral.memory-deallocate"><code>deallocate</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Type]
 function deallocate(pointer: Pointer[T]): Unit;</code></pre>
 <p>Description:</p>
 <p>Deallocates the given pointer.</p>
-<h3 id="loadread-function"><code>loadRead</code> Function</h3>
+<h3 id="austral.memory-loadread"><code>loadRead</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Type, R: Region]
 function loadRead(ref: &amp;[Pointer[T], R]): Reference[T, R];</code></pre>
 <p>Description:</p>
 <p>Takes a reference to a pointer, and turns it into a reference to the pointed-to value.</p>
-<h3 id="loadwrite-function"><code>loadWrite</code> Function</h3>
+<h3 id="austral.memory-loadwrite"><code>loadWrite</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Type, R: Region]
 function loadWrite(ref: &amp;![Pointer[T], R]): WriteReference[T, R];</code></pre>
 <p>Description:</p>
 <p>Takes a write reference to a pointer, and turns it into a write reference to the pointed-to value.</p>
-<h3 id="resizearray-function"><code>resizeArray</code> Function</h3>
+<h3 id="austral.memory-resizearray"><code>resizeArray</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Type]
 function resizeArray(array: Pointer[T], size: Natural_64): Pointer[T];</code></pre>
 <p>Description:</p>
 <p>Resizes the given array, returning <code>Some</code> with the new location if allocation succeeded, and <code>None</code> otherwise.</p>
-<h3 id="memmove-function"><code>memmove</code> Function</h3>
+<h3 id="austral.memory-memmove"><code>memmove</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Type, U: Type]
 function memmove(source: Pointer[T], destination: Pointer[U], count: Natural_64): Unit;</code></pre>
 <p>Description:</p>
 <p>Moves the <code>count</code> bytes stored at <code>source</code> to <code>destination</code>.</p>
-<h3 id="memcpy-function"><code>memcpy</code> Function</h3>
+<h3 id="austral.memory-memcpy"><code>memcpy</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Type, U: Type]
 function memcpy(source: Pointer[T], destination: Pointer[U], count: Natural_64): Unit;</code></pre>
 <p>Description:</p>
 <p>Copies the <code>count</code> bytes stored at <code>source</code> to <code>destination</code>.</p>
-<h3 id="positiveoffset-function"><code>positiveOffset</code> Function</h3>
+<h3 id="austral.memory-positiveoffset"><code>positiveOffset</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Type]
 function positiveOffset(pointer: Pointer[T], offset: Natural_64): Pointer[T];</code></pre>
 <p>Description:</p>
 <p>Applies a positive offset to a pointer. Essentially this is:</p>
 <p>\[  + (\tau)  \]</p>
-<h3 id="negativeoffset-function"><code>negativeOffset</code> Function</h3>
+<h3 id="austral.memory-negativeoffset"><code>negativeOffset</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Type]
 function negativeOffset(pointer: Pointer[T], offset: Natural_64): Pointer[T];</code></pre>
 <p>Description:</p>
 <p>Applies a negative offset to a pointer. Essentially this is:</p>
 <p>\[  - (\tau)  \]</p>
-<h2 id="austral.pervasive-module">Austral.Pervasive Module</h2>
+<h2 id="austral.pervasive">Austral.Pervasive Module</h2>
 <p>The <code>Austral.Pervasive</code> module exports declarations which are imported by every module.</p>
-<h3 id="option-type"><code>Option</code> Type</h3>
+<h3 id="austral.pervasive-option"><code>Option</code> Type</h3>
 <p>Definition:</p>
 <pre class="austral"><code>union Option[T: Type]: Type is
     case None;
@@ -2379,7 +2379,7 @@ function negativeOffset(pointer: Pointer[T], offset: Natural_64): Pointer[T];</c
 end;</code></pre>
 <p>Description:</p>
 <p>The <code>Option</code> is used to represent values that might be empty, for example, the return type of a function that retrieves a value from a dictionary by key might return <code>None</code> if the key does not exist and <code>Some</code> otherwise.</p>
-<h3 id="either-type"><code>Either</code> Type</h3>
+<h3 id="austral.pervasive-either"><code>Either</code> Type</h3>
 <p>Definition:</p>
 <pre class="austral"><code>union Either[L: Type, R: Type]: Type is
     case Left is
@@ -2389,45 +2389,45 @@ end;</code></pre>
 end;</code></pre>
 <p>Description:</p>
 <p>The <code>Either</code> type is used to represent values which may have one of two distinct possibilities. For example, a function might return a value of type <code>Either[Error, Result]</code>.</p>
-<h3 id="deref-function"><code>deref</code> Function</h3>
+<h3 id="austral.pervasive-deref"><code>deref</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Free, R: Region]
 function deref(ref: &amp;[T, R]): T;</code></pre>
 <p>Description:</p>
 <p>The <code>deref</code> function loads the value pointed to by a read reference.</p>
-<h3 id="derefwrite-function"><code>derefWrite</code> Function</h3>
+<h3 id="austral.pervasive-derefwrite"><code>derefWrite</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Free, R: Region]
 function derefWrite(ref: &amp;![T, R]): T;</code></pre>
 <p>Description:</p>
 <p>The <code>derefWrite</code> function loads the value pointed to by a write reference.</p>
-<h3 id="fixedarraysize-function"><code>fixedArraySize</code> Function</h3>
+<h3 id="austral.pervasive-fixedarraysize"><code>fixedArraySize</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Type]
 function fixedArraySize(arr: FixedArray[T]): Nat64;</code></pre>
 <p>Description:</p>
 <p>The <code>fixedArraySize</code> function returns the size of a fixed array.</p>
-<h3 id="abort-function"><code>abort</code> Function</h3>
+<h3 id="austral.pervasive-abort"><code>abort</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>function abort(message: Fixed_Array[Nat8]): Unit;</code></pre>
 <p>Description:</p>
 <p>The <code>abort</code> function prints the given message to standard error and aborts the program.</p>
-<h3 id="rootcapability-type"><code>RootCapability</code> Type</h3>
+<h3 id="austral.pervasive-rootcapability"><code>RootCapability</code> Type</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>type RootCapability : Linear;</code></pre>
 <p>Description:</p>
 <p>The <code>RootCapability</code> type is meant to be the root of the capability hierarchy.</p>
 <p>The entrypoint function of an Austral program takes a single value of type <code>RootCapability</code>. This is the highest permission level, available only at the start of the program.</p>
-<h3 id="surrenderroot-function"><code>surrenderRoot</code> Function</h3>
+<h3 id="austral.pervasive-surrenderroot"><code>surrenderRoot</code> Function</h3>
 <pre class="austral"><code>function surrenderRoot(cap: RootCapability): Unit;</code></pre>
 <p>The <code>surrenderRoot</code> function consumes the root capability. Beyond this point the program can’t do anything effectful, except through unsafe FFI interfaces.</p>
-<h3 id="exitcode-type"><code>ExitCode</code> Type</h3>
+<h3 id="austral.pervasive-exitcode"><code>ExitCode</code> Type</h3>
 <pre class="austral"><code>union ExitCode: Free is
     case ExitSuccess;
     case ExitFailure;
 end;</code></pre>
 <p>The <code>ExitCode</code> type is the return type of entrypoint functions.</p>
-<h3 id="integer-bound-constants">Integer Bound Constants</h3>
+<h3 id="austral.pervasive-integer-bound-constants">Integer Bound Constants</h3>
 <p>Declarations:</p>
 <pre class="austral"><code>constant maximum_nat8: Nat8;
 constant maximum_nat16: Nat16;
@@ -2447,7 +2447,7 @@ constant minimum_int64: Int64;
 constant maximum_int64: Int64;</code></pre>
 <p>Description:</p>
 <p>These constants define the minimum and maximum values that can be stored in different integer types.</p>
-<h3 id="trappingarithmetic-typeclass"><code>TrappingArithmetic</code> Typeclass</h3>
+<h3 id="austral.pervasive-trappingarithmetic"><code>TrappingArithmetic</code> Typeclass</h3>
 <p>Definition:</p>
 <pre class="austral"><code>typeclass TrappingArithmetic(T: Type) is
     method trappingAdd(lhs: T, rhs: T): T;
@@ -2457,7 +2457,7 @@ constant maximum_int64: Int64;</code></pre>
 end;</code></pre>
 <p>Description:</p>
 <p>The <code>TrappingArithmetic</code> typeclass defines methods for performing arithmetic that aborts on overflow errors.</p>
-<h3 id="modulararithmetic-typeclass"><code>ModularArithmetic</code> Typeclass</h3>
+<h3 id="austral.pervasive-modularithmetic"><code>ModularArithmetic</code> Typeclass</h3>
 <p>Definition:</p>
 <pre class="austral"><code>typeclass ModularArithmetic(T: Type) is
     method modularAdd(lhs: T, rhs: T): T;
@@ -2467,7 +2467,7 @@ end;</code></pre>
 end;</code></pre>
 <p>Description:</p>
 <p>The <code>ModularArithmetic</code> typeclass defines methods for performing arithmetic that wraps around without abort on overflow errors.</p>
-<h3 id="typeclass-instances">Typeclass Instances</h3>
+<h3 id="austral.pervasive-typeclass-instances">Typeclass Instances</h3>
 <p>Declarations:</p>
 <pre class="austral"><code>instance TrappingArithmetic(Nat8);
 instance TrappingArithmetic(Int8);
@@ -2489,11 +2489,11 @@ instance ModularArithmetic(Nat64);
 instance ModularArithmetic(Int64);</code></pre>
 <p>Description:</p>
 <p>These are the built-in instances of the <code>TrappingArithmetic</code> and <code>ModularArithmetic</code> typeclasses.</p>
-<h1 id="foreign-interfaces">Foreign Interfaces</h1>
+<h1 id="ffi">Foreign Interfaces</h1>
 <p>This section describes Austral’s support for communicating with the outside world.</p>
-<h2 id="the-c-interface">The C Interface</h2>
+<h2 id="c-ffi">The C Interface</h2>
 <p>This section decribes Austral’s support for calling C code.</p>
-<h3 id="functions">Functions</h3>
+<h3 id="c-ffi-functions">Functions</h3>
 <p>To call a foreign function, we must declare it. The syntax is the same as that of ordinary functions, except in the body of the function definition.</p>
 <p>For example, consider the C function:</p>
 <pre><code>double sum(double* array, size_t length);</code></pre>
@@ -2506,7 +2506,7 @@ instance ModularArithmetic(Int64);</code></pre>
 end;</code></pre>
 <p>That is, instead of a statement, there is only a <code>Foreign_Import</code> pragma, which takes a named argument <code>External_Name</code>, which must be a string constant with the name of the function to import.</p>
 <p>Naturally, the function’s parameter list and return type must match those of the foreign function. See the following section for how C types are mapped to Austral types.</p>
-<h3 id="mapping-types">Mapping Types</h3>
+<h3 id="c-ffi-mapping-types">Mapping Types</h3>
 <p>In the following table, the C type on the first column corresponds to the Austral type on the second column.</p>
 <p>Only the types in the second column are permitted to appear in the parameter list and return type of a foreign function.</p>
 <table>
@@ -2569,7 +2569,7 @@ end;</code></pre>
 </table>
 <h1 id="style-guide">Style Guide</h1>
 <p>This section describes acceptable Austral code style.</p>
-<h2 id="case-convention">Case Convention</h2>
+<h2 id="style-case-convention">Case Convention</h2>
 <p>The case conventions are:</p>
 <ol type="1">
 <li>Modules: <code>Ada_Case.With.Dot.Separators</code>. Examples:
@@ -2604,7 +2604,7 @@ end;</code></pre>
 <li><code>leading_wavefront_velocity</code></li>
 </ol></li>
 </ol>
-<h1 id="appendix-a-gnu-free-documentation-license">Appendix A: GNU Free Documentation License</h1>
+<h1 id="license">Appendix A: GNU Free Documentation License</h1>
 <p>Version 1.3, 3 November 2008</p>
 <p>Copyright (C) 2000, 2001, 2002, 2007, 2008 Free Software Foundation, Inc. <a href="https://fsf.org/" class="uri">https://fsf.org/</a></p>
 <p>Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.</p>

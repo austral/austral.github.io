@@ -1,4 +1,4 @@
-## Syntax
+## Syntax {#rationale-syntax}
 
 According to Wadler's Law,
 
@@ -29,7 +29,7 @@ Austral's syntax is characterized by:
 
 These decisions will be justified individually.
 
-### Statement Orientation
+### Statement Orientation {#stmt-orientation}
 
 Syntax can be classified into three categories.
 
@@ -88,7 +88,7 @@ Historically, there is one language that moved from an expression-oriented to a
 statement-oriented syntax: ALGOL W was expression-orienten; Pascal, its
 successor, was statement-oriented.
 
-### Keywords over Symbols
+### Keywords over Symbols {#rationale-keywords}
 
 Austral syntax prefers English-language words in place of symbols. This is
 because words are easier to search for, both locally and on a search engine,
@@ -106,7 +106,7 @@ have a rigid and ideally unambiguous interpretation.
 Programming languages should not hide their formal nature under a "friendly"
 facade of natural language syntax.
 
-### Terminating Keywords
+### Terminating Keywords {#terminating-keywords}
 
 In Austral, delimiters include the name of the construct they terminate. This is
 after Ada (and the Wirth tradition) and is in contrast to the C tradition. The
@@ -232,13 +232,13 @@ However, declarations end with a simple `end`, not including the name of the
 declaration construct. This is because declarations are rarely nested, and
 including the name of the declaration would be unnecessarily verbose.
 
-### Terseness versus Verbosity
+### Terseness versus Verbosity {#terseness}
 
 The rule is: verbose enough to be readable without context, terse enough that
 people will not be discouraged from factoring code into many small functions and
 types.
 
-### Semicolons
+### Semicolons {#semicolons}
 
 It is a common misconception that semicolons are needed for the compiler to know
 where a statement or expression ends. That is: that without semicolons,
@@ -261,7 +261,7 @@ For many people, semicolons represent the distinction between an old and crusty
 language and a modern one, in which case the semicolon serves a function similar
 to the use of Comic Sans by the OpenBSD project.
 
-### Syntax of Type Declarations
+### Syntax of Type Declarations {#syntax-rationale-type-decl}
 
 The syntax of type declarations it designed to make explicit the analogy between
 functions and generic types: that is, generic types are essentially functions

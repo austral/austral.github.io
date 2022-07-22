@@ -1,8 +1,8 @@
-# Expressions
+# Expressions {#expr}
 
 This section describes the semantics of Austral expressions.
 
-## Nil Constant
+## Nil Constant {#expr-nil}
 
 The expression:
 
@@ -12,11 +12,11 @@ nil
 
 has type `Unit`.
 
-## Boolean Constant
+## Boolean Constant {#expr-bool}
 
 The Boolean constants are the identifiers `true` and `false`.
 
-## Integer Constant
+## Integer Constant {#expr-int}
 
 Integer constants have type `Int32` by default, but to improve programmer
 ergonomics, the compiler will try to find a type for an integer constant that
@@ -24,20 +24,20 @@ makes the surrounding context work. E.g., if `x` is of type `Nat8`, then an
 expression like `x + 3` will work, and the `3` will be interpreted to have type
 `Nat8`.
 
-## Float Constant
+## Float Constant {#expr-float}
 
 Floating-point number constants have type `Float64`.
 
-## String Constant
+## String Constant {#expr-str}
 
 String constants have type `FixedArray[Nat8]`.
 
-## Variable Expression
+## Variable Expression {#expr-var}
 
 An identifier that's not the nil or boolean constants is a local variable or
 global constant, whose type is determined from the lexical environment.
 
-## Arithmetic Expression
+## Arithmetic Expression {#expr-arith}
 
 If `a` and `b` are two expressions of the same integer or floating point type
 `N`, then:
@@ -58,7 +58,7 @@ In the case of division, two rules apply:
   that integer type, and `b` is -1: the program aborts due to a signed integer
   overflow error.
 
-## Function Call
+## Function Call {#expr-funcall}
 
 If $\text{f}$ is the name of a function with parameters $\{\text{p}_1:
 \tau_1, \dots, \text{p}_n: \tau_n\}$ and return type $\tau_r$, and we have a
@@ -76,7 +76,7 @@ $$
 
 are identical function call expression whose type is $\tau_r$.
 
-## Method Call
+## Method Call {#expr-methcall}
 
 Let $\text{m}$ be the name of a method in a typeclass $\text{t}$. After
 [instance resolution](/spec/type-classes#instance-resolution) the method has
@@ -96,7 +96,7 @@ $$
 
 are identical method call expression whose type is $\tau_r$.
 
-## Record Constructor
+## Record Constructor {#expr-rec-cons}
 
 If $\text{r}$ is the name of a record type with slots $\{\text{s}_1: \tau_1,
 \dots, \text{s}_n: \tau_n\}$, and we have a set of expressions $\{e_1: \tau_1,
@@ -109,7 +109,7 @@ $$
 is a record constructor expression which evaluates to an instance of
 $\text{r}$ containing the given values.
 
-## Union Constructor
+## Union Constructor {#expr-union-cons}
 
 Let $\text{u}$ be a union type, with a case named $\text{c}$ with slots
 $\{\text{s}_1: \tau_1, \dots, \text{s}_n: \tau_n\}$, and we have a set of
@@ -136,7 +136,7 @@ $$
 \text{c}(\text{s} \Rightarrow e)
 $$
 
-## Cast Expression
+## Cast Expression {#expr-case}
 
 The cast expression has four uses:
 
@@ -174,7 +174,7 @@ Semantics:
    $\tau$ can clarify the return type of $e$, then $e : \tau$ is a valid
    expression.
 
-## Comparison Expression
+## Comparison Expression {#expr-comp}
 
 If $a$ and $b$ are both expressions of Boolean type, then:
 
@@ -191,12 +191,12 @@ $$
 
 are comparison expressions with type `Bool`.
 
-## Conjunction Expression
+## Conjunction Expression {#expr-conj}
 
 If `a` and `b` are Boolean-typed expressions, then `a and b` is the
 short-circuiting and operator and evaluates to a Boolean value.
 
-## Disjunction Expression
+## Disjunction Expression {#expr-disj}
 
 If `a` and `b` are Boolean-typed expressions, then `a or b` is the
 short-circuiting or operator, and evaluates to a Boolean value.
@@ -206,7 +206,7 @@ short-circuiting or operator, and evaluates to a Boolean value.
 If `e` is a Boolean-typed expression, then `not e` evaluates to the negation of
 the value of `e`, a Boolean value.
 
-## If Expression
+## If Expression {#expr-if}
 
 If `c` is a Boolean-typed expression, and `t` and `f` are expressions of the
 same type `T`, then:
@@ -219,7 +219,7 @@ is an `if` expression. `c` is evaluated first, if is `true`, `t` is evaluated
 and its value is returned. Otherwise, `f` is evaluated and its value is
 returend. The result has type `T`.
 
-## Path Expression
+## Path Expression {#expr-path}
 
 The syntax of a path is: an expression called the *head* followed by a non-empty
 list of *path elements*, each of which is one of:
@@ -253,7 +253,7 @@ star->pos.ra
 stars[23]->distance
 ```
 
-## Dereference Expression
+## Dereference Expression {#expr-deref}
 
 If `e` is a reference to a value of type `T`, then:
 
@@ -263,7 +263,7 @@ If `e` is a reference to a value of type `T`, then:
 
 is a dereferencing expression that evaluates to the referenced value of type `T`.
 
-## Borrow Expressions
+## Borrow Expressions {#expr-borrow}
 
 If `x` is a variable of a linear type `T`, then:
 
@@ -291,7 +291,7 @@ let r: &[T, R] := &x;
 This will be rejected by the compiler because the region name `R` is introduced
 nowhere.
 
-## sizeof Expression
+## sizeof Expression {#expr-sizeof}
 
 If `T` is a type specifier, then:
 
