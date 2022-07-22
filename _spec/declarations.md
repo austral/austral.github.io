@@ -83,53 +83,27 @@ Unlike C, records in Austral are unordered, and the compiler is free to choose
 how the records will be ordered and laid out in memory. The compiler must select
 a single layout for every instance of a given record type.
 
-The layout can be customized using a layout specification. For example:
+Examples
+:   Given the record:
 
-```austral
-record R is
-  a : Nat16;
-  b : Int8;
-  c : Float32;
+    ```austral
+    record Vector3 is
+        x : Float32;
+        y : Float32;
+        z : Float32;
+    end
+    ```
 
-  pragma Layout(
-     Field(b, 8),
-     Padding(8),
-     Field(a, 16),
-     Field(c, 32)
-  );
-end
-```
+    We can construct an instance of `Vector3` in two ways:
 
-Will define a record `R` with the following layout:
-
-```
-| b (8 bits) | padding (8 bits) | a ( 16 bits) | c (32 bits) |
-```
-
-and a total size of 64 bits.
-
-Record construction:
-
-Given the record:
-
-```austral
-record Vector3 is
-    x : Float32;
-    y : Float32;
-    z : Float32;
-end
-```
-
-We can construct an instance of `Vector3` in two ways:
-
-```austral
-let V1 : Vector3 := Vector3(0.0, 0.0, 0.0);
-let V2 : Vector3 := Vector3(
-    x => 0.0,
-    y => 0.0,
-    z => 0.0
-);
-```
+    ```austral
+    let V1 : Vector3 := Vector3(0.0, 0.0, 0.0);
+    let V2 : Vector3 := Vector3(
+        x => 0.0,
+        y => 0.0,
+        z => 0.0
+    );
+    ```
 
 ## Union Definition {#union-definition}
 

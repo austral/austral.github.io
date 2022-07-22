@@ -1728,24 +1728,9 @@ end module body.</code></pre>
 end</code></pre>
 <p>Defines the record <code>R</code>.</p>
 <p>Unlike C, records in Austral are unordered, and the compiler is free to choose how the records will be ordered and laid out in memory. The compiler must select a single layout for every instance of a given record type.</p>
-<p>The layout can be customized using a layout specification. For example:</p>
-<pre class="austral"><code>record R is
-  a : Nat16;
-  b : Int8;
-  c : Float32;
-
-  pragma Layout(
-     Field(b, 8),
-     Padding(8),
-     Field(a, 16),
-     Field(c, 32)
-  );
-end</code></pre>
-<p>Will define a record <code>R</code> with the following layout:</p>
-<pre><code>| b (8 bits) | padding (8 bits) | a ( 16 bits) | c (32 bits) |</code></pre>
-<p>and a total size of 64 bits.</p>
-<p>Record construction:</p>
-<p>Given the record:</p>
+<dl>
+<dt>Examples</dt>
+<dd><p>Given the record:</p>
 <pre class="austral"><code>record Vector3 is
     x : Float32;
     y : Float32;
@@ -1758,6 +1743,8 @@ let V2 : Vector3 := Vector3(
     y =&gt; 0.0,
     z =&gt; 0.0
 );</code></pre>
+</dd>
+</dl>
 <h2 id="union-definition">Union Definition</h2>
 <p>Unions are like datatypes in ML and Haskell. They have constructors and, optionally, constructors have values associated to them.</p>
 <p>When a constructor has associated values, it’s either:</p>
