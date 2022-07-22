@@ -1,6 +1,4 @@
----
-title: Syntax
----
+# Syntax
 
 This section describes Austral's syntax using EBNF.
 

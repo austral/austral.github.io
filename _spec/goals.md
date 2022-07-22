@@ -1,6 +1,4 @@
----
-title: Design Goals
----
+# Design Goals
 
 This section lists the design goals for Austral.
 

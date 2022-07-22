@@ -1,6 +1,4 @@
----
-title: Type System
----
+# Type System
 
 This section describes Austral's type system.
 
@@ -18,7 +16,7 @@ There are two universes:
 
 ## Linear Types
 
-A type $$\tau$$ is linear if:
+A type $\tau$ is linear if:
 
 1. It contains another linear type. These types are called _structurally
    linear_.
@@ -26,23 +24,22 @@ A type $$\tau$$ is linear if:
 2. Is it declared to be a linear type (see "Declaring Types"). These types are
    called _declared linear_.
 
-To formalize the notion of "containment" in point 1.: a type $$\tau$$ is said to
-contain a linear type $$\upsilon$$ (or, equivalently, a type parameter
-$$\upsilon$$ of kinds `Linear` or `Type`) if:
+To formalize the notion of "containment" in point 1.: a type $\tau$ is said to
+contain a linear type $\upsilon$ (or, equivalently, a type parameter
+$\upsilon$ of kinds `Linear` or `Type`) if:
 
-1. $$\tau$$ is a type alias of $$\upsilon$$.
-3. $$\tau$$ is a record, where at least one field contains $$\upsilon$$.
-3. $$\tau$$ is a union, where at least one case contains a field that contains $$\upsilon$$.
+3. $\tau$ is a record, where at least one field contains $\upsilon$.
+3. $\tau$ is a union, where at least one case contains a field that contains $\upsilon$.
 
 ## Type Parameters
 
 A _type parameter_ has the form:
 
-\\[
+$$
 \text{p}: K
-\\]
+$$
 
-where $$\text{p}$$ is an identifier and $$K$$ is a _kind_. The set of permitted
+where $\text{p}$ is an identifier and $K$ is a _kind_. The set of permitted
 kinds is:
 
 - `Free`: a type parameter with kind `Free` accepts types that belong to the
@@ -69,12 +66,12 @@ function.
 Type parameter constraints solve this, by allowing us to constrain a type
 parameter to only accept types that implement a set of typeclasses.
 
-Let $$\text{p}$$ be a type parameter name, $$\text{U}$$ be one of $$\{Free,
-Linear, Type\}$$, and $$\{C_1, ..., C_n}$$ be a set of type class names. Then:
+Let $\text{p}$ be a type parameter name, $\text{U}$ be one of $\{Free,
+Linear, Type\}$, and $\{C_1, ..., C_n\}$ be a set of type class names. Then:
 
-\\[
+$$
 \text{p}: U(C_1, ..., C_n)
-\\]
+$$
 
 Denotes a type parameter constrained to only accept types that implement every
 listed class.

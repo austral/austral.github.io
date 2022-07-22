@@ -1,0 +1,107 @@
+---
+---
+
+@charset "utf-8";
+
+//
+// Preliminaries
+//
+
+html {
+    font-size: 24px;
+    line-height: normal;
+
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #0081A7;
+    text-decoration: none;
+}
+
+//
+// Typography
+//
+
+body {
+    font-family: 'Times New Roman', 'Nimbus Roman No9 L', serif;
+    color: black;
+}
+
+code {
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.9em;
+}
+
+//
+// General Layout
+//
+
+.container {
+    #title-block-header {
+        width: 100%;
+        text-align: center;
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        .author {
+            font-size: 1.5rem;
+        }
+    }
+
+    .toc-box {
+    }
+
+    .content-box {
+    }
+
+    #title-block-header, .toc-box, .content-box {
+        border-bottom: 1px solid #ccc;
+    }
+
+    #title-block-header, .toc-box, .content-box, footer {
+        padding: 50px;
+    }
+
+    .toc-box nav, .content-box .content, footer {
+        margin: 0 auto;
+        width: 60%;
+    }
+}
+
+//
+// Content Layout
+//
+
+.content {
+    h1 {
+        font-size: 2rem;
+        border-bottom: 1px solid black;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        border-bottom: 1px solid #999;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+        border-bottom: 1px solid #ddd;
+    }
+
+    blockquote {
+        font-style: italic;
+    }
+
+    pre {
+        border: 1px solid gray;
+        padding: 1em;
+    }
+}

@@ -1,6 +1,4 @@
----
-title: Linearity Checking
----
+# Linearity Checking
 
 This section describes Austral's linearity checking rules.
 

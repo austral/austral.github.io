@@ -1,6 +1,4 @@
----
-title: Statements
----
+# Statements
 
 This section describes the semantics of Austral statements.
 

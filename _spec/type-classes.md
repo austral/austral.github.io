@@ -1,6 +1,4 @@
----
-title: Type Classes
----
+# Type Classes
 
 Type classes, borrowed from Haskell 98, give us a bounded and sensible form of
 ad-hoc polymorphism.
@@ -42,7 +40,7 @@ memory. It only requires enforcing these three rules:
    But you are *not* allowed to define an instance for a foreign typeclass and a
    foreign type.
 
-# Instance Resolution {#instance-resolution}
+## Instance Resolution {#instance-resolution}
 
 This section describes how an instance is resolved from a method call.
 

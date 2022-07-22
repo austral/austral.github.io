@@ -1,6 +1,4 @@
----
-title: Module System
----
+# Module System
 
 Modules are the unit of code organization in Austral. Modules have two parts:
 the module interface file and the module body file.
@@ -12,8 +10,6 @@ The interface contains declarations that are importable by other modules.
 A module interface can have the following declarations:
 
 - [Opaque constant declarations](/spec/declarations#opaque-constant)
-- [Opaque type alias declarations](/spec/declarations#opaque-type-alias)
-- [Type alias definitions](/spec/declarations#type-alias-definition)
 - [Record definitions](/spec/declarations#record-definition)
 - [Union definitions](/spec/declarations#union-definition)
 - [Function declarations](/spec/declarations#function-declaration)
@@ -29,7 +25,6 @@ declarations in the module interface.
 A module body can have the following kinds of declarations:
 
 - [Constant definitions](/spec/declarations#constant-definition)
-- [Type alias definitions](/spec/declarations#type-alias-definition)
 - [Record definitions](/spec/declarations#record-definition)
 - [Union definitions](/spec/declarations#union-definition)
 - [Function definitions](/spec/declarations#function-definition)
@@ -46,57 +41,59 @@ before the `module` or `module body` keywords.
 
 An import statement has the general form:
 
-\\[
-\text{import} ~ m ~ \(
+$$
+\text{import} ~ m ~ (
 \text{p}_1 ~ \text{as} ~ \text{l}_1,
 \dots,
 \text{n}_n ~ \text{as} ~ \text{l}_n
-\);
-\\]
+);
+$$
 
 Where:
 
-1. $$m$$ is the name of the module to import the declarations from.
-2. $$p$$ is one of:
-   1. The name of a declaration in $$m$$.
-   2. The name of a union case in a public union in $$m$$.
-   3. The name of a method in a public typeclass in $$m$$.
-3. $$l$$ is the _local nickname_ of $$p$$: that is, appearances of $$l$$ in the
-   file where this import statement appears will be interpreted as though they
-   were references to $$p$$.
+1. $m$ is the name of the module to import the declarations from.
+2. $p$ is one of:
+   1. The name of a declaration in $m$.
+   2. The name of a union case in a public union in $m$.
+   3. The name of a method in a public typeclass in $m$.
+3. $l$ is the _local nickname_ of $p$: that is, appearances of $l$ in the file
+   where this import statement appears will be interpreted as though they were
+   references to $p$.
 
 Note that import nicknames are not mandatory, and without them, the statement
 looks like:
 
-\\[
-\text{import} ~ m ~ \(
+$$
+\text{import} ~ m ~ (
 \text{p}_1,
 \dots,
 \text{p}_n
-\);
-\\]
+);
+$$
 
-If an identifier $$p$$ is imported without a nickname, references to $$p$$ in
-the source text will be interpreted as references to that foreign declaration,
-union case, or method.
+If an identifier $p$ is imported without a nickname, references to $p$ in the
+source text will be interpreted as references to that foreign declaration, union
+case, or method.
 
 ## Import Nicknames
 
 Import nicknames serve a dual purpose:
 
-1. If two modules $$A$$ and $$B$$ define a declaration with the same name $$p$$,
-   we can import both of them by assigning one or both of them a nickname, like:
+1. If two modules $A$ and $B$ define a declaration with the same name $p$, we
+   can import both of them by assigning one or both of them a nickname, like:
 
-   \\[
-   \text{import} ~ A ~ \(\text{p} ~ \text{as} ~ \text{a}\); \\newline
-   \text{import} ~ B ~ \(\text{p} ~ \text{as} ~ \text{b}\);
-   \\]
+   $$
+   \begin{aligned}
+   ~\text{import} ~ A ~ (\text{p} ~ \text{as} ~ \text{a});\\
+   ~\text{import} ~ B ~ (\text{p} ~ \text{as} ~ \text{b});
+   \end{aligned}
+   $$
 
 2. They allow us to use shorter names for longer identifiers where necessary.
 
 ## Instance Imports
 
-When importing from a module $$M$$, all public typeclass instances in $$M$$ are
+When importing from a module $M$, all public typeclass instances in $M$ are
 imported automatically.
 
 ## Unsafe Modules {#unsafe-modules}

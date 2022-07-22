@@ -1,6 +1,4 @@
----
-title: Linear Types
----
+## Linear Types
 
 Resource-aware type systems can remove large categories of errors that have
 caused endless security vulnerabilities in a simple way. This section describes
@@ -9,7 +7,7 @@ the options.
 This section begins with the motivation for linear types, then explains what
 linear types are and how they provide safety.
 
-## Resources and Lifecycles
+### Resources and Lifecycles
 
 Consider a file handling API:
 
@@ -163,7 +161,7 @@ So, to summarize our requirements:
 
 All these goals are achievable: the solution is _linear types_.
 
-## Linear Types
+### Linear Types
 
 This section describes what linear types are, how they provide the safety
 properties we want, and how we can relax some of the more onerous restrictions
@@ -322,7 +320,7 @@ But do linear types satisfy the correctness requirement? In the next section,
 we'll see how linear types make it possible to enforce that a value should be
 used in accordance to a lifecycle.
 
-## Linear Types and Safety
+### Linear Types and Safety
 
 Let's consider a linear file system API. We'll use a vaguely C++ like syntax,
 but linear types are denoted by an exclamation mark after their name.
@@ -618,7 +616,7 @@ It is trivial to verify the safety properties. We can't leak memory, we can't
 deallocate twice, and we can't read or write from and to a pointer after it has
 been deallocated.
 
-## What Linear Types Provide
+### What Linear Types Provide
 
 Linear types give us the following benefits:
 
@@ -659,7 +657,7 @@ Linear types give us the following benefits:
    it. We'll discuss capability based security in greater detail in a future
    section.
 
-## The Trust Boundary
+### The Trust Boundary
 
 So far we have only seen the interfaces of linear APIs. What about the
 implementations?
@@ -772,7 +770,7 @@ boundary, there is a light amount of unsafe FFI code (ideally, carefully vetted
 and tested). Outside, there is a linear interface, which can only be used
 correctly.
 
-## Affine Types
+### Affine Types
 
 Affine types are a "weakening" of linear types. Where linear types are "use
 exactly once", affine types are "use _at most_ once". Values can be silently
@@ -800,7 +798,7 @@ But there are downsides:
 3. Exception handling involves a great deal of complexity, and is not immune to
    e.g. the "double throw" problem.
 
-## Borrowing
+### Borrowing
 
 Returning tuples from every function and threading linear values through the
 code is very verbose.
@@ -825,7 +823,7 @@ it. Passing the linear value itself is the highest level of permissions: it
 allows the receiving function to do anything whatever with that value, by taking
 complete ownership of it.
 
-## The Cutting Room Floor
+### The Cutting Room Floor
 
 Universes are not the only way to implement linear types. There are three ways:
 
@@ -910,7 +908,7 @@ a lightweight alternative to read-only references that has the benefit of not
 requiring regions, but has the drawback that they can't be stored in data
 structures.
 
-## Conclusion
+### Conclusion
 
 In the next section, we explain the rationale for Austral's approach to error
 handling, why linear types are incompatible with traditional exception handling,
