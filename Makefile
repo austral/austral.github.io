@@ -21,7 +21,7 @@ assets/spec/file-api-without-leaks-and-double-close.png: assets/spec/file-api-wi
 # Spec
 #
 
-PANDOC_FLAGS := --table-of-contents --toc-depth=2 --resource-path=assets/spec --resource-path=. --standalone
+PANDOC_FLAGS := --table-of-contents --toc-depth=2 --resource-path=. --standalone
 
 SPEC_SRC := _spec/intro.md \
             _spec/goals.md \
@@ -88,7 +88,6 @@ TARGETS := assets/spec/file-api.png \
 		   assets/spec/file-api-errors.png \
 		   assets/spec/file-api-without-leaks.png \
 		   assets/spec/file-api-without-leaks-and-double-close.png \
-		   $(SPEC_PDF) \
 		   $(SPEC_HTML) \
        $(EXAMPLE_OUT)
 

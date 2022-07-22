@@ -140,7 +140,7 @@ Each capability can only be created by providing proof of a higher-level, more
 powerful, broader capability.
 
 Then, if you have a logging library that takes a `Path` to the logs directory,
-you know it has access to that directory and to that directory only[^fn1]. If a
+you know it has access to that directory and to that directory only. If a
 library doesn't take a `Filesystem` capability, it has no access to the
 filesystem.
 
@@ -220,11 +220,6 @@ transitive ones) can be collected by the build system. Then, only code at the
 FFI boundary needs to be audited, to ensure that it correctly wraps the
 capability-insecure outside world under a correct, linear, capability-secure
 API.
-
-### Footnotes
-
-[^fn1]:
-    Special paths like `..` should be banned, naturally.
 
 [supply]: https://en.wikipedia.org/wiki/Supply_chain_attack
 [cap]: https://en.wikipedia.org/wiki/Capability-based_security
