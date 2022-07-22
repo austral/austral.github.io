@@ -21,7 +21,7 @@ assets/spec/file-api-without-leaks-and-double-close.png: assets/spec/file-api-wi
 # Spec
 #
 
-PANDOC_FLAGS := --table-of-contents --toc-depth=2 --resource-path=assets/spec --standalone
+PANDOC_FLAGS := --table-of-contents --toc-depth=2 --resource-path=assets/spec --resource-path=. --standalone
 
 SPEC_SRC := _spec/intro.md \
             _spec/goals.md \
@@ -57,9 +57,10 @@ $(SPEC_PDF): $(SPEC_SRC)
 		   $(SPEC_SRC) \
 		   -o $(SPEC_PDF)
 
-$(SPEC_HTML): $(SPEC_SRC)
+$(SPEC_HTML): $(SPEC_SRC) _spec/template.html
 	pandoc -t html5 \
 		   -f markdown \
+		   --template=_spec/template.html \
 		   $(PANDOC_FLAGS) \
 		   --mathjax \
 		   $(SPEC_SRC) \

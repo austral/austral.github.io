@@ -1,0 +1,171 @@
+---
+---
+
+@charset "utf-8";
+
+
+//
+// Variables
+//
+
+$base-font-size: 16px;
+$base-line-height: 1.25rem;
+
+$vsmall: calc(#{$base-line-height} * 0.1);
+$small: calc(#{$base-line-height} * 0.5);
+$medium: calc(#{$base-line-height} * 1);
+$large: calc(#{$base-line-height} * 2);
+$vlarge: calc(#{$base-line-height} * 3);
+$vvlarge: calc(#{$base-line-height} * 4);
+
+$link-color: #0081A7;
+
+//
+// Reset
+//
+
+*, :after, :before {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: clip;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+//
+// Typography
+//
+
+html {
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+}
+
+body {
+    font-family: 'Times New Roman', 'Nimbus Roman No9 L', serif;
+    color: black;
+}
+
+code {
+    font-family: 'Inconsolata', monospace;
+    font-size: 0.9em;
+}
+
+//
+// General Style
+//
+
+a {
+    color: $link-color;
+    text-decoration: none;
+}
+
+//
+// General Layout
+//
+
+.container {
+    display: flex;
+    flex-direction: row;
+
+    .toc-box {
+        border-right: 1px solid #ccc;
+        background: rgba(0,0,0,0.02);
+        box-shadow: 1px 0px 10px 1px #d1d1d1;
+
+        padding: $medium $large;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+
+        height: 100vh;
+        overflow-y: scroll;
+
+        ul {
+            list-style-type: decimal;
+        }
+
+        nav > ul {
+            padding-left: $medium;
+        }
+
+        li > ul {
+            padding-left: $large;
+        }
+    }
+
+    .content-box {
+        flex: 1;
+
+        height: 100vh;
+        overflow-y: scroll;
+
+        #title-block-header {
+            width: 100%;
+            text-align: center;
+            padding: $vvlarge;
+            border-bottom: 1px solid #ccc;
+
+            .title {
+                font-size: $vvlarge;
+                margin-bottom: $vvlarge;
+            }
+
+            .author {
+                font-size: $large;
+            }
+        }
+
+        .content {
+            padding: $large;
+        }
+    }
+}
+
+//
+// Content Layout
+//
+
+.content {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+
+    margin: 0 auto;
+    width: 80%;
+
+    h1, h2, h3, p, ul, li, dl, pre {
+        margin-bottom: $medium;
+    }
+
+    h1 {
+        font-size: $vlarge;
+        line-height: $vlarge;
+        border-bottom: 1px solid black;
+    }
+
+    h2 {
+        font-size: $large;
+        line-height: $large;
+    }
+
+    h3 {
+        font-size: $medium;
+        line-height: $medium;
+    }
+
+    ul, ol {
+        padding-left: $large;
+    }
+}

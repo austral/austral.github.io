@@ -1,4 +1,4 @@
-# Appendix A: GNU Free Documentation License
+# Appendix A: License
 
 Version 1.3, 3 November 2008
 
