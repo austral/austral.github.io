@@ -2347,14 +2347,18 @@ function memcpy(source: Pointer[T], destination: Pointer[U], count: Natural_64):
 function positiveOffset(pointer: Pointer[T], offset: Natural_64): Pointer[T];</code></pre>
 <p>Description:</p>
 <p>Applies a positive offset to a pointer. Essentially this is:</p>
-<p>\[  + (\tau)  \]</p>
+<p><span class="math display">\[
+\text{pointer} + \text{sizeof}(\tau) \times \text{offset}
+\]</span></p>
 <h3 id="austral.memory-negativeoffset"><code>negativeOffset</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Type]
 function negativeOffset(pointer: Pointer[T], offset: Natural_64): Pointer[T];</code></pre>
 <p>Description:</p>
 <p>Applies a negative offset to a pointer. Essentially this is:</p>
-<p>\[  - (\tau)  \]</p>
+<p><span class="math display">\[
+\text{pointer} - \text{sizeof}(\tau) \times \text{offset}
+\]</span></p>
 <h2 id="austral.pervasive">Austral.Pervasive Module</h2>
 <p>The <code>Austral.Pervasive</code> module exports declarations which are imported by every module.</p>
 <h3 id="austral.pervasive-option"><code>Option</code> Type</h3>

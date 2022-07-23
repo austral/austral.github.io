@@ -158,9 +158,9 @@ Description:
 
 Applies a positive offset to a pointer. Essentially this is:
 
-\\[
-\text{pointer} + \text{sizeof}(\\tau) \times \text{offset}
-\\]
+$$
+\text{pointer} + \text{sizeof}(\tau) \times \text{offset}
+$$
 
 ### `negativeOffset` Function {#austral.memory-negativeoffset}
 
@@ -175,6 +175,6 @@ Description:
 
 Applies a negative offset to a pointer. Essentially this is:
 
-\\[
-\text{pointer} - \text{sizeof}(\\tau) \times \text{offset}
-\\]
+$$
+\text{pointer} - \text{sizeof}(\tau) \times \text{offset}
+$$
