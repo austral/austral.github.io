@@ -85,7 +85,7 @@ uninitialized variables are not allowed. Then, the programmer is forced to
 factor out complicated control flow into chains of functions.
 
 Historically, there is one language that moved from an expression-oriented to a
-statement-oriented syntax: ALGOL W was expression-orienten; Pascal, its
+statement-oriented syntax: ALGOL W was expression-oriented; Pascal, its
 successor, was statement-oriented.
 
 ### Keywords over Symbols {#rationale-keywords}
