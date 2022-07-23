@@ -279,5 +279,5 @@ $$
 \text{type} ~ \tau [ \text{p}_1: k, \dots, \text{p}_1: k ]: u ;
 $$
 
-Here, type parameters are analogous to type parameters, kinds are analogous to
+Here, type parameters are analogous to value parameters, kinds are analogous to
 types, and the universe is analogous to the return type.
