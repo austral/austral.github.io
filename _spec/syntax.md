@@ -2,6 +2,11 @@
 
 This section describes Austral's syntax using EBNF.
 
+_(Note: the most up-to-date description of Austral's syntax is the Menhir syntax
+definition [here][menhir]. This section is out of date.)_
+
+[menhir]: https://github.com/austral/austral/blob/master/lib/Parser.mly
+
 ## Meta-Language {#syntax-meta}
 
 Quick guide: definition is `=`, definitions are terminated with with

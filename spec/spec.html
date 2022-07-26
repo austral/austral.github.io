@@ -1295,6 +1295,7 @@ end;</code></pre>
 <p>The idea is that a list of unsafe modules in all dependencies (including transitive ones) can be collected by the build system. Then, only code at the FFI boundary needs to be audited, to ensure that it correctly wraps the capability-insecure outside world under a correct, linear, capability-secure API.</p>
 <h1 id="syntax">Syntax</h1>
 <p>This section describes Austral’s syntax using EBNF.</p>
+<p><em>(Note: the most up-to-date description of Austral’s syntax is the Menhir syntax definition <a href="https://github.com/austral/austral/blob/master/lib/Parser.mly">here</a>. This section is out of date.)</em></p>
 <h2 id="syntax-meta">Meta-Language</h2>
 <p>Quick guide: definition is <code>=</code>, definitions are terminated with with <code>;</code>. Concatenation is <code>,</code>. Alternation is <code>|</code>. Optional is <code>[...]</code>. Repetition (zero or more) is <code>{...}</code>.</p>
 <p>The syntax has two start symbols: one for interface files, and one for module body files.</p>
