@@ -14,7 +14,7 @@ This is the tutorial for Austral.
 4. Basic Types
 5. Functions
 6. [Records](/tutorial/records)
-7. Unions
+7. [Unions](/tutorial/unions)
 8. Linear Types
 9. Type Classes
 10. Type Constraints
