@@ -79,7 +79,7 @@ printLn(z);
 If the name of a field would collide with the name of another variable, you can
 rename them:
 
-```
+```austral
 let { x as x0: Float64, y as y0: Float64, z as z0: Float64 } := vec;
 printLn(x0);
 printLn(y0);
