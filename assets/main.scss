@@ -75,7 +75,7 @@ body {
 }
 
 h1 {
-    margin-bottom: $small;
+    padding-bottom: $small;
     border-bottom: 1px solid black;
     line-height: 1;
 }
@@ -161,6 +161,11 @@ article {
             border: 1px solid gray;
             padding: $vsmall $small;
         }
+    }
+
+    h1 {
+        padding-bottom: 0;
+        margin-bottom: $small;
     }
 }
 
