@@ -4,7 +4,7 @@ title: Hello, World!
 
 Without further ado:
 
-```
+```austral
 module body Hello is
     function main(): ExitCode is
         printLn("Hello, world!");
