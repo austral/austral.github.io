@@ -4,13 +4,43 @@
 @charset "utf-8";
 
 //
+// Mixins
+//
+
+$breakpoint-small: 375pt;
+$breakpoint-medium: 768pt;
+$breakpoint-large: 1400pt;
+
+@mixin small() {
+    @media (max-width: $breakpoint-small) {
+        @content;
+    }
+}
+
+@mixin medium() {
+    @media (min-width: $breakpoint-small + 1) and (max-width: $breakpoint-medium) {
+        @content;
+    }
+}
+
+@mixin large() {
+    @media (min-width: $breakpoint-medium + 1) and (max-width: $breakpoint-large) {
+        @content;
+    }
+}
+
+@mixin largest() {
+    @media (min-width: $breakpoint-large + 1) {
+        @content;
+    }
+}
+
+//
 // Preliminaries
 //
 
 html {
-    font-size: 24px;
     line-height: normal;
-
     overflow-x: hidden;
 }
 
@@ -48,18 +78,40 @@ code {
         text-align: center;
 
         h1 {
-            font-size: 3rem;
+            @include small() {
+                font-size: 2rem;
+            }
+
+            @include medium() {
+                font-size: 2rem;
+            }
+
+            @include large() {
+                font-size: 3rem;
+            }
+
+            @include largest() {
+                font-size: 3rem;
+            }
         }
 
         .author {
-            font-size: 1.5rem;
+            @include small() {
+                font-size: 1rem;
+            }
+
+            @include medium() {
+                font-size: 1.2rem;
+            }
+
+            @include large() {
+                font-size: 1.5rem;
+            }
+
+            @include largest() {
+                font-size: 1.5rem;
+            }
         }
-    }
-
-    .toc-box {
-    }
-
-    .content-box {
     }
 
     #title-block-header, .toc-box, .content-box {
@@ -67,12 +119,42 @@ code {
     }
 
     #title-block-header, .toc-box, .content-box, footer {
-        padding: 50px;
+
+        @include small() {
+            padding: 5px;
+        }
+
+        @include medium() {
+            padding: 15px;
+        }
+
+        @include large() {
+            padding: 50px;
+        }
+
+        @include largest() {
+            padding: 50px;
+        }
     }
 
     .toc-box nav, .content-box .content, footer {
         margin: 0 auto;
-        width: 60%;
+
+        @include small() {
+            width: 90%;
+        }
+
+        @include medium() {
+            width: 80%;
+        }
+
+        @include large() {
+            width: 60%;
+        }
+
+        @include largest() {
+            width: 60%;
+        }
     }
 }
 
@@ -81,6 +163,17 @@ code {
 //
 
 .content {
+    @include small() {
+        font-size: 0.9rem;
+    }
+    @include medium() {
+        font-size: 0.9rem;
+    }
+
+    p {
+        text-align: justify;
+    }
+
     h1 {
         font-size: 2rem;
         border-bottom: 1px solid black;
