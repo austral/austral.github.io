@@ -29,7 +29,7 @@ Then, set up the OCaml compiler environment:
 
 ```bash
 $ opam init
-$ opam switch install 4.12.0
+$ opam switch install 4.13.0
 ```
 
 Then, download and build Austral:
