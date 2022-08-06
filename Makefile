@@ -17,6 +17,18 @@ assets/spec/file-api-without-leaks.png: assets/spec/file-api-without-leaks.dot
 assets/spec/file-api-without-leaks-and-double-close.png: assets/spec/file-api-without-leaks-and-double-close.dot
 	dot -Tpng $< -o $@
 
+assets/spec/file-api.svg: assets/spec/file-api.dot
+	dot -Tsvg $< -o $@
+
+assets/spec/file-api-errors.svg: assets/spec/file-api-errors.dot
+	dot -Tsvg $< -o $@
+
+assets/spec/file-api-without-leaks.svg: assets/spec/file-api-without-leaks.dot
+	dot -Tsvg $< -o $@
+
+assets/spec/file-api-without-leaks-and-double-close.svg: assets/spec/file-api-without-leaks-and-double-close.dot
+	dot -Tsvg $< -o $@
+
 #
 # Spec
 #
@@ -88,6 +100,10 @@ TARGETS := assets/spec/file-api.png \
 		   assets/spec/file-api-errors.png \
 		   assets/spec/file-api-without-leaks.png \
 		   assets/spec/file-api-without-leaks-and-double-close.png \
+		   assets/spec/file-api.svg \
+		   assets/spec/file-api-errors.svg \
+		   assets/spec/file-api-without-leaks.svg \
+		   assets/spec/file-api-without-leaks-and-double-close.svg \
 		   $(SPEC_HTML) \
        $(EXAMPLE_OUT)
 

@@ -2,22 +2,20 @@
 title: Hello, World!
 ---
 
+{% capture source %}{% include examples/hello-world/hello.aum %}{% endcapture %}
+{% capture compile %}{% include examples/hello-world/compile.sh %}{% endcapture %}
+{% capture output %}{% include examples/hello-world/output.txt %}{% endcapture %}
+
 Without further ado:
 
 ```austral
-module body Hello is
-    function main(): ExitCode is
-        printLn("Hello, world!");
-        return ExitSuccess();
-    end;
-end module body.
+{{ source }}
 ```
 
-Save this to `hello.aum`, then:
+Save this to `hello.aum`, then run:
 
 ```bash
-$ austral compile --public-module=hello.aum --entrypoint=Hello:main --output=hello.c
-$ gcc hello.c -o hello
+$ {{ compile | strip }}
 $ ./hello
-Hello, world!
+{{ output | strip }}
 ```

@@ -1,2 +1,1 @@
-austral compile --public-module=hello.aum --entrypoint=Hello:main --output=hello.c
-gcc hello.c -o hello
+austral compile hello.aum --entrypoint=Hello:main --output=hello
