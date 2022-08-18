@@ -31,12 +31,15 @@ Declaration:
 
 ```austral
 generic [T: Type]
-function allocate(size: Natural_64): Pointer[T];
+function allocate(count: Index): Pointer[T];
 ```
 
 Description:
 
-Allocates the given amount of memory in bytes.
+Allocates enough memory to hold `count` items of type `T` in a contiguous chunk
+of memory. Analogous to [calloc](https://en.cppreference.com/w/c/memory/calloc).
+
+`count` must be at least 1.
 
 ### `load` Function {#austral.memory-load}
 
