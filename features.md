@@ -35,6 +35,7 @@ Anti-features:
 - No implicit function calls.
 - No implicit type conversions.
 - No global state.
+- No subtyping.
 - No macros.
 - No reflection.
 - No Java-style `@Annotations`.
@@ -44,6 +45,7 @@ Anti-features:
 - No first-class async.
 - No function overloading (except through typeclasses, where it is bounded).
 - No arithmetic precedence.
+- No variable shadowing.
 
 [cap]: https://en.wikipedia.org/wiki/Capability-based_security
 [sca]: https://en.wikipedia.org/wiki/Supply_chain_attack
