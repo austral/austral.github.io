@@ -114,7 +114,7 @@ Declaration:
 
 ```austral
 generic [T: Type]
-function resizeArray(array: Pointer[T], size: Natural_64): Pointer[T];
+function resizeArray(array: Pointer[T], size: Index): Pointer[T];
 ```
 
 Description:
@@ -128,7 +128,7 @@ Declaration:
 
 ```austral
 generic [T: Type, U: Type]
-function memmove(source: Pointer[T], destination: Pointer[U], count: Natural_64): Unit;
+function memmove(source: Pointer[T], destination: Pointer[U], count: Index): Unit;
 ```
 
 Description:
@@ -141,7 +141,7 @@ Declaration:
 
 ```austral
 generic [T: Type, U: Type]
-function memcpy(source: Pointer[T], destination: Pointer[U], count: Natural_64): Unit;
+function memcpy(source: Pointer[T], destination: Pointer[U], count: Index): Unit;
 ```
 
 Description:
@@ -154,7 +154,7 @@ Declaration:
 
 ```austral
 generic [T: Type]
-function positiveOffset(pointer: Pointer[T], offset: Natural_64): Pointer[T];
+function positiveOffset(pointer: Pointer[T], offset: Index): Pointer[T];
 ```
 
 Description:
@@ -171,7 +171,7 @@ Declaration:
 
 ```austral
 generic [T: Type]
-function negativeOffset(pointer: Pointer[T], offset: Natural_64): Pointer[T];
+function negativeOffset(pointer: Pointer[T], offset: Index): Pointer[T];
 ```
 
 Description:
