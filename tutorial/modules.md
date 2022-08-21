@@ -70,3 +70,34 @@ module representation as one of the earliest stages of compilation).
 # Examples
 
 This section contains examples of the module system.
+
+## Example: Physical Constants
+
+Let's define a module that exports physical constants.
+
+In the interface file, we declare the names of the constants, along with their
+types and a docstring, but not their values:
+
+```austral
+module Example.PhysicalConstants is
+    """
+    The speed of light in meters per second.
+    """
+    constant speed_of_light: Float64;
+
+    """
+    The elementary charge in Coulomb.
+    """
+    constant elementary_charge : Float64;
+end module.
+```
+
+In the module file, we actually define the values:
+
+```austral
+module body Example.PhysicalConstants is
+    constant speed_of_light: Float64 := 299792458.0;
+
+    constant elementary_charge : Float64 := 1.602176634e-19;
+end module body.
+```
