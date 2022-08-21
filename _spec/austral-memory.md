@@ -31,7 +31,22 @@ Declaration:
 
 ```austral
 generic [T: Type]
-function allocate(count: Index): Pointer[T];
+function allocate(): Pointer[T];
+```
+
+Description:
+
+Allocates enough memory to hold a single value of type `T`. Analogous to
+[calloc](https://en.cppreference.com/w/c/memory/calloc) with a `count` argument
+of 1.
+
+### `allocateBuffer` Function {#austral.memory-allocate-buffer}
+
+Declaration:
+
+```austral
+generic [T: Type]
+function allocateBuffer(count: Index): Pointer[T];
 ```
 
 Description:
