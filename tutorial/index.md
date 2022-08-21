@@ -10,7 +10,7 @@ This is the tutorial for Austral.
 
 1. [Getting Started: Linux](/tutorial/getting-started-linux)
 1. [Hello, World!](/tutorial/hello-world)
-1. Module Structure
+1. [Module Structure](/tutorial/modules)
 1. [Basic Types](/tutorial/basic-types)
 1. [Functions](/tutorial/functions)
 1. [Records](/tutorial/records)
