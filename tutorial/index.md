@@ -21,7 +21,7 @@ This is the tutorial for Austral.
 1. Generic Functions
 1. Type Classes
 1. Type Constraints
-1. Errors
+1. [Errors](/tutorial/errors)
 1. Capability-Based Security
 1. [Built-In Declarations](/tutorial/builtins)
 
