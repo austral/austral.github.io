@@ -23,7 +23,7 @@ This is the tutorial for Austral.
 1. Type Constraints
 1. Errors
 1. Capability-Based Security
-1. Built-In Declarations
+1. [Built-In Declarations](/tutorial/builtins)
 
 # Intermediate
 
