@@ -55,7 +55,7 @@ in Austral: any expression beyond one level has to be fully parenthesized:
 -- Not valid:
 a and b and c and d
 -- Valid:
-a and (b and (c an d))
+a and (b and (c and d))
 ```
 
 # Integers
