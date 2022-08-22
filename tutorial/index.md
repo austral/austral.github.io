@@ -19,7 +19,7 @@ This is the tutorial for Austral.
 1. [Borrowing](/tutorial/borrowing)
 1. Generic Types
 1. Generic Functions
-1. Type Classes
+1. [Type Classes](/tutorial/type-classes)
 1. Type Constraints
 1. [Errors](/tutorial/errors)
 1. Capability-Based Security
