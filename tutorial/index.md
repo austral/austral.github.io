@@ -15,7 +15,7 @@ This is the tutorial for Austral.
 1. [Functions](/tutorial/functions)
 1. [Records](/tutorial/records)
 1. [Unions](/tutorial/unions)
-1. Linear Types
+1. [Linear Types](/tutorial/linear-types)
 1. Borrowing
 1. Generic Types
 1. Generic Functions
