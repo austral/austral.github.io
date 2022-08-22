@@ -20,7 +20,7 @@ This is the tutorial for Austral.
 1. [Generic Types](/tutorial/generic-types)
 1. [Generic Functions](/tutorial/generic-functions)
 1. [Type Classes](/tutorial/type-classes)
-1. Type Constraints
+1. [Type Constraints](/tutorial/type-constraints)
 1. [Errors](/tutorial/errors)
 1. Capability-Based Security
 1. [Built-In Declarations](/tutorial/builtins)
