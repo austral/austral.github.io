@@ -181,7 +181,7 @@ import Dependency (
     doSomething
 );
 
-function main(root: Root_Capability): Exit)code is
+function main(root: Root_Capability): ExitCode is
     -- Acquire a filesystem capability.
     let fs: Filesystem := getFilesystem(&root);
     -- Get the root directory.
