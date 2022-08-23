@@ -22,7 +22,7 @@ This is the tutorial for Austral.
 1. [Type Classes](/tutorial/type-classes)
 1. [Type Constraints](/tutorial/type-constraints)
 1. [Errors](/tutorial/errors)
-1. Capability-Based Security
+1. [Capability-Based Security](/tutorial/capability-based-security)
 1. [Built-In Declarations](/tutorial/builtins)
 
 # Intermediate
