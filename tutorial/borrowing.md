@@ -200,6 +200,11 @@ end borrow;
 
 Because `R` is not known to the compiler outside the `borrow` statement.
 
+Regions are not values: they are types, which exist only within a scope, and are
+used to tag reference types so they can't escape. The reason we use the `borrow`
+statement in this case is it makes it completely explicit, in the source code,
+how long the reference lives.
+
 As with reference expressions, you can't do this:
 
 ```
