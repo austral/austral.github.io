@@ -11,11 +11,17 @@ the code, is very verbose and inconvenient. It is also often a violation of the
 principle of least privilege: linear values, in a sense, have "root
 permissions". If you have a linear value, you can destroy it. And we don't
 necessarily want every function that takes a linear value to be able to destroy
-it. All of this is enforced at compile time.
+it.
+
+What we want is a way to treat linear values as though they were free values,
+within a delineated scope, and we want to do this in a way where we don't lose
+the safety guarantees of linear types.
 
 # References
 
-There are two kinds of references:
+A **reference** is a `Free` pointer to a `Linear` or `Free` value. References
+have a number of restrictions that preserve the linearity guarantees. There are
+two kinds of references:
 
 - **Read references** allow you to read data from a linear value.
 - **Read-write** or **mutable** references allow you to read from and write to a
@@ -27,7 +33,8 @@ value of type `T`" is denoted `&![T, R]`
 
 # The Simple Case
 
-Suppose you have a linear `ByteBuffer` type and you want a function to get its length. You could have something like:
+Suppose you have a linear `ByteBuffer` type and you want a function to get its
+length. You could have something like:
 
 ```austral
 function length(buf: ByteBuffer): Pair[Index, ByteBuffer];
@@ -39,7 +46,7 @@ And use it like so:
 let { first as length: Index, second as buf2: ByteBuffer } := length(buf);
 ```
 
-But this is horribly inconvenient! Additionally, it gives the `length` function
+But this is horribly inconvenient. Additionally, it gives the `length` function
 too much power. Internally, it could deallocate `buf` and allocate a new,
 entirely different buffer to return. We wouldn't expect that to happen, but the
 point is to be defensive and prevent wrong programs from being written in the
@@ -64,6 +71,100 @@ let length: Index := length(&buf);
 The syntax borrow expression matches the syntax of the reference type: `&x`
 creates a `&[T, R]` read-reference, `&!` creates a `&![T, R]` mutable reference.
 
+Suppose we had something like:
+
+```austral
+let buf: ByteBuffer := allocateBuffer(100, 'a');
+let len: Index := length(&buf);
+destroyBuffer(buf);
+```
+
+This code would compile because the reference expression `&buf` happens after
+`buf` is defined but before `buf` is consumed.
+
+But if we tried to do this:
+
+```austral
+let buf: ByteBuffer := allocateBuffer(100, 'a');
+destroyBuffer(buf);
+let len: Index := length(&buf);
+```
+
+This would not work. You can't take a reference to a value has that been consumed.
+
+# Under the Hood
+
+How is the above function implemented under the hood? Suppose the definition of
+`ByteBuffer` is something like:
+
+```austral
+record ByteBuffer: Linear is
+    size: Index;
+    capacity: Index;
+    buffer: Pointer[Nat8];
+end;
+```
+
+Then, we can define `length` like this:
+
+```austral
+generic [R: Region]
+function length(buf: &[ByteBuffer, R]): Index is
+    return !(buf->size);
+end;
+```
+
+The `!` operator is the dereferencing operator. This takes a reference (read
+reference or mutable reference) to a Free value, and returns that value. So if
+we have `x: &[T, R]`, the expression `!x` has type `T`.
+
+# Transforming References
+
+If you have a reference to a value, you can transform that into a reference to
+one of its constituents. Consider the following types:
+
+```austral
+record SolarSystem is
+    sun: Star;
+    mercury: Planet;
+    venus: Planet;
+    ...
+end;
+
+record Star: Linear is
+    pos: CartesianCoord;
+end;
+
+record CartesianCoord: Free is
+    x: Float32;
+    y: Float32;
+    z: Float32;
+end;
+```
+
+Then suppose we have a reference `ref` of type `&[SolarSystem, R]`. Path
+operations will give us references to its constituents:
+
+- The expression `ref->sun` has type `&[Star, R]`.
+- The expression `ref->sun->pos` has type `&[CartesianCoord, R]`.
+- The expression `ref->sun->pos->x` has type `&[Float32, R]`.
+
+Note that the region is the same as references are transformed.
+
+# Dereferencing
+
+Dereferencing takes a reference and returns the value it points to. You can't
+dereference a reference to a linear value, because, since references are free
+types, you could do this repeatedly, and make multiple copies of the linear
+value. But you can dereference free values.
+
+In the above example, `ref->sun->pos->x` is a reference to a `Float32` value,
+which is `Free`, so we can derefence it:
+
+```
+let f: Float32 := !(ref->sun->pos->x);
+```
+
 # The General Case
 
 But what if we want to save the reference for later use? If we do this:
@@ -85,10 +186,10 @@ borrow buf as bufref in R do
 end borrow;
 ```
 
-The `borrow` statement defines the name of the **region** to borrow the variable
-into. You can think of regions as being like lexically-scoped types. Within the
-block, `R` is defined, outside the block, it isn't. That means you can't leak
-references. You can't write:
+What's different about the borrow statement? Here's we're defining the name of
+the region `R`. You can think of this as a lexically-scoped, type-level
+tag. Within the scope of the region statement, `R` is defined. Outside the
+block, it isn't. That means you can't leak references. You can't write:
 
 ```
 let ref: &[T, R] := ...;
@@ -98,3 +199,13 @@ end borrow;
 ```
 
 Because `R` is not known to the compiler outside the `borrow` statement.
+
+As with reference expressions, you can't do this:
+
+```
+let buf: ByteBuffer := allocateBuffer(100, 'a');
+destroyBuffer(buf);
+borrow buf ...
+```
+
+Because the value has already been deallocated, and therefore cannot be borrowed.

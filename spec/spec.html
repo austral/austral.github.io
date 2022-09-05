@@ -1267,7 +1267,7 @@ import Dependency (
     doSomething
 );
 
-function main(root: Root_Capability): Exit)code is
+function main(root: Root_Capability): ExitCode is
     -- Acquire a filesystem capability.
     let fs: Filesystem := getFilesystem(&amp;root);
     -- Get the root directory.
@@ -2291,9 +2291,16 @@ function nullPointer(): Pointer[T];</code></pre>
 <h3 id="austral.memory-allocate"><code>allocate</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Type]
-function allocate(size: Natural_64): Pointer[T];</code></pre>
+function allocate(): Pointer[T];</code></pre>
 <p>Description:</p>
-<p>Allocates the given amount of memory in bytes.</p>
+<p>Allocates enough memory to hold a single value of type <code>T</code>. Analogous to <a href="https://en.cppreference.com/w/c/memory/calloc">calloc</a> with a <code>count</code> argument of 1.</p>
+<h3 id="austral.memory-allocate-buffer"><code>allocateBuffer</code> Function</h3>
+<p>Declaration:</p>
+<pre class="austral"><code>generic [T: Type]
+function allocateBuffer(count: Index): Pointer[T];</code></pre>
+<p>Description:</p>
+<p>Allocates enough memory to hold <code>count</code> items of type <code>T</code> in a contiguous chunk of memory. Analogous to <a href="https://en.cppreference.com/w/c/memory/calloc">calloc</a>.</p>
+<p><code>count</code> must be at least 1.</p>
 <h3 id="austral.memory-load"><code>load</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Type]
@@ -2327,25 +2334,25 @@ function loadWrite(ref: &amp;![Pointer[T], R]): WriteReference[T, R];</code></pr
 <h3 id="austral.memory-resizearray"><code>resizeArray</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Type]
-function resizeArray(array: Pointer[T], size: Natural_64): Pointer[T];</code></pre>
+function resizeArray(array: Pointer[T], size: Index): Pointer[T];</code></pre>
 <p>Description:</p>
 <p>Resizes the given array, returning <code>Some</code> with the new location if allocation succeeded, and <code>None</code> otherwise.</p>
 <h3 id="austral.memory-memmove"><code>memmove</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Type, U: Type]
-function memmove(source: Pointer[T], destination: Pointer[U], count: Natural_64): Unit;</code></pre>
+function memmove(source: Pointer[T], destination: Pointer[U], count: Index): Unit;</code></pre>
 <p>Description:</p>
 <p>Moves the <code>count</code> bytes stored at <code>source</code> to <code>destination</code>.</p>
 <h3 id="austral.memory-memcpy"><code>memcpy</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Type, U: Type]
-function memcpy(source: Pointer[T], destination: Pointer[U], count: Natural_64): Unit;</code></pre>
+function memcpy(source: Pointer[T], destination: Pointer[U], count: Index): Unit;</code></pre>
 <p>Description:</p>
 <p>Copies the <code>count</code> bytes stored at <code>source</code> to <code>destination</code>.</p>
 <h3 id="austral.memory-positiveoffset"><code>positiveOffset</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Type]
-function positiveOffset(pointer: Pointer[T], offset: Natural_64): Pointer[T];</code></pre>
+function positiveOffset(pointer: Pointer[T], offset: Index): Pointer[T];</code></pre>
 <p>Description:</p>
 <p>Applies a positive offset to a pointer. Essentially this is:</p>
 <p><span class="math display">\[
@@ -2354,7 +2361,7 @@ function positiveOffset(pointer: Pointer[T], offset: Natural_64): Pointer[T];</c
 <h3 id="austral.memory-negativeoffset"><code>negativeOffset</code> Function</h3>
 <p>Declaration:</p>
 <pre class="austral"><code>generic [T: Type]
-function negativeOffset(pointer: Pointer[T], offset: Natural_64): Pointer[T];</code></pre>
+function negativeOffset(pointer: Pointer[T], offset: Index): Pointer[T];</code></pre>
 <p>Description:</p>
 <p>Applies a negative offset to a pointer. Essentially this is:</p>
 <p><span class="math display">\[
