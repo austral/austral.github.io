@@ -179,26 +179,26 @@ When you need to know the name of the region---generally, when a reference
 outlives a single statement---you need to use the `borrow` statement:
 
 ```austral
-borrow buf as bufref in R do
+borrow buf as bufref in Reg do
     -- For the duration of this block, the value `buf` is
     -- unusable, since it has been borrowed, and `bufref`
-    -- has type `&[ByteBuffer, R].
+    -- has type `&[ByteBuffer, Reg].
 end borrow;
 ```
 
 What's different about the borrow statement? Here's we're defining the name of
-the region `R`. You can think of this as a lexically-scoped, type-level
+the region `Reg`. You can think of this as a lexically-scoped, type-level
 tag. Within the scope of the region statement, `R` is defined. Outside the
 block, it isn't. That means you can't leak references. You can't write:
 
 ```
-let ref: &[T, R] := ...;
-borrow x as xref in R do
+let ref: &[T, Reg] := ...;
+borrow x as xref in Reg do
     ref := xref;
 end borrow;
 ```
 
-Because `R` is not known to the compiler outside the `borrow` statement.
+Because `Reg` is not known to the compiler outside the `borrow` statement.
 
 Regions are not values: they are types, which exist only within a scope, and are
 used to tag reference types so they can't escape. The reason we use the `borrow`
@@ -213,4 +213,5 @@ destroyBuffer(buf);
 borrow buf ...
 ```
 
-Because the value has already been deallocated, and therefore cannot be borrowed.
+Because the value has already been deallocated, and therefore cannot be
+borrowed.
