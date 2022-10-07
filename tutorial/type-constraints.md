@@ -63,3 +63,8 @@ Multiple type classes can be specified in a comma-separated list, e.g.:
 ```
 generic [T: Type(TotalEquality, TotalOrder, Printable, Serializable)]
 ```
+
+### Navigation
+
+- [Back](/tutorial/type-constraints)
+- [Forward](/tutorial/errors)

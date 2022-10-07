@@ -101,3 +101,8 @@ module body Example.PhysicalConstants is
     constant elementary_charge : Float64 := 1.602176634e-19;
 end module body.
 ```
+
+### Navigation
+
+- [Back](/tutorial/hello-world)
+- [Forward](/tutorial/basic-types)

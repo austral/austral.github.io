@@ -362,3 +362,8 @@ Linear types give us the following benefits:
    write from and to the terminal need to take a `Terminal` instance and return
    it. We'll discuss capability based security in greater detail in a future
    section.
+
+### Navigation
+
+- [Back](/tutorial/unions)
+- [Forward](/tutorial/borrowing)

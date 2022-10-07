@@ -215,3 +215,8 @@ borrow buf ...
 
 Because the value has already been deallocated, and therefore cannot be
 borrowed.
+
+### Navigation
+
+- [Back](/tutorial/linear-types)
+- [Forward](/tutorial/generic-types)

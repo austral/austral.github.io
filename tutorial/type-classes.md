@@ -44,3 +44,8 @@ instance Printable(Int64) is
     end;
 end;
 ```
+
+### Navigation
+
+- [Back](/tutorial/generic-functions)
+- [Forward](/tutorial/type-constraints)

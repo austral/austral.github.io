@@ -87,3 +87,8 @@ You can rename bindings:
 when Full(value as v: Int32) do
     ...
 ```
+
+### Navigation
+
+- [Back](/tutorial/records)
+- [Forward](/tutorial/linear-types)

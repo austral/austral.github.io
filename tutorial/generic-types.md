@@ -77,3 +77,8 @@ The following kinds are defined:
 - `Type`: accept any type, but values of this type are treated as if `Linear`
   since that's the lowest common denominator behaviour.
 - `Region`: accept a region.
+
+### Navigation
+
+- [Back](/tutorial/borrowing)
+- [Forward](/tutorial/generic-functions)
