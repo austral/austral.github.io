@@ -172,3 +172,8 @@ printLn(str[0]);
 ```
 
 If an array index is out-of-bounds, the program aborts.
+
+### Navigation
+
+- [Back](/tutorial/modules)
+- [Forward](/tutorial/functions)

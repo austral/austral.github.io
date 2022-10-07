@@ -42,4 +42,8 @@ $ make
 $ sudo make install
 ```
 
+### Navigation
+
+- [Forward](/tutorial/hello-world)
+
 [opam]: https://opam.ocaml.org/doc/Install.html

@@ -68,3 +68,8 @@ let min: Int32 := smallestValue();
 ```
 
 Here we're doing the same thing: asserting the return type.
+
+### Navigation
+
+- [Back](/tutorial/generic-types)
+- [Forward](/tutorial/type-classes)

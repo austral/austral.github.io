@@ -19,3 +19,8 @@ $ {{ compile | strip }}
 $ ./hello
 {{ output | strip }}
 ```
+
+### Navigation
+
+- [Back](/tutorial/getting-started-linux)
+- [Forward](/tutorial/modules)

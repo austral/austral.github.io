@@ -131,3 +131,8 @@ end;
 
 [sutter]: https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2018/p0709r1.pdf
 [duffy]: http://joeduffyblog.com/2016/02/07/the-error-model/
+
+### Navigation
+
+- [Back](/tutorial/type-constraints)
+- [Forward](/tutorial/capability-based-security)

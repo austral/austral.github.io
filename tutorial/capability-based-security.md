@@ -112,3 +112,8 @@ end;
 
 [supply]: https://en.wikipedia.org/wiki/Supply_chain_attack
 [cap]: https://en.wikipedia.org/wiki/Capability-based_security
+
+### Navigation
+
+- [Back](/tutorial/errors)
+- [Forward](/tutorial/builtins)

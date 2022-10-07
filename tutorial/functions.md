@@ -45,3 +45,8 @@ or with named arguments:
 ```austral
 fib(n => 30)
 ```
+
+### Navigation
+
+- [Back](/tutorial/basic-types)
+- [Forward](/tutorial/records)

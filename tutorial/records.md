@@ -85,3 +85,8 @@ printLn(x0);
 printLn(y0);
 printLn(z0);
 ```
+
+### Navigation
+
+- [Back](/tutorial/functions)
+- [Forward](/tutorial/unions)
