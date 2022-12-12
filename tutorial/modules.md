@@ -36,7 +36,7 @@ We'll learn about each of these throughout the tutorial.
 # Visibility
 
 Declarations are be either _public_ or _private_. Private declarations are
-invisible to the outside world. Public declarations be imported by other
+invisible to the outside world. Public declarations may be imported by other
 modules, and imported public declarations act _as if_ they had been defined in
 the module that imports them.
 
