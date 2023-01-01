@@ -21,26 +21,28 @@ since `IntPair` doesn't contain any linear types.
 Let's make it generic:
 
 ```austral
-record FreeIntPair[A: Free, B: Free]: Free is
+record FreePair[A: Free, B: Free]: Free is
     first: A;
     second: B;
 end;
 ```
 
-We've added two type parameters, `A` and `B`. Remember that there are two
-universes, `Free` and `Linear`, and we have to specify the universe the type
-parameters and the type itself belongs to.
+We've added two type parameters, `A` and `B`. We can have a type like `IntPair`
+with `FreePair[Int32, Int32]` or create a types for other pairings like
+`FreePair[Float32, Float32]` or `FreePair[Int32, Float64]`.
 
-But it would be extremely inconvenient if we had to define each generic type
-twice, one version for `Free` types and another for `Linear` types:
+Remember that there are two universes, `Free` and `Linear`, and we have to
+specify the universe the type parameters and the type itself belongs to. But it
+would be extremely inconvenient if we had to define each generic type twice, one
+version for `Free` types and another for `Linear` types:
 
 ```austral
-record FreeIntPair[A: Free, B: Free]: Free is
+record FreePair[A: Free, B: Free]: Free is
     first: A;
     second: B;
 end;
 
-record LinearIntPair[A: Linear, B: Linear]: Linear is
+record LinearPair[A: Linear, B: Linear]: Linear is
     first: A;
     second: B;
 end;
