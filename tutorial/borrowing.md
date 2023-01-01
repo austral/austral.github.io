@@ -186,7 +186,7 @@ borrow buf as bufref in Reg do
 end borrow;
 ```
 
-What's different about the borrow statement? Here's we're defining the name of
+What's different about the borrow statement? Here we're defining the name of
 the region `Reg`. You can think of this as a lexically-scoped, type-level
 tag. Within the scope of the region statement, `R` is defined. Outside the
 block, it isn't. That means you can't leak references. You can't write:
