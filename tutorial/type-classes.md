@@ -28,9 +28,9 @@ type.
 For example, you could have a type class for types that can be printed:
 
 ```austral
-typeclass Printable(T: Type)
+typeclass Printable(T: Type) is
     generic [R: Region]
-    function printRef(ref: &[T, R]): Unit;
+    method printRef(ref: &[T, R]): Unit;
 end;
 ```
 
@@ -39,7 +39,7 @@ And here's how you would define an instance for the `Int64` type:
 ```austral
 instance Printable(Int64) is
     generic [R: Region]
-    function printRef(ref: &[Int64, R]): Unit is
+    method printRef(ref: &[Int64, R]): Unit is
         -- ...
     end;
 end;
