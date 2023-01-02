@@ -60,7 +60,7 @@ interface describes all the things module's declarations that are public and
 importable by other modules. The implementation contains the things that are
 private, and the bodies of functions and such. When you're trying to familiarize
 yourself with a module in order to use it, you just have to read the
-implementation.
+interface.
 
 It should be stressed: unlike C and C++, the separation of modules into
 interfaces and implementations is not a hack to enable separate compilation (in
