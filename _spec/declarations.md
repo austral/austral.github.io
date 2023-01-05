@@ -151,7 +151,7 @@ Let $\text{f}$ be an identifier, $\{\text{p}_1: \tau_1, \dots, \text{p}_n:
 \tau_n\}$ be a set of value parameters, and $\tau_r$ be a type. Then:
 
 $$
-\text{function} ~ \text{f} (
+\textbf{function} ~ \text{f} (
 \text{p}_1: \tau_1,
 \dots,
 \text{p}_n: \tau_n
@@ -167,11 +167,11 @@ More generally, given a set of type parameter $\{\text{tp}_1: k_1, \dots,
 
 $$
 \begin{aligned}
-& \text{generic} ~
+& \textbf{generic} ~
 [
 \text{tp}_1: k_1, \dots, \text{tp}_m: k_m
 ] \\
-& \text{function} ~ \text{f} (
+& \textbf{function} ~ \text{f} (
 \text{p}_1: \tau_1,
 \dots,
 \text{p}_n: \tau_n
@@ -208,14 +208,14 @@ statement. Then:
 
 $$
 \begin{aligned}
-& \text{function} ~ \text{f} (
+& \textbf{function} ~ \text{f} (
 \text{p}_1: \tau_1,
 \dots,
 \text{p}_n: \tau_n
 ): \tau_r
 ~ \text{is} \\
 & ~~~~ s \\
-& \text{end} ;
+& \textbf{end} ;
 \end{aligned}
 $$
 
@@ -227,18 +227,18 @@ More generally, given a set of type parameter $\{\text{tp}_1: k_1, \dots,
 
 $$
 \begin{aligned}
-& \text{generic} ~
+& \textbf{generic} ~
 [
 \text{tp}_1: k_1, \dots, \text{tp}_m: k_m
 ] \\
-& \text{function} ~ \text{f} (
+& \textbf{function} ~ \text{f} (
 \text{p}_1: \tau_1,
 \dots,
 \text{p}_n: \tau_n
 ): \tau_r
 ~ \text{is} \\
 & ~~~~ s \\
-& \text{end} ;
+& \textbf{end} ;
 \end{aligned}
 $$
 
@@ -286,11 +286,11 @@ Then:
 
 $$
 \begin{aligned}
-& \text{typeclass} ~ \text{t} ( \text{p} : u ) ~ \text{is} \\
-& ~~~~ \text{method} ~ \text{m}_1 ( \text{p}_{11}: \tau_{11}, \dots, \text{p}_{1n}: \tau_{1n} ): \tau_1 ; \\
+& \textbf{typeclass} ~ \text{t} ( \text{p} : u ) ~ \text{is} \\
+& ~~~~ \textbf{method} ~ \text{m}_1 ( \text{p}_{11}: \tau_{11}, \dots, \text{p}_{1n}: \tau_{1n} ): \tau_1 ; \\
 & ~~~~ \dots; \\
-& ~~~~ \text{method} ~ \text{m}_m ( \text{p}_{m1}: \tau_{m1}, \dots, \text{p}_{mn}: \tau_{mn} ): \tau_m ; \\
-& \text{end} ;
+& ~~~~ \textbf{method} ~ \text{m}_m ( \text{p}_{m1}: \tau_{m1}, \dots, \text{p}_{mn}: \tau_{mn} ): \tau_m ; \\
+& \textbf{end} ;
 \end{aligned}
 $$
 
@@ -317,7 +317,7 @@ Let $\text{t}$ be the name of a typeclass and $\tau$ be a type
 specifier. Then:
 
 $$
-\text{instance} ~ \text{t} ( \tau ) ;
+\textbf{instance} ~ \text{t} ( \tau ) ;
 $$
 
 declares an instance of the typeclass $\text{t}$ for the type $\tau$.
@@ -349,15 +349,15 @@ Then:
 
 $$
 \begin{aligned}
-& \text{instance} ~ \text{t} ( \tau ) ~ \text{is} \\
-& ~~~~ \text{method} ~ \text{m}\_1 ( \text{p}\_{11}: \tau_{11}, \dots, \text{p}\_{1n}: \tau_{1n} ): \tau_1 ~ \text{is} ; \\
+& \textbf{instance} ~ \text{t} ( \tau ) ~ \text{is} \\
+& ~~~~ \textbf{method} ~ \text{m}\_1 ( \text{p}\_{11}: \tau_{11}, \dots, \text{p}\_{1n}: \tau_{1n} ): \tau_1 ~ \text{is} ; \\
 & ~~~~~~~~ s_1 ; \\
-& ~~~~ \text{end} ; \\
+& ~~~~ \textbf{end} ; \\
 & ~~~~ \dots; \\
-& ~~~~ \text{method} ~ \text{m}\_m ( \text{p}\_{m1}: \tau_{m1}, \dots, \text{p}\_{mn}: \tau_{mn} ): \tau_m ~ \text{is} ; \\
+& ~~~~ \textbf{method} ~ \text{m}\_m ( \text{p}\_{m1}: \tau_{m1}, \dots, \text{p}\_{mn}: \tau_{mn} ): \tau_m ~ \text{is} ; \\
 & ~~~~~~~~ s_m ; \\
-& ~~~~ \text{end} ; \\
-& \text{end} ;
+& ~~~~ \textbf{end} ; \\
+& \textbf{end} ;
 \end{aligned}
 $$
 
@@ -368,19 +368,19 @@ More generally, given a set of type parameters $\{\text{tp}_1: k_1, \dots,
 
 $$
 \begin{aligned}
-& \text{generic} ~
+& \textbf{generic} ~
 [
 \text{tp}_1: k_1, \dots, \text{tp}_n: k_n
 ] \\
-& \text{instance} ~ \text{t} ( \tau ) ~ \text{is} \\
-& ~~~~ \text{method} ~ \text{m}_1 ( \text{p}_{11}: \tau_{11}, \dots, \text{p}_{1n}: \tau_{1n} ): \tau_1 ~ \text{is} ; \\
+& \textbf{instance} ~ \text{t} ( \tau ) ~ \text{is} \\
+& ~~~~ \textbf{method} ~ \text{m}_1 ( \text{p}_{11}: \tau_{11}, \dots, \text{p}_{1n}: \tau_{1n} ): \tau_1 ~ \text{is} ; \\
 & ~~~~~~~~ s_1 ; \\
-& ~~~~ \text{end} ; \\
+& ~~~~ \textbf{end} ; \\
 & ~~~~ \dots; \\
-& ~~~~ \text{method} ~ \text{m}_m ( \text{p}_{m1}: \tau_{m1}, \dots, \text{p}_{mn}: \tau_{mn} ): \tau_m ~ \text{is} ; \\
+& ~~~~ \textbf{method} ~ \text{m}_m ( \text{p}_{m1}: \tau_{m1}, \dots, \text{p}_{mn}: \tau_{mn} ): \tau_m ~ \text{is} ; \\
 & ~~~~~~~~ s_m ; \\
-& ~~~~ \text{end} ; \\
-& \text{end} ;
+& ~~~~ \textbf{end} ; \\
+& \textbf{end} ;
 \end{aligned}
 $$
 
