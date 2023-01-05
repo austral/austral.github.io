@@ -1788,7 +1788,7 @@ let C3 : Color := Greyscale(50);</code></pre>
 \begin{aligned}
 &amp; \text{generic} ~
 [
-\text{tp}_1: k_1, \dots, \text{tp}_n: k_n
+\text{tp}_1: k_1, \dots, \text{tp}_m: k_m
 ] \\
 &amp; \text{function} ~ \text{f} (
 \text{p}_1: \tau_1,
@@ -1829,7 +1829,7 @@ end</code></pre></li>
 \begin{aligned}
 &amp; \text{generic} ~
 [
-\text{tp}_1: k_1, \dots, \text{tp}_n: k_n
+\text{tp}_1: k_1, \dots, \text{tp}_m: k_m
 ] \\
 &amp; \text{function} ~ \text{f} (
 \text{p}_1: \tau_1,
@@ -1863,9 +1863,9 @@ end</code></pre></li>
 <p><span class="math display">\[
 \left\{
 \begin{aligned}
-&amp; \text{m}\_1 ( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} ): \tau\_1,\\
+&amp; \text{m}_1 ( \text{p}_{11}: \tau_{11}, \dots, \text{p}_{1n}: \tau_{1n} ): \tau_1,\\
 &amp; \dots,\\
-&amp; \text{m}\_m ( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} ): \tau\_m
+&amp; \text{m}_m ( \text{p}_{m1}: \tau_{m1}, \dots, \text{p}_{mn}: \tau_{mn} ): \tau_m
 \end{aligned}
 \right\}
 \]</span></p></li>
@@ -1874,9 +1874,9 @@ end</code></pre></li>
 <p><span class="math display">\[
 \begin{aligned}
 &amp; \text{typeclass} ~ \text{t} ( \text{p} : u ) ~ \text{is} \\
-&amp; ~~~~ \text{method} ~ \text{m}\_1 ( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} ): \tau\_1 ; \\
+&amp; ~~~~ \text{method} ~ \text{m}_1 ( \text{p}_{11}: \tau_{11}, \dots, \text{p}_{1n}: \tau_{1n} ): \tau_1 ; \\
 &amp; ~~~~ \dots; \\
-&amp; ~~~~ \text{method} ~ \text{m}\_m ( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} ): \tau\_m ; \\
+&amp; ~~~~ \text{method} ~ \text{m}_m ( \text{p}_{m1}: \tau_{m1}, \dots, \text{p}_{mn}: \tau_{mn} ): \tau_m ; \\
 &amp; \text{end} ;
 \end{aligned}
 \]</span></p>
@@ -1892,7 +1892,7 @@ end</code></pre></li>
 <h2 id="instance-declaration">Instance Declaration</h2>
 <p>Let <span class="math inline">\(\text{t}\)</span> be the name of a typeclass and <span class="math inline">\(\tau\)</span> be a type specifier. Then:</p>
 <p><span class="math display">\[
-\text{instance} ~ \text{t} ( \\tau ) ;
+\text{instance} ~ \text{t} ( \tau ) ;
 \]</span></p>
 <p>declares an instance of the typeclass <span class="math inline">\(\text{t}\)</span> for the type <span class="math inline">\(\tau\)</span>.</p>
 <p>Instance declaration can only appear in the module interface file, and must have a matching instance definition in the module body file.</p>
@@ -1906,9 +1906,9 @@ end</code></pre></li>
 <p><span class="math display">\[
 \left\{
 \begin{aligned}
-&amp;\text{m}\_1 ( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} ): \tau\_1 ~ \text{is} ~ s_1,\\
+&amp;\text{m}\_1 ( \text{p}\_{11}: \tau_{11}, \dots, \text{p}\_{1n}: \tau_{1n} ): \tau_1 ~ \text{is} ~ s_1,\\
 &amp;\dots,\\
-&amp;\text{m}\_m ( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} ): \tau\_m ~ \text{is} ~ s_m
+&amp;\text{m}\_m ( \text{p}\_{m1}: \tau_{m1}, \dots, \text{p}\_{mn}: \tau_{mn} ): \tau_m ~ \text{is} ~ s_m
 \end{aligned}
 \right\}
 \]</span></p></li>
@@ -1917,11 +1917,11 @@ end</code></pre></li>
 <p><span class="math display">\[
 \begin{aligned}
 &amp; \text{instance} ~ \text{t} ( \tau ) ~ \text{is} \\
-&amp; ~~~~ \text{method} ~ \text{m}\_1 ( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} ): \tau\_1 ~ \text{is} ; \\
+&amp; ~~~~ \text{method} ~ \text{m}\_1 ( \text{p}\_{11}: \tau_{11}, \dots, \text{p}\_{1n}: \tau_{1n} ): \tau_1 ~ \text{is} ; \\
 &amp; ~~~~~~~~ s_1 ; \\
 &amp; ~~~~ \text{end} ; \\
 &amp; ~~~~ \dots; \\
-&amp; ~~~~ \text{method} ~ \text{m}\_m ( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} ): \tau\_m ~ \text{is} ; \\
+&amp; ~~~~ \text{method} ~ \text{m}\_m ( \text{p}\_{m1}: \tau_{m1}, \dots, \text{p}\_{mn}: \tau_{mn} ): \tau_m ~ \text{is} ; \\
 &amp; ~~~~~~~~ s_m ; \\
 &amp; ~~~~ \text{end} ; \\
 &amp; \text{end} ;
@@ -1936,11 +1936,11 @@ end</code></pre></li>
 \text{tp}_1: k_1, \dots, \text{tp}_n: k_n
 ] \\
 &amp; \text{instance} ~ \text{t} ( \tau ) ~ \text{is} \\
-&amp; ~~~~ \text{method} ~ \text{m}\_1 ( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} ): \tau\_1 ~ \text{is} ; \\
+&amp; ~~~~ \text{method} ~ \text{m}_1 ( \text{p}_{11}: \tau_{11}, \dots, \text{p}_{1n}: \tau_{1n} ): \tau_1 ~ \text{is} ; \\
 &amp; ~~~~~~~~ s_1 ; \\
 &amp; ~~~~ \text{end} ; \\
 &amp; ~~~~ \dots; \\
-&amp; ~~~~ \text{method} ~ \text{m}\_m ( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} ): \tau\_m ~ \text{is} ; \\
+&amp; ~~~~ \text{method} ~ \text{m}_m ( \text{p}_{m1}: \tau_{m1}, \dots, \text{p}_{mn}: \tau_{mn} ): \tau_m ~ \text{is} ; \\
 &amp; ~~~~~~~~ s_m ; \\
 &amp; ~~~~ \text{end} ; \\
 &amp; \text{end} ;

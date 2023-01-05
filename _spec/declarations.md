@@ -273,23 +273,23 @@ Given:
 3. A set of method signatures:
 
    $$
-   \left\{
-   \begin{aligned}
-   & \text{m}\_1 ( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} ): \tau\_1,\\
-   & \dots,\\
-   & \text{m}\_m ( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} ): \tau\_m
-   \end{aligned}
-   \right\}
-   $$
+\left\{
+\begin{aligned}
+& \text{m}_1 ( \text{p}_{11}: \tau_{11}, \dots, \text{p}_{1n}: \tau_{1n} ): \tau_1,\\
+& \dots,\\
+& \text{m}_m ( \text{p}_{m1}: \tau_{m1}, \dots, \text{p}_{mn}: \tau_{mn} ): \tau_m
+\end{aligned}
+\right\}
+$$
 
 Then:
 
 $$
 \begin{aligned}
 & \text{typeclass} ~ \text{t} ( \text{p} : u ) ~ \text{is} \\
-& ~~~~ \text{method} ~ \text{m}\_1 ( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} ): \tau\_1 ; \\
+& ~~~~ \text{method} ~ \text{m}_1 ( \text{p}_{11}: \tau_{11}, \dots, \text{p}_{1n}: \tau_{1n} ): \tau_1 ; \\
 & ~~~~ \dots; \\
-& ~~~~ \text{method} ~ \text{m}\_m ( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} ): \tau\_m ; \\
+& ~~~~ \text{method} ~ \text{m}_m ( \text{p}_{m1}: \tau_{m1}, \dots, \text{p}_{mn}: \tau_{mn} ): \tau_m ; \\
 & \text{end} ;
 \end{aligned}
 $$
@@ -317,7 +317,7 @@ Let $\text{t}$ be the name of a typeclass and $\tau$ be a type
 specifier. Then:
 
 $$
-\text{instance} ~ \text{t} ( \\tau ) ;
+\text{instance} ~ \text{t} ( \tau ) ;
 $$
 
 declares an instance of the typeclass $\text{t}$ for the type $\tau$.
@@ -338,9 +338,9 @@ Given:
    $$
    \left\{
    \begin{aligned}
-   &\text{m}\_1 ( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} ): \tau\_1 ~ \text{is} ~ s_1,\\
+   &\text{m}\_1 ( \text{p}\_{11}: \tau_{11}, \dots, \text{p}\_{1n}: \tau_{1n} ): \tau_1 ~ \text{is} ~ s_1,\\
    &\dots,\\
-   &\text{m}\_m ( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} ): \tau\_m ~ \text{is} ~ s_m
+   &\text{m}\_m ( \text{p}\_{m1}: \tau_{m1}, \dots, \text{p}\_{mn}: \tau_{mn} ): \tau_m ~ \text{is} ~ s_m
    \end{aligned}
    \right\}
    $$
@@ -350,11 +350,11 @@ Then:
 $$
 \begin{aligned}
 & \text{instance} ~ \text{t} ( \tau ) ~ \text{is} \\
-& ~~~~ \text{method} ~ \text{m}\_1 ( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} ): \tau\_1 ~ \text{is} ; \\
+& ~~~~ \text{method} ~ \text{m}\_1 ( \text{p}\_{11}: \tau_{11}, \dots, \text{p}\_{1n}: \tau_{1n} ): \tau_1 ~ \text{is} ; \\
 & ~~~~~~~~ s_1 ; \\
 & ~~~~ \text{end} ; \\
 & ~~~~ \dots; \\
-& ~~~~ \text{method} ~ \text{m}\_m ( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} ): \tau\_m ~ \text{is} ; \\
+& ~~~~ \text{method} ~ \text{m}\_m ( \text{p}\_{m1}: \tau_{m1}, \dots, \text{p}\_{mn}: \tau_{mn} ): \tau_m ~ \text{is} ; \\
 & ~~~~~~~~ s_m ; \\
 & ~~~~ \text{end} ; \\
 & \text{end} ;
@@ -373,11 +373,11 @@ $$
 \text{tp}_1: k_1, \dots, \text{tp}_n: k_n
 ] \\
 & \text{instance} ~ \text{t} ( \tau ) ~ \text{is} \\
-& ~~~~ \text{method} ~ \text{m}\_1 ( \text{p}\_{11}: \tau\_{11}, \dots, \text{p}\_{1n}: \tau\_{1n} ): \tau\_1 ~ \text{is} ; \\
+& ~~~~ \text{method} ~ \text{m}_1 ( \text{p}_{11}: \tau_{11}, \dots, \text{p}_{1n}: \tau_{1n} ): \tau_1 ~ \text{is} ; \\
 & ~~~~~~~~ s_1 ; \\
 & ~~~~ \text{end} ; \\
 & ~~~~ \dots; \\
-& ~~~~ \text{method} ~ \text{m}\_m ( \text{p}\_{m1}: \tau\_{m1}, \dots, \text{p}\_{mn}: \tau\_{mn} ): \tau\_m ~ \text{is} ; \\
+& ~~~~ \text{method} ~ \text{m}_m ( \text{p}_{m1}: \tau_{m1}, \dots, \text{p}_{mn}: \tau_{mn} ): \tau_m ~ \text{is} ; \\
 & ~~~~~~~~ s_m ; \\
 & ~~~~ \text{end} ; \\
 & \text{end} ;
