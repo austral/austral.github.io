@@ -169,7 +169,7 @@ $$
 \begin{aligned}
 & \text{generic} ~
 [
-\text{tp}_1: k_1, \dots, \text{tp}_n: k_n
+\text{tp}_1: k_1, \dots, \text{tp}_m: k_m
 ] \\
 & \text{function} ~ \text{f} (
 \text{p}_1: \tau_1,
@@ -229,7 +229,7 @@ $$
 \begin{aligned}
 & \text{generic} ~
 [
-\text{tp}_1: k_1, \dots, \text{tp}_n: k_n
+\text{tp}_1: k_1, \dots, \text{tp}_m: k_m
 ] \\
 & \text{function} ~ \text{f} (
 \text{p}_1: \tau_1,
