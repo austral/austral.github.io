@@ -1,4 +1,14 @@
 function australMode(hljs) {
+    const TYPE = {
+        scope: "type",
+        begin: "(?<=: *)(\\w|[&!])+",
+        end: "(?=[^A-Za-z0-9_])",
+        contains: [
+            { begin: "\\[", end: "\\]", }, // Type params
+            { begin: "\\(", end: "\\)", }, // Constraints
+        ]
+    };
+
     return {
         name: "Austral",
         case_insensitive: false,
@@ -40,6 +50,8 @@ function australMode(hljs) {
                 "Linear",
                 "Type",
                 "Region",
+                "borrow",
+                "in",
                 "pragma",
                 "sizeof"
             ],
@@ -50,7 +62,38 @@ function australMode(hljs) {
             ]
         },
         contains: [
-            hljs.COMMENT('--', '$')
+            hljs.COMMENT('--', '$'),
+            hljs.QUOTE_STRING_MODE,
+            hljs.C_NUMBER_MODE,
+            {
+                scope: "string",
+                begin: "'",
+                end: "'",
+            },
+            {
+                scope: "comment",
+                begin: "\\.{3}",
+                end: "$",
+            },
+            {
+                scope: "type",
+                begin: "(?<=type +)",
+                end: "(;|(?=:)|$)"
+            },
+            {
+                scope: "type",
+                begin: "(?<=instance \\w+\\()",
+                end: "\\)"
+            },
+            {
+                scope: "operator",
+                begin: "(=>)|(->)"
+            },
+            {
+                scope: "operator",
+                begin: "[&!]+(?![!\\[])"
+            },
+            TYPE,
         ],
     };
 };
@@ -58,7 +101,7 @@ function australMode(hljs) {
 hljs.registerLanguage("austral", australMode);
 
 document.addEventListener('DOMContentLoaded', (event) => {
-  document.querySelectorAll('pre code.language-austral').forEach((el) => {
-    hljs.highlightElement(el);
-  });
+    document.querySelectorAll('pre code.language-austral').forEach((el) => {
+        hljs.highlightElement(el);
+    });
 })
