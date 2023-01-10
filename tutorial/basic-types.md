@@ -62,7 +62,7 @@ a and (b and (c and d))
 
 The following are Austral's built-in integer types:
 
-|  Name   |        Width        | Signedness |
+| Name    | Width               | Signedness |
 | ------- | ------------------- | ---------- |
 | `Nat8`  | 8 bits              | Unsigned.  |
 | `Nat16` | 16 bits.            | Unsigned.  |
@@ -74,7 +74,6 @@ The following are Austral's built-in integer types:
 | `Int64` | 64 bits.            | Signed.    |
 | `Index` | Platform-dependent. | Unsigned.  |
 
-
 `Nat` types are **unsigned**, they are natural numbers: they start at
 zero. `Int` types are **signed**, they are integers: they can hold negative and
 positive values. The number is the width or size of the integer in bits.
@@ -84,7 +83,7 @@ equivalent to C's `size_t` type.
 
 The minimum and maximum values of each type are:
 
-|  Name   | Minimum                                      | Maximum                                       |
+| Name    | Minimum                                      | Maximum                                       |
 | ------- | -------------------------------------------- | --------------------------------------------- |
 | `Nat8`  | 0                                            | 2<sup>8</sup>-1 = 255                         |
 | `Nat16` | 0                                            | 2<sup>16</sup>-1 = 65,535                     |
@@ -134,7 +133,7 @@ _and_ can prove that overflow won't happen, you can use the modular arithmetic
 methods:
 
 ```austral
-modularAdd(a, b)
+modularAdd(a, b);
 modularSubtract(a, b);
 modularMultiply(a, b);
 modularDivide(a, b);

@@ -64,7 +64,7 @@ Instead of consuming the linear `ByteBuffer` value, we take a reference to a
 
 We can use this like this:
 
-```
+```austral
 let length: Index := length(&buf);
 ```
 
@@ -161,7 +161,7 @@ value. But you can dereference free values.
 In the above example, `ref->sun->pos->x` is a reference to a `Float32` value,
 which is `Free`, so we can derefence it:
 
-```
+```austral
 let f: Float32 := !(ref->sun->pos->x);
 ```
 
@@ -169,7 +169,7 @@ let f: Float32 := !(ref->sun->pos->x);
 
 But what if we want to save the reference for later use? If we do this:
 
-```
+```austral
 let bufref: &[ByteBuffer, R] := &buf;
 ```
 
@@ -191,7 +191,7 @@ the region `Reg`. You can think of this as a lexically-scoped, type-level
 tag. Within the scope of the region statement, `R` is defined. Outside the
 block, it isn't. That means you can't leak references. You can't write:
 
-```
+```austral
 let ref: &[T, Reg] := ...;
 borrow x as xref in Reg do
     ref := xref;
@@ -207,7 +207,7 @@ how long the reference lives.
 
 As with reference expressions, you can't do this:
 
-```
+```austral
 let buf: ByteBuffer := allocateBuffer(100, 'a');
 destroyBuffer(buf);
 borrow buf ...

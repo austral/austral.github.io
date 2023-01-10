@@ -68,7 +68,7 @@ Box has value: 123
 
 When a case has no values, the corresponding `when` clause takes no bindings:
 
-```
+```austral
 when Empty do
     ...
 ```
@@ -76,14 +76,14 @@ when Empty do
 When a case has values, the corresponding `when` clause needs one binding for
 each field in the case:
 
-```
+```austral
 when Full(value: Int32) do
     ...
 ```
 
 You can rename bindings:
 
-```
+```austral
 when Full(value as v: Int32) do
     ...
 ```

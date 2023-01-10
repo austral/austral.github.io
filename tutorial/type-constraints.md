@@ -39,7 +39,7 @@ accept types that implement certain type classes.
 
 For example, suppose we have:
 
-```
+```austral
 typeclass Equatable(T: Free) is
     method isEqual(a: T, b: T): Bool;
 end;
@@ -60,7 +60,7 @@ will complain.
 
 Multiple type classes can be specified in a comma-separated list, e.g.:
 
-```
+```austral
 generic [T: Type(TotalEquality, TotalOrder, Printable, Serializable)]
 ```
 
