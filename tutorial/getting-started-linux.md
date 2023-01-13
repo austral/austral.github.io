@@ -35,7 +35,7 @@ $ opam switch install 4.13.0
 Then, download and build Austral:
 
 ```bash
-$ git clone git@github.com:austral/austral.git
+$ git clone https://github.com/austral/austral.git
 $ cd austral
 $ ./install-ocaml-deps.sh
 $ make
