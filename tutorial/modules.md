@@ -23,7 +23,7 @@ form a hierarchy: the module namespace is flat.
 
 # Declarations
 
-Modules contain declarations, and there are four kinds of declarations:
+Modules contain declarations, and there are five kinds of declarations:
 
 - Constants.
 - Types.
