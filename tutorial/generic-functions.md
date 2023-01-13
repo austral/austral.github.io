@@ -29,8 +29,7 @@ parameter list are the same as those that appear in the return type, this isn't
 a problem: the return type can be inferred from the types of the parameters.
 
 But there are cases where you have a type parameter that appears only in the
-return type, and not in the value parameters. This typically happens with type
-classes. Consider a typeclass:
+return type, and not in the value parameters. This typically happens with [type classes](/tutorial/type-classes)(explained later). Consider a type class:
 
 ```austral
 typeclass Bounded(T: Type) is
@@ -54,7 +53,7 @@ these functions have to be disambiguated. There are two ways to do this. One is
 to use the type casting operator:
 
 ```austral
-print(smallestValue() : Int32);
+print(smallestValue(): Int32);
 ```
 
 This tells the compiler that the type of `smallestValue()` is `Int32`. By

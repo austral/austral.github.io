@@ -10,14 +10,14 @@ and how they solve our problems.
 
 Consider a file handling API:
 
-```
-type File
+```austral
+type File;
 
-File openFile(String path)
+function openFile(path: String): File;
 
-File writeString(File file, String content)
+function writeString(file: File, content: String): File;
 
-void closeFile(File file)
+function closeFile(file: File): Unit;
 ```
 
 An experienced programmer understands the _implicit lifecycle_ of the `File`
@@ -41,23 +41,23 @@ These fall into two categories:
 
 1. **Leaks:** we can forget to call `closeFile`, e.g.:
 
-    ```
-    let file = openFile("hello.txt")
-    writeString(file, "Hello, world!")
-    // Forgot to close
-    ```
+   ```austral
+   let file: File = openFile("hello.txt");
+   writeString(file, "Hello, world!");
+   -- Forgot to close
+   ```
 
 2. **Use-After-Close:** and we can call `writeString` on a `File` object that
    has already been closed:
 
-   ```
-   closeFile(file)
+   ```austral
+   closeFile(file);
    writeString(file, "Goodbye, world!");
    ```
 
    And we can close the file handle after it has been closed:
 
-   ```
+   ```austral
    closeFile(file);
    closeFile(file);
    ```
@@ -69,14 +69,14 @@ more common.
 
 And they don't just apply to files. Consider a database access API:
 
-```
-type Db
+```austral
+type Db;
 
-Db connect(String host)
+function connect(host: String): Db;
 
-Rows query(Db db, String query)
+function query(db: Db, query: String): Rows;
 
-void close(Db db)
+function close(db: Db): Unit;
 ```
 
 Again: after calling `close` we can still call `query` and `close`. And we can
@@ -167,14 +167,14 @@ but linear types are denoted by an exclamation mark after their name.
 
 The API looks like this:
 
-```
-type File!
+```austral
+type File!;
 
-File! openFile(String path)
+function openFile(path: String): File!;
 
-File! writeString(File! file, String content)
+function writeString(file: File!, content: String): File!;
 
-void closeFile(File! file)
+function closeFile(file: File!): Unit;
 ```
 
 The `openFile` function is fairly normal: takes a path and returns a linear
@@ -193,15 +193,15 @@ of. Let's see how linear types help us write safe code.
 
 Can we leak a `File!` object? No:
 
-```
+```austral
 let file: File! := openFile("sonnets.txt");
-// Do nothing.
+-- Do nothing.
 ```
 
 The compiler will complain: the variable `file` is used zero
 times. Alternatively:
 
-```
+```austral
 let file: File! := openFile("sonnets.txt");
 writeString(file, "Devouring Time, blunt thou the lion’s paws, ...");
 ```
@@ -215,7 +215,7 @@ We can strike the "leak" transitions from the lifecycle graph:
 
 Can we close a file twice? No:
 
-```
+```austral
 let file: File! := openFile("test.txt");
 closeFile(file);
 closeFile(file);
@@ -229,7 +229,7 @@ we can strike the "double close" erroneous transition from the lifecycle graph:
 And you can see where this is going. Can we write to a file after closing it?
 No:
 
-```
+```austral
 let file: File! := openFile("test.txt");
 closeFile(file);
 let file2: File! := writeString(file, "Doing some mischief.");
@@ -245,7 +245,7 @@ exactly, one-to-one, the lifecycle that we intended.
 There is, ultimately, one and only one way to use this API such that the
 compiler doesn't complain:
 
-```
+```austral
 let f: File! := openFile("rilke.txt");
 let f_1: File! := writeString(f, "We cannot know his legendary head\n");
 let f_2: File! := writeString(f_1, "with eyes like ripening fruit. And yet his torso\n");
@@ -276,14 +276,14 @@ section:
 
 And does this solution generalize? Let's consider a linear database API:
 
-```
-type Db!
+```austral
+type Db!;
 
-Db! connect(String host)
+function connect(host: String): Db!;
 
-Pair<Db!, Rows> query(Db! db, String query)
+function query(db: Db!, query: String): Pair[Db!, Rows];
 
-void close(Db! db)
+function close(db: Db!) : Unit;
 ```
 
 This one's a bit more involved: the `query` function has to return a tuple
@@ -291,34 +291,34 @@ containing both the new `Db!` handle, and the result set.
 
 Again: we can't leak a database handle:
 
-```
+```austral
 let db: Db! := connect("localhost");
-// Do nothing.
+-- Do nothing.
 ```
 
 Because the compiler will point out that `db` is never consumed. We can't `close` a database handle twice:
 
-```
+```austral
 let db: Db! := connect("localhost");
 close(db);
-close(db); // error: `db` consumed again.
+close(db); -- error: `db` consumed again.
 ```
 
 Because `db` is used twice. Analogously, we can't query a database once it's closed:
 
-```
+```austral
 let db: Db! := connect("localhost");
 close(db);
-let (db1, rows): Pair<Db!, Rows> := query(db, "SELECT ...");
-close(db); // error: `db` consumed again.
+let (db1, rows): Pair[Db!, Rows] := query(db, "SELECT ...");
+close(db); -- error: `db` consumed again.
 ```
 
 For the same reason. The only way to use the database correctly is:
 
-```
+```austral
 let db: Db! := connect("localhost");
-let (db1, rows): Pair<Db!, Rows> := query(db, "SELECT ...");
-// Iterate over the rows or some such.
+let (db1, rows): Pair[Db!, Rows] := query(db, "SELECT ...");
+-- Iterate over the rows or some such.
 close(db1);
 ```
 

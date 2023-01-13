@@ -88,7 +88,7 @@ module Example.PhysicalConstants is
     """
     The elementary charge in Coulomb.
     """
-    constant elementary_charge : Float64;
+    constant elementary_charge: Float64;
 end module.
 ```
 
@@ -98,7 +98,7 @@ In the module file, we actually define the values:
 module body Example.PhysicalConstants is
     constant speed_of_light: Float64 := 299792458.0;
 
-    constant elementary_charge : Float64 := 1.602176634e-19;
+    constant elementary_charge: Float64 := 1.602176634e-19;
 end module body.
 ```
 
