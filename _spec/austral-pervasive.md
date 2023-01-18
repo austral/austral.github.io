@@ -39,32 +39,6 @@ The `Either` type is used to represent values which may have one of two distinct
 possibilities. For example, a function might return a value of type
 `Either[Error, Result]`.
 
-### `deref` Function {#austral.pervasive-deref}
-
-Declaration:
-
-```austral
-generic [T: Free, R: Region]
-function deref(ref: &[T, R]): T;
-```
-
-Description:
-
-The `deref` function loads the value pointed to by a read reference.
-
-### `derefWrite` Function {#austral.pervasive-derefwrite}
-
-Declaration:
-
-```austral
-generic [T: Free, R: Region]
-function derefWrite(ref: &![T, R]): T;
-```
-
-Description:
-
-The `derefWrite` function loads the value pointed to by a write reference.
-
 ### `fixedArraySize` Function {#austral.pervasive-fixedarraysize}
 
 Declaration:
