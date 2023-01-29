@@ -101,7 +101,7 @@ This section lists the design goals for Austral.
    Modula-3) or functors (as in Standard ML or OCaml), that is: all modules are
    first-order.
 
-   Modules are given explicit names are are not tied to any particular file
+   Modules are given explicit names and are not tied to any particular file
    system structure. Modules are split in two textual parts (effectively two
    files), a module interface and a module body, with strict separation between
    the two. The declarations in the module interface file are accessible from
