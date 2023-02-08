@@ -325,7 +325,7 @@ system interfaces to be designed up-front, and implemented in
 parallel.</p></li>
 <li><p><strong>Strictness.</strong> Gerald Jay Sussman and Hal Abelson
 <a
-href="https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/6515/sicp.zip/full-text/book/book-Z-H-5.html">wrote</a>:</p>
+href="https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-5.html">wrote</a>:</p>
 <blockquote>
 <p>Pascal is for building pyramids — imposing, breathtaking, static
 structures built by armies pushing heavy blocks into place. Lisp is for
@@ -3615,7 +3615,7 @@ region named <code>R</code>.</p>
 dually, the variable <code>X</code> cannot be used in <code>B</code>,
 i.e. while it is borrowed.</p>
 <p>The mutable form of the borrow statement is:</p>
-<pre class="austral"><code>borrow X as X&#39; in R do
+<pre class="austral"><code>borrow! X as X&#39; in R do
   B;
 end;</code></pre>
 <p>The only difference is that the type of <code>X'</code> is

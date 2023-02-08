@@ -254,7 +254,7 @@ in `B`, i.e. while it is borrowed.
 The mutable form of the borrow statement is:
 
 ```austral
-borrow X as X' in R do
+borrow! X as X' in R do
   B;
 end;
 ```
