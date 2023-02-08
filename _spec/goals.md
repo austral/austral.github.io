@@ -151,4 +151,4 @@ This section lists the design goals for Austral.
 [vasa]: https://www.stroustrup.com/P0977-remember-the-vasa.pdf
 [lamport]: https://lamport.azurewebsites.net/pubs/future-of-computing.pdf
 [compl]: https://en.wikipedia.org/wiki/Kolmogorov_complexity
-[sicp]: https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-5.html
+[sicp]: https://mitp-content-server.mit.edu/books/content/sectbyfn/books_pres_0/6515/sicp.zip/full-text/book/book-Z-H-5.html
