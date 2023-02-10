@@ -3615,7 +3615,7 @@ region named <code>R</code>.</p>
 dually, the variable <code>X</code> cannot be used in <code>B</code>,
 i.e. while it is borrowed.</p>
 <p>The mutable form of the borrow statement is:</p>
-<pre class="austral"><code>borrow X as X&#39; in R do
+<pre class="austral"><code>borrow! X as X&#39; in R do
   B;
 end;</code></pre>
 <p>The only difference is that the type of <code>X'</code> is
