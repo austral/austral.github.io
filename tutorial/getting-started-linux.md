@@ -10,7 +10,7 @@ it from source.
 Run this to download and install the latest release:
 
 ```bash
-$ curl -o austral -L https://github.com/austral/austral/releases/download/v0.1.0/austral-linux
+$ curl -o austral -L https://github.com/austral/austral/releases/latest/download/austral-linux
 $ sudo install -m 755 austral /usr/local/bin/austral
 ```
 
