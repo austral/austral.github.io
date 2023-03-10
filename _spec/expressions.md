@@ -176,7 +176,7 @@ Semantics:
 
 ## Comparison Expression {#expr-comp}
 
-If $a$ and $b$ are both expressions of Boolean type, then:
+If $a$ and $b$ are both expressions of the same comparable type, then:
 
 $$
 \begin{aligned}
@@ -190,6 +190,16 @@ a &\geq b
 $$
 
 are comparison expressions with type `Bool`.
+
+The following types are comparable:
+
+- `Unit`
+- `Bool`
+- Every natural number type.
+- Every integer type.
+- Every floating point type.
+- `Address` and `Pointer` from `Austral.Memory`.
+- Function pointer types.
 
 ## Conjunction Expression {#expr-conj}
 
