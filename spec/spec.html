@@ -2783,7 +2783,7 @@ end module body.</code></pre>
 end.</code></pre>
 <p>The following is a module definition that satisfies the
 interface:</p>
-<pre class="austral"><code>module Example is
+<pre class="austral"><code>module body Example is
     constant c : Float32 := 3.14;
 
     -- Record `R` doesn&#39;t have to be redefined here,
@@ -2810,7 +2810,7 @@ interface:</p>
             return x;
         end;
     end;
-end.</code></pre>
+end module body.</code></pre>
 <h1 id="types">Type System</h1>
 <p>This section describes Austral’s type system.</p>
 <h2 id="type-universes">Type Universes</h2>
