@@ -96,7 +96,7 @@ let secrets: String := readFile(&p);
 
 In the context of code running on a programmer's development computer, that
 means personal information. In the context of code running on an application
-server, that means confidential bussiness information.
+server, that means confidential business information.
 
 What does a capability-secure filesystem API look like? Like this:
 

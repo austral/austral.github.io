@@ -129,7 +129,7 @@ Declaration:
 
 ```austral
 generic [T: Type]
-function resizeArray(array: Pointer[T], size: Index): Pointer[T];
+function resizeArray(array: Pointer[T], size: Index): Option[Pointer[T]];
 ```
 
 Description:

@@ -694,7 +694,7 @@ The `openFile` function looks like this:
 extern int fopen(char* filename, char* mode)
 
 File openFile(String path) {
-    let handle: int = fopen(as_c_string(filename), "r");
+    let ptr: int = fopen(as_c_string(filename), "r");
     return File(handle => ptr);
 }
 ```
@@ -710,7 +710,7 @@ extern int fputs(char* string, int fp)
 File writeString(File file, String content) {
   let { handle: int } := file;
   fputs(as_c_string(content), handle);
-  return File(handle => ptr);
+  return File(handle => handle);
 }
 ```
 
