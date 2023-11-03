@@ -89,7 +89,6 @@ union Option[T: Type]: Type is
     case None;
     case Some is
         value: T;
-    end;
 end;
 ```
 
