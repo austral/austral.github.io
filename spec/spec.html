@@ -19,129 +19,187 @@
       <div class="toc-box">
         <nav id="TOC" role="doc-toc">
           <ul>
-          <li><a href="#intro">Introduction</a></li>
-          <li><a href="#goals">Design Goals</a></li>
-          <li><a href="#rationale">Rationale</a>
+          <li><a href="#intro" id="toc-intro">Introduction</a></li>
+          <li><a href="#goals" id="toc-goals">Design Goals</a></li>
+          <li><a href="#rationale" id="toc-rationale">Rationale</a>
           <ul>
-          <li><a href="#rationale-syntax">Syntax</a></li>
-          <li><a href="#rationale-linear-types">Linear Types</a></li>
-          <li><a href="#rationale-errors">Error Handling</a></li>
-          <li><a href="#rationale-cap">Capability-Based
-          Security</a></li>
+          <li><a href="#rationale-syntax"
+          id="toc-rationale-syntax">Syntax</a></li>
+          <li><a href="#rationale-linear-types"
+          id="toc-rationale-linear-types">Linear Types</a></li>
+          <li><a href="#rationale-errors"
+          id="toc-rationale-errors">Error Handling</a></li>
+          <li><a href="#rationale-cap"
+          id="toc-rationale-cap">Capability-Based Security</a></li>
           </ul></li>
-          <li><a href="#syntax">Syntax</a>
+          <li><a href="#syntax" id="toc-syntax">Syntax</a>
           <ul>
-          <li><a href="#syntax-meta">Meta-Language</a></li>
-          <li><a href="#syntax-modules">Modules</a></li>
-          <li><a href="#syntax-declarations">Declarations</a></li>
-          <li><a href="#syntax-identifiers">Identifiers</a></li>
-          <li><a href="#syntax-comments">Comments and
-          Documentation</a></li>
-          <li><a href="#syntax-literals">Literals</a></li>
-          <li><a href="#syntax-aux">Auxiliary Non-Terminals</a></li>
+          <li><a href="#syntax-meta"
+          id="toc-syntax-meta">Meta-Language</a></li>
+          <li><a href="#syntax-modules"
+          id="toc-syntax-modules">Modules</a></li>
+          <li><a href="#syntax-declarations"
+          id="toc-syntax-declarations">Declarations</a></li>
+          <li><a href="#syntax-identifiers"
+          id="toc-syntax-identifiers">Identifiers</a></li>
+          <li><a href="#syntax-comments"
+          id="toc-syntax-comments">Comments and Documentation</a></li>
+          <li><a href="#syntax-literals"
+          id="toc-syntax-literals">Literals</a></li>
+          <li><a href="#syntax-aux" id="toc-syntax-aux">Auxiliary
+          Non-Terminals</a></li>
           </ul></li>
-          <li><a href="#modules">Module System</a>
+          <li><a href="#modules" id="toc-modules">Module System</a>
           <ul>
-          <li><a href="#module-interfaces">Module Interfaces</a></li>
-          <li><a href="#module-bodies">Module Bodies</a></li>
-          <li><a href="#module-imports">Imports</a></li>
-          <li><a href="#import-nicknames">Import Nicknames</a></li>
-          <li><a href="#instance-imports">Instance Imports</a></li>
-          <li><a href="#unsafe-modules">Unsafe Modules</a></li>
-          <li><a href="#module-examples">Examples</a></li>
+          <li><a href="#module-interfaces"
+          id="toc-module-interfaces">Module Interfaces</a></li>
+          <li><a href="#module-bodies" id="toc-module-bodies">Module
+          Bodies</a></li>
+          <li><a href="#module-imports"
+          id="toc-module-imports">Imports</a></li>
+          <li><a href="#import-nicknames"
+          id="toc-import-nicknames">Import Nicknames</a></li>
+          <li><a href="#instance-imports"
+          id="toc-instance-imports">Instance Imports</a></li>
+          <li><a href="#unsafe-modules" id="toc-unsafe-modules">Unsafe
+          Modules</a></li>
+          <li><a href="#module-examples"
+          id="toc-module-examples">Examples</a></li>
           </ul></li>
-          <li><a href="#types">Type System</a>
+          <li><a href="#types" id="toc-types">Type System</a>
           <ul>
-          <li><a href="#type-universes">Type Universes</a></li>
-          <li><a href="#linear-types">Linear Types</a></li>
-          <li><a href="#type-parameters">Type Parameters</a></li>
-          <li><a href="#type-parameter-constraints">Type Parameter
+          <li><a href="#type-universes" id="toc-type-universes">Type
+          Universes</a></li>
+          <li><a href="#linear-types" id="toc-linear-types">Linear
+          Types</a></li>
+          <li><a href="#type-parameters" id="toc-type-parameters">Type
+          Parameters</a></li>
+          <li><a href="#type-parameter-constraints"
+          id="toc-type-parameter-constraints">Type Parameter
           Constraints</a></li>
-          <li><a href="#declaring-types">Declaring Types</a></li>
-          <li><a href="#built-in-types">Built-In Types</a></li>
+          <li><a href="#declaring-types"
+          id="toc-declaring-types">Declaring Types</a></li>
+          <li><a href="#built-in-types" id="toc-built-in-types">Built-In
+          Types</a></li>
           </ul></li>
-          <li><a href="#type-classes">Type Classes</a>
+          <li><a href="#type-classes" id="toc-type-classes">Type
+          Classes</a>
           <ul>
-          <li><a href="#type-class-uniqueness">Instance
-          Uniqueness</a></li>
-          <li><a href="#instance-resolution">Instance
-          Resolution</a></li>
+          <li><a href="#type-class-uniqueness"
+          id="toc-type-class-uniqueness">Instance Uniqueness</a></li>
+          <li><a href="#instance-resolution"
+          id="toc-instance-resolution">Instance Resolution</a></li>
           </ul></li>
-          <li><a href="#decl">Declarations</a>
+          <li><a href="#decl" id="toc-decl">Declarations</a>
           <ul>
-          <li><a href="#opaque-constant">Opaque Constant</a></li>
-          <li><a href="#constant-definition">Constant
-          Definition</a></li>
-          <li><a href="#record-definition">Record Definition</a></li>
-          <li><a href="#union-definition">Union Definition</a></li>
-          <li><a href="#function-declaration">Function
-          Declaration</a></li>
-          <li><a href="#function-definition">Function
-          Definition</a></li>
-          <li><a href="#typeclass-definition">Typeclass
-          Definition</a></li>
-          <li><a href="#instance-declaration">Instance
-          Declaration</a></li>
-          <li><a href="#instance-definition">Instance
-          Definition</a></li>
+          <li><a href="#opaque-constant" id="toc-opaque-constant">Opaque
+          Constant</a></li>
+          <li><a href="#constant-definition"
+          id="toc-constant-definition">Constant Definition</a></li>
+          <li><a href="#record-definition"
+          id="toc-record-definition">Record Definition</a></li>
+          <li><a href="#union-definition"
+          id="toc-union-definition">Union Definition</a></li>
+          <li><a href="#function-declaration"
+          id="toc-function-declaration">Function Declaration</a></li>
+          <li><a href="#function-definition"
+          id="toc-function-definition">Function Definition</a></li>
+          <li><a href="#typeclass-definition"
+          id="toc-typeclass-definition">Typeclass Definition</a></li>
+          <li><a href="#instance-declaration"
+          id="toc-instance-declaration">Instance Declaration</a></li>
+          <li><a href="#instance-definition"
+          id="toc-instance-definition">Instance Definition</a></li>
           </ul></li>
-          <li><a href="#stmt">Statements</a>
+          <li><a href="#stmt" id="toc-stmt">Statements</a>
           <ul>
-          <li><a href="#stmt-skip">Skip Statement</a></li>
-          <li><a href="#stmt-let">Let Statement</a></li>
-          <li><a href="#stmt-let-destructure">Let Destructure
+          <li><a href="#stmt-skip" id="toc-stmt-skip">Skip
           Statement</a></li>
-          <li><a href="#stmt-assign">Assignment Statement</a></li>
-          <li><a href="#stmt-if">If Statement</a></li>
-          <li><a href="#stmt-case">Case Statement</a></li>
-          <li><a href="#stmt-while">While Loop</a></li>
-          <li><a href="#stmt-for">For Loop</a></li>
-          <li><a href="#stmt-borrow">Borrow Statement</a></li>
-          <li><a href="#stmt-discard">Discarding Statement</a></li>
-          <li><a href="#stmt-return">Return Statement</a></li>
+          <li><a href="#stmt-let" id="toc-stmt-let">Let
+          Statement</a></li>
+          <li><a href="#stmt-let-destructure"
+          id="toc-stmt-let-destructure">Let Destructure
+          Statement</a></li>
+          <li><a href="#stmt-assign" id="toc-stmt-assign">Assignment
+          Statement</a></li>
+          <li><a href="#stmt-if" id="toc-stmt-if">If Statement</a></li>
+          <li><a href="#stmt-case" id="toc-stmt-case">Case
+          Statement</a></li>
+          <li><a href="#stmt-while" id="toc-stmt-while">While
+          Loop</a></li>
+          <li><a href="#stmt-for" id="toc-stmt-for">For Loop</a></li>
+          <li><a href="#stmt-borrow" id="toc-stmt-borrow">Borrow
+          Statement</a></li>
+          <li><a href="#stmt-discard" id="toc-stmt-discard">Discarding
+          Statement</a></li>
+          <li><a href="#stmt-return" id="toc-stmt-return">Return
+          Statement</a></li>
           </ul></li>
-          <li><a href="#expr">Expressions</a>
+          <li><a href="#expr" id="toc-expr">Expressions</a>
           <ul>
-          <li><a href="#expr-nil">Nil Constant</a></li>
-          <li><a href="#expr-bool">Boolean Constant</a></li>
-          <li><a href="#expr-int">Integer Constant</a></li>
-          <li><a href="#expr-float">Float Constant</a></li>
-          <li><a href="#expr-str">String Constant</a></li>
-          <li><a href="#expr-var">Variable Expression</a></li>
-          <li><a href="#expr-arith">Arithmetic Expression</a></li>
-          <li><a href="#expr-funcall">Function Call</a></li>
-          <li><a href="#expr-methcall">Method Call</a></li>
-          <li><a href="#expr-rec-cons">Record Constructor</a></li>
-          <li><a href="#expr-union-cons">Union Constructor</a></li>
-          <li><a href="#expr-case">Cast Expression</a></li>
-          <li><a href="#expr-comp">Comparison Expression</a></li>
-          <li><a href="#expr-conj">Conjunction Expression</a></li>
-          <li><a href="#expr-disj">Disjunction Expression</a></li>
-          <li><a href="#negation-expression">Negation
+          <li><a href="#expr-nil" id="toc-expr-nil">Nil
+          Constant</a></li>
+          <li><a href="#expr-bool" id="toc-expr-bool">Boolean
+          Constant</a></li>
+          <li><a href="#expr-int" id="toc-expr-int">Integer
+          Constant</a></li>
+          <li><a href="#expr-float" id="toc-expr-float">Float
+          Constant</a></li>
+          <li><a href="#expr-str" id="toc-expr-str">String
+          Constant</a></li>
+          <li><a href="#expr-var" id="toc-expr-var">Variable
           Expression</a></li>
-          <li><a href="#expr-if">If Expression</a></li>
-          <li><a href="#expr-path">Path Expression</a></li>
-          <li><a href="#expr-deref">Dereference Expression</a></li>
-          <li><a href="#expr-borrow">Borrow Expressions</a></li>
-          <li><a href="#expr-sizeof">sizeof Expression</a></li>
+          <li><a href="#expr-arith" id="toc-expr-arith">Arithmetic
+          Expression</a></li>
+          <li><a href="#expr-funcall" id="toc-expr-funcall">Function
+          Call</a></li>
+          <li><a href="#expr-methcall" id="toc-expr-methcall">Method
+          Call</a></li>
+          <li><a href="#expr-rec-cons" id="toc-expr-rec-cons">Record
+          Constructor</a></li>
+          <li><a href="#expr-union-cons" id="toc-expr-union-cons">Union
+          Constructor</a></li>
+          <li><a href="#expr-case" id="toc-expr-case">Cast
+          Expression</a></li>
+          <li><a href="#expr-comp" id="toc-expr-comp">Comparison
+          Expression</a></li>
+          <li><a href="#expr-conj" id="toc-expr-conj">Conjunction
+          Expression</a></li>
+          <li><a href="#expr-disj" id="toc-expr-disj">Disjunction
+          Expression</a></li>
+          <li><a href="#negation-expression"
+          id="toc-negation-expression">Negation Expression</a></li>
+          <li><a href="#expr-if" id="toc-expr-if">If Expression</a></li>
+          <li><a href="#expr-path" id="toc-expr-path">Path
+          Expression</a></li>
+          <li><a href="#expr-deref" id="toc-expr-deref">Dereference
+          Expression</a></li>
+          <li><a href="#expr-borrow" id="toc-expr-borrow">Borrow
+          Expressions</a></li>
+          <li><a href="#expr-sizeof" id="toc-expr-sizeof">sizeof
+          Expression</a></li>
           </ul></li>
-          <li><a href="#linearity">Linearity Checking</a></li>
-          <li><a href="#builtin">Built-In Modules</a>
+          <li><a href="#linearity" id="toc-linearity">Linearity
+          Checking</a></li>
+          <li><a href="#builtin" id="toc-builtin">Built-In Modules</a>
           <ul>
-          <li><a href="#austral.memory">Austral.Memory Module</a></li>
-          <li><a href="#austral.pervasive">Austral.Pervasive
-          Module</a></li>
+          <li><a href="#austral.memory"
+          id="toc-austral.memory">Austral.Memory Module</a></li>
+          <li><a href="#austral.pervasive"
+          id="toc-austral.pervasive">Austral.Pervasive Module</a></li>
           </ul></li>
-          <li><a href="#ffi">Foreign Interfaces</a>
+          <li><a href="#ffi" id="toc-ffi">Foreign Interfaces</a>
           <ul>
-          <li><a href="#c-ffi">The C Interface</a></li>
+          <li><a href="#c-ffi" id="toc-c-ffi">The C Interface</a></li>
           </ul></li>
-          <li><a href="#style-guide">Style Guide</a>
+          <li><a href="#style-guide" id="toc-style-guide">Style
+          Guide</a>
           <ul>
-          <li><a href="#style-case-convention">Case Convention</a></li>
+          <li><a href="#style-case-convention"
+          id="toc-style-case-convention">Case Convention</a></li>
           </ul></li>
-          <li><a href="#license">Appendix A: GNU Free Documentation
-          License</a></li>
+          <li><a href="#license" id="toc-license">Appendix A: GNU Free
+          Documentation License</a></li>
           </ul>
         </nav>
       </div>
@@ -1784,9 +1842,9 @@ together, skip this section. Otherwise, consider:</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>try <span class="op">{</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  let f <span class="op">=</span> open<span class="op">(</span><span class="st">&quot;/etc/config&quot;</span><span class="op">);</span></span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">// `write` consumes `f`, and returns a new linear file object</span></span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  let f&#39; <span class="op">=</span> write<span class="op">(</span>f<span class="op">,</span> <span class="st">&quot;Hello, world!&quot;</span><span class="op">);</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  let f<span class="ch">&#39; </span><span class="er">= write(f, &quot;Hello, world!&quot;);</span></span>
 <span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  throw Exception<span class="op">(</span><span class="st">&quot;Nope&quot;</span><span class="op">);</span></span>
-<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>  close<span class="op">(</span>f&#39;<span class="op">);</span></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>  close<span class="op">(</span>f<span class="ch">&#39;)</span><span class="er">;</span></span>
 <span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> catch Exception <span class="op">{</span></span>
 <span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>  puts<span class="op">(</span><span class="st">&quot;Leak!&quot;</span><span class="op">);</span></span>
 <span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
@@ -1798,11 +1856,11 @@ scope of the associated <code>catch</code> block, we could attempt a
 fix:</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>try <span class="op">{</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  let f <span class="op">=</span> open<span class="op">(</span><span class="st">&quot;/etc/config&quot;</span><span class="op">);</span></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  let f&#39; <span class="op">=</span> write<span class="op">(</span>f<span class="op">,</span> <span class="st">&quot;Hello, world!&quot;</span><span class="op">);</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  let f<span class="ch">&#39; </span><span class="er">= write(f, &quot;Hello, world!&quot;);</span></span>
 <span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  throw Exception<span class="op">(</span><span class="st">&quot;Nope&quot;</span><span class="op">);</span></span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  close<span class="op">(</span>f&#39;<span class="op">);</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  close<span class="op">(</span>f<span class="ch">&#39;)</span><span class="er">;</span></span>
 <span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> catch Exception <span class="op">{</span></span>
-<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>  close<span class="op">(</span>f&#39;<span class="op">);</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>  close<span class="op">(</span>f<span class="ch">&#39;)</span><span class="er">;</span></span>
 <span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>But the type system wouldn’t accept this: <code>f'</code> is
 potentially being consumed twice, if the exception is thrown from inside
@@ -2554,7 +2612,7 @@ identifier character = letter | digit;</code></pre>
 <h2 id="syntax-comments">Comments and Documentation</h2>
 <pre><code>comment = &quot;-- &quot;, {any character}, &quot;\n&quot;;
 
-docstring = &quot;```\n&quot;, { any character - &quot;```&quot; } ,&quot;\n```&quot;;</code></pre>
+docstring = &quot;\&quot;\&quot;\&quot;\n&quot;, { any character - &quot;\&quot;\&quot;\&quot;&quot; } ,&quot;\n\&quot;\&quot;\&quot;&quot;;</code></pre>
 <h2 id="syntax-literals">Literals</h2>
 <pre><code>digits = digit, { digit | &quot;_&quot; };
 integer constant = [&quot;+&quot;, &quot;-&quot;], digits;
