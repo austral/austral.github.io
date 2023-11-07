@@ -70,7 +70,7 @@ identifier character = letter | digit;
 ```
 comment = "-- ", {any character}, "\n";
 
-docstring = "```\n", { any character - "```" } ,"\n```";
+docstring = "\"\"\"\n", { any character - "\"\"\"" } ,"\n\"\"\"";
 ```
 
 ## Literals {#syntax-literals}
