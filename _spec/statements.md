@@ -48,7 +48,7 @@ let {R_1: T_1, ..., R_n: T_n} := R;
 is a let-destructure statement.
 
 Since there are likely to be collisions between record field names and existing
-variable names, let-destructure statements optionally support assigning to a
+variable names, let-destructure statements optionally support binding to a
 different name.
 
 If `R` is an expression of type `T`, and `T` is a record type with field set
@@ -59,7 +59,7 @@ let {..., R_i as N_i: T_i, ...} := R;
 ```
 
 is a let-destructure statement with renaming. None, some, or all of the
-destructed fields may be renamed.
+bindings may be renamed.
 
 An example of a let-destructure statement with no renaming:
 
@@ -67,7 +67,7 @@ An example of a let-destructure statement with no renaming:
 let { symbol: String, Z: Nat8, A: Nat8 } := isotope;
 ```
 
-An example of a let-destructure statement with some fields renamed:
+An example of a let-destructure statement with some bindings renamed:
 
 ```austral
 let { symbol: String, Z as atomic_number: Nat8, A as mass_number: Nat8 } := isotope;
@@ -215,7 +215,7 @@ end case;
 ```
 
 Since there are likely to be collisions between union case slot names and existing
-variable names, case statements optionally support assigning to a
+variable names, case statements optionally support binding to a
 different name.
 
 If `E` is an expression of a union type with cases `{C_1, ..., C_n}` and each
@@ -231,10 +231,10 @@ case E of
 end case;
 ```
 
-is a `case` statement with renaming. None, some, or all of the union case slots
-may be renamed.
+is a `case` statement with renaming. None, some, or all of the bindings may be
+renamed.
 
-An example of a case statement with renaming:
+An example of a case statement with a renamed binding:
 
 ```austral
 case response of
@@ -244,7 +244,6 @@ case response of
         -- handle the failure case
 end case;
 ```
-
 
 ## While Loop {#stmt-while}
 
