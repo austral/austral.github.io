@@ -28,9 +28,9 @@ A `let` statement is one of the few places where type information flows forward:
 the declared type is used to disambiguate the type of the expression when the
 expression is, for example, a call to a return-type polymorphic function.
 
-## Let Destructure Statement {#stmt-let-destructure}
+## Let-destructure Statement {#stmt-let-destructure}
 
-A let destructure statement is used to break apart records, creating a binding
+A let-destructure statement is used to break apart records, creating a binding
 for each field in the record.
 
 The utility of this is: when you have a linear record type, you can't extract
@@ -45,7 +45,33 @@ If `R` is an expression of type `T`, and `T` is a record type with field set
 let {R_1: T_1, ..., R_n: T_n} := R;
 ```
 
-is a let destructure statement.
+is a let-destructure statement.
+
+Since there are likely to be collisions between record field names and existing
+variable names, let-destructure statements optionally support assigning to a
+different name.
+
+If `R` is an expression of type `T`, and `T` is a record type with field set
+`{R_1: T_1, ..., R_n: T_n}`, and `N_i` is an identifier, then:
+
+```austral
+let {..., R_i as N_i: T_i, ...} := R;
+```
+
+is a let-destructure statement with renaming. None, some, or all of the
+destructed fields may be renamed.
+
+An example of a let-destructure statement with no renaming:
+
+```austral
+let { symbol: String, Z: Nat8, A: Nat8 } := isotope;
+```
+
+An example of a let-destructure statement with some fields renamed:
+
+```austral
+let { symbol: String, Z as atomic_number: Nat8, A as mass_number: Nat8 } := isotope;
+```
 
 ## Assignment Statement {#stmt-assign}
 
@@ -188,7 +214,36 @@ case e of
 end case;
 ```
 
-An exam
+Since there are likely to be collisions between union case slot names and existing
+variable names, case statements optionally support assigning to a
+different name.
+
+If `E` is an expression of a union type with cases `{C_1, ..., C_n}` and each
+case has slots `C_i = {S_i1: T_i1, ..., S_in T_im}`, and `{B_1, ..., B_n}` is a
+set of statements, and `N_ij` is an identifier, then:
+
+```austral
+case E of
+    ...
+    when C_i(..., S_ij as N_ij: T_ij, ...) do
+        B_i;
+    ...
+end case;
+```
+
+is a `case` statement with renaming. None, some, or all of the union case slots
+may be renamed.
+
+An example of a case statement with renaming:
+
+```austral
+case response of
+    when Some(value as payload: String) do
+        -- do something with the response payload
+    when None do
+        -- handle the failure case
+end case;
+```
 
 
 ## While Loop {#stmt-while}
