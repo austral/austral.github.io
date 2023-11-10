@@ -118,7 +118,7 @@
           <li><a href="#stmt-let" id="toc-stmt-let">Let
           Statement</a></li>
           <li><a href="#stmt-let-destructure"
-          id="toc-stmt-let-destructure">Let Destructure
+          id="toc-stmt-let-destructure">Let-destructure
           Statement</a></li>
           <li><a href="#stmt-assign" id="toc-stmt-assign">Assignment
           Statement</a></li>
@@ -3458,8 +3458,8 @@ then:</p>
 information flows forward: the declared type is used to disambiguate the
 type of the expression when the expression is, for example, a call to a
 return-type polymorphic function.</p>
-<h2 id="stmt-let-destructure">Let Destructure Statement</h2>
-<p>A let destructure statement is used to break apart records, creating
+<h2 id="stmt-let-destructure">Let-destructure Statement</h2>
+<p>A let-destructure statement is used to break apart records, creating
 a binding for each field in the record.</p>
 <p>The utility of this is: when you have a linear record type, you can’t
 extract the value of a linear field from it, because it consumes the
@@ -3470,7 +3470,22 @@ then optionally reassembled.</p>
 <code>T</code> is a record type with field set
 <code>{R_1: T_1, ..., R_n: T_n}</code>, then:</p>
 <pre class="austral"><code>let {R_1: T_1, ..., R_n: T_n} := R;</code></pre>
-<p>is a let destructure statement.</p>
+<p>is a let-destructure statement.</p>
+<p>Since there are likely to be collisions between record field names
+and existing variable names, let-destructure statements optionally
+support binding to a different name.</p>
+<p>If <code>R</code> is an expression of type <code>T</code>, and
+<code>T</code> is a record type with field set
+<code>{R_1: T_1, ..., R_n: T_n}</code>, and <code>N_i</code> is an
+identifier, then:</p>
+<pre class="austral"><code>let {..., R_i as N_i: T_i, ...} := R;</code></pre>
+<p>is a let-destructure statement with renaming. None, some, or all of
+the bindings may be renamed.</p>
+<p>An example of a let-destructure statement with no renaming:</p>
+<pre class="austral"><code>let { symbol: String, Z: Nat8, A: Nat8 } := isotope;</code></pre>
+<p>An example of a let-destructure statement with some bindings
+renamed:</p>
+<pre class="austral"><code>let { symbol: String, Z as atomic_number: Nat8, A as mass_number: Nat8 } := isotope;</code></pre>
 <h2 id="stmt-assign">Assignment Statement</h2>
 <p>If <code>P</code> is an lvalue of type <code>T</code> and
 <code>E</code> is an expression of type <code>T</code>, then:</p>
@@ -3573,7 +3588,29 @@ case e of
     when Right(right: Int32) do
         -- Do something with `right`.
 end case;</code></pre>
-<p>An exam</p>
+<p>Since there are likely to be collisions between union case slot names
+and existing variable names, case statements optionally support binding
+to a different name.</p>
+<p>If <code>E</code> is an expression of a union type with cases
+<code>{C_1, ..., C_n}</code> and each case has slots
+<code>C_i = {S_i1: T_i1, ..., S_in T_im}</code>, and
+<code>{B_1, ..., B_n}</code> is a set of statements, and
+<code>N_ij</code> is an identifier, then:</p>
+<pre class="austral"><code>case E of
+    ...
+    when C_i(..., S_ij as N_ij: T_ij, ...) do
+        B_i;
+    ...
+end case;</code></pre>
+<p>is a <code>case</code> statement with renaming. None, some, or all of
+the bindings may be renamed.</p>
+<p>An example of a case statement with a renamed binding:</p>
+<pre class="austral"><code>case response of
+    when Some(value as payload: String) do
+        -- do something with the response payload
+    when None do
+        -- handle the failure case
+end case;</code></pre>
 <h2 id="stmt-while">While Loop</h2>
 <p>If <code>e</code> is an expression of type <code>Bool</code> and
 <code>b</code> is a statement, then:</p>
