@@ -102,6 +102,37 @@ module body Example.PhysicalConstants is
 end module body.
 ```
 
+Then, in another module, we can import these constants:
+
+```austral
+import Example.PhysicalConstants (
+    speed_of_light,
+    elementary_charge
+);
+
+module body Example.Main is
+    function main(): ExitCode is
+        print("The speed of light is ");
+        print(speed_of_light);
+        printLn(" meters per second.");
+        print("The elementary charge is ");
+        print(elementary_charge);
+        printLn(" coulombs.");
+        return ExitSuccess();
+    end;
+end module body.
+```
+
+To use all these files together, we must pass all their names to the compiler,
+with each pair of interface with implementation gathered together via a comma:
+
+```bash
+$ austral compile PhysicalConstants.aui,PhysicalConstants.aum Main.aum --entrypoint=Example.Main:main --output=constants
+$ ./constants
+The speed of light is 299792458.000000 meters per second.
+The elementary charge is 0.000000 coulombs.
+```
+
 ### Navigation
 
 - [Back](/tutorial/hello-world)
