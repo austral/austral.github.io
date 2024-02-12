@@ -147,30 +147,29 @@ work on floats as well, but the usual restrictions apply: you can't mix
 different float types, or floats and integers, in the same expression, you have
 to convert them.
 
-# Fixed Arrays
+# Spans
 
-Fixed arrays are the type of (usually statically allocated) arrays. String
-literals are fixed arrays of bytes:
+String literals are spans of bytes:
 
 ```austral
-let str: FixedArray[Nat8] := "Hello, world!";
+let str: Span[Nat8, Static] := "Hello, world!";
 ```
 
-The size of a fixed array can be obtained with the built-in `fixedArraySize`
-function, which takes a fixed array and returns a value of type `Index`:
+The size of a span can be obtained with the built-in `spanLength` function,
+which takes a span and returns a value of type `Index`:
 
 ```austral
-let size: Index := fixedArraySize("Hello, world!");
+let size: Index := spanLength("Hello, world!");
 ```
 
-Array elements can be accessed through the index operator:
+Span elements can be accessed through the index operator:
 
 ```austral
-let str: FixedArray[Nat8] := "Hello, world!";
+let str: Span[Nat8, Static] := "Hello, world!";
 printLn(str[0]);
 ```
 
-If an array index is out-of-bounds, the program aborts.
+If an index is out-of-bounds, the program aborts.
 
 ### Navigation
 
