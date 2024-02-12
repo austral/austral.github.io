@@ -52,8 +52,8 @@ constructor and transformation functions enforce certain invariants.
 
 # Interfaces and Implementations
 
-Austral separates modules into a _module interface_ file and a _module body_
-file.
+Austral separates modules into a _module interface_ file, with file extension
+`.aui`, and a _module body_ file, with file extension `.aum`.
 
 The point of separating interfaces and implementations is readability: the
 interface describes all the things module's declarations that are public and
@@ -75,8 +75,8 @@ This section contains examples of the module system.
 
 Let's define a module that exports physical constants.
 
-In the interface file, we declare the names of the constants, along with their
-types and a docstring, but not their values:
+In the interface file `PhysicalConstants.aui`, we declare the names of the
+constants, along with their types and a docstring, but not their values:
 
 ```austral
 module Example.PhysicalConstants is
@@ -92,7 +92,7 @@ module Example.PhysicalConstants is
 end module.
 ```
 
-In the module file, we actually define the values:
+In the module file `PhysicalConstants.aum`, we actually define the values:
 
 ```austral
 module body Example.PhysicalConstants is
