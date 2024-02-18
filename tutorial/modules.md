@@ -52,8 +52,8 @@ constructor and transformation functions enforce certain invariants.
 
 # Interfaces and Implementations
 
-Austral separates modules into a _module interface_ file and a _module body_
-file.
+Austral separates modules into a _module interface_ file, with file extension
+`.aui`, and a _module body_ file, with file extension `.aum`.
 
 The point of separating interfaces and implementations is readability: the
 interface describes all the things module's declarations that are public and
@@ -75,8 +75,8 @@ This section contains examples of the module system.
 
 Let's define a module that exports physical constants.
 
-In the interface file, we declare the names of the constants, along with their
-types and a docstring, but not their values:
+In the interface file `PhysicalConstants.aui`, we declare the names of the
+constants, along with their types and a docstring, but not their values:
 
 ```austral
 module Example.PhysicalConstants is
@@ -92,7 +92,7 @@ module Example.PhysicalConstants is
 end module.
 ```
 
-In the module file, we actually define the values:
+In the module file `PhysicalConstants.aum`, we actually define the values:
 
 ```austral
 module body Example.PhysicalConstants is
@@ -100,6 +100,37 @@ module body Example.PhysicalConstants is
 
     constant elementary_charge: Float64 := 1.602176634e-19;
 end module body.
+```
+
+Then, in another module, we can import these constants:
+
+```austral
+import Example.PhysicalConstants (
+    speed_of_light,
+    elementary_charge
+);
+
+module body Example.Main is
+    function main(): ExitCode is
+        print("The speed of light is ");
+        print(speed_of_light);
+        printLn(" meters per second.");
+        print("The elementary charge is ");
+        print(elementary_charge);
+        printLn(" coulombs.");
+        return ExitSuccess();
+    end;
+end module body.
+```
+
+To use all these files together, we must pass all their names to the compiler,
+with each pair of interface with implementation gathered together via a comma:
+
+```bash
+$ austral compile PhysicalConstants.aui,PhysicalConstants.aum Main.aum --entrypoint=Example.Main:main --output=constants
+$ ./constants
+The speed of light is 299792458.000000 meters per second.
+The elementary charge is 0.000000 coulombs.
 ```
 
 ### Navigation
