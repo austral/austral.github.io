@@ -279,11 +279,11 @@ writability.</p></li>
 href="https://lamport.azurewebsites.net/pubs/future-of-computing.pdf">wrote</a>:</p>
 <blockquote>
 <p>An automobile runs, a program does not. (Computers run, but I’m not
-discussing them.) An automobile requires mainte- nance, a program does
+discussing them.) An automobile requires maintenance, a program does
 not. A program does not need to have its stack cleaned every 10,000
 miles. Its if statements do not wear out through use. (Previously
 undetected errors may need to be corrected, or it might be necessary to
-write a new but sim- ilar program, but those are different matters.) An
+write a new but similar program, but those are different matters.) An
 automobile is a piece of machinery, a program is some kind of
 mathematical expression.</p>
 </blockquote>
@@ -2879,9 +2879,9 @@ type parameter to only accept types that implement a set of
 typeclasses.</p>
 <p>Let <span class="math inline">\(\text{p}\)</span> be a type parameter
 name, <span class="math inline">\(\text{U}\)</span> be one of <span
-class="math inline">\(\{Free, Linear, Type\}\)</span>, and <span
-class="math inline">\(\{C_1, ..., C_n\}\)</span> be a set of type class
-names. Then:</p>
+class="math inline">\(\{Free,
+Linear, Type\}\)</span>, and <span class="math inline">\(\{C_1, ...,
+C_n\}\)</span> be a set of type class names. Then:</p>
 <p><span class="math display">\[
 \text{p}: U(C_1, ..., C_n)
 \]</span></p>
@@ -2943,54 +2943,54 @@ and <code>false</code>.</p>
 <p>The following integer types are available:</p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>Name</th>
 <th>Width</th>
 <th>Signedness</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code>Nat8</code></td>
 <td>8 bits</td>
 <td>Unsigned.</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>Nat16</code></td>
 <td>16 bits.</td>
 <td>Unsigned.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>Nat32</code></td>
 <td>32 bits.</td>
 <td>Unsigned.</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>Nat64</code></td>
 <td>64 bits.</td>
 <td>Unsigned.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>Int8</code></td>
 <td>8 bits.</td>
 <td>Signed.</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>Int16</code></td>
 <td>16 bits.</td>
 <td>Signed.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>Int32</code></td>
 <td>32 bits.</td>
 <td>Signed.</td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>Int64</code></td>
 <td>64 bits.</td>
 <td>Signed.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>Index</code></td>
 <td>Platform-dependent.</td>
 <td>Unsigned.</td>
@@ -3213,8 +3213,8 @@ class="math inline">\(\tau_r\)</span> be a type. Then:</p>
 class="math inline">\(\text{f}\)</span> with the given value parameter
 set and return type <span class="math inline">\(\tau_r\)</span>.</p>
 <p>More generally, given a set of type parameter <span
-class="math inline">\(\{\text{tp}_1: k_1, \dots, \text{tp}_n:
-k_n\}\)</span>, then:</p>
+class="math inline">\(\{\text{tp}_1: k_1, \dots,
+\text{tp}_n: k_n\}\)</span>, then:</p>
 <p><span class="math display">\[
 \begin{aligned}
 &amp; \text{generic} ~
@@ -3269,8 +3269,8 @@ class="math inline">\(\text{f}\)</span> with the given value parameter
 set, return type <span class="math inline">\(\tau_r\)</span>, and body
 <span class="math inline">\(s\)</span>.</p>
 <p>More generally, given a set of type parameter <span
-class="math inline">\(\{\text{tp}_1: k_1, \dots, \text{tp}_n:
-k_n\}\)</span>, then:</p>
+class="math inline">\(\{\text{tp}_1: k_1, \dots,
+\text{tp}_n: k_n\}\)</span>, then:</p>
 <p><span class="math display">\[
 \begin{aligned}
 &amp; \text{generic} ~
@@ -3407,8 +3407,8 @@ universe <span class="math inline">\(u\)</span>.</p></li>
 <p>defines a <em>concrete instance</em> of the typeclass <span
 class="math inline">\(\text{t}\)</span>.</p>
 <p>More generally, given a set of type parameters <span
-class="math inline">\(\{\text{tp}_1: k_1, \dots, \text{tp}_n:
-k_n\}\)</span>, then:</p>
+class="math inline">\(\{\text{tp}_1: k_1, \dots,
+\text{tp}_n: k_n\}\)</span>, then:</p>
 <p><span class="math display">\[
 \begin{aligned}
 &amp; \text{generic} ~
@@ -3748,8 +3748,8 @@ class="math inline">\(\tau_r\)</span>.</p>
 <p>If <span class="math inline">\(\text{r}\)</span> is the name of a
 record type with slots <span class="math inline">\(\{\text{s}_1: \tau_1,
 \dots, \text{s}_n: \tau_n\}\)</span>, and we have a set of expressions
-<span class="math inline">\(\{e_1: \tau_1, \dots, e_n:
-\tau_n\}\)</span>, then:</p>
+<span class="math inline">\(\{e_1: \tau_1,
+\dots, e_n: \tau_n\}\)</span>, then:</p>
 <p><span class="math display">\[
 \text{r}(\text{s}_1 \Rightarrow e_1, \dots, \text{s}_n \Rightarrow e_n)
 \]</span></p>
@@ -4249,57 +4249,57 @@ the Austral type on the second column.</p>
 parameter list and return type of a foreign function.</p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>C Type</th>
 <th>Austral Type</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><code>unsigned char</code></td>
 <td><code>Bool</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>unsigned char</code></td>
 <td><code>Nat8</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>signed char</code></td>
 <td><code>Int8</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>unsigned short</code></td>
 <td><code>Nat16</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>signed short</code></td>
 <td><code>Int16</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>unsigned int</code></td>
 <td><code>Nat32</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>signed int</code></td>
 <td><code>Int32</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>unsigned long</code></td>
 <td><code>Nat64</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>signed long</code></td>
 <td><code>Int64</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>float</code></td>
 <td><code>Float32</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td><code>double</code></td>
 <td><code>Float64</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td><code>t*</code></td>
 <td><code>Address[t]</code></td>
 </tr>

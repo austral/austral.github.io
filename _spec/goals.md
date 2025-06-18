@@ -67,11 +67,11 @@ This section lists the design goals for Austral.
 5. **Maintainability.** Leslie Lamport [wrote][lamport]:
 
    >An automobile runs, a program does not. (Computers run, but I’m not
-   >discussing them.) An automobile requires mainte- nance, a program does
+   >discussing them.) An automobile requires maintenance, a program does
    >not. A program does not need to have its stack cleaned every 10,000
    >miles. Its if statements do not wear out through use. (Previously undetected
    >errors may need to be corrected, or it might be necessary to write a new but
-   >sim- ilar program, but those are different matters.) An automobile is a
+   >similar program, but those are different matters.) An automobile is a
    >piece of machinery, a program is some kind of mathematical expression.
 
    Working programmers know this is far from reality. Bitrot, not permanence, is
