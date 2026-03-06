@@ -7,6 +7,6 @@ website, including the most up-to-date text of the specification.
 
 ## License
 
-Copyright 2021–2023 [Fernando Borretti][fernando].
+Copyright 2021–2026 [Fernando Borretti][fernando].
 
 [fernando]: https://borretti.me/
