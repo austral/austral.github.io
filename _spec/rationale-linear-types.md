@@ -492,8 +492,8 @@ type T<A, B, C>
 ```
 
 Here, we also have to specify which universe the parameters and the resulting
-type belong to. Rember: there are two universes: free and linear. So for example
-we can write:
+type belong to. Remember: there are two universes: free and linear. So for
+example we can write:
 
 ```
 type T<A: Free, B: Free>: Free

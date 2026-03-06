@@ -1009,7 +1009,7 @@ notation. When you have a generic type with generic type parameters, in
 a regular language you might declare it like:</p>
 <pre><code>type T&lt;A, B, C&gt;</code></pre>
 <p>Here, we also have to specify which universe the parameters and the
-resulting type belong to. Rember: there are two universes: free and
+resulting type belong to. Remember: there are two universes: free and
 linear. So for example we can write:</p>
 <pre><code>type T&lt;A: Free, B: Free&gt;: Free
 type U!&lt;A: Linear&gt;: Linear</code></pre>
